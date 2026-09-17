@@ -4,6 +4,7 @@
     { href: 'ai-agent-model-timeline.html', label: '演进时间图' },
     { href: 'ai-model-comparison.html', label: '大模型对比' },
     { href: 'ai-agent-comparison.html', label: 'Agent对比' },
+    { href: 'ai-knowledge-base.html', label: 'AI 知识库' },
   ];
   const host = document.querySelector('[data-site-nav]');
   if (!host) return;
