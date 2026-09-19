@@ -7,11 +7,18 @@ const siteCss = await readFile(new URL('../assets/site-nav.css', import.meta.url
 
 const toolsGroup = html.match(/<section class="resource-group" data-group="tools"[\s\S]*?<\/section>/)?.[0] ?? '';
 const workflowGroup = html.match(/<section class="resource-group" data-group="workflow"[\s\S]*?<\/section>/)?.[0] ?? '';
+const agentGroup = html.match(/<section class="resource-group" data-group="agent"[\s\S]*?<\/section>/)?.[0] ?? '';
+const readingGroup = html.match(/<section class="resource-group" data-group="reading"[\s\S]*?<\/section>/)?.[0] ?? '';
 
 assert.match(toolsGroup, /href="https:\/\/github\.com\/tw93\/Kaku"/);
+assert.match(toolsGroup, /href="https:\/\/github\.com\/tw93\/Mole"/);
 assert.match(workflowGroup, /href="https:\/\/github\.com\/tw93\/Waza"/);
 assert.match(workflowGroup, /href="https:\/\/github\.com\/tw93\/Kami"/);
-assert.match(html, /id="result-count"[^>]*>22 项<\/p>/);
+assert.match(readingGroup, /href="https:\/\/github\.com\/tw93\/Weekly"/);
+assert.match(toolsGroup, /<h2 id="heading-tools">编程工具<\/h2>\s*<span>6<\/span>/);
+assert.match(agentGroup, /<h2 id="heading-agent">Agent \/ Harness<\/h2>\s*<span>5<\/span>/);
+assert.match(readingGroup, /<h2 id="heading-reading">基础文章<\/h2>\s*<span>6<\/span>/);
+assert.match(html, /id="result-count"[^>]*>24 项<\/p>/);
 
 assert.doesNotMatch(
   html,
