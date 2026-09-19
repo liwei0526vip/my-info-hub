@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 
 const html = await readFile(new URL('../ai-learning-index.html', import.meta.url), 'utf8');
 const css = await readFile(new URL('../assets/learning-index.css', import.meta.url), 'utf8');
+const siteCss = await readFile(new URL('../assets/site-nav.css', import.meta.url), 'utf8');
 
 const toolsGroup = html.match(/<section class="resource-group" data-group="tools"[\s\S]*?<\/section>/)?.[0] ?? '';
 const workflowGroup = html.match(/<section class="resource-group" data-group="workflow"[\s\S]*?<\/section>/)?.[0] ?? '';
@@ -25,9 +26,9 @@ assert.doesNotMatch(hero, /<br\s*\/?>/);
 assert.match(hero, /<p class="intro">[^<]+<\/p>/);
 
 assert.match(
-  css,
-  /\.page-shell\{width:calc\(100% - clamp\(24px,3vw,64px\)\);margin-inline:auto\}/,
-  'content must use the same fluid viewport gutters as the other pages',
+  siteCss,
+  /\.shell,\.page-shell,\.site-inner\{width:calc\(100% - var\(--site-gutter\)\);max-width:none;margin-inline:auto\}/,
+  'content must use the shared site shell and fluid viewport gutters',
 );
 assert.match(css, /\.resource-grid\{display:grid;grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
 assert.match(css, /@media\(max-width:1200px\)[\s\S]*?grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
