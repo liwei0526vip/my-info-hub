@@ -4,6 +4,14 @@ import { readFile } from 'node:fs/promises';
 const html = await readFile(new URL('../ai-learning-index.html', import.meta.url), 'utf8');
 const css = await readFile(new URL('../assets/learning-index.css', import.meta.url), 'utf8');
 
+const toolsGroup = html.match(/<section class="resource-group" data-group="tools"[\s\S]*?<\/section>/)?.[0] ?? '';
+const workflowGroup = html.match(/<section class="resource-group" data-group="workflow"[\s\S]*?<\/section>/)?.[0] ?? '';
+
+assert.match(toolsGroup, /href="https:\/\/github\.com\/tw93\/Kaku"/);
+assert.match(workflowGroup, /href="https:\/\/github\.com\/tw93\/Waza"/);
+assert.match(workflowGroup, /href="https:\/\/github\.com\/tw93\/Kami"/);
+assert.match(html, /id="result-count"[^>]*>22 项<\/p>/);
+
 assert.doesNotMatch(
   html,
   /class="index-mark"/,
