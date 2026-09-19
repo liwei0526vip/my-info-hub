@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="AI 学习索引：集中收藏值得回看的工具、工作流、课程与文章。">
+  <title>学习索引｜AI Info Hub</title>
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/learning-index.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/learning-index.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#resources">跳到资源索引</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">AI INFO HUB</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai-agent-model-timeline.html">演进时间图</a>
+        <a href="ai-model-comparison.html">大模型对比</a>
+        <a href="ai-agent-comparison.html">Agent对比</a>
+        <a href="ai-knowledge-base.html">AI 知识库</a>
+        <a href="ai-learning-index.html" aria-current="page">学习索引</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <header class="hero page-shell">
+      <div class="hero-title">
+        <p class="eyebrow">AI LEARNING / INDEX</p>
+        <h1>AI 学习索引</h1>
+      </div>
+      <p class="intro">收藏工具、文章与实践入口。这里不复述内容，只帮你在需要时快速找到它。</p>
+    </header>
+
+    <section class="index-controls" aria-label="筛选资源">
+      <div class="page-shell controls-inner">
+        <label class="search-box" for="resource-search">
+          <span>搜索</span>
+          <input id="resource-search" type="search" placeholder="名称、主题或来源" autocomplete="off">
+        </label>
+        <div class="category-filters" role="group" aria-label="按分类筛选">
+          <button type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button type="button" data-filter="tools" aria-pressed="false">编程工具</button>
+          <button type="button" data-filter="workflow" aria-pressed="false">工作流与技能</button>
+          <button type="button" data-filter="agent" aria-pressed="false">Agent / Harness</button>
+          <button type="button" data-filter="reading" aria-pressed="false">基础文章</button>
+        </div>
+        <p class="result-count" id="result-count" aria-live="polite">19 项</p>
+      </div>
+    </section>
+
+    <div id="resources" class="resource-index page-shell">
+      <section class="resource-group" data-group="tools" aria-labelledby="heading-tools">
+        <header class="group-heading">
+          <p class="group-code">TOOLS</p>
+          <h2 id="heading-tools">编程工具</h2>
+          <span>4</span>
+        </header>
+        <div class="resource-grid">
+          <article class="resource-card" data-category="tools" data-search="claude code best practice 最佳实践 github">
+            <a href="https://github.com/shanraisshan/claude-code-best-practice" target="_blank" rel="noopener noreferrer">
+              <div><span class="resource-type">实践</span><span class="resource-host">GitHub</span></div>
+              <h3>claude-code-best-practice</h3><p>Claude Code 实践清单</p><span class="open-mark" aria-hidden="true">↗</span>
+            </a>
+          </article>
+          <article class="resource-card" data-category="tools" data-search="claude code settings 配置 github">
+            <a href="https://github.com/feiskyer/claude-code-settings" target="_blank" rel="noopener noreferrer">
+              <div><span class="resource-type">配置</span><span class="resource-host">GitHub</span></div>
+              <h3>claude-code-settings</h3><p>配置与用法参考</p><span class="open-mark" aria-hidden="true">↗</span>
+            </a>
+          </article>
+          <article class="resource-card" data-category="tools" data-search="everything claude code 工具集 skills agents hooks github">
+            <a href="https://github.com/affaan-m/everything-claude-code" target="_blank" rel="noopener noreferrer">
+              <div><span class="resource-type">工具集</span><span class="resource-host">GitHub</span></div>
+              <h3>everything-claude-code</h3><p>Claude Code 扩展合集</p><span class="open-mark" aria-hidden="true">↗</span>
+            </a>
+          </article>
+          <article class="resource-card" data-category="tools" data-search="claude mem memory 记忆 github">
+            <a href="https://github.com/thedotmack/claude-mem" target="_blank" rel="noopener noreferrer">
+              <div><span class="resource-type">扩展</span><span class="resource-host">GitHub</span></div>
+              <h3>claude-mem</h3><p>会话记忆扩展</p><span class="open-mark" aria-hidden="true">↗</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-group" data-group="workflow" aria-labelledby="heading-workflow">
+        <header class="group-heading">
+          <p class="group-code">WORKFLOW</p>
+          <h2 id="heading-workflow">工作流与技能</h2>
+          <span>5</span>
+        </header>
+        <div class="resource-grid">
+          <article class="resource-card" data-category="workflow" data-search="superpowers agent coding workflow 工作流 github">
+            <a href="https://github.com/obra/superpowers" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">工作流</span><span class="resource-host">GitHub</span></div><h3>superpowers</h3><p>Agent 编程工作流</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="workflow" data-search="gstack agent workflow github">
+            <a href="https://github.com/garrytan/gstack" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">工作流</span><span class="resource-host">GitHub</span></div><h3>gstack</h3><p>AI 开发工作流</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="workflow" data-search="vercel labs agent skills 技能 github">
+            <a href="https://github.com/vercel-labs/agent-skills" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">技能</span><span class="resource-host">GitHub</span></div><h3>vercel-labs / agent-skills</h3><p>Agent Skills 示例</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="workflow" data-search="addy osmani agent skills 技能 github">
+            <a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">技能</span><span class="resource-host">GitHub</span></div><h3>addyosmani / agent-skills</h3><p>开发技能合集</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="workflow" data-search="ui ux pro max skill design 设计 技能 github">
+            <a href="https://github.com/nextlevelbuilder/ui-ux-pro-max-skill" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">设计技能</span><span class="resource-host">GitHub</span></div><h3>ui-ux-pro-max-skill</h3><p>UI / UX 设计辅助</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-group" data-group="agent" aria-labelledby="heading-agent">
+        <header class="group-heading">
+          <p class="group-code">AGENT</p>
+          <h2 id="heading-agent">Agent / Harness</h2>
+          <span>5</span>
+        </header>
+        <div class="resource-grid">
+          <article class="resource-card" data-category="agent" data-search="深入学习 claude code 源码 agent course 课程">
+            <a href="https://www.xuanyuancode.com/learn-claude-code" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">课程</span><span class="resource-host">xuanyuancode.com</span></div><h3>深入学习 Claude Code 源码</h3><p>源码导读</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="agent" data-search="深入 claude code 源码 agent loop 架构 课程">
+            <a href="https://nangongwentian-fe.github.io/learn-claude-source/" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">课程</span><span class="resource-host">GitHub Pages</span></div><h3>从 Agent Loop 到完整架构</h3><p>Claude Code 源码导读</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="agent" data-search="harness engineering 深度解析 ai agent 工程范式 知乎">
+            <a href="https://zhuanlan.zhihu.com/p/2014014859164026634" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">文章</span><span class="resource-host">知乎</span></div><h3>Harness Engineering 深度解析</h3><p>工程范式与演进</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="agent" data-search="harness engineering 本质 知乎">
+            <a href="https://www.zhihu.com/question/2016648624256340425/answer/2028556334010841014" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">问答</span><span class="resource-host">知乎</span></div><h3>Harness Engineering 的本质</h3><p>概念辨析</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="agent" data-search="harness engineering 学习指南 实践 github">
+            <a href="https://github.com/deusyu/harness-engineering" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">指南</span><span class="resource-host">GitHub</span></div><h3>Harness Engineering 学习指南</h3><p>从概念到实践</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="resource-group" data-group="reading" aria-labelledby="heading-reading">
+        <header class="group-heading">
+          <p class="group-code">READING</p>
+          <h2 id="heading-reading">基础文章</h2>
+          <span>5</span>
+        </header>
+        <div class="resource-grid">
+          <article class="resource-card" data-category="reading" data-search="how llms actually work 大模型 原理 可视化">
+            <a href="https://ynarwal.github.io/how-llms-work/index.html" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">交互文章</span><span class="resource-host">GitHub Pages</span></div><h3>How LLMs Actually Work</h3><p>LLM 工作原理</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="reading" data-search="claude code 源码分析 liuup github">
+            <a href="https://github.com/liuup/claude-code-analysis" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">源码分析</span><span class="resource-host">GitHub</span></div><h3>Claude Code 源码分析</h3><p>结构化源码笔记</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="reading" data-search="51万行 claude code 源码 深度解读 知乎">
+            <a href="https://zhuanlan.zhihu.com/p/2022433246449780672" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">文章</span><span class="resource-host">知乎</span></div><h3>深度解读 51 万行 Claude Code 源码</h3><p>源码研究记录</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="reading" data-search="claude code 源码 优秀解读 整理 知乎">
+            <a href="https://zhuanlan.zhihu.com/p/2022605516262614921" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">索引</span><span class="resource-host">知乎</span></div><h3>Claude Code 源码优秀解读整理</h3><p>相关内容汇总</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+          <article class="resource-card" data-category="reading" data-search="context engineering 上下文工程 一篇就够了 知乎">
+            <a href="https://zhuanlan.zhihu.com/p/1938967453951571269" target="_blank" rel="noopener noreferrer"><div><span class="resource-type">文章</span><span class="resource-host">知乎</span></div><h3>Context Engineering 一篇就够了</h3><p>上下文工程入门</p><span class="open-mark" aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>
+
+      <div class="empty-state" id="empty-state" hidden>
+        <p>没有匹配的内容</p>
+        <button type="button" id="clear-search">清除筛选</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-shell page-footer">
+    <p>内容来自个人学习收藏，持续整理。</p>
+    <a href="#top">回到顶部 ↑</a>
+  </footer>
+</body>
+</html>

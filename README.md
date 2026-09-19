@@ -5,6 +5,8 @@
 - `ai-agent-model-timeline.html`：模型与 Agent 演进时间图
 - `ai-model-comparison.html`：大模型对比
 - `ai-agent-comparison.html`：Agent 产品对比
+- `ai-knowledge-base.html`：AI 知识库实践与产品研究
+- `ai-learning-index.html`：AI 学习工具与文章索引
 
 ## 新增页面
 
