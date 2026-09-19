@@ -4,8 +4,8 @@
     { href: 'ai-agent-model-timeline.html', label: '演进时间图' },
     { href: 'ai-model-comparison.html', label: '大模型对比' },
     { href: 'ai-agent-comparison.html', label: 'Agent对比' },
-    { href: 'ai-knowledge-base.html', label: 'AI 知识库' },
-    { href: 'ai-learning-index.html', label: '学习索引' },
+    { href: 'ai-knowledge-base.html', label: '知识库' },
+    { href: 'ai-learning-index.html', label: '学习收藏' },
   ];
   const currentFile = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';
   const current = currentFile === 'index.html' ? 'ai-agent-model-timeline.html' : currentFile;

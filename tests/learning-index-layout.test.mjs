@@ -21,7 +21,7 @@ assert.doesNotMatch(
 
 const hero = html.match(/<header class="hero page-shell">([\s\S]*?)<\/header>/)?.[1] ?? '';
 assert.match(hero, /<div class="hero-title">/);
-assert.match(hero, /<h1>AI 学习索引<\/h1>/);
+assert.match(hero, /<h1>学习收藏<\/h1>/);
 assert.doesNotMatch(hero, /<br\s*\/?>/);
 assert.match(hero, /<p class="intro">[^<]+<\/p>/);
 
