@@ -1,0 +1,100 @@
+/* Market memo: one argument page — claim, reasoning, evidence — for the cert / PQC / automation chain. */
+body{line-height:1.65}
+.skip-link{position:fixed;left:16px;top:-60px;z-index:100;background:var(--ink);color:#fff;padding:10px 14px;border-radius:6px;text-decoration:none}
+.skip-link:focus{top:12px}
+
+/* Hero */
+.memo-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,470px);gap:44px;align-items:center;padding-block:25px 23px}
+.eyebrow{margin:0 0 4px;color:var(--muted);font:700 10px/1.4 var(--mono);letter-spacing:.14em}
+h1{margin:0;font:750 30px/1.3 var(--display);letter-spacing:-.035em;color:var(--blue)}
+.memo-intro{justify-self:end;max-width:470px;margin:0;color:var(--muted);font-size:13px;text-align:right}
+.memo-intro strong{color:var(--ink)}
+
+/* 01 · Claim band */
+.claim-band{background:var(--ink);color:#dcebef;padding-block:34px 36px}
+.claim-band .eyebrow{color:#8fb0bc}
+.claim-headline{margin:0 0 28px;max-width:920px;font:750 clamp(22px,2.6vw,29px)/1.5 var(--display);letter-spacing:-.02em;color:#fff}
+.claim-headline .role{color:var(--amber);font-style:normal;padding:0 .1em}
+
+.chain{display:grid;grid-template-columns:minmax(0,1fr) clamp(88px,11vw,128px) minmax(0,1fr) clamp(88px,11vw,128px) minmax(0,1fr);align-items:stretch}
+.chain-station{display:flex;flex-direction:column;padding:16px 15px 15px;border:1px solid rgba(220,235,239,.22);border-radius:12px;background:rgba(255,255,255,.045)}
+.station-role{align-self:flex-start;padding:4px 9px;border:1px solid rgba(245,160,22,.6);border-radius:999px;color:var(--amber);font:700 9px/1.1 var(--mono);letter-spacing:.12em;white-space:nowrap}
+.station-term{margin:12px 0 3px;font:750 23px/1.2 var(--display);letter-spacing:-.02em;color:#fff}
+.station-en{margin:0;color:#8fb0bc;font:700 9px/1 var(--mono);letter-spacing:.16em}
+.station-note{margin:11px 0 0;color:#bcd4dc;font-size:11.5px;line-height:1.65}
+.chain-link{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;padding:0 8px}
+.chain-link>span{color:var(--amber);font:700 10px/1.45 var(--mono);letter-spacing:.05em;text-align:center}
+.chain-arrow{display:flex;align-items:center;align-self:stretch;width:100%}
+.chain-arrow::before{content:"";flex:1;height:2px;background:rgba(245,160,22,.7)}
+.chain-arrow::after{content:"";border-left:8px solid rgba(245,160,22,.95);border-block:5px solid transparent}
+.chain-takeaway{margin:24px 0 0;padding:13px 16px;border-left:3px solid var(--amber);border-radius:0 10px 10px 0;background:rgba(245,160,22,.12);color:#f2e3c8;font-size:13px;line-height:1.7}
+.chain-takeaway strong{color:#fff}
+
+/* 02 / 03 · Sections */
+.memo-section{padding-block:34px}
+.memo-section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,340px);gap:8px 30px;align-items:end;border-top:3px solid var(--blue);padding-top:13px}
+.memo-section-head .eyebrow{margin-bottom:6px}
+.memo-section-head h2{margin:0;font:720 20px/1.25 var(--display);letter-spacing:-.02em;color:var(--ink)}
+.section-aside{justify-self:end;margin:0;color:var(--muted);font-size:11px;text-align:right;line-height:1.6}
+
+.reason-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
+.reason{padding:17px 16px 16px;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+.reason-no{margin:0;color:var(--amber);font:750 13px/1 var(--mono);letter-spacing:.08em}
+.reason h3{margin:10px 0 7px;font:720 16px/1.4 var(--display);letter-spacing:-.015em;color:var(--ink)}
+.reason p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+
+.tl-rows{display:grid;row-gap:10px;margin-top:22px}
+.tl-row{display:grid;grid-template-columns:92px minmax(0,1fr) 132px;gap:12px;align-items:center}
+.tl-date{margin:0;color:var(--muted);font:700 11px/1.3 var(--mono);text-align:right}
+.tl-bar{height:25px;border-radius:6px;background:var(--blue)}
+.tl-row.is-terminal .tl-bar{background:var(--amber)}
+.tl-days{margin:0;font:750 15px/1 var(--display);color:var(--ink)}
+.tl-tag{color:var(--brown);font:700 9px/1 var(--mono);letter-spacing:.1em;margin-left:6px}
+.tl-caption{margin:16px 0 0;max-width:760px;color:var(--muted);font-size:12px;line-height:1.7}
+.tl-caption strong{color:var(--ink)}
+
+/* Coda */
+.coda{padding-block:30px 6px}
+.coda blockquote{margin:0;max-width:760px;font:750 clamp(19px,2.2vw,24px)/1.6 var(--display);letter-spacing:-.015em;color:var(--ink)}
+.coda blockquote::before{content:"“";color:var(--amber);margin-right:2px}
+.coda cite{display:block;margin-top:12px;color:var(--muted);font:700 11px/1.5 var(--mono);font-style:normal;letter-spacing:.1em}
+.memo-source{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);color:#8a9ca4;font:11px/1.6 var(--mono)}
+
+@media(max-width:1100px){
+  .chain{grid-template-columns:1fr}
+  .chain-link{flex-direction:column;padding:15px 0}
+  .chain-arrow{flex-direction:column;width:2px;height:38px;align-self:center}
+  .chain-arrow::before{width:2px;height:auto;flex:1}
+  .chain-arrow::after{border-top:8px solid rgba(245,160,22,.95);border-inline:5px solid transparent;border-left:0}
+}
+@media(max-width:960px){
+  .memo-hero{grid-template-columns:1fr;gap:10px;padding-block:22px 20px}
+  .memo-intro{justify-self:start;max-width:none;text-align:left}
+  .memo-section-head{grid-template-columns:1fr}
+  .section-aside{justify-self:start;text-align:left}
+}
+@media(max-width:850px){
+  .reason-grid{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  h1{font-size:29px}
+  .memo-section{padding-block:28px}
+  .claim-band{padding-block:28px}
+  .claim-headline{margin-bottom:22px}
+  .station-term{font-size:21px}
+  .tl-row{grid-template-columns:72px minmax(0,1fr) 96px;gap:9px}
+  .tl-days{font-size:13px}
+  .tl-tag{display:block;margin:4px 0 0}
+}
+@media print{
+  .skip-link{display:none}
+  .claim-band{background:var(--paper);color:var(--ink);padding-block:14px}
+  .claim-band .eyebrow{color:var(--muted)}
+  .claim-headline,.station-term{color:var(--ink)}
+  .station-en,.station-note{color:var(--muted)}
+  .chain-station{border-color:var(--line);background:#fff;break-inside:avoid}
+  .chain-takeaway{background:var(--warm);color:var(--brown)}
+  .chain-takeaway strong{color:var(--ink)}
+  .memo-section{padding-block:16px}
+  .tl-bar{height:16px}
+}

@@ -8,6 +8,7 @@ const pageNames = [
   'ai-agent-comparison.html',
   'ai-knowledge-base.html',
   'ai-learning-index.html',
+  'market-memo.html',
 ];
 
 const pages = await Promise.all(
@@ -25,11 +26,15 @@ for (const [name, html] of pages) {
 
 assert.match(siteNav, /href: 'ai-knowledge-base\.html', label: '知识库'/);
 assert.match(siteNav, /href: 'ai-learning-index\.html', label: '学习收藏'/);
+assert.match(siteNav, /href: 'market-memo\.html', label: '市场备忘'/);
 
 const knowledgePage = pages.find(([name]) => name === 'ai-knowledge-base.html')[1];
 const learningPage = pages.find(([name]) => name === 'ai-learning-index.html')[1];
+const memoPage = pages.find(([name]) => name === 'market-memo.html')[1];
 assert.match(knowledgePage, /<title>知识库｜AI Info Hub<\/title>/);
 assert.match(learningPage, /<title>学习收藏｜AI Info Hub<\/title>/);
+assert.match(memoPage, /<title>市场备忘｜AI Info Hub<\/title>/);
+assert.match(memoPage, /<link rel="stylesheet" href="assets\/market-memo\.css">/, 'market-memo must load its page layout');
 
 for (const name of ['ai-model-comparison.html', 'ai-agent-comparison.html']) {
   const html = pages.find(([pageName]) => pageName === name)[1];

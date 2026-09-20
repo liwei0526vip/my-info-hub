@@ -7,6 +7,7 @@
 - `ai-agent-comparison.html`：Agent 产品对比
 - `ai-knowledge-base.html`：AI 知识库实践与产品研究
 - `ai-learning-index.html`：AI 学习工具与文章索引
+- `market-memo.html`：市场备忘（证书短周期 × 抗量子 × 自动化）
 
 ## 新增页面
 
