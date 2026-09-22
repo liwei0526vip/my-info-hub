@@ -6,6 +6,7 @@
     { href: 'ai-agent-comparison.html', label: 'Agent对比' },
     { href: 'ai-knowledge-base.html', label: '知识库' },
     { href: 'ai-learning-index.html', label: '学习收藏' },
+    { href: 'ops-agent.html', label: '运维智能体' },
     { href: 'market-memo.html', label: '市场备忘' },
   ];
   const currentFile = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';

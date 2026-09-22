@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="运维智能体白皮书精读：核心问题、典型场景、本质意义、专业追问与产品设想。">
+  <title>运维智能体｜AI Info Hub</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/ops-agent.css">
+  <script src="assets/site-nav.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">AI INFO HUB</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai-agent-model-timeline.html">演进时间图</a>
+        <a href="ai-model-comparison.html">大模型对比</a>
+        <a href="ai-agent-comparison.html">Agent对比</a>
+        <a href="ai-knowledge-base.html">知识库</a>
+        <a href="ai-learning-index.html">学习收藏</a>
+        <a href="ops-agent.html" aria-current="page">运维智能体</a>
+        <a href="market-memo.html">市场备忘</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="ops-hero">
+      <div class="page-shell hero-copy">
+        <p class="eyebrow">INTERNAL REVIEW / 运维智能体白皮书精读</p>
+        <h1>不只会回答。<br><em>要在边界内完成闭环。</em></h1>
+        <p class="hero-lead">白皮书将产品定位为既有运维体系之上的 AI 执行与协同中枢：理解目标，组织数据、知识与工具，再通过审批和审计把分析变成安全行动。</p>
+        <p class="source-note">基于《格尔智能运维系统｜深见明策》产品白皮书 · 2026.05 · 以下“专业判断”不代表产品实测结论</p>
+      </div>
+
+      <div class="incident-stage" aria-label="运维智能体从异常感知到经验沉淀的闭环示意">
+        <div class="page-shell incident-shell">
+          <div class="incident-head">
+            <div><span class="pulse" aria-hidden="true"></span><strong>INC-0427</strong> 核心网关响应异常</div>
+            <span>目标：恢复服务并控制变更风险</span>
+          </div>
+          <ol class="opar-rail">
+            <li>
+              <span class="step-code">O / OBSERVE</span>
+              <strong>感知环境</strong>
+              <small>指标 · 日志 · 告警 · 拓扑</small>
+            </li>
+            <li>
+              <span class="step-code">P / PLAN</span>
+              <strong>形成假设</strong>
+              <small>知识 · 经验 · 影响路径</small>
+            </li>
+            <li class="risk-gate">
+              <span class="step-code">POLICY GATE</span>
+              <strong>风险分级</strong>
+              <small>L1 自动 · 高风险确认</small>
+            </li>
+            <li>
+              <span class="step-code">A / ACT</span>
+              <strong>受控执行</strong>
+              <small>技能 · 工具 · 审批 · 回滚</small>
+            </li>
+            <li>
+              <span class="step-code">R / REFLECT</span>
+              <strong>验证沉淀</strong>
+              <small>结果 · 复盘 · 记忆 · 技能</small>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </header>
+
+    <nav class="page-nav" aria-label="本页目录">
+      <div class="page-shell">
+        <a href="#problems">要解决什么</a>
+        <a href="#scenarios">使用场景</a>
+        <a href="#essence">本质意义</a>
+        <a href="#questions">深度问题</a>
+        <a href="#vision">进一步设想</a>
+      </div>
+    </nav>
+
+    <section class="ops-section page-shell" id="problems" aria-labelledby="problems-title">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">01 / CORE PROBLEMS</p>
+          <h2 id="problems-title">它要解决的，不是“缺一个聊天框”</h2>
+        </div>
+        <p>白皮书把痛点指向组织运维能力的断裂，而非单点工具能力不足。</p>
+      </header>
+      <div class="problem-grid">
+        <article><span>工具链</span><h3>系统多，处理链仍靠人串</h3><p>监控、日志、脚本、工单和协同工具彼此割裂，异常处置在平台切换中损耗时间。</p></article>
+        <article><span>诊断</span><h3>复杂问题受制于少数专家</h3><p>跨网络、系统、数据库与应用的判断难复制，定位速度取决于个人经验。</p></article>
+        <article><span>知识</span><h3>解决过的问题仍会重来</h3><p>案例、判断依据与处置路径没有变成可调用的知识、记忆和技能。</p></article>
+        <article><span>闭环</span><h3>能发现，不等于能解决</h3><p>传统 AIOps 偏重识别与分析，决策、执行、验证仍存在明显人工断点。</p></article>
+        <article><span>治理</span><h3>生产环境不能接受黑盒行动</h3><p>智能体必须同时满足最小权限、风险分级、人工确认、全程留痕与责任可追溯。</p></article>
+      </div>
+    </section>
+
+    <section class="ops-section scenario-band" id="scenarios" aria-labelledby="scenarios-title">
+      <div class="page-shell">
+        <header class="section-head">
+          <div>
+            <p class="eyebrow">02 / USE CASES</p>
+            <h2 id="scenarios-title">三类场景，一条演进路线</h2>
+          </div>
+          <p>从减少人工查找，到提前识别风险，再到降低协同与操作门槛。</p>
+        </header>
+        <div class="scenario-grid">
+          <article>
+            <div class="scenario-index">DIAGNOSE</div>
+            <h3>故障诊断与根因分析</h3>
+            <p>融合告警、指标、日志、变更和拓扑，形成故障上下文，给出原因假设、影响范围与处置建议。</p>
+            <dl><dt>关键价值</dt><dd>把跨平台排查从小时级压向分钟级</dd><dt>关键约束</dt><dd>根因必须有证据链，不能只是模型推测</dd></dl>
+          </article>
+          <article>
+            <div class="scenario-index">PREVENT</div>
+            <h3>智能巡检与健康评估</h3>
+            <p>自动执行巡检，结合历史趋势、运行基线和业务依赖，识别尚未越过阈值的容量与配置风险。</p>
+            <dl><dt>关键价值</dt><dd>从“检查是否异常”升级为“判断未来风险”</dd><dt>关键约束</dt><dd>基线、趋势窗口和风险等级需要可配置</dd></dl>
+          </article>
+          <article>
+            <div class="scenario-index">COLLABORATE</div>
+            <h3>对话即运维</h3>
+            <p>把业务语言转换为技术分析任务，并按角色输出业务影响或技术细节；移动端承担告警、查询和审批入口。</p>
+            <dl><dt>关键价值</dt><dd>减少跨角色沟通和多平台操作成本</dd><dt>关键约束</dt><dd>自然语言便利不能绕过权限与变更流程</dd></dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ops-section page-shell" id="essence" aria-labelledby="essence-title">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">03 / ESSENCE</p>
+          <h2 id="essence-title">本质是运维控制面的升级</h2>
+        </div>
+        <p>不是再造监控平台，而是在既有系统之上增加目标理解、动态编排和安全决策。</p>
+      </header>
+      <div class="essence-layout">
+        <blockquote>把“专家如何判断并组织工具”编码成可治理、可验证、可持续学习的系统能力。</blockquote>
+        <div class="control-plane">
+          <div class="plane-row inputs"><span>实时信号</span><span>环境拓扑</span><span>组织知识</span><span>历史经验</span></div>
+          <div class="plane-core"><span>AI 执行与协同中枢</span><strong>理解目标 → 规划任务 → 选择技能 → 受控行动</strong><small>OPAR 闭环 · 多模型编排 · Human in the Loop</small></div>
+          <div class="plane-row outputs"><span>诊断证据</span><span>执行计划</span><span>审计记录</span><span>组织技能</span></div>
+        </div>
+      </div>
+      <div class="meaning-strip">
+        <p><strong>对个人</strong> 从“记命令、找入口”转向“描述目标、审核方案”。</p>
+        <p><strong>对团队</strong> 从“依赖专家”转向“复用被验证的判断路径”。</p>
+        <p><strong>对组织</strong> 从“工具资产”转向“数据、知识、技能与治理共同演进”。</p>
+      </div>
+    </section>
+
+    <section class="ops-section question-band" id="questions" aria-labelledby="questions-title">
+      <div class="page-shell">
+        <header class="section-head inverse">
+          <div>
+            <p class="eyebrow">04 / PROFESSIONAL QUESTIONS</p>
+            <h2 id="questions-title">真正决定产品可信度的六个问题</h2>
+          </div>
+          <p>这些问题白皮书尚未给出足够可验证的答案，适合进入产品评审与 PoC。</p>
+        </header>
+        <div class="question-grid">
+          <article><span>01 · 诊断真实性</span><h3>如何证明“根因”而非相关性？</h3><p>是否展示假设、证据、反证、置信度和验证动作？误判如何被发现与纠正？</p></article>
+          <article><span>02 · 环境可信度</span><h3>拓扑与配置过期时会怎样？</h3><p>拓扑来源、刷新频率、冲突处理和数据质量是否进入推理置信度？</p></article>
+          <article><span>03 · 执行安全</span><h3>“人工确认”是否足够？</h3><p>还需验证最小权限、幂等、超时、回滚、影响面限制与紧急熔断。</p></article>
+          <article><span>04 · 记忆治理</span><h3>错误经验会不会被反复放大？</h3><p>记忆应有来源、版本、适用范围、审批、过期和撤销机制。</p></article>
+          <article><span>05 · 权限一致性</span><h3>智能体能否严格继承源系统权限？</h3><p>跨监控、日志、知识库和执行工具时，身份、资源权限与审计主体如何统一？</p></article>
+          <article><span>06 · 价值证明</span><h3>“分钟级”改善如何被复现？</h3><p>应以同一故障集对比 MTTA、MTTR、误报率、自动化完成率和人工接管率。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ops-section page-shell" id="vision" aria-labelledby="vision-title">
+      <header class="section-head">
+        <div>
+          <p class="eyebrow">05 / PRODUCT VISION</p>
+          <h2 id="vision-title">从“能执行”继续走向“可证明地自治”</h2>
+        </div>
+        <p>进一步设想应优先增强证据、安全和工程化，而不是单纯增加更多对话入口。</p>
+      </header>
+      <div class="vision-list">
+        <article><span>证据优先诊断</span><h3>把结论变成可审阅的推理包</h3><p>每个判断同时给出证据、反证、时间窗、数据缺口和可执行的验证步骤。</p></article>
+        <article><span>事件回放沙箱</span><h3>先在历史事故里证明自己</h3><p>用脱敏数据回放故障，评估诊断质量与动作风险，再逐级开放生产权限。</p></article>
+        <article><span>技能工程体系</span><h3>让技能像代码一样被管理</h3><p>版本、测试、签名、依赖、审批、灰度和回滚齐备，避免“提示词即生产逻辑”。</p></article>
+        <article><span>自治等级</span><h3>按场景而非全局授权</h3><p>从只读观察、建议、确认后执行，到受限自治；每个场景用指标决定是否升级。</p></article>
+        <article><span>业务 SLO 视角</span><h3>从设备健康走向业务韧性</h3><p>把根因、影响范围和处置优先级映射到用户体验、交易链路与业务目标。</p></article>
+        <article><span>持续评测控制面</span><h3>模型可替换，能力可比较</h3><p>建立任务集、风险集和成本基线，让模型路由、提示、知识与技能都可回归验证。</p></article>
+      </div>
+      <div class="landing-path" aria-label="建议落地路径">
+        <div><span>阶段一</span><strong>只读观察</strong><small>统一查询、诊断证据、事故复盘</small></div>
+        <div><span>阶段二</span><strong>辅助决策</strong><small>计划生成、人工确认、结果验证</small></div>
+        <div><span>阶段三</span><strong>受限自治</strong><small>标准场景自动执行、异常立即接管</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-shell site-footer">
+    <p>内容归纳自公司内部产品白皮书；专业问题与产品设想为独立分析。</p>
+  </footer>
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+</body>
+</html>
