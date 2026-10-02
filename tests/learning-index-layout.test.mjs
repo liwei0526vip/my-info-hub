@@ -15,10 +15,10 @@ assert.match(toolsGroup, /href="https:\/\/github\.com\/tw93\/Mole"/);
 assert.match(workflowGroup, /href="https:\/\/github\.com\/tw93\/Waza"/);
 assert.match(workflowGroup, /href="https:\/\/github\.com\/tw93\/Kami"/);
 assert.match(readingGroup, /href="https:\/\/github\.com\/tw93\/Weekly"/);
-assert.match(toolsGroup, /<h2 id="heading-tools">编程工具<\/h2>\s*<span>6<\/span>/);
-assert.match(agentGroup, /<h2 id="heading-agent">Agent \/ Harness<\/h2>\s*<span>5<\/span>/);
+assert.match(toolsGroup, /<h2 id="heading-tools">编程工具<\/h2>\s*<span>7<\/span>/);
+assert.match(agentGroup, /<h2 id="heading-agent">Agent \/ Harness<\/h2>\s*<span>6<\/span>/);
 assert.match(readingGroup, /<h2 id="heading-reading">基础文章<\/h2>\s*<span>7<\/span>/);
-assert.match(html, /id="result-count"[^>]*>25 项<\/p>/);
+assert.match(html, /id="result-count"[^>]*>29 项<\/p>/);
 
 assert.doesNotMatch(
   html,
