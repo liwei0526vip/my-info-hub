@@ -8,7 +8,7 @@
 - `ai-knowledge-base.html`：AI 知识库实践与产品研究
 - `ai-learning-index.html`：AI 学习工具与文章索引
 - `ops-agent.html`：运维智能体白皮书精读与产品思考
-- `market-memo.html`：市场备忘（证书短周期 × 抗量子 × 自动化）
+- `market-memo.html`：随手记录（想法、线索与讨论，留待后续整理总结）
 
 ## 新增页面
 

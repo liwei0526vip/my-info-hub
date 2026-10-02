@@ -28,7 +28,7 @@ for (const [name, html] of pages) {
 assert.match(siteNav, /href: 'ai-knowledge-base\.html', label: '知识库'/);
 assert.match(siteNav, /href: 'ai-learning-index\.html', label: '学习收藏'/);
 assert.match(siteNav, /href: 'ops-agent\.html', label: '运维智能体'/);
-assert.match(siteNav, /href: 'market-memo\.html', label: '市场备忘'/);
+assert.match(siteNav, /href: 'market-memo\.html', label: '随手记录'/);
 
 const knowledgePage = pages.find(([name]) => name === 'ai-knowledge-base.html')[1];
 const learningPage = pages.find(([name]) => name === 'ai-learning-index.html')[1];
@@ -41,7 +41,7 @@ assert.match(opsAgentPage, /<link rel="stylesheet" href="assets\/ops-agent\.css"
 assert.match(opsAgentPage, /id="problems"/);
 assert.match(opsAgentPage, /id="questions"/);
 assert.match(opsAgentPage, /id="vision"/);
-assert.match(memoPage, /<title>市场备忘｜AI Info Hub<\/title>/);
+assert.match(memoPage, /<title>随手记录｜AI Info Hub<\/title>/);
 assert.match(memoPage, /<link rel="stylesheet" href="assets\/market-memo\.css">/, 'market-memo must load its page layout');
 
 for (const name of ['ai-model-comparison.html', 'ai-agent-comparison.html']) {
