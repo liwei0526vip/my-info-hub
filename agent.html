@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="Agent 工程笔记：从任务、上下文到执行闭环，理解 Harness Engineering 的核心机制与最小实践。">
+  <meta name="description" content="Agent 工程主题：Harness Engineering 笔记与长期关注的 Codex、Claude Code、Pi Agent、DSH。">
   <title>Agent｜AI Info Hub</title>
   <link rel="icon" href="assets/site-mark.svg">
   <link rel="stylesheet" href="assets/site-nav.css">
@@ -19,7 +19,6 @@
       <nav class="site-links" data-site-nav aria-label="站点导航">
         <a href="ai-agent-model-timeline.html">演进时间图</a>
         <a href="ai-model-comparison.html">大模型对比</a>
-        <a href="ai-agent-comparison.html">Agent对比</a>
         <a href="agent.html" aria-current="page">Agent</a>
         <a href="ai-knowledge-base.html">知识库</a>
         <a href="ai-learning-index.html">学习收藏</a>
@@ -30,124 +29,174 @@
     </div>
   </header>
 
-  <main class="agent-shell" id="main">
-    <header class="page-heading">
-      <h1>Agent</h1>
-      <nav aria-label="本页目录">
-        <a href="#concepts">概念关系</a>
-        <a href="#mechanisms">核心机制</a>
-        <a href="#loop">执行闭环</a>
-        <a href="#practice">最小落地</a>
+  <main class="agent-main page-shell" id="main">
+    <header class="agent-heading">
+      <div class="agent-title">
+        <h1>Agent</h1>
+        <p>工程笔记与长期关注的 Agent。</p>
+      </div>
+      <nav class="topic-links" aria-label="Agent 主题">
+        <a href="#harness-engineering">工程笔记</a>
+        <a href="#tracked-agents">关注 Agent</a>
       </nav>
     </header>
 
-    <article class="engineering-note" aria-labelledby="topic-title">
-      <header class="topic-heading">
-        <p class="topic-label">Harness Engineering</p>
-        <h2 id="topic-title">让 Agent 稳定完成任务</h2>
-        <p class="thesis">把目标、信息、行动、验证和修复，组织成一套能持续运行的执行闭环。</p>
-        <p class="topic-intro">模型提供理解与生成能力，外围系统负责工具、状态、反馈和运行边界。可靠交付需要二者配合：既能推进任务，也能发现偏差、恢复执行，并按明确标准结束。</p>
-      </header>
+    <div class="agent-topics">
+      <article class="agent-topic engineering-note" id="harness-engineering" aria-labelledby="topic-title">
+        <header class="topic-heading">
+          <div>
+            <h2 id="topic-title">Harness Engineering</h2>
+            <p>让 Agent 稳定完成任务。</p>
+          </div>
+          <a class="topic-reference" href="#sources">来源说明 ↓</a>
+        </header>
+        <div class="topic-introduction">
+          <p class="thesis">把目标、信息、行动、验证和修复，组织成一套能持续运行的执行闭环。</p>
+          <p class="topic-intro">模型提供理解与生成能力，外围系统负责工具、状态、反馈和运行边界。可靠交付需要二者配合：既能推进任务，也能发现偏差、恢复执行，并按明确标准结束。</p>
+        </div>
+        <div class="engineering-grid">
+          <section class="note-section" id="concepts" aria-labelledby="concepts-title">
+            <h3 id="concepts-title">三个概念，各解决一个问题</h3>
+            <table class="concept-table">
+              <caption class="visually-hidden">Prompt、Context、Harness 的工程关注点</caption>
+              <thead><tr><th scope="col">关注点</th><th scope="col">要解决的问题</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Prompt<span>指令</span></th><td><strong>任务怎么讲清楚</strong><span>目标、约束、输出要求。</span></td></tr>
+                <tr><th scope="row">Context<span>上下文</span></th><td><strong>信息怎么给对</strong><span>相关事实、工具结果、当前进度。</span></td></tr>
+                <tr><th scope="row">Harness<span>执行系统</span></th><td><strong>任务怎么可靠完成</strong><span>安排执行、校验结果、处理失败。</span></td></tr>
+              </tbody>
+            </table>
+            <p class="section-note">按视频的理解框架，指令属于上下文，上下文管理属于 Harness 的执行系统，关注范围逐步扩大。</p>
+            <p class="section-note">指令不能代替缺失的事实；信息给对了，执行仍可能跑偏，需要持续验证与纠偏。</p>
+          </section>
 
-      <div class="overview-grid">
-        <section class="note-section" id="concepts" aria-labelledby="concepts-title">
-          <h3 id="concepts-title">三个概念，各解决一个问题</h3>
-          <table class="concept-table">
-            <caption class="visually-hidden">Prompt、Context、Harness 的工程关注点</caption>
-            <thead><tr><th scope="col">关注点</th><th scope="col">要解决的问题</th></tr></thead>
+          <section class="note-section" id="mechanisms" aria-labelledby="mechanisms-title">
+            <h3 id="mechanisms-title">三个工程关注点</h3>
+            <dl class="mechanism-list">
+              <div>
+                <dt>信息与状态</dt>
+                <dd>按需读取相关资料，分开组织规则与任务材料。Skills 先提供能力名称与简介，触发后再读取流程、参数和脚本。任务进度、会话中间结论、长期记忆与用户偏好分开保存；续接时保留待解决问题和证据位置。</dd>
+              </div>
+              <div>
+                <dt>执行与工具</dt>
+                <dd>把目标拆成可检查的小任务。工具要明确三件事：提供哪些、何时调用、结果如何筛选后送回模型。输入与权限边界要清楚；失败时指出参数、权限或临时故障等具体原因。</dd>
+              </div>
+              <div>
+                <dt>验证与恢复</dt>
+                <dd>自己实现后再给自己打分容易偏乐观。明确需求规格、实现与验收的职责分工，用测试、实际页面操作、日志或业务结果验收。将失败证据送回下一轮；必要时重试、换路径或恢复到稳定状态，并设置停止条件。</dd>
+              </div>
+            </dl>
+            <p class="section-note">由视频的六层框架合并整理，用于理解机制与排查缺口。</p>
+          </section>
+
+          <section class="note-section loop-section" id="loop" aria-labelledby="loop-title">
+            <div class="section-heading">
+              <h3 id="loop-title">执行闭环：每一步都有完成依据</h3>
+              <a class="source-ref" href="https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering" target="_blank" rel="noopener noreferrer">验证与反馈实践 ↗</a>
+            </div>
+            <figure class="execution-loop" aria-labelledby="loop-title" aria-describedby="loop-caption">
+              <ol class="execution-path">
+                <li><span class="step-index" aria-hidden="true">1</span><strong>明确验收</strong><small>什么结果才算完成</small></li>
+                <li><span class="step-index" aria-hidden="true">2</span><strong>获取信息</strong><small>资料、环境、当前状态</small></li>
+                <li><span class="step-index" aria-hidden="true">3</span><strong>执行任务</strong><small>调用工具，保存进度</small></li>
+                <li><span class="step-index" aria-hidden="true">4</span><strong>验证结果</strong><small>对照要求，检查实际结果</small></li>
+              </ol>
+              <div class="loop-outcomes">
+                <p class="repair-path"><span aria-hidden="true">↻</span> 未通过 → 保留失败证据 → 修复或恢复 → 再验证</p>
+                <p class="finish-path">通过 → 交付结束</p>
+              </div>
+              <figcaption id="loop-caption">达到重试、耗时或成本上限仍未通过时，保存进度与阻塞点，交由人工处理。重试写入前，先确认操作是否已执行。</figcaption>
+            </figure>
+
+            <div class="worked-example">
+              <div class="example-heading"><h4>示例：修复登录失败</h4><span>说明性推演</span></div>
+              <dl>
+                <div><dt>验收</dt><dd>正确密码能登录，错误密码被拒绝，原有权限检查继续生效。</dd></div>
+                <div><dt>执行</dt><dd>读取认证代码、错误日志与相关测试；复现问题后修改。</dd></div>
+                <div><dt>反馈</dt><dd>运行针对性测试与相关回归，实际操作页面。失败时提供输入、预期、实际结果和日志，修复后再次验证。</dd></div>
+              </dl>
+            </div>
+          </section>
+
+          <section class="note-section" id="practice" aria-labelledby="practice-title">
+            <h3 id="practice-title">从最小可用流程开始</h3>
+            <div class="practice-grid">
+              <div class="practice-copy">
+                <p>先选一组真实任务，明确完成标准，记录完成率、人工接管率、耗时和成本。优先补齐最常见的失败环节，每次改动用相同任务与相近预算比较，再用新任务检验。</p>
+                <p>短任务采用清楚的指令、必要工具和直接验收。长任务再增加状态交接、独立评估与恢复机制；模型或任务变化后，重新检查这些机制的收益。</p>
+                <p><strong>长任务的上下文。</strong>上下文接近上限时，部分模型会丢细节或提前收尾。可用 Context Compaction 压缩历史，在原会话中继续。</p>
+                <p>如果压缩后仍不稳定，可尝试 Context Reset：保存任务进度、关键结论、证据与下一步，交给干净的新上下文继续。是否重置，应根据模型表现与任务需要判断。</p>
+                <p class="practice-principle">失败时，先定位缺少的信息、工具、状态或检查，再补齐对应能力。</p>
+              </div>
+              <dl class="delivery-checks">
+                <div><dt>目标明确</dt><dd>验收条件能被检查。</dd></div>
+                <div><dt>进度可续接</dt><dd>能找到状态与原始证据。</dd></div>
+                <div><dt>结果有依据</dt><dd>实际结果符合任务要求。</dd></div>
+                <div><dt>失败有出口</dt><dd>能修复、恢复或移交。</dd></div>
+              </dl>
+            </div>
+            <p class="practical-reference">具体做法：<a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">用 <code>AGENTS.md</code> 做精简索引，详细规范按需读取；将可执行规则写入自动检查，报错时附上修复提示 ↗</a></p>
+            <p class="section-note">独立评估仍需明确标准与实际证据；涉及体验等主观质量时，应与人工判断校准。<a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener noreferrer">上下文与评估实践 ↗</a></p>
+          </section>
+
+        </div>
+        <details class="note-sources" id="sources">
+          <summary>来源与整理说明</summary>
+          <div class="sources-content">
+            <p>基于《讲透 Harness Engineering》视频的本地转写、字幕与画面材料整理，并核对以下官方文章。三组关注点为编辑归纳；示例与落地建议为工程推演。</p>
+            <ul>
+              <li><a href="https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering" target="_blank" rel="noopener noreferrer">LangChain · Improving Deep Agents with harness engineering</a><span>运行轨迹、验证与反馈改进。</span></li>
+              <li><a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener noreferrer">Anthropic · Harness design for long-running application development</a><span>长任务交接、实际环境评估，以及随模型变化调整机制。</span></li>
+              <li><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">OpenAI · Harness engineering</a><span>文档索引、环境可观测与自动检查。</span></li>
+            </ul>
+            <p class="source-timestamps">视频定位：01:41–08:36 概念与按需披露 · 09:01–12:13 六层机制 · 13:06–14:45 长任务与验收分工 · 15:25–17:19 工程实践。时间戳为近似定位。</p>
+          </div>
+        </details>
+      </article>
+
+      <section class="agent-topic" id="tracked-agents" aria-labelledby="tracked-agents-title">
+        <header class="topic-heading">
+          <div>
+            <h2 id="tracked-agents-title">关注 Agent</h2>
+            <p>记录值得持续研究的实现与工程机制。</p>
+          </div>
+          <span class="topic-status">4 个 Agent</span>
+        </header>
+        <div class="watch-table-wrap" role="region" aria-label="可横向滚动的关注 Agent 列表" tabindex="0">
+          <table class="watch-table">
+            <caption class="visually-hidden">当前关注的四个 Agent：Codex、Claude Code、Pi Agent 和 DSH，包含关注方向、研究重点与官方入口。</caption>
+            <colgroup><col class="name-col"><col class="kind-col"><col class="focus-col"><col class="links-col"></colgroup>
+            <thead><tr><th scope="col">Agent</th><th scope="col">关注方向</th><th scope="col">研究重点</th><th scope="col">官方入口</th></tr></thead>
             <tbody>
-              <tr><th scope="row">Prompt<span>指令</span></th><td><strong>任务怎么讲清楚</strong><span>目标、约束、输出要求。</span></td></tr>
-              <tr><th scope="row">Context<span>上下文</span></th><td><strong>信息怎么给对</strong><span>相关事实、工具结果、当前进度。</span></td></tr>
-              <tr><th scope="row">Harness<span>执行系统</span></th><td><strong>任务怎么可靠完成</strong><span>安排执行、校验结果、处理失败。</span></td></tr>
+              <tr>
+                <th scope="row">Codex</th>
+                <td>工程任务执行</td>
+                <td>工具执行 · 审批边界 · 会话恢复 · 运行事件</td>
+                <td class="agent-links"><a href="https://learn.chatgpt.com/docs/app-server" target="_blank" rel="noopener noreferrer">文档 ↗</a><a href="https://github.com/openai/codex" target="_blank" rel="noopener noreferrer">源码 ↗</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Claude Code</th>
+                <td>编程工作流</td>
+                <td>上下文管理 · Skills · Hooks · 子 Agent 分工</td>
+                <td class="agent-links"><a href="https://code.claude.com/docs/en/how-claude-code-works" target="_blank" rel="noopener noreferrer">执行机制 ↗</a><a href="https://code.claude.com/docs/en/sub-agents" target="_blank" rel="noopener noreferrer">子 Agent ↗</a></td>
+              </tr>
+              <tr>
+                <th scope="row">Pi Agent</th>
+                <td>极简可扩展 Harness</td>
+                <td>核心循环 · 会话树 · 上下文压缩 · 扩展机制</td>
+                <td class="agent-links"><a href="https://pi.dev/" target="_blank" rel="noopener noreferrer">官网 ↗</a><a href="https://github.com/earendil-works/pi" target="_blank" rel="noopener noreferrer">源码 ↗</a></td>
+              </tr>
+              <tr>
+                <th scope="row">DSH</th>
+                <td>插件化 Harness · 预览</td>
+                <td>插件组合 · 工具编排 · 持久状态 · 运行轨迹</td>
+                <td class="agent-links"><a href="https://www.deepseek.com/harness/en/" target="_blank" rel="noopener noreferrer">官网 ↗</a><a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank" rel="noopener noreferrer">源码 ↗</a></td>
+              </tr>
             </tbody>
           </table>
-          <p class="section-note">按视频的理解框架，指令属于上下文，上下文管理属于 Harness 的执行系统，关注范围逐步扩大。</p>
-          <p class="section-note">指令不能代替缺失的事实；信息给对了，执行仍可能跑偏，需要持续验证与纠偏。</p>
-        </section>
-
-        <section class="note-section" id="mechanisms" aria-labelledby="mechanisms-title">
-          <h3 id="mechanisms-title">三个工程关注点</h3>
-          <dl class="mechanism-list">
-            <div>
-              <dt>信息与状态</dt>
-              <dd>按需读取相关资料，分开组织规则与任务材料。Skills 先提供能力名称与简介，触发后再读取流程、参数和脚本。任务进度、会话中间结论、长期记忆与用户偏好分开保存；续接时保留待解决问题和证据位置。</dd>
-            </div>
-            <div>
-              <dt>执行与工具</dt>
-              <dd>把目标拆成可检查的小任务。工具要明确三件事：提供哪些、何时调用、结果如何筛选后送回模型。输入与权限边界要清楚；失败时指出参数、权限或临时故障等具体原因。</dd>
-            </div>
-            <div>
-              <dt>验证与恢复</dt>
-              <dd>自己实现后再给自己打分容易偏乐观。明确需求规格、实现与验收的职责分工，用测试、实际页面操作、日志或业务结果验收。将失败证据送回下一轮；必要时重试、换路径或恢复到稳定状态，并设置停止条件。</dd>
-            </div>
-          </dl>
-          <p class="section-note">由视频的六层框架合并整理，用于理解机制与排查缺口。</p>
-        </section>
-      </div>
-
-      <section class="note-section loop-section" id="loop" aria-labelledby="loop-title">
-        <div class="section-heading">
-          <h3 id="loop-title">执行闭环：每一步都有完成依据</h3>
-          <a class="source-ref" href="https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering" target="_blank" rel="noopener noreferrer">验证与反馈实践 ↗</a>
-        </div>
-        <figure class="execution-loop" aria-labelledby="loop-title" aria-describedby="loop-caption">
-          <ol class="execution-path">
-            <li><span class="step-index" aria-hidden="true">1</span><strong>明确验收</strong><small>什么结果才算完成</small></li>
-            <li><span class="step-index" aria-hidden="true">2</span><strong>获取信息</strong><small>资料、环境、当前状态</small></li>
-            <li><span class="step-index" aria-hidden="true">3</span><strong>执行任务</strong><small>调用工具，保存进度</small></li>
-            <li><span class="step-index" aria-hidden="true">4</span><strong>验证结果</strong><small>对照要求，检查实际结果</small></li>
-          </ol>
-          <div class="loop-outcomes">
-            <p class="repair-path"><span aria-hidden="true">↻</span> 未通过 → 保留失败证据 → 修复或恢复 → 再验证</p>
-            <p class="finish-path">通过 → 交付结束</p>
-          </div>
-          <figcaption id="loop-caption">达到重试、耗时或成本上限仍未通过时，保存进度与阻塞点，交由人工处理。重试写入前，先确认操作是否已执行。</figcaption>
-        </figure>
-
-        <div class="worked-example">
-          <div class="example-heading"><h4>示例：修复登录失败</h4><span>说明性推演</span></div>
-          <dl>
-            <div><dt>验收</dt><dd>正确密码能登录，错误密码被拒绝，原有权限检查继续生效。</dd></div>
-            <div><dt>执行</dt><dd>读取认证代码、错误日志与相关测试；复现问题后修改。</dd></div>
-            <div><dt>反馈</dt><dd>运行针对性测试与相关回归，实际操作页面。失败时提供输入、预期、实际结果和日志，修复后再次验证。</dd></div>
-          </dl>
         </div>
       </section>
-
-      <section class="note-section" id="practice" aria-labelledby="practice-title">
-        <h3 id="practice-title">从最小可用流程开始</h3>
-        <div class="practice-grid">
-          <div class="practice-copy">
-            <p>先选一组真实任务，明确完成标准，记录完成率、人工接管率、耗时和成本。优先补齐最常见的失败环节，每次改动用相同任务与相近预算比较，再用新任务检验。</p>
-            <p>短任务采用清楚的指令、必要工具和直接验收。长任务再增加状态交接、独立评估与恢复机制；模型或任务变化后，重新检查这些机制的收益。</p>
-            <p><strong>长任务的上下文。</strong>上下文接近上限时，部分模型会丢细节或提前收尾。可用 Context Compaction 压缩历史，在原会话中继续。</p>
-            <p>如果压缩后仍不稳定，可尝试 Context Reset：保存任务进度、关键结论、证据与下一步，交给干净的新上下文继续。是否重置，应根据模型表现与任务需要判断。</p>
-            <p class="practice-principle">失败时，先定位缺少的信息、工具、状态或检查，再补齐对应能力。</p>
-          </div>
-          <dl class="delivery-checks">
-            <div><dt>目标明确</dt><dd>验收条件能被检查。</dd></div>
-            <div><dt>进度可续接</dt><dd>能找到状态与原始证据。</dd></div>
-            <div><dt>结果有依据</dt><dd>实际结果符合任务要求。</dd></div>
-            <div><dt>失败有出口</dt><dd>能修复、恢复或移交。</dd></div>
-          </dl>
-        </div>
-        <p class="practical-reference">具体做法：<a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">用 <code>AGENTS.md</code> 做精简索引，详细规范按需读取；将可执行规则写入自动检查，报错时附上修复提示 ↗</a></p>
-        <p class="section-note">独立评估仍需明确标准与实际证据；涉及体验等主观质量时，应与人工判断校准。<a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener noreferrer">上下文与评估实践 ↗</a></p>
-      </section>
-
-      <details class="note-sources" id="sources">
-        <summary>来源与整理说明</summary>
-        <div class="sources-content">
-          <p>基于《讲透 Harness Engineering》视频的本地转写、字幕与画面材料整理，并核对以下官方文章。三组关注点为编辑归纳；示例与落地建议为工程推演。</p>
-          <ul>
-            <li><a href="https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering" target="_blank" rel="noopener noreferrer">LangChain · Improving Deep Agents with harness engineering</a><span>运行轨迹、验证与反馈改进。</span></li>
-            <li><a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener noreferrer">Anthropic · Harness design for long-running application development</a><span>长任务交接、实际环境评估，以及随模型变化调整机制。</span></li>
-            <li><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">OpenAI · Harness engineering</a><span>文档索引、环境可观测与自动检查。</span></li>
-          </ul>
-          <p class="source-timestamps">视频定位：01:41–08:36 概念与按需披露 · 09:01–12:13 六层机制 · 13:06–14:45 长任务与验收分工 · 15:25–17:19 工程实践。时间戳为近似定位。</p>
-        </div>
-      </details>
-    </article>
+    </div>
   </main>
   <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
 </body>
