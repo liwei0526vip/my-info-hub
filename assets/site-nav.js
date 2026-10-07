@@ -18,7 +18,7 @@
     const home = document.createElement('a');
     home.className = 'site-brand';
     home.href = 'ai-agent-model-timeline.html';
-    home.setAttribute('aria-label', 'AI Info Hub 首页');
+    home.setAttribute('aria-label', '知行簿 首页');
 
     const mark = document.createElement('img');
     mark.className = 'site-brand-mark';
@@ -29,7 +29,7 @@
 
     const name = document.createElement('span');
     name.className = 'site-brand-name';
-    name.textContent = 'AI INFO HUB';
+    name.textContent = '知行簿';
     home.append(mark, name);
     wordmark.replaceChildren(home);
   }

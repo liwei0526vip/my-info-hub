@@ -42,14 +42,14 @@ const knowledgePage = pages.find(([name]) => name === 'ai-knowledge-base.html')[
 const learningPage = pages.find(([name]) => name === 'ai-learning-index.html')[1];
 const opsAgentPage = pages.find(([name]) => name === 'ops-agent.html')[1];
 const memoPage = pages.find(([name]) => name === 'market-memo.html')[1];
-assert.match(knowledgePage, /<title>知识库｜AI Info Hub<\/title>/);
-assert.match(learningPage, /<title>学习收藏｜AI Info Hub<\/title>/);
-assert.match(opsAgentPage, /<title>运维智能体｜AI Info Hub<\/title>/);
+assert.match(knowledgePage, /<title>知识库｜知行簿<\/title>/);
+assert.match(learningPage, /<title>学习收藏｜知行簿<\/title>/);
+assert.match(opsAgentPage, /<title>运维智能体｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<link rel="stylesheet" href="assets\/ops-agent\.css">/);
 assert.match(opsAgentPage, /id="problems"/);
 assert.match(opsAgentPage, /id="questions"/);
 assert.match(opsAgentPage, /id="vision"/);
-assert.match(memoPage, /<title>随手记录｜AI Info Hub<\/title>/);
+assert.match(memoPage, /<title>随手记录｜知行簿<\/title>/);
 assert.match(memoPage, /<link rel="stylesheet" href="assets\/market-memo\.css">/, 'market-memo must load its page layout');
 
 for (const name of ['ai-model-comparison.html']) {
