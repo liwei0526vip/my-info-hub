@@ -131,7 +131,8 @@
 .calorie-table .food-category-heading { padding: 0; }
 .calorie-table .energy-column { text-align: center; font-variant-numeric: tabular-nums; }
 .sortable-heading { display: inline-flex; align-items: center; justify-content: center; gap: 2px; white-space: nowrap; }
-.calorie-sort { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 18px; flex: 0 0 16px; margin: 0; padding: 0; border: 0; border-radius: 3px; background: transparent; color: var(--life-reference); font: inherit; line-height: 1; }
+.calorie-sort { display: none; align-items: center; justify-content: center; width: 16px; height: 18px; flex: 0 0 16px; margin: 0; padding: 0; border: 0; border-radius: 3px; background: transparent; color: var(--life-reference); font: inherit; line-height: 1; }
+#food-calories.show-per-100 .calorie-sort { display: inline-flex; }
 .sort-indicator { font-size: 11px; }
 .calorie-sort:hover, .calorie-sort[aria-pressed="true"] { color: var(--life-green); background: var(--life-bg); }
 .calorie-sort:disabled { cursor: default; opacity: .5; }
@@ -175,7 +176,7 @@
 }
 @media print {
   .life-page { background: var(--life-paper); }
-  .topic-links, .life-page .skip-link, .calorie-sort, .per-100-option { display: none; }
+  .topic-links, .life-page .skip-link, .calorie-sort, .per-100-option, #food-calories.show-per-100 .calorie-sort { display: none; }
   .life-topics { grid-template-columns: 1fr; }
   .life-topic { break-inside: avoid; }
   .calorie-table-wrap { overflow: visible; }
