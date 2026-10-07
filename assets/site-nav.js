@@ -3,7 +3,6 @@
   const pages = [
     { href: 'ai-agent-model-timeline.html', label: '演进时间图' },
     { href: 'ai-model-comparison.html', label: '大模型对比' },
-    { href: 'ai-agent-comparison.html', label: 'Agent对比' },
     { href: 'agent.html', label: 'Agent' },
     { href: 'ai-knowledge-base.html', label: '知识库' },
     { href: 'ai-learning-index.html', label: '学习收藏' },

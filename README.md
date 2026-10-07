@@ -4,8 +4,7 @@
 
 - `ai-agent-model-timeline.html`：模型与 Agent 演进时间图
 - `ai-model-comparison.html`：大模型对比
-- `ai-agent-comparison.html`：Agent 产品对比
-- `agent.html`：Agent 工程主题（当前整理 Harness Engineering 的概念关系、执行闭环、长任务上下文与最小实践，附参考来源）
+- `agent.html`：Agent 工程主题（Harness Engineering 笔记与关注 Agent：Codex、Claude Code、Pi Agent、DSH）
 - `ai-knowledge-base.html`：AI 知识库实践与产品研究
 - `ai-learning-index.html`：AI 学习工具与文章索引
 - `ops-agent.html`：运维智能体白皮书精读与产品思考

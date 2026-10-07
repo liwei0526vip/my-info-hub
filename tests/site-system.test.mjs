@@ -1,11 +1,10 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { access, readFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const pageNames = [
   'ai-agent-model-timeline.html',
   'ai-model-comparison.html',
-  'ai-agent-comparison.html',
   'agent.html',
   'ai-knowledge-base.html',
   'ai-learning-index.html',
@@ -25,6 +24,13 @@ for (const [name, html] of pages) {
   assert.match(html, /<script src="assets\/site-nav\.js" defer><\/script>/, `${name} must load the shared site behavior`);
   assert.equal((html.match(/class="site-back-top"/g) ?? []).length, 1, `${name} must render one shared back-to-top control`);
   assert.equal((html.match(/href="#top"/g) ?? []).length, 1, `${name} must not duplicate the back-to-top control in its footer`);
+  const fallbackNav = html.match(/<nav[^>]*data-site-nav[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
+  const navTargets = [...fallbackNav.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(new Set(navTargets).size, navTargets.length, `${name} must not duplicate navigation entries`);
+  assert.ok(navTargets.includes('agent.html'), `${name} must link to the Agent topics page`);
+  for (const target of navTargets) {
+    await access(new URL(target, root));
+  }
 }
 
 assert.match(siteNav, /href: 'ai-knowledge-base\.html', label: '知识库'/);
@@ -46,7 +52,7 @@ assert.match(opsAgentPage, /id="vision"/);
 assert.match(memoPage, /<title>随手记录｜AI Info Hub<\/title>/);
 assert.match(memoPage, /<link rel="stylesheet" href="assets\/market-memo\.css">/, 'market-memo must load its page layout');
 
-for (const name of ['ai-model-comparison.html', 'ai-agent-comparison.html']) {
+for (const name of ['ai-model-comparison.html']) {
   const html = pages.find(([pageName]) => pageName === name)[1];
   assert.match(html, /<link rel="stylesheet" href="assets\/comparison\.css">/, `${name} must reuse the comparison layout`);
   assert.doesNotMatch(html, /<style>[\s\S]*?\.catalog\{/, `${name} must not duplicate the comparison layout inline`);
