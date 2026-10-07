@@ -6,6 +6,7 @@ const pageNames = [
   'ai-agent-model-timeline.html',
   'ai-model-comparison.html',
   'ai-agent-comparison.html',
+  'agent.html',
   'ai-knowledge-base.html',
   'ai-learning-index.html',
   'ops-agent.html',

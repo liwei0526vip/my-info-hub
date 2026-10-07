@@ -5,6 +5,7 @@
 - `ai-agent-model-timeline.html`：模型与 Agent 演进时间图
 - `ai-model-comparison.html`：大模型对比
 - `ai-agent-comparison.html`：Agent 产品对比
+- `agent.html`：Agent 工程笔记（Harness Engineering 的核心机制与最小实践）
 - `ai-knowledge-base.html`：AI 知识库实践与产品研究
 - `ai-learning-index.html`：AI 学习工具与文章索引
 - `ops-agent.html`：运维智能体白皮书精读与产品思考
