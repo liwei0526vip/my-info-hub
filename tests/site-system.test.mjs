@@ -10,6 +10,7 @@ const pageNames = [
   'ai-learning-index.html',
   'ops-agent.html',
   'market-memo.html',
+  'life.html',
 ];
 
 const pages = await Promise.all(

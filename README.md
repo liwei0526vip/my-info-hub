@@ -9,6 +9,7 @@
 - `ai-learning-index.html`：AI 学习工具与文章索引
 - `ops-agent.html`：运维智能体白皮书精读与产品思考
 - `market-memo.html`：随手记录（想法、线索与讨论，留待后续整理总结）
+- `life.html`：生活（日常做饭菜单与食物热量、主要成分记录）
 
 ## 新增页面
 

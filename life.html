@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="生活：积累自己的日常做饭菜单，记录日常认识与常见食物的热量。">
+  <title>生活｜AI Info Hub</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/life.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/life.js" defer></script>
+</head>
+<body id="top" class="life-page">
+  <a class="skip-link" href="#life-topics">跳到生活记录</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">AI INFO HUB</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai-agent-model-timeline.html">演进时间图</a>
+        <a href="ai-model-comparison.html">大模型对比</a>
+        <a href="ai-agent-comparison.html">Agent对比</a>
+        <a href="ai-knowledge-base.html">知识库</a>
+        <a href="ai-learning-index.html">学习收藏</a>
+        <a href="ops-agent.html">运维智能体</a>
+        <a href="market-memo.html">随手记录</a>
+        <a href="life.html" aria-current="page">生活</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell life-main">
+    <header class="life-heading">
+      <div class="life-title">
+        <h1>生活</h1>
+        <p>记下常做的菜，也记下认识的食物。</p>
+      </div>
+      <nav class="topic-links" aria-label="生活主题">
+        <a href="#daily-menu">日常菜单</a>
+        <a href="#food-calories">食物热量</a>
+      </nav>
+    </header>
+
+    <div class="life-topics" id="life-topics" tabindex="-1">
+      <section class="life-topic" id="daily-menu" aria-labelledby="menu-heading">
+        <header class="topic-heading">
+          <span class="topic-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3v5a3 3 0 0 0 6 0V3M6 3v18M18 3c-3 2-4 5-4 9h5M19 3v18"/>
+            </svg>
+          </span>
+          <div>
+            <h2 id="menu-heading">日常菜单</h2>
+            <p>按主要食材归类，积累常做的菜。</p>
+          </div>
+          <span class="topic-status">4 道菜</span>
+        </header>
+
+        <div class="menu-collection" aria-label="按主要食材分类的日常菜单">
+          <section class="menu-group" aria-labelledby="menu-meat">
+            <h3 id="menu-meat">肉类</h3>
+            <ul><li>辣椒炒肉</li></ul>
+          </section>
+          <section class="menu-group" aria-labelledby="menu-eggs">
+            <h3 id="menu-eggs">蛋类</h3>
+            <ul><li>辣椒炒鸡蛋</li><li>西红柿炒鸡蛋</li></ul>
+          </section>
+          <section class="menu-group" aria-labelledby="menu-vegetables">
+            <h3 id="menu-vegetables" title="蔬菜与豆制品">素菜</h3>
+            <ul><li>青菜炒豆腐</li></ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="life-topic" id="food-calories" aria-labelledby="calories-heading">
+        <header class="topic-heading">
+          <span class="topic-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 7c-3-3-8-1-8 4 0 5 3 10 6 10l2-1 2 1c3 0 6-5 6-10 0-5-5-7-8-4ZM12 7V4M12 4c1-3 4-3 6-2-1 3-3 4-6 2Z"/>
+            </svg>
+          </span>
+          <div>
+            <h2 id="calories-heading">食物热量</h2>
+            <p class="per-100-legend">灰字为每百克数据</p>
+          </div>
+          <div class="calorie-heading-controls">
+            <label class="per-100-option" for="calorie-per-100"><input id="calorie-per-100" type="checkbox" aria-controls="calorie-table" disabled>显示每百克数据</label>
+            <span class="topic-status">25 种食物</span>
+          </div>
+        </header>
+
+        <div class="calorie-table-wrap">
+          <table id="calorie-table" class="calorie-table">
+            <caption class="visually-hidden">按蛋类、肉类、豆类、主食、蔬菜、水果分类的食物热量与营养记录，克数按可食部分估算；默认显示本行克数对应数值，勾选“显示每百克数据”后按当前克数 / 每 100 g 展示；排序始终依据每 100 g 数值。热量单位为千卡，营养成分单位为克；鸡蛋、鸡腿热量采用个人统计口径，食物名称链接至营养数据来源。</caption>
+            <colgroup>
+              <col class="category-col">
+              <col class="food-col">
+              <col class="note-col">
+              <col class="weight-col">
+              <col class="energy-col">
+              <col class="nutrient-col">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col" class="food-category-heading"><span class="visually-hidden">分类</span></th>
+                <th scope="col" class="food-name">食物</th>
+                <th scope="col" class="food-note">说明</th>
+                <th scope="col">克数</th>
+                <th scope="col" class="energy-column">
+                  <span class="sortable-heading">热量<button class="calorie-sort" type="button" data-calorie-sort="energy" aria-label="按每百克热量降序排序" aria-pressed="false" title="按每百克热量降序排序" disabled><span class="sort-indicator" aria-hidden="true">↕</span></button></span>
+                </th>
+                <th scope="col" class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="sortable-heading">蛋白质<button class="calorie-sort" type="button" data-calorie-sort="protein" aria-label="按每百克蛋白质含量降序排序" aria-pressed="false" title="按每百克蛋白质含量降序排序" disabled><span class="sort-indicator" aria-hidden="true">↕</span></button></span>
+                    <span class="sortable-heading">脂肪<button class="calorie-sort" type="button" data-calorie-sort="fat" aria-label="按每百克脂肪含量降序排序" aria-pressed="false" title="按每百克脂肪含量降序排序" disabled><span class="sort-indicator" aria-hidden="true">↕</span></button></span>
+                    <span class="sortable-heading">碳水<button class="calorie-sort" type="button" data-calorie-sort="carbs" aria-label="按每百克碳水含量降序排序" aria-pressed="false" title="按每百克碳水含量降序排序" disabled><span class="sort-indicator" aria-hidden="true">↕</span></button></span>
+                    <span class="sortable-heading">纤维<button class="calorie-sort" type="button" data-calorie-sort="fiber" aria-label="按每百克纤维含量降序排序" aria-pressed="false" title="按每百克纤维含量降序排序" disabled><span class="sort-indicator" aria-hidden="true">↕</span></button></span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody aria-labelledby="food-category-eggs">
+              <!-- 每种食物一行，按普通大小的一份估算；参考重量不含壳、骨。 -->
+              <tr class="food-record">
+                <th id="food-category-eggs" class="food-category-cell" scope="rowgroup" rowspan="1"><span class="food-category-marker">蛋类</span></th>
+                <th scope="row" class="food-name"><a class="food-source" href="https://ulfweb.com/assets/PDF/nutritional/215579.pdf" target="_blank" rel="noopener noreferrer" title="营养成分参考：USDA 生全蛋营养报告，每 100 g 蛋白质 12.56 g、脂肪 9.51 g、碳水 0.72 g、纤维 0 g；本份热量按个人口径 75 千卡，每 100 g 热量按 75 ÷ 50 × 100 折算为 150 千卡">鸡蛋</a></th>
+                <td class="food-note">水煮</td>
+                <td>50 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">75</strong><small class="measure-per-100">/150</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--protein">6.3</span><small class="measure-per-100">/12.6</small></span>
+                    <span class="measure-pair"><span class="measure-current">4.8</span><small class="measure-per-100">/9.5</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.4</span><small class="measure-per-100">/0.7</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody aria-labelledby="food-category-meat">
+              <tr class="food-record">
+                <th id="food-category-meat" class="food-category-cell" scope="rowgroup" rowspan="3"><span class="food-category-marker">肉类</span></th>
+                <th scope="row" class="food-name"><a class="food-source" href="https://www.ars.usda.gov/ARSUserFiles/80400525/Data/SR27/reports/sr27fg05.pdf#page=184" target="_blank" rel="noopener noreferrer" title="按卤煮鸡腿记录；克数和营养成分暂沿用 USDA 带皮烤鸡小腿参考，可食部约 105 g；营养成分每 100 g 蛋白质 23.35 g、脂肪 10.15 g、碳水及纤维 0 g；本份热量按个人口径 150 千卡，每 100 g 热量按 150 ÷ 105 × 100 折算取整为 143 千卡">鸡腿</a></th>
+                <td class="food-note">卤煮</td>
+                <td>105 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">150</strong><small class="measure-per-100">/143</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--protein">24.5</span><small class="measure-per-100">/23.4</small></span>
+                    <span class="measure-pair"><span class="measure-current">10.7</span><small class="measure-per-100">/10.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://china-kitchen.lkk.com.cn/kitchen/zh-CN/recipe/ingredient/6de03fc0-d0d6-4fd4-b2bd-338067a689af/index.html" target="_blank" rel="noopener noreferrer" title="生瘦牛肉每 100 g 可食部分参考：106 千卡，蛋白质 20.2 g、脂肪 2.3 g、碳水 1.2 g；未计烹调油和酱料，纤维按肉类理论零值记录">牛肉</a></th>
+                <td class="food-note">生瘦肉</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">106</strong><small class="measure-per-100">/106</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--protein">20.2</span><small class="measure-per-100">/20.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.3</span><small class="measure-per-100">/2.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.2</span><small class="measure-per-100">/1.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://www.ars.usda.gov/ARSUserFiles/80400535/Data/SR/SR28/reports/sr28fg05.pdf#page=22" target="_blank" rel="noopener noreferrer" title="去皮、去骨鸡胸肉，按 100 g 可食生重记录；统一参考 USDA SR28 食品号 05062，每 100 g 含 120 千卡、蛋白质 22.50 g、脂肪 2.62 g、碳水 0 g、总膳食纤维 0 g；成分保留一位小数，未计烹调油和调料">鸡胸肉</a></th>
+                <td class="food-note">生鲜去皮</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">120</strong><small class="measure-per-100">/120</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--protein">22.5</span><small class="measure-per-100">/22.5</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.6</span><small class="measure-per-100">/2.6</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody aria-labelledby="food-category-legumes">
+              <!-- 北豆腐纤维参考优路教育公共营养师食物表：每 100 g 含 0.5 g；其余营养值与中国疾控平台一致。
+                   https://www.youlu.com/ggyys/article/CA20241220010000000005 -->
+              <tr class="food-record">
+                <th id="food-category-legumes" class="food-category-cell" scope="rowgroup" rowspan="3"><span class="food-category-marker" title="豆类及制品">豆类</span></th>
+                <th scope="row" class="food-name"><a class="food-source" href="https://nlc.chinanutri.cn/fq/foodinfo/334.html" target="_blank" rel="noopener noreferrer" title="北豆腐每 100 g 可食部分参考：中国疾控平台，415 kJ 换算取整为 99 千卡，蛋白质 12.2 g、脂肪 4.8 g、碳水 2.0 g；纤维 0.5 g 另参考优路教育公共营养师食物表，未计烹调油和酱料">豆腐</a></th>
+                <td class="food-note">老豆腐</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">99</strong><small class="measure-per-100">/99</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--protein">12.2</span><small class="measure-per-100">/12.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">4.8</span><small class="measure-per-100">/4.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.0</span><small class="measure-per-100">/2.0</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.5</span><small class="measure-per-100">/0.5</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 原味不加糖豆浆采用同一来源的完整成分，不混用中国疾控较稀豆浆的热量与其它浓度的纤维。
+                   日本食品号 04052 为未调制豆浆；添加糖、油脂等的调制豆浆另列为 04053。
+                   类型说明：https://fooddb.mext.go.jp/details/foodInfo.pl?ITEM_NO=4_04052_7&VIEW_POPUP=1 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://fooddb.mext.go.jp/details/details.pl?ITEM_NO=4_04052_7" target="_blank" rel="noopener noreferrer" title="原味不加糖豆浆，按 100 g 记录；统一参考日本文部科学省《日本食品标准成分表》八订增补 2023 年食品号 04052 未调制豆浆，每 100 g：43 千卡、蛋白质 3.6 g、脂肪 2.8 g、碳水 2.3 g、总膳食纤维 0.9 g；适用于较浓原味豆浆，实际浓度不同会影响数值">豆浆</a></th>
+                <td class="food-note">不加糖</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">43</strong><small class="measure-per-100">/43</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--protein">3.6</span><small class="measure-per-100">/3.6</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.8</span><small class="measure-per-100">/2.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.3</span><small class="measure-per-100">/2.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.9</span><small class="measure-per-100">/0.9</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 原味豆腐脑使用中国疾控精确条目，不借用北豆腐、内酯豆腐或带卤豆腐脑数据。
+                   原始碳水为 Tr（来源定义为未检出），按显示精度记 0；总膳食纤维未提供，补查未核实，记为 —。 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://nlc.chinanutri.cn/fq/foodinfo/337.html" target="_blank" rel="noopener noreferrer" title="原味豆腐脑本体，按 100 g 记录；参考中国疾控食物营养平台豆腐脑条目，每 100 g 能量 62 kJ 除以 4.184 后取整为 15 千卡，蛋白质 1.9 g、脂肪 0.8 g；原始碳水为 Tr（未检出），按显示精度记 0。总膳食纤维未提供数据，记为 —；未计卤汁、糖浆及配料">豆腐脑</a></th>
+                <td class="food-note">原味</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">15</strong><small class="measure-per-100">/15</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">1.9</span><small class="measure-per-100">/1.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.8</span><small class="measure-per-100">/0.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                    <span class="measure-pair"><span class="measure-current">—</span><small class="measure-per-100">/—</small></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody aria-labelledby="food-category-staples">
+              <tr class="food-record">
+                <th id="food-category-staples" class="food-category-cell" scope="rowgroup" rowspan="4"><span class="food-category-marker">主食</span></th>
+                <th scope="row" class="food-name"><a class="food-source" href="https://m.dayi.org.cn/food_nutrition/5.html" target="_blank" rel="noopener noreferrer" title="营养成分参考：中国医药信息查询平台，馒头每 100 g；100 g 是此处选定的估算份量，不代表所有馒头的单重">馒头</a></th>
+                <td class="food-note">白面</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">223</strong><small class="measure-per-100">/223</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">7.0</span><small class="measure-per-100">/7.0</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.1</span><small class="measure-per-100">/1.1</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--carbs">47.0</span><small class="measure-per-100">/47.0</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.3</span><small class="measure-per-100">/1.3</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 单重参考同类巴比鲜汁肉包 80g/个；营养按来源每100g折算，非包先森官方数据。 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://www.hpcn21.com/shiwuku/xianroubao/" target="_blank" rel="noopener noreferrer" title="同类鲜肉包估算：单重参考巴比鲜汁肉包 80 g/个；营养按云健康鲜肉包每 100 g 数据折算：270.36 千卡、蛋白质 10.96 g、脂肪 10.02 g、碳水 35.91 g、纤维 1.84 g；本份热量沿用按十位取整的 220 千卡，每 100 g 热量显示为 270 千卡；非包先森官方标注">鲜肉包</a></th>
+                <td class="food-note">蒸制</td>
+                <td>80 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">220</strong><small class="measure-per-100">/270</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">8.8</span><small class="measure-per-100">/11.0</small></span>
+                    <span class="measure-pair"><span class="measure-current">8.0</span><small class="measure-per-100">/10.0</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--carbs">28.7</span><small class="measure-per-100">/35.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.5</span><small class="measure-per-100">/1.8</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 素菜包子合并记录韭菜鸡蛋、地三鲜等口味；营养采用代表性素菜包标签折算。 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://24h.pchome.com.tw/prod/DBCX7H-A900HQ8TM" target="_blank" rel="noopener noreferrer" title="统一记录韭菜鸡蛋、地三鲜等素馅蒸包；单个按 80 g 估算。营养参考神农素高丽菜包每 100 g 标签：210 千卡、蛋白质 6.3 g、脂肪 4.0 g、碳水 35.9 g；折算后本份热量沿用按十位取整的 170 千卡。纤维未标示，按个人记录口径记为 0；并非各口味实测值">素菜包子</a></th>
+                <td class="food-note">素馅</td>
+                <td>80 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">170</strong><small class="measure-per-100">/210</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">5.0</span><small class="measure-per-100">/6.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">3.2</span><small class="measure-per-100">/4.0</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--carbs">28.7</span><small class="measure-per-100">/35.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">0</span><small class="measure-per-100">/0</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 中等水煮黄甜玉米一根可食部分 103 g，取整为 100 g；玉米芯不计入克数。
+                   USDA SR28 食品号 11168：第 645 页营养值，第 647 页份量。
+                   单根重量交叉参考加拿大卫生部：https://aliments-nutrition.canada.ca/cnf-fce/serving-portion?id=2068 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://www.ars.usda.gov/ARSUserFiles/80400535/Data/SR/SR28/reports/sr28fg11.pdf#page=645" target="_blank" rel="noopener noreferrer" title="中等水煮黄甜玉米，单根可食玉米粒参考 USDA 与加拿大卫生部 103 g，取整为 100 g，不含玉米芯。每 100 g 参考 USDA SR28 食品号 11168：96 千卡、蛋白质 3.41 g、脂肪 1.50 g、碳水 20.98 g、总膳食纤维 2.4 g；未计黄油、酱料，非糯玉米数据">玉米</a></th>
+                <td class="food-note">水煮</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">96</strong><small class="measure-per-100">/96</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">3.4</span><small class="measure-per-100">/3.4</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.5</span><small class="measure-per-100">/1.5</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--carbs">21.0</span><small class="measure-per-100">/21.0</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.4</span><small class="measure-per-100">/2.4</small></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody aria-labelledby="food-category-vegetables">
+              <tr class="food-record">
+                <th id="food-category-vegetables" class="food-category-cell" scope="rowgroup" rowspan="8"><span class="food-category-marker">蔬菜</span></th>
+                <th scope="row" class="food-name"><a class="food-source" href="https://nlc.chinanutri.cn/fq/foodinfo/575.html" target="_blank" rel="noopener noreferrer" title="鲜金针菇每 100 g 可食生重参考：中国食物成分表数据，133 kJ 换算约 32 千卡，蛋白质 2.4 g、脂肪 0.4 g、碳水 6.0 g；纤维 2.7 g 参考《中国食物成分表》，未计烹调油">金针菇</a></th>
+                <td class="food-note">生鲜</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">32</strong><small class="measure-per-100">/32</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">2.4</span><small class="measure-per-100">/2.4</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.4</span><small class="measure-per-100">/0.4</small></span>
+                    <span class="measure-pair"><span class="measure-current">6.0</span><small class="measure-per-100">/6.0</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--fiber">2.7</span><small class="measure-per-100">/2.7</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://www.foodwake.cn/food/232" target="_blank" rel="noopener noreferrer" title="西兰花每 100 g 可食生重参考：36 千卡，蛋白质 4.1 g、脂肪 0.6 g、碳水 4.3 g、纤维 1.6 g；未计烹调油">西兰花</a></th>
+                <td class="food-note">生鲜</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">36</strong><small class="measure-per-100">/36</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">4.1</span><small class="measure-per-100">/4.1</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.6</span><small class="measure-per-100">/0.6</small></span>
+                    <span class="measure-pair"><span class="measure-current">4.3</span><small class="measure-per-100">/4.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.6</span><small class="measure-per-100">/1.6</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 单个重量参考 FDA 生鲜蔬菜表：西红柿 148 g，黄瓜 1/3 根 99 g；分别取整为 150 g、300 g。
+                   https://www.fda.gov/food/nutrition-food-labeling-and-critical-foods/nutrition-information-raw-vegetables -->
+              <!-- 西红柿膳食纤维参考《中国全科医学》2022 年论文表 2：1.9 g/100 g，150 g 折算为 2.9 g。
+                   https://www.chinagp.net/CN/abstract/abstract6240.shtml -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://foodsect.com/d/1932/62" target="_blank" rel="noopener noreferrer" title="单个中等西红柿，可食生重按 150 g 记录；大小参考 FDA 中等西红柿 148 g 取整。热量及成分按《中国食物成分表》第 6 版公开转录每 100 g 数据乘以 1.5：15 千卡、蛋白质 0.9 g、脂肪 0.2 g、碳水 3.3 g；膳食纤维另参考《中国全科医学》2022 年论文表 2 每 100 g 含 1.9 g，折算为 2.9 g；热量取整数、成分保留一位小数">西红柿</a></th>
+                <td class="food-note">中等</td>
+                <td>150 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">23</strong><small class="measure-per-100">/15</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">1.4</span><small class="measure-per-100">/0.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.3</span><small class="measure-per-100">/0.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">5.0</span><small class="measure-per-100">/3.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.9</span><small class="measure-per-100">/1.9</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://foodsect.com/d/1932/62" target="_blank" rel="noopener noreferrer" title="单根中等鲜黄瓜，可食生重按 300 g 记录；大小参考 FDA 中等黄瓜 1/3 根 99 g，整根 297 g 取整。热量及成分按《中国食物成分表》第 6 版公开转录每 100 g 数据乘以 3：16 千卡、蛋白质 0.8 g、脂肪 0.2 g、碳水 2.9 g、纤维 0.5 g">黄瓜</a></th>
+                <td class="food-note">中等</td>
+                <td>300 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">48</strong><small class="measure-per-100">/16</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">2.4</span><small class="measure-per-100">/0.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.6</span><small class="measure-per-100">/0.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">8.7</span><small class="measure-per-100">/2.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.5</span><small class="measure-per-100">/0.5</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 青尖辣椒膳食纤维参考《中国全科医学》2022 年论文表 2：2.5 g/100 g。
+                   https://www.chinagp.net/CN/abstract/abstract6240.shtml -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://nlc.chinanutri.cn/fq/foodinfo/409.html" target="_blank" rel="noopener noreferrer" title="鲜青尖辣椒每 100 g 可食生重参考：中国疾控中心营养与健康所食物营养成分查询平台，能量 115 kJ 除以 4.184 后取整为 27 千卡，蛋白质 1.4 g、脂肪 0.3 g、碳水 5.8 g；膳食纤维 2.5 g 另参考《中国全科医学》2022 年论文表 2，未计烹调油">辣椒</a></th>
+                <td class="food-note">青尖椒</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">27</strong><small class="measure-per-100">/27</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">1.4</span><small class="measure-per-100">/1.4</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.3</span><small class="measure-per-100">/0.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">5.8</span><small class="measure-per-100">/5.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.5</span><small class="measure-per-100">/2.5</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 贝贝南瓜按用户指定的 100 g 可食生重记录。
+                   营养采用日本文部科学省食品号 06048 同类西洋栗南瓜数据，并非贝贝品种实测。 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://fooddb.mext.go.jp/details/details.pl?ITEM_NO=6_06048_7" target="_blank" rel="noopener noreferrer" title="按 100 g 可食生重记录；营养参考日本文部科学省《日本食品标准成分表》八订增补 2023 年西洋栗南瓜生鲜每 100 g：78 千卡、蛋白质 1.9 g、脂肪 0.3 g、碳水 20.6 g、总膳食纤维 3.5 g。同类估算，非贝贝品种实测，未计烹调油">贝贝南瓜</a></th>
+                <td class="food-note">生鲜</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">78</strong><small class="measure-per-100">/78</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">1.9</span><small class="measure-per-100">/1.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.3</span><small class="measure-per-100">/0.3</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--carbs">20.6</span><small class="measure-per-100">/20.6</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--fiber">3.5</span><small class="measure-per-100">/3.5</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 中国疾控冬瓜条目未列总膳食纤维；此处统一使用同一来源的完整生鲜数据，避免混用不同成分口径。 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://fooddb.mext.go.jp/details/details.pl?ITEM_NO=6_06173_7" target="_blank" rel="noopener noreferrer" title="冬瓜按 100 g 可食生重记录；统一参考日本文部科学省《日本食品标准成分表》八订增补 2023 年生冬瓜每 100 g：15 千卡、蛋白质 0.5 g、脂肪 0.1 g、碳水 3.8 g、总膳食纤维 1.3 g，未计烹调油">冬瓜</a></th>
+                <td class="food-note">生鲜</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">15</strong><small class="measure-per-100">/15</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">0.5</span><small class="measure-per-100">/0.5</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.1</span><small class="measure-per-100">/0.1</small></span>
+                    <span class="measure-pair"><span class="measure-current">3.8</span><small class="measure-per-100">/3.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">1.3</span><small class="measure-per-100">/1.3</small></span>
+                  </div>
+                </td>
+              </tr>
+              <!-- 普通单根苦瓜选整重 250 g 为记账代表，按食部 81% 得 202.5 g，取 200 g 可食生重。
+                   单根大小参考浙江省农业农村厅“苦中乐”平均单瓜 258.4 g，非全国统一规格：
+                   https://nynct.zj.gov.cn/module/download/downfile.jsp?classid=0&filename=01708f7d6c7e4d159f90933bc249a80c.pdf
+                   食部参考中国疾控苦瓜鲜条目：https://nlc.chinanutri.cn/fq/foodinfo/425.html
+                   营养统一采用《中国食物成分表》第 6 版公开转录的鲜苦瓜条目 043212，纤维为膳食纤维。 -->
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://foodsect.com/d/1932/62" target="_blank" rel="noopener noreferrer" title="普通单根以整重 250 g 为代表，按 81% 食部取 200 g 可食生重；参考《中国食物成分表》第 6 版公开转录的鲜苦瓜每 100 g：22 千卡、蛋白质 1.0 g、脂肪 0.1 g、碳水 4.9 g、膳食纤维 1.4 g，按 200 g 折算，未计烹调油">苦瓜</a></th>
+                <td class="food-note">生鲜</td>
+                <td>200 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">44</strong><small class="measure-per-100">/22</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">2.0</span><small class="measure-per-100">/1.0</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.2</span><small class="measure-per-100">/0.1</small></span>
+                    <span class="measure-pair"><span class="measure-current">9.8</span><small class="measure-per-100">/4.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.8</span><small class="measure-per-100">/1.4</small></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tbody aria-labelledby="food-category-fruit">
+              <tr class="food-record">
+                <th id="food-category-fruit" class="food-category-cell" scope="rowgroup" rowspan="6"><span class="food-category-marker">水果</span></th>
+                <th scope="row" class="food-name"><a class="food-source" href="https://resources.finalsite.net/images/v1703097875/chambersburgk12paus/mpitvq0yks6xou0i25os/apple__fresh.pdf" target="_blank" rel="noopener noreferrer" title="营养成分参考：USDA 中等大小带皮苹果，直径约 7.6 cm，可食部分约 182 g">苹果</a></th>
+                <td class="food-note">中等</td>
+                <td>182 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">95</strong><small class="measure-per-100">/52</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">0.5</span><small class="measure-per-100">/0.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.3</span><small class="measure-per-100">/0.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">25.1</span><small class="measure-per-100">/13.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">4.4</span><small class="measure-per-100">/2.4</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://www.growables.org/information/LowChillFruit/documents/PeachNutrient.pdf" target="_blank" rel="noopener noreferrer" title="营养成分参考：USDA 生鲜黄桃，中等大小，可食部分约 150 g；每 100 g 含 39 千卡、蛋白质 0.91 g、脂肪 0.25 g、碳水 9.54 g、纤维 1.5 g；本份热量沿用按十位取整的 60 千卡">桃子</a></th>
+                <td class="food-note">中等</td>
+                <td>150 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">60</strong><small class="measure-per-100">/39</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">1.4</span><small class="measure-per-100">/0.9</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.4</span><small class="measure-per-100">/0.3</small></span>
+                    <span class="measure-pair"><span class="measure-current">14.3</span><small class="measure-per-100">/9.5</small></span>
+                    <span class="measure-pair"><span class="measure-current">2.2</span><small class="measure-per-100">/1.5</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://resources.finalsite.net/images/v1703097946/chambersburgk12paus/pe8ryobr5vtu3mkuaskp/kiwi.pdf" target="_blank" rel="noopener noreferrer" title="单个绿心猕猴桃，可食部分按 70 g 记录；参考 USDA 直径约 5 cm 单果可食重 69 g 取整。每 100 g 含 61 千卡、蛋白质 1.14 g、脂肪 0.52 g、碳水 14.66 g、膳食纤维 3.0 g，按 70 g 折算">猕猴桃</a></th>
+                <td class="food-note">绿心</td>
+                <td>70 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">43</strong><small class="measure-per-100">/61</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">0.8</span><small class="measure-per-100">/1.1</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.4</span><small class="measure-per-100">/0.5</small></span>
+                    <span class="measure-pair"><span class="measure-current">10.3</span><small class="measure-per-100">/14.7</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--fiber">2.1</span><small class="measure-per-100">/3.0</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://www.growables.org/information/TropicalFruit/documents/BananaNutrient.pdf" target="_blank" rel="noopener noreferrer" title="单根中等香蕉，参考 USDA 可食重 118 g，取整为 120 g。每 100 g 含 89 千卡、蛋白质 1.09 g、脂肪 0.33 g、碳水 22.84 g、膳食纤维 2.6 g，按 120 g 折算">香蕉</a></th>
+                <td class="food-note">中等</td>
+                <td>120 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">107</strong><small class="measure-per-100">/89</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">1.3</span><small class="measure-per-100">/1.1</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.4</span><small class="measure-per-100">/0.3</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--carbs">27.4</span><small class="measure-per-100">/22.8</small></span>
+                    <span class="measure-pair"><span class="measure-current">3.1</span><small class="measure-per-100">/2.6</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://resources.finalsite.net/images/v1703097969/chambersburgk12paus/oimkscqldkhbhzqvaxqb/pears.pdf" target="_blank" rel="noopener noreferrer" title="单个中等梨子，参考 USDA 生梨可食重 178 g，取整为 180 g。每 100 g 含 57 千卡、蛋白质 0.36 g、脂肪 0.14 g、碳水 15.23 g、膳食纤维 3.1 g，按 180 g 折算">梨子</a></th>
+                <td class="food-note">中等</td>
+                <td>180 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">103</strong><small class="measure-per-100">/57</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">0.6</span><small class="measure-per-100">/0.4</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.3</span><small class="measure-per-100">/0.1</small></span>
+                    <span class="measure-pair"><span class="measure-current">27.4</span><small class="measure-per-100">/15.2</small></span>
+                    <span class="measure-pair"><span class="measure-current nutrient-focus nutrient-focus--fiber">5.6</span><small class="measure-per-100">/3.1</small></span>
+                  </div>
+                </td>
+              </tr>
+              <tr class="food-record">
+                <th scope="row" class="food-name"><a class="food-source" href="https://growables.net/informationVeg/documents/WatermelonUSDANutrient.pdf" target="_blank" rel="noopener noreferrer" title="西瓜按 100 g 生鲜可食瓜肉记录；统一参考 USDA 2018 年食品号 09326，每 100 g 含 30 千卡、蛋白质 0.61 g、脂肪 0.15 g、碳水 7.55 g、总膳食纤维 0.4 g；成分保留一位小数">西瓜</a></th>
+                <td class="food-note">瓜肉</td>
+                <td>100 g</td>
+                <td class="energy-column"><span class="measure-pair"><strong class="measure-current">30</strong><small class="measure-per-100">/30</small></span></td>
+                <td class="nutrient-column">
+                  <div class="nutrient-grid">
+                    <span class="measure-pair"><span class="measure-current">0.6</span><small class="measure-per-100">/0.6</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.2</span><small class="measure-per-100">/0.2</small></span>
+                    <span class="measure-pair"><span class="measure-current">7.6</span><small class="measure-per-100">/7.6</small></span>
+                    <span class="measure-pair"><span class="measure-current">0.4</span><small class="measure-per-100">/0.4</small></span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p id="calorie-sort-status" class="visually-hidden" role="status" aria-atomic="true"></p>
+      </section>
+    </div>
+  </main>
+
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+</body>
+</html>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "添加食物热量"
+  short_description: "为生活页添加或更新食物热量，统一份量、营养数据和重点配色"
+  default_prompt: "使用 $add-food-calories 为生活页添加一种食物，按项目约定记录热量、克数和主要成分。"
