@@ -61,7 +61,8 @@
               <tr><th scope="row">Harness<span>执行系统</span></th><td><strong>任务怎么可靠完成</strong><span>安排执行、校验结果、处理失败。</span></td></tr>
             </tbody>
           </table>
-          <p class="section-note">三者相互配合。任务越长，越需要把信息供给、执行和反馈一起设计。</p>
+          <p class="section-note">按视频的理解框架，指令属于上下文，上下文管理属于 Harness 的执行系统，关注范围逐步扩大。</p>
+          <p class="section-note">指令不能代替缺失的事实；信息给对了，执行仍可能跑偏，需要持续验证与纠偏。</p>
         </section>
 
         <section class="note-section" id="mechanisms" aria-labelledby="mechanisms-title">
@@ -69,15 +70,15 @@
           <dl class="mechanism-list">
             <div>
               <dt>信息与状态</dt>
-              <dd>按需读取相关资料，将规则、任务材料、运行进度分开。保存已完成步骤、待解决问题和证据位置，方便长任务续接。</dd>
+              <dd>按需读取相关资料，分开组织规则与任务材料。Skills 先提供能力名称与简介，触发后再读取流程、参数和脚本。任务进度、会话中间结论、长期记忆与用户偏好分开保存；续接时保留待解决问题和证据位置。</dd>
             </div>
             <div>
               <dt>执行与工具</dt>
-              <dd>把目标拆成可检查的小任务，明确工具输入、返回结果和权限边界。失败信息要具体，便于判断是参数、权限还是临时故障。</dd>
+              <dd>把目标拆成可检查的小任务。工具要明确三件事：提供哪些、何时调用、结果如何筛选后送回模型。输入与权限边界要清楚；失败时指出参数、权限或临时故障等具体原因。</dd>
             </div>
             <div>
               <dt>验证与恢复</dt>
-              <dd>用测试、实际页面操作、日志或业务结果验收。将失败证据送回下一轮；必要时重试、换路径或恢复到稳定状态，并设置停止条件。</dd>
+              <dd>自己实现后再给自己打分容易偏乐观。明确需求规格、实现与验收的职责分工，用测试、实际页面操作、日志或业务结果验收。将失败证据送回下一轮；必要时重试、换路径或恢复到稳定状态，并设置停止条件。</dd>
             </div>
           </dl>
           <p class="section-note">由视频的六层框架合并整理，用于理解机制与排查缺口。</p>
@@ -119,6 +120,8 @@
           <div class="practice-copy">
             <p>先选一组真实任务，明确完成标准，记录完成率、人工接管率、耗时和成本。优先补齐最常见的失败环节，每次改动用相同任务与相近预算比较，再用新任务检验。</p>
             <p>短任务采用清楚的指令、必要工具和直接验收。长任务再增加状态交接、独立评估与恢复机制；模型或任务变化后，重新检查这些机制的收益。</p>
+            <p><strong>长任务的上下文。</strong>上下文接近上限时，部分模型会丢细节或提前收尾。可用 Context Compaction 压缩历史，在原会话中继续。</p>
+            <p>如果压缩后仍不稳定，可尝试 Context Reset：保存任务进度、关键结论、证据与下一步，交给干净的新上下文继续。是否重置，应根据模型表现与任务需要判断。</p>
             <p class="practice-principle">失败时，先定位缺少的信息、工具、状态或检查，再补齐对应能力。</p>
           </div>
           <dl class="delivery-checks">
@@ -129,7 +132,7 @@
           </dl>
         </div>
         <p class="practical-reference">具体做法：<a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">用 <code>AGENTS.md</code> 做精简索引，详细规范按需读取；将可执行规则写入自动检查，报错时附上修复提示 ↗</a></p>
-        <p class="section-note">独立评估仍需明确标准与实际证据；涉及体验等主观质量时，应与人工判断校准。<a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener noreferrer">评估设计实践 ↗</a></p>
+        <p class="section-note">独立评估仍需明确标准与实际证据；涉及体验等主观质量时，应与人工判断校准。<a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener noreferrer">上下文与评估实践 ↗</a></p>
       </section>
 
       <details class="note-sources" id="sources">
@@ -141,7 +144,7 @@
             <li><a href="https://www.anthropic.com/engineering/harness-design-long-running-apps" target="_blank" rel="noopener noreferrer">Anthropic · Harness design for long-running application development</a><span>长任务交接、实际环境评估，以及随模型变化调整机制。</span></li>
             <li><a href="https://openai.com/index/harness-engineering/" target="_blank" rel="noopener noreferrer">OpenAI · Harness engineering</a><span>文档索引、环境可观测与自动检查。</span></li>
           </ul>
-          <p class="source-timestamps">视频定位：01:41–08:36 概念关系 · 09:01–12:13 六层机制 · 14:00–17:19 验证与工程实践。时间戳为近似定位。</p>
+          <p class="source-timestamps">视频定位：01:41–08:36 概念与按需披露 · 09:01–12:13 六层机制 · 13:06–14:45 长任务与验收分工 · 15:25–17:19 工程实践。时间戳为近似定位。</p>
         </div>
       </details>
     </article>
