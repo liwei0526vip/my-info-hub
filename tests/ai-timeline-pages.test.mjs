@@ -54,6 +54,14 @@ function mount(page) {
 
 test('AI directory exposes separate timelines with disjoint kinds and retained source links', async () => {
   const directory = (await readFile(new URL('ai.html', root), 'utf8')).match(/<nav class="ai-directory"[^>]*>([\s\S]*?)<\/nav>/)[1];
+  for (const [href, label] of [
+    ['ai-model-comparison.html', '模型对比'], ['agent.html', 'Agent学习'],
+    ['ai-knowledge-base.html', 'AI知识库'], ['ops-agent.html', '运维智能体'],
+  ]) {
+    const entry = directory.match(new RegExp(`<a[^>]*href="${href}"[^>]*>([\\s\\S]*?)</a>`))?.[1];
+    assert.ok(entry, `AI directory must link to ${href}`);
+    assert.ok(entry.includes(`<span>${label}</span>`), `${href} must use its new directory name`);
+  }
   for (const page of pages) {
     assert.ok(directory.includes(`href="${page.name}"`));
     assert.ok(page.events.length > 0);
@@ -126,8 +134,8 @@ test('year options follow new records and an empty timeline remains readable', (
   assert.match(empty.nodes.get('empty-comparison').textContent, /没有收录事件/);
 });
 
-test('timeline navigation selects AI and sends the site brand to the AI directory', async () => {
-  for (const name of [...pages.map(page => page.name), 'index.html']) {
+test('AI topic navigation selects AI and sends the site brand to the AI directory', async () => {
+  for (const name of [...pages.map(page => page.name), 'ai-model-comparison.html', 'agent.html', 'ai-knowledge-base.html', 'ops-agent.html', 'ai-user-scale.html', 'ai-company-value.html', 'ai.html', 'index.html']) {
     const host = { replaceChildren(fragment) { this.links = fragment.children; } };
     const wordmark = { replaceChildren(link) { this.link = link; } };
     const backTop = { setAttribute() {}, classList: { add() {}, toggle() {} } };
@@ -138,7 +146,7 @@ test('timeline navigation selects AI and sends the site brand to the AI director
     };
     vm.runInNewContext(navScript, { document, location: { pathname: `/site/${name}` }, window: { scrollY: 0, addEventListener() {} } });
     assert.equal(host.links.find(link => link.attrs['aria-current'] === 'page').href, 'ai.html');
-    assert.ok(host.links.every(link => !link.href.includes('timeline')));
+    assert.deepEqual(host.links.map(link => link.href), ['ai.html', 'market-memo.html', 'thoughts.html', 'life.html', 'ai-learning-index.html']);
     assert.equal(wordmark.link.href, 'ai.html');
   }
   const index = await readFile(new URL('index.html', root), 'utf8');

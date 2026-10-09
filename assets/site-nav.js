@@ -2,17 +2,16 @@
 (() => {
   const pages = [
     { href: 'ai.html', label: 'AI' },
-    { href: 'ai-model-comparison.html', label: '大模型对比' },
-    { href: 'agent.html', label: 'Agent' },
-    { href: 'ai-knowledge-base.html', label: '知识库' },
-    { href: 'ops-agent.html', label: '运维智能体' },
     { href: 'market-memo.html', label: '随笔' },
     { href: 'thoughts.html', label: '思考' },
     { href: 'life.html', label: '生活' },
     { href: 'ai-learning-index.html', label: '收藏' },
   ];
   const currentFile = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';
-  const aiDetailPages = ['ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html'];
+  const aiDetailPages = [
+    'ai-model-comparison.html', 'agent.html', 'ai-knowledge-base.html', 'ops-agent.html',
+    'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html',
+  ];
   const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html' : currentFile;
 
   const wordmark = document.querySelector('.site-wordmark');

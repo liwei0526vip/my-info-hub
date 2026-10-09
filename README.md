@@ -1,17 +1,17 @@
 # 知行簿
 
-打开任一 HTML 页面即可浏览；顶部提供统一站点导航，无需构建或服务器。首页 `index.html` 链接至 AI 导航页。
+打开任一 HTML 页面即可浏览；顶部提供 AI、随笔、思考、生活、收藏五个主导航入口，无需构建或服务器。首页 `index.html` 链接至 AI 导航页，AI 专题入口统一收于该页。
 
 - `ai-model-timeline.html`：模型演进时间图（入口收于 AI 页）
 - `ai-agent-timeline.html`：Agent 演进时间图（入口收于 AI 页）
-- `ai.html`：AI（模型演进、Agent 演进、用户规模、估值市值导航与学习路线）
+- `ai.html`：AI（模型对比、Agent学习、AI知识库、运维智能体、模型演进、Agent 演进、用户规模、估值市值导航与学习路线）
 - `ai-user-scale.html`：用户规模（2025 年起的同图趋势，附统计口径与来源；入口收于 AI 页）
 - `ai-company-value.html`：估值市值（厂商融资估值与上市市值快照，附日期与来源；入口收于 AI 页）
-- `ai-model-comparison.html`：大模型对比
-- `agent.html`：Agent 工程主题（Harness Engineering 笔记与关注 Agent：Codex、Claude Code、Pi Agent、DSH）
-- `ai-knowledge-base.html`：AI 知识库实践与产品研究
+- `ai-model-comparison.html`：模型对比（入口收于 AI 页）
+- `agent.html`：Agent学习（Harness Engineering 笔记与关注 Agent：Codex、Claude Code、Pi Agent、DSH；入口收于 AI 页）
+- `ai-knowledge-base.html`：AI知识库（实践与产品研究；入口收于 AI 页）
 - `ai-learning-index.html`：收藏（工具、工作流、课程与文章索引）
-- `ops-agent.html`：运维智能体白皮书精读与产品思考
+- `ops-agent.html`：运维智能体（白皮书精读与产品思考；入口收于 AI 页）
 - `market-memo.html`：随笔（想法、线索与讨论，留待后续整理总结）
 - `thoughts.html`：思考（待学习主题：第一性原理、向上管理）
 - `life.html`：生活（日常做饭菜单与食物热量、主要成分记录）
