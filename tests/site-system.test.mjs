@@ -3,13 +3,18 @@ import { access, readFile } from 'node:fs/promises';
 
 const root = new URL('../', import.meta.url);
 const pageNames = [
-  'ai-agent-model-timeline.html',
+  'ai-model-timeline.html',
+  'ai-agent-timeline.html',
+  'ai.html',
+  'ai-user-scale.html',
+  'ai-company-value.html',
   'ai-model-comparison.html',
   'agent.html',
   'ai-knowledge-base.html',
   'ai-learning-index.html',
   'ops-agent.html',
   'market-memo.html',
+  'thoughts.html',
   'life.html',
 ];
 
@@ -28,28 +33,31 @@ for (const [name, html] of pages) {
   const navTargets = [...fallbackNav.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(navTargets).size, navTargets.length, `${name} must not duplicate navigation entries`);
   assert.ok(navTargets.includes('agent.html'), `${name} must link to the Agent topics page`);
+  assert.ok(!navTargets.includes('ai-data.html'), `${name} must remove the old combined data entry`);
+  assert.ok(!navTargets.some(target => ['ai-agent-model-timeline.html', 'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html'].includes(target)), `${name} must keep AI detail pages out of the main navigation`);
   for (const target of navTargets) {
     await access(new URL(target, root));
   }
 }
 
 assert.match(siteNav, /href: 'ai-knowledge-base\.html', label: '知识库'/);
-assert.match(siteNav, /href: 'ai-learning-index\.html', label: '学习收藏'/);
+assert.doesNotMatch(siteNav, /href: '(?:ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline)\.html'/);
+assert.match(siteNav, /href: 'ai-learning-index\.html', label: '收藏'/);
 assert.match(siteNav, /href: 'ops-agent\.html', label: '运维智能体'/);
-assert.match(siteNav, /href: 'market-memo\.html', label: '随手记录'/);
+assert.match(siteNav, /href: 'market-memo\.html', label: '随笔'/);
 
 const knowledgePage = pages.find(([name]) => name === 'ai-knowledge-base.html')[1];
 const learningPage = pages.find(([name]) => name === 'ai-learning-index.html')[1];
 const opsAgentPage = pages.find(([name]) => name === 'ops-agent.html')[1];
 const memoPage = pages.find(([name]) => name === 'market-memo.html')[1];
 assert.match(knowledgePage, /<title>知识库｜知行簿<\/title>/);
-assert.match(learningPage, /<title>学习收藏｜知行簿<\/title>/);
+assert.match(learningPage, /<title>收藏｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<title>运维智能体｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<link rel="stylesheet" href="assets\/ops-agent\.css">/);
 assert.match(opsAgentPage, /id="problems"/);
 assert.match(opsAgentPage, /id="questions"/);
 assert.match(opsAgentPage, /id="vision"/);
-assert.match(memoPage, /<title>随手记录｜知行簿<\/title>/);
+assert.match(memoPage, /<title>随笔｜知行簿<\/title>/);
 assert.match(memoPage, /<link rel="stylesheet" href="assets\/market-memo\.css">/, 'market-memo must load its page layout');
 
 for (const name of ['ai-model-comparison.html']) {

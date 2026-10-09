@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="2025 年起的模型与 Agent 品牌公开用户规模趋势、统计口径与来源。">
+  <title>用户规模｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/ai-data.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/ai-data.js" defer></script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">跳到用户规模</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">知行簿</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai.html" aria-current="page">AI</a>
+        <a href="ai-model-comparison.html">大模型对比</a>
+        <a href="agent.html">Agent</a>
+        <a href="ai-knowledge-base.html">知识库</a>
+        <a href="ops-agent.html">运维智能体</a>
+        <a href="market-memo.html">随笔</a>
+        <a href="thoughts.html">思考</a>
+        <a href="life.html">生活</a>
+        <a href="ai-learning-index.html">收藏</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="data-main page-shell" id="main">
+    <header class="data-hero">
+      <div class="data-heading"><h1>用户规模</h1><p>公开记录与趋势。</p></div>
+      <p class="data-updated">公开数据 · 核对 <time datetime="2026-10-09">2026.10.09</time></p>
+    </header>
+
+    <div class="data-grid">
+      <section class="data-panel data-panel--users" aria-labelledby="users-heading">
+        <header class="panel-heading"><h2 id="users-heading">用户规模趋势</h2><span class="chart-kind">趋势</span></header>
+        <div class="users-tools">
+          <ul class="users-legend" id="users-legend" aria-label="品牌及统计口径"></ul>
+          <div class="chart-switch scale-switch" role="group" aria-label="纵轴刻度">
+            <button type="button" data-user-scale="log" aria-pressed="true" aria-controls="users-figure">对数</button>
+            <button type="button" data-user-scale="linear" aria-pressed="false" aria-controls="users-figure">线性</button>
+          </div>
+        </div>
+        <figure id="users-figure">
+          <figcaption class="chart-context" id="users-context" aria-live="polite"></figcaption>
+          <div class="chart-frame" id="users-chart"></div>
+        </figure>
+        <p class="chart-note">实心点为官方披露，空心点为 AICPB 补充估算；“&gt;”为下限。各品牌口径不同，仅观察各自变化；缺月留空。</p>
+        <details class="data-details">
+          <summary>数据与来源</summary>
+          <div class="table-scroll">
+            <table class="source-table">
+              <caption id="users-table-caption">用户规模公开披露记录</caption>
+              <thead><tr><th scope="col">品牌</th><th scope="col">时间</th><th scope="col">规模（万）</th><th scope="col">统计口径</th><th scope="col">来源</th></tr></thead>
+              <tbody id="users-rows"></tbody>
+            </table>
+          </div>
+          <p class="source-note">月度统计按月末定位，时点披露按对应日期定位；虚线仅连接同口径记录。品牌以对应产品统计，不代表模型的独立使用人数。AICPB 仅作趋势参考；仅有媒体转述、未核原表的记录暂不入图。不同统计窗口的可靠历史披露仅收于下表，不接入趋势线。</p>
+          <ul class="scope-notes" id="users-scope-notes"></ul>
+        </details>
+      </section>
+    </div>
+    <noscript><p class="data-noscript">请启用 JavaScript 查看图表。数据来源：<a href="https://openai.com/index/codex-for-knowledge-work/">OpenAI</a>、<a href="https://www.prnasia.com/story/545325-1.shtml">MiniMax</a>、<a href="https://www.aicpb.com/zh/ai-rankings/products/china-ai-rankings/apps">AICPB</a>。</p></noscript>
+  </main>
+
+  <!-- User values retain source counts; monthly statistics are positioned at month end. -->
+  <script type="application/json" id="ai-data">
+{
+  "checkedOn": "2026-10-09",
+  "users": {
+    "claude": {
+      "name": "Claude",
+      "metric": "App 月活 · AICPB估算",
+      "color": "#b96745",
+      "points": [
+        {
+          "date": "2026-03-31",
+          "period": "2026-03",
+          "value": 23500000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.03",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1005139027_122031644",
+          "publishedOn": "2026-04-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第20期应用榜国内总榜及全球增速榜MAU表：Claude 23.5M；单位M。"
+        },
+        {
+          "date": "2026-04-30",
+          "period": "2026-04",
+          "value": 30170000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.04",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1018891415_122031644",
+          "publishedOn": "2026-05-06",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第21期应用榜全球/国内总榜MAU表：Claude 30.17M；单位M。"
+        },
+        {
+          "date": "2026-05-31",
+          "period": "2026-05",
+          "value": 35940000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.05",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1031478355_122031644",
+          "publishedOn": "2026-06-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第22期应用榜全球/国内总榜MAU表：Claude 35.94M；单位M。"
+        },
+        {
+          "date": "2026-06-30",
+          "value": 39810000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.06",
+          "period": "2026-06",
+          "provider": "AICPB",
+          "url": "https://www.aicpb.com/zh/product/Claude-by-Anthropic/appid1D6F33BC9",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "AICPB 产品页最新 App 月活段落：2026年6月39.81M。"
+        },
+        {
+          "date": "2026-07-31",
+          "period": "2026-07",
+          "value": 41360000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.07",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1058083664_122031644",
+          "publishedOn": "2026-08-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第24期应用榜全球/国内总榜MAU表：Claude 41.36M；单位M。"
+        },
+        {
+          "date": "2026-08-31",
+          "period": "2026-08",
+          "value": 43150000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.08",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1071354827_122031644",
+          "publishedOn": "2026-09-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第25期应用榜全球/国内总榜MAU表：Claude 43.15M；单位M。"
+        }
+      ]
+    },
+    "codex": {
+      "name": "Codex",
+      "metric": "周活用户（WAU）",
+      "color": "#00647f",
+      "points": [
+        {
+          "date": "2026-03-19",
+          "value": 2000000,
+          "relation": "gt",
+          "provider": "OpenAI",
+          "url": "https://openai.com/index/openai-to-acquire-astral/",
+          "tier": "official",
+          "metric": "周活用户（WAU）",
+          "scope": "codex-wau",
+          "timeLabel": "2026.03.19 披露",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "OpenAI原始公告正文公布Codex每周活跃人数；保留原文数值及披露下限。",
+          "publishedOn": "2026-03-19"
+        },
+        {
+          "date": "2026-04-08",
+          "value": 3000000,
+          "relation": "eq",
+          "provider": "OpenAI",
+          "url": "https://openai.com/index/next-phase-of-enterprise-ai/",
+          "tier": "official",
+          "metric": "周活用户（WAU）",
+          "scope": "codex-wau",
+          "timeLabel": "2026.04.08 披露",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "OpenAI原始公告正文公布Codex每周活跃人数；保留原文数值及披露下限。",
+          "publishedOn": "2026-04-08"
+        },
+        {
+          "date": "2026-04-21",
+          "value": 4000000,
+          "relation": "gt",
+          "tier": "official",
+          "metric": "周活用户（WAU）",
+          "scope": "codex-wau",
+          "timeLabel": "2026.04.21 披露",
+          "provider": "OpenAI",
+          "url": "https://openai.com/index/scaling-codex-to-enterprises-worldwide/",
+          "publishedOn": "2026-04-21",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "OpenAI公告正文公布每周使用Codex人数超过400万；保留披露下限。"
+        },
+        {
+          "date": "2026-05-14",
+          "value": 4000000,
+          "relation": "gt",
+          "tier": "official",
+          "metric": "周活用户（WAU）",
+          "scope": "codex-wau",
+          "timeLabel": "2026.05.14 披露",
+          "provider": "OpenAI",
+          "url": "https://openai.com/index/work-with-codex-from-anywhere/",
+          "publishedOn": "2026-05-14",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "OpenAI公告正文公布每周使用Codex人数超过400万；保留披露下限。"
+        },
+        {
+          "date": "2026-06-02",
+          "value": 5000000,
+          "relation": "gt",
+          "provider": "OpenAI",
+          "url": "https://openai.com/index/codex-for-knowledge-work/",
+          "tier": "official",
+          "metric": "周活用户（WAU）",
+          "scope": "codex-wau",
+          "timeLabel": "2026.06.02 披露",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "OpenAI原始公告正文公布Codex每周活跃人数；保留原文数值及披露下限。",
+          "publishedOn": "2026-06-02"
+        },
+        {
+          "date": "2026-07-09",
+          "value": 5000000,
+          "relation": "gt",
+          "provider": "OpenAI",
+          "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/",
+          "tier": "official",
+          "metric": "周活用户（WAU）",
+          "scope": "codex-wau",
+          "timeLabel": "2026.07.09 披露",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "OpenAI原始公告正文公布Codex每周活跃人数；保留原文数值及披露下限。",
+          "publishedOn": "2026-07-09"
+        }
+      ],
+      "note": "趋势图按周活记录；2026.02.02 披露的过去一个月使用人数仅收于下表。"
+    },
+    "glm": {
+      "name": "GLM",
+      "metric": "App 月活 · AICPB估算",
+      "color": "#2673ad",
+      "points": [
+        {
+          "date": "2025-01-31",
+          "value": 7020000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.01",
+          "period": "2025-01",
+          "provider": "AICPB · 国元证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202502181643194579_1.pdf?1739888737000.pdf=#page=7",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "国元证券第7页2025年1月国内榜App MAU原表，智谱清言7.02M。"
+        },
+        {
+          "date": "2025-02-28",
+          "period": "2025-02",
+          "value": 7920000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.02",
+          "provider": "AICPB · 民生证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202503091644194683_1.pdf%3F1741481049000.pdf#page=3",
+          "publishedOn": "2025-03-08",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第3页图1原榜App MAU行及脚注：GLM 7.92M；单位M。"
+        },
+        {
+          "date": "2025-03-31",
+          "value": 10430000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.03",
+          "period": "2025-03",
+          "provider": "AICPB · 联合发布",
+          "url": "https://www.sohu.com/a/879787950_122082871",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "沃垠AI联合发布的2025年3月应用榜正文，智谱清言1043万App月活。",
+          "publishedOn": "2025-04-04"
+        },
+        {
+          "date": "2025-05-31",
+          "period": "2025-05",
+          "value": 8380000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.05",
+          "provider": "AICPB · 国元证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202506091687670639_1.pdf?1749487224000.pdf=#page=8",
+          "publishedOn": "2025-06-09",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第8页表4 App MAU原表：GLM 8.38M；单位M。"
+        },
+        {
+          "date": "2026-03-31",
+          "period": "2026-03",
+          "value": 5530000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.03",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1005139027_122031644",
+          "publishedOn": "2026-04-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第20期应用榜国内总榜及全球增速榜MAU表：GLM 5.53M；单位M。"
+        },
+        {
+          "date": "2026-04-30",
+          "period": "2026-04",
+          "value": 5290000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.04",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1018891415_122031644",
+          "publishedOn": "2026-05-06",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第21期应用榜全球/国内总榜MAU表：GLM 5.29M；单位M。"
+        },
+        {
+          "date": "2026-05-31",
+          "period": "2026-05",
+          "value": 5020000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.05",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1031478355_122031644",
+          "publishedOn": "2026-06-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第22期应用榜全球/国内总榜MAU表：GLM 5.02M；单位M。"
+        },
+        {
+          "date": "2026-06-30",
+          "value": 4820000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.06",
+          "period": "2026-06",
+          "provider": "AICPB",
+          "url": "https://www.aicpb.com/zh/product/智谱清言-一站式解放AI生产力/appid1D6F37CE9",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "AICPB 智谱清言产品页：2026年6月App MAU为4.82M。"
+        },
+        {
+          "date": "2026-07-31",
+          "period": "2026-07",
+          "value": 4600000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.07",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1058083664_122031644",
+          "publishedOn": "2026-08-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第24期应用榜全球/国内总榜MAU表：GLM 4.6M；单位M。"
+        },
+        {
+          "date": "2026-08-31",
+          "period": "2026-08",
+          "value": 4300000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.08",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1071354827_122031644",
+          "publishedOn": "2026-09-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第25期应用榜全球/国内总榜MAU表：GLM 4.3M；单位M。"
+        }
+      ]
+    },
+    "kimi": {
+      "name": "Kimi",
+      "metric": "App 月活 · AICPB估算",
+      "color": "#927218",
+      "points": [
+        {
+          "date": "2025-01-31",
+          "value": 19430000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.01",
+          "period": "2025-01",
+          "provider": "AICPB · 国元证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202502181643194579_1.pdf?1739888737000.pdf=#page=7",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "国元证券第7页2025年1月国内榜App MAU原表，Kimi19.43M。"
+        },
+        {
+          "date": "2025-02-28",
+          "period": "2025-02",
+          "value": 26220000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.02",
+          "provider": "AICPB · 民生证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202503091644194683_1.pdf%3F1741481049000.pdf#page=3",
+          "publishedOn": "2025-03-08",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第3页图1原榜App MAU行及脚注：Kimi 26.22M；单位M。"
+        },
+        {
+          "date": "2025-05-31",
+          "period": "2025-05",
+          "value": 24050000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.05",
+          "provider": "AICPB · 国元证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202506091687670639_1.pdf?1749487224000.pdf=#page=8",
+          "publishedOn": "2025-06-09",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第8页表4 App MAU原表：Kimi 24.05M；单位M。"
+        },
+        {
+          "date": "2025-11-30",
+          "period": "2025-11",
+          "value": 24820000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.11",
+          "provider": "AICPB · 爱建证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202512121799042477_1.pdf?1765568313000.pdf=#page=12",
+          "publishedOn": "2025-12-12",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第12页图表17原榜App MAU行，非下一页Web访问量：Kimi 24.82M；单位M。"
+        },
+        {
+          "date": "2025-12-31",
+          "period": "2025-12",
+          "value": 23590000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.12",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/972297205_122031644",
+          "publishedOn": "2026-01-04",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第17期应用榜国内总榜MAU表：Kimi 23.59M；单位M。"
+        },
+        {
+          "date": "2026-01-31",
+          "period": "2026-01",
+          "value": 23380000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.01",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/983095647_122031644",
+          "publishedOn": "2026-02-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第18期应用榜国内总榜MAU表：Kimi 23.38M；单位M。"
+        },
+        {
+          "date": "2026-03-31",
+          "period": "2026-03",
+          "value": 25770000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.03",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1005139027_122031644",
+          "publishedOn": "2026-04-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第20期应用榜国内总榜及全球增速榜MAU表：Kimi 25.77M；单位M。"
+        },
+        {
+          "date": "2026-04-30",
+          "period": "2026-04",
+          "value": 25330000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.04",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1018891415_122031644",
+          "publishedOn": "2026-05-06",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第21期应用榜全球/国内总榜MAU表：Kimi 25.33M；单位M。"
+        },
+        {
+          "date": "2026-05-31",
+          "period": "2026-05",
+          "value": 25900000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.05",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1031478355_122031644",
+          "publishedOn": "2026-06-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第22期应用榜全球/国内总榜MAU表：Kimi 25.9M；单位M。"
+        },
+        {
+          "date": "2026-06-30",
+          "value": 22690000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.06",
+          "period": "2026-06",
+          "provider": "AICPB",
+          "url": "https://www.aicpb.com/zh/product/Kimi/appid1D6F332E1",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "AICPB Kimi产品页：2026年6月App MAU为22.69M。"
+        },
+        {
+          "date": "2026-07-31",
+          "period": "2026-07",
+          "value": 26210000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.07",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1058083664_122031644",
+          "publishedOn": "2026-08-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第24期应用榜全球/国内总榜MAU表：Kimi 26.21M；单位M。"
+        },
+        {
+          "date": "2026-08-31",
+          "period": "2026-08",
+          "value": 26420000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.08",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1071354827_122031644",
+          "publishedOn": "2026-09-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第25期应用榜全球/国内总榜MAU表：Kimi 26.42M；单位M。"
+        }
+      ]
+    },
+    "deepseek": {
+      "name": "DeepSeek",
+      "metric": "App 月活 · AICPB估算",
+      "color": "#b2435e",
+      "points": [
+        {
+          "date": "2025-01-31",
+          "value": 33700000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.01",
+          "period": "2025-01",
+          "provider": "AICPB · 国元证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202502181643194579_1.pdf?1739888737000.pdf=#page=7",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "国元证券第7页2025年1月国内榜App MAU原表，DeepSeek33.7M。"
+        },
+        {
+          "date": "2025-02-28",
+          "period": "2025-02",
+          "value": 61810000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.02",
+          "provider": "AICPB · 民生证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202503091644194683_1.pdf%3F1741481049000.pdf#page=3",
+          "publishedOn": "2025-03-08",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第3页图1原榜App MAU行及脚注：DeepSeek 61.81M；单位M。"
+        },
+        {
+          "date": "2025-03-31",
+          "value": 77010000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.03",
+          "period": "2025-03",
+          "provider": "AICPB · 联合发布",
+          "url": "https://www.sohu.com/a/879787950_122082871",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "沃垠AI联合发布的2025年3月应用榜正文，DeepSeek7701万App月活。",
+          "publishedOn": "2025-04-04"
+        },
+        {
+          "date": "2025-05-31",
+          "period": "2025-05",
+          "value": 100170000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.05",
+          "provider": "AICPB · 国元证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202506091687670639_1.pdf?1749487224000.pdf=#page=8",
+          "publishedOn": "2025-06-09",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第8页表4 App MAU原表：DeepSeek 100.17M；单位M。"
+        },
+        {
+          "date": "2025-11-30",
+          "period": "2025-11",
+          "value": 69370000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.11",
+          "provider": "AICPB · 爱建证券引用",
+          "url": "https://pdf.dfcfw.com/pdf/H3_AP202512121799042477_1.pdf?1765568313000.pdf=#page=12",
+          "publishedOn": "2025-12-12",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第12页图表17原榜App MAU行，非下一页Web访问量：DeepSeek 69.37M；单位M。"
+        },
+        {
+          "date": "2025-12-31",
+          "period": "2025-12",
+          "value": 131480000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2025.12",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/972297205_122031644",
+          "publishedOn": "2026-01-04",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第17期应用榜国内总榜MAU表：DeepSeek 131.48M；单位M。"
+        },
+        {
+          "date": "2026-01-31",
+          "period": "2026-01",
+          "value": 129640000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.01",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/983095647_122031644",
+          "publishedOn": "2026-02-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第18期应用榜国内总榜MAU表：DeepSeek 129.64M；单位M。"
+        },
+        {
+          "date": "2026-03-31",
+          "period": "2026-03",
+          "value": 136540000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.03",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1005139027_122031644",
+          "publishedOn": "2026-04-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第20期应用榜国内总榜及全球增速榜MAU表：DeepSeek 136.54M；单位M。"
+        },
+        {
+          "date": "2026-04-30",
+          "period": "2026-04",
+          "value": 138980000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.04",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1018891415_122031644",
+          "publishedOn": "2026-05-06",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第21期应用榜全球/国内总榜MAU表：DeepSeek 138.98M；单位M。"
+        },
+        {
+          "date": "2026-05-31",
+          "period": "2026-05",
+          "value": 141210000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.05",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1031478355_122031644",
+          "publishedOn": "2026-06-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第22期应用榜全球/国内总榜MAU表：DeepSeek 141.21M；单位M。"
+        },
+        {
+          "date": "2026-06-30",
+          "value": 139080000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.06",
+          "period": "2026-06",
+          "provider": "AICPB",
+          "url": "https://www.aicpb.com/zh/ai-rankings/products/china-ai-rankings/apps",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "AICPB 2026年6月应用榜，DeepSeek139.08M App MAU；国内榜指产品分类。"
+        },
+        {
+          "date": "2026-07-31",
+          "period": "2026-07",
+          "value": 132780000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.07",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1058083664_122031644",
+          "publishedOn": "2026-08-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第24期应用榜全球/国内总榜MAU表：DeepSeek 132.78M；单位M。"
+        },
+        {
+          "date": "2026-08-31",
+          "period": "2026-08",
+          "value": 134140000,
+          "relation": "eq",
+          "tier": "third-party",
+          "metric": "App 月活（MAU）",
+          "scope": "app",
+          "timeLabel": "2026.08",
+          "provider": "AICPB",
+          "url": "https://www.sohu.com/a/1071354827_122031644",
+          "publishedOn": "2026-09-03",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "第25期应用榜全球/国内总榜MAU表：DeepSeek 134.14M；单位M。"
+        }
+      ]
+    },
+    "minimax": {
+      "name": "MiniMax",
+      "metric": "旗下产品累计用户",
+      "color": "#317758",
+      "points": [
+        {
+          "date": "2025-09-30",
+          "value": 212000000,
+          "relation": "gt",
+          "tier": "official",
+          "metric": "旗下产品累计用户",
+          "scope": "cumulative",
+          "timeLabel": "2025.09.30",
+          "provider": "MiniMax · 招股书",
+          "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1231/2025123100025.pdf#page=250",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "招股书第249至250页，截至2025年9月30日旗下AI原生产品累计用户超过2.12亿，非MiniMax Agent月活。",
+          "publishedOn": "2025-12-31"
+        },
+        {
+          "date": "2025-12-31",
+          "value": 236000000,
+          "relation": "gt",
+          "tier": "official",
+          "metric": "旗下产品累计用户",
+          "scope": "cumulative",
+          "timeLabel": "2025.12.31",
+          "provider": "MiniMax · 年度业绩",
+          "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0302/2026030202837.pdf#page=2",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "2025年度业绩公告第2页，截至2025年12月31日旗下产品累计用户超过2.36亿。",
+          "publishedOn": "2026-03-02"
+        },
+        {
+          "date": "2026-08-26",
+          "value": 300000000,
+          "relation": "gt",
+          "tier": "official",
+          "metric": "旗下产品累计用户",
+          "scope": "cumulative",
+          "timeLabel": "2026.08.26 披露",
+          "provider": "MiniMax",
+          "url": "https://www.prnasia.com/story/545325-1.shtml",
+          "verifiedOn": "2026-10-09",
+          "sourceNote": "MiniMax中期业绩发布稿“关于MiniMax”段落：迄今累计逾3亿个人用户；统计时点按2026年8月26日披露，不倒填6月末。",
+          "publishedOn": "2026-08-26"
+        }
+      ],
+      "note": "累计用户包含 MiniMax、海螺、Talkie / 星野等旗下产品；不等同于 MiniMax Agent 的活跃人数，也不保证跨账户、设备去重。"
+    }
+  },
+  "usersStart": "2025-01-01",
+  "disclosures": [
+    {
+      "brand": "codex",
+      "date": "2026-02-02",
+      "value": 1000000,
+      "relation": "gt",
+      "tier": "official",
+      "metric": "过去一个月使用的开发者",
+      "scope": "codex-trailing-month",
+      "timeLabel": "2026.02.02 披露",
+      "provider": "OpenAI",
+      "url": "https://openai.com/index/introducing-the-codex-app/",
+      "publishedOn": "2026-02-02",
+      "verifiedOn": "2026-10-09",
+      "sourceNote": "原文 What’s next 段落：过去一个月超过100万开发者使用Codex；未指定自然月，不作为WAU或2026年1月MAU。"
+    }
+  ]
+}
+  </script>
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+</body>
+</html>

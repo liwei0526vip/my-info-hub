@@ -1,0 +1,1479 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>模型演进｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/ai-timeline.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/ai-timeline.js" defer></script>
+</head>
+<body id="top" data-timeline-kind="model">
+  <a class="skip-link" href="#main">跳到模型演进正文</a>
+  <header class="site-header"><div class="site-inner"><div class="site-wordmark">知行簿</div><nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai.html" aria-current="page">AI</a>
+        <a href="ai-model-comparison.html">大模型对比</a>
+        <a href="agent.html">Agent</a>
+        <a href="ai-knowledge-base.html">知识库</a>
+        <a href="ops-agent.html">运维智能体</a>
+        <a href="market-memo.html">随笔</a>
+        <a href="thoughts.html">思考</a>
+        <a href="life.html">生活</a>
+        <a href="ai-learning-index.html">收藏</a>
+      </nav></div></header>
+  <header class="timeline-hero page-shell">
+    <div class="timeline-heading">
+      <h1>模型演进</h1>
+      <span class="updated">更新于 <time datetime="2026-10-09">2026.10.09</time></span>
+      <p>2020 年起的模型发布与能力演进。</p>
+    </div>
+    <div class="timeline-controls">
+      <div class="year-filter" id="year-filter" role="group" aria-label="按年份筛选"></div>
+    </div>
+  </header>
+  <main class="timeline-main page-shell" id="main">
+    <div class="compare-shell" aria-label="模型演进时间图"><div class="comparison" id="charts" aria-label="模型演进时间对照"></div></div>
+    <p id="empty-comparison" hidden>当前年份没有收录事件，请更换年份。</p>
+    <noscript><p>请启用 JavaScript 查看时间图。</p></noscript>
+    <details class="sources-panel" id="sources"><summary>资料来源与编选口径</summary>
+      <p>覆盖 2020 年起七家品牌的关键模型，兼收重要视觉、语音与生成模型。本次历史回溯重点核验 2020—2025 年的原始公告、模型仓库、团队报告与公司披露；更新于 <time datetime="2026-10-09">2026.10.09</time>。</p>
+      <p>日期采用对应事件的公告、权重开放、API 或产品可用日期，技术报告另行标明；不采用训练完成时间或模型 ID 的快照日期。只披露月份的记录显示为 YYYY.MM，不补造具体日期。预览、私测、内部使用与公开可用均保留当时状态，不表示当前访问范围。</p>
+      <p>GPT-3.5 Turbo 的首发日由同期官方发布帖确认为 2023-03-01，博客目前显示的是后续更新日。GLM-4 按官方回顾文正文中的 2024-01-16 收录，非网页归档日。GLM 与 MiniMax 的部分早期月份分别来自团队时间图和招股书；DeepSeek 早期节点结合官方初始仓库快照核验，后续论文日期不替代模型开放日期。</p>
+      <p>Claude 3.5 Sonnet 采用 AWS 同期公告确认的 2024-06-20 API 可用日期；Anthropic 当前公告页标为 6 月 21 日。Claude 3.5 Haiku 采用 11 月 4 日实际 API 可用公告，不把 10 月预告当成上线。</p>
+      <p>后续节点的日期口径：Qwen3.8-Max 按 8 月 3 日官方公告；MiniMax-M2.7 按 3 月 18 日发布，权重开放为 4 月 12 日；M3 按 6 月 1 日公告与 API 发布；M3.1-Flash-Preview 按 9 月 28 日产品更新。</p>
+      <p>各列按同一月份对齐，卡片位置不表示同日发布，月份间距不按时长缩放。空白列表示该月未收录节点；这是关键里程碑选编，并非全部型号或逐版更新清单。</p>
+      <div class="source-grid"><a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener noreferrer" target="_blank">Claude Platform · 发布记录 ↗</a><a href="https://www.anthropic.com/news" rel="noopener noreferrer" target="_blank">Anthropic · 模型与产品公告 ↗</a><a href="https://developers.openai.com/api/docs/changelog" rel="noopener noreferrer" target="_blank">OpenAI API · 模型与平台发布记录 ↗</a><a href="https://qwenlm.github.io/blog/" rel="noopener noreferrer" target="_blank">千问 · 模型与产品公告 ↗</a><a href="https://www.alibabacloud.com/help/en/model-studio/newly-released-models" rel="noopener noreferrer" target="_blank">千问 · 平台模型更新 ↗</a><a href="https://docs.z.ai/release-notes/new-released" rel="noopener noreferrer" target="_blank">智谱 · 官方发布记录 ↗</a><a href="https://github.com/zai-org/GLM-4" rel="noopener noreferrer" target="_blank">智谱 · 开放模型仓库 ↗</a><a href="https://www.kimi.com/en/blog/" rel="noopener noreferrer" target="_blank">Kimi · 官方研究与公告 ↗</a><a href="https://api-docs.deepseek.com/updates/" rel="noopener noreferrer" target="_blank">DeepSeek · 官方 Changelog ↗</a><a href="https://www.minimax.cn/news" rel="noopener noreferrer" target="_blank">MiniMax · 官方公告 ↗</a><a href="https://platform.minimax.io/docs/release-notes/models" rel="noopener noreferrer" target="_blank">MiniMax · 模型发布记录 ↗</a><a href="https://arxiv.org/abs/2103.10360" target="_blank" rel="noopener noreferrer">GLM · 原始预训练论文 ↗</a><a href="https://arxiv.org/pdf/2406.12793#page=2" target="_blank" rel="noopener noreferrer">GLM 团队 · 历史时间图 ↗</a><a href="https://github.com/deepseek-ai/DeepSeek-Coder" target="_blank" rel="noopener noreferrer">DeepSeek · 早期代码模型仓库 ↗</a><a href="https://github.com/deepseek-ai/DeepSeek-LLM" target="_blank" rel="noopener noreferrer">DeepSeek · 早期通用模型仓库 ↗</a><a href="https://platform.kimi.com/blog/posts/kimi-latest" target="_blank" rel="noopener noreferrer">Kimi · Moonshot-v1 历史与模型说明 ↗</a><a href="https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1231/2025123100025.pdf#page=212" target="_blank" rel="noopener noreferrer">MiniMax · 官方招股书模型历史 ↗</a></div>
+      <p>每个事件卡片均链接到原始资料；Codex 2021 是代码模型，区别于 2025 年的同名 Agent 产品。</p>
+    </details>
+    <footer class="site-footer"><span>模型演进 · 七家关键事件选编 · 截至 2026.10.09</span><span>支持本地离线阅读 · 外部来源需联网访问</span></footer>
+  </main>
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+  <script id="timeline-products" type="application/json">[
+  {
+    "id": "claude",
+    "name": "Claude",
+    "company": "ANTHROPIC"
+  },
+  {
+    "id": "codex",
+    "name": "OpenAI",
+    "company": "OPENAI"
+  },
+  {
+    "id": "qwen",
+    "name": "Qwen",
+    "company": "ALIBABA"
+  },
+  {
+    "id": "glm",
+    "name": "GLM",
+    "company": "Z.AI"
+  },
+  {
+    "id": "kimi",
+    "name": "Kimi",
+    "company": "MOONSHOT AI"
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "company": "DEEPSEEK"
+  },
+  {
+    "id": "minimax",
+    "name": "MiniMax",
+    "company": "MINIMAX"
+  }
+]</script>
+  <script id="timeline-data" type="application/json">[
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2020-05-28",
+    "title": "GPT-3 技术报告",
+    "desc": "1750 亿参数，展示少样本学习与上下文学习能力。",
+    "source": "https://openai.com/index/language-models-are-few-shot-learners/",
+    "tag": "技术报告"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2020-06-11",
+    "title": "GPT-3 API 私测",
+    "desc": "GPT-3 家族通过通用文本接口提供服务，开始受邀私测。",
+    "source": "https://openai.com/index/openai-api/",
+    "tag": "API 私测"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2021-01-05",
+    "title": "CLIP",
+    "desc": "通过图文对比学习连接视觉与自然语言，支持零样本图像分类。",
+    "source": "https://openai.com/index/clip/",
+    "tag": "研究发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2021-01-05",
+    "title": "DALL·E",
+    "desc": "将文本描述转换为图像，拓展 GPT 系列的生成模态。",
+    "source": "https://openai.com/index/dall-e/",
+    "tag": "研究发布"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2021-03-18",
+    "title": "GLM 预训练架构",
+    "desc": "提出自回归填空目标，统一理解与生成任务的预训练方法。",
+    "source": "https://arxiv.org/abs/2103.10360",
+    "tag": "技术报告"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2021-06",
+    "title": "GLM-10B",
+    "desc": "开放百亿参数模型，推进 GLM 架构的大规模预训练。",
+    "source": "https://arxiv.org/pdf/2406.12793#page=2",
+    "tag": "开放权重",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2021-08-10",
+    "title": "原始 OpenAI Codex",
+    "desc": "基于 GPT-3 的代码模型，支撑早期 GitHub Copilot；区别于 2025 年同名 Agent 产品。",
+    "source": "https://openai.com/index/openai-codex/",
+    "tag": "API 私测"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2022-01-27",
+    "title": "InstructGPT",
+    "desc": "用监督微调与人类反馈强化学习，让 GPT-3 更好地遵循指令。",
+    "source": "https://openai.com/index/instruction-following/",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2022-04",
+    "title": "abab 1",
+    "desc": "首个文本模型用于内部产品，开启早期对话模型研发。",
+    "source": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1231/2025123100025.pdf#page=211",
+    "tag": "内部使用",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2022-04-13",
+    "title": "DALL·E 2 技术报告",
+    "desc": "结合 CLIP 表征与扩散模型，改进文生图和图像编辑。",
+    "source": "https://openai.com/index/hierarchical-text-conditional-image-generation-with-clip-latents/",
+    "tag": "技术报告"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2022-08",
+    "title": "GLM-130B",
+    "desc": "开放 1300 亿参数中英双语模型与预训练细节。",
+    "source": "https://arxiv.org/pdf/2406.12793#page=2",
+    "tag": "开放权重",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2022-09-21",
+    "title": "Whisper",
+    "desc": "开放多语言语音识别模型与代码，支持转写和译成英文。",
+    "source": "https://openai.com/index/whisper/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2022-11-30",
+    "title": "GPT-3.5（ChatGPT 基座）",
+    "desc": "经对话微调与人类反馈训练，通过 ChatGPT 研究预览提供体验。",
+    "source": "https://openai.com/index/chatgpt/",
+    "tag": "产品搭载"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2023-03-01",
+    "title": "GPT-3.5 Turbo",
+    "desc": "开放对话模型 API，采用 messages 格式与 Chat Completions 接口。",
+    "source": "https://community.openai.com/t/introducing-chatgpt-and-whisper-apis/80485/1",
+    "tag": "API 上线"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2023-03-14",
+    "title": "Claude / Claude Instant",
+    "desc": "首代产品与轻量模型发布，面向对话和文本任务。",
+    "source": "https://www.anthropic.com/news/introducing-claude",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2023-03-14",
+    "title": "GPT-4",
+    "desc": "提升复杂任务能力，公布可接受图像与文本输入的多模态模型。",
+    "source": "https://openai.com/index/gpt-4-research/",
+    "tag": "发布"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2023-03-14",
+    "title": "ChatGLM-6B",
+    "desc": "开放中英双语对话模型，以低显存部署扩大模型使用范围。",
+    "source": "https://github.com/zai-org/GLM-130B#news",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2023-04-11",
+    "title": "通义千问",
+    "desc": "公布中英双语大语言模型，向企业客户开放测试申请。",
+    "source": "https://www.alibabacloud.com/en/press-room/alibaba-cloud-unveils-new-ai-model-to-support",
+    "tag": "邀请测试"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2023-05",
+    "title": "abab 5.5",
+    "desc": "文本模型迭代，进入对外 API 服务阶段。",
+    "source": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1231/2025123100025.pdf#page=212",
+    "tag": "发布月份",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2023-05-11",
+    "title": "Claude 100K 上下文",
+    "desc": "从 9K 扩展至 100K tokens，支持整本书和长文档分析。",
+    "source": "https://www.anthropic.com/news/100k-context-windows/",
+    "tag": "能力升级"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2023-06-25",
+    "title": "ChatGLM2-6B",
+    "desc": "升级对话基座，扩展至 32K 上下文并改善推理效率。",
+    "source": "https://github.com/zai-org/GLM-130B#news",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2023-07-11",
+    "title": "Claude 2",
+    "desc": "100K 上下文；同步推出 claude.ai 公开测试版。",
+    "source": "https://www.anthropic.com/news/claude-2",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2023-08-03",
+    "title": "Qwen-7B / 7B-Chat",
+    "desc": "首批开放权重，提供基础与对话模型。",
+    "source": "https://github.com/QwenLM/Qwen",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2023-08-09",
+    "title": "Claude Instant 1.2",
+    "desc": "轻量系列更新，改善编程、推理与结构化回复。",
+    "source": "https://www.anthropic.com/news/releasing-claude-instant-1-2/",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2023-08-22",
+    "title": "Qwen-VL / VL-Chat",
+    "desc": "首代视觉语言模型开放，支持图像理解、文字识别与定位。",
+    "source": "https://github.com/QwenLM/Qwen-VL#news-and-updates",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2023-09-25",
+    "title": "Qwen-14B / 14B-Chat",
+    "desc": "扩展开放模型规模，并改进中英双语、知识与代码能力。",
+    "source": "https://github.com/QwenLM/Qwen#news-and-updates",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2023-10",
+    "title": "ChatGLM3-6B",
+    "desc": "增强基础能力，原生支持工具调用与代码解释器。",
+    "source": "https://arxiv.org/pdf/2406.12793#page=2",
+    "tag": "开放权重",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2023-10-19",
+    "title": "DALL·E 3（ChatGPT 可用）",
+    "desc": "增强提示词遵循与图像细节，向 Plus 和 Enterprise 用户开放。",
+    "source": "https://openai.com/index/dall-e-3-is-now-available-in-chatgpt-plus-and-enterprise/",
+    "tag": "产品可用"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2023-11",
+    "title": "MiniMax Speech-01",
+    "desc": "早期语音模型推出，模型能力从文本扩展到语音。",
+    "source": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1231/2025123100025.pdf#page=212",
+    "tag": "发布月份",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2023-11-02",
+    "title": "DeepSeek-Coder",
+    "desc": "首批代码模型公开，支持项目级代码补全与填空。",
+    "source": "https://github.com/deepseek-ai/DeepSeek-Coder/commit/a4ba628dfdc2e56f1fd6cdd86df103ce4d3df73e",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2023-11-06",
+    "title": "GPT-4 Turbo",
+    "desc": "扩展到 128K 上下文，推出成本更低的预览 API。",
+    "source": "https://openai.com/index/new-models-and-developer-products-announced-at-devday/",
+    "tag": "预览 API"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2023-11-21",
+    "title": "Claude 2.1",
+    "desc": "上下文扩展至 200K，并引入工具使用测试能力。",
+    "source": "https://www.anthropic.com/news/claude-2-1",
+    "tag": "发布"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2023-11-29",
+    "title": "DeepSeek LLM 7B / 67B",
+    "desc": "开放中英双语基础与对话模型，建立通用模型主线。",
+    "source": "https://github.com/deepseek-ai/DeepSeek-LLM/commit/f8b3d77beb4449d77932eccc6abe08826ad3c608",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2023-11-30",
+    "title": "Qwen-72B / 1.8B",
+    "desc": "补齐大模型与轻量档位，支持 32K 上下文。",
+    "source": "https://github.com/QwenLM/Qwen#news-and-updates",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2023-11-30",
+    "title": "Qwen-Audio / Audio-Chat",
+    "desc": "开放语音、声音与音乐理解模型，支持音频与文本交互。",
+    "source": "https://github.com/QwenLM/Qwen-Audio#news-and-updates",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2024-01",
+    "title": "abab 6（MoE）",
+    "desc": "采用混合专家架构，推进更高效的大规模语言模型。",
+    "source": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1231/2025123100025.pdf#page=212",
+    "tag": "发布月份",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2024-01-11",
+    "title": "DeepSeekMoE",
+    "desc": "用细粒度专家与共享专家减少冗余，形成高效 MoE 路线。",
+    "source": "https://arxiv.org/abs/2401.06066",
+    "tag": "技术报告"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2024-01-16",
+    "title": "GLM-4",
+    "desc": "发布新一代基座，增强多模态、长上下文与工具使用能力。",
+    "source": "https://www.zhipuai.cn/zh/news/8",
+    "tag": "发布"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2024-01-31",
+    "title": "Moonshot-v1",
+    "desc": "开放平台公测，提供最高 128K 上下文的早期 Kimi 基座模型。",
+    "source": "https://platform.kimi.com/blog/posts/kimi-latest",
+    "tag": "API 公测"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-02-04",
+    "title": "Qwen1.5",
+    "desc": "扩展多尺寸模型系列，增强多语言与长上下文。",
+    "source": "https://qwenlm.github.io/blog/qwen1.5/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2024-02-05",
+    "title": "DeepSeekMath",
+    "desc": "强化数学训练，提出 GRPO，衔接后续推理模型路线。",
+    "source": "https://arxiv.org/abs/2402.03300",
+    "tag": "技术报告"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2024-02-15",
+    "title": "Sora 研究预览",
+    "desc": "用扩散 Transformer 生成视频，公开技术报告与样例。",
+    "source": "https://openai.com/index/video-generation-models-as-world-simulators/",
+    "tag": "研究预览"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2024-03-04",
+    "title": "Claude 3 家族",
+    "desc": "确立 Opus / Sonnet / Haiku 分层并加入视觉理解；Haiku 随后上线。",
+    "source": "https://www.anthropic.com/news/claude-3-family",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2024-03-13",
+    "title": "Claude 3 Haiku",
+    "desc": "Claude 3 的轻量视觉模型上线，补齐家族的低延迟档位。",
+    "source": "https://www.anthropic.com/news/claude-3-haiku/",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-04-16",
+    "title": "CodeQwen1.5",
+    "desc": "发布 7B 代码模型，支持 92 种编程语言与 64K 上下文。",
+    "source": "https://qwenlm.github.io/blog/codeqwen1.5/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2024-04-17",
+    "title": "abab 6.5 / 6.5s",
+    "desc": "扩展 MoE 系列至万亿参数规模，支持 200K 上下文。",
+    "source": "https://www.minimax.io/news/abab65-series",
+    "tag": "发布"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2024-05-06",
+    "title": "DeepSeek-V2",
+    "desc": "以 MoE 架构提高推理效率，支持 128K 上下文。",
+    "source": "https://github.com/deepseek-ai/DeepSeek-V2",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2024-05-13",
+    "title": "GPT-4o",
+    "desc": "统一文本、视觉与音频能力，相关能力分阶段开放。",
+    "source": "https://openai.com/index/hello-gpt-4o/",
+    "tag": "发布"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2024-06-05",
+    "title": "GLM-4-9B 系列",
+    "desc": "开放多语言模型权重，扩展本地部署与工具调用能力。",
+    "source": "https://github.com/zai-org/GLM-4",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-06-07",
+    "title": "Qwen2",
+    "desc": "增强代码、数学与多语言能力，部分模型支持 128K 上下文。",
+    "source": "https://qwenlm.github.io/blog/qwen2/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2024-06-14",
+    "title": "DeepSeek-Coder-V2",
+    "desc": "新一代代码模型进入 API。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2024-06-14",
+    "tag": "API 更新"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2024-06-20",
+    "title": "Claude 3.5 Sonnet",
+    "desc": "增强编程与视觉理解，在 Bedrock 正式可用。",
+    "source": "https://aws.amazon.com/about-aws/whats-new/2024/06/anthropic-claude-3-5-sonnet-model-bedrock/",
+    "tag": "API 可用"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2024-07-18",
+    "title": "GPT-4o mini",
+    "desc": "推出低成本小模型，支持文本与视觉输入及 128K 上下文。",
+    "source": "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2024-08",
+    "title": "Hailuo-01 / Music-01",
+    "desc": "推出视频生成与音乐模型，扩展多模态生成能力。",
+    "source": "https://www1.hkexnews.hk/listedco/listconews/sehk/2025/1231/2025123100025.pdf#page=212",
+    "tag": "发布月份",
+    "datePrecision": "month"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-08-09",
+    "title": "Qwen2-Audio",
+    "desc": "支持直接语音指令与音频分析，开放 7B 基础和指令模型。",
+    "source": "https://qwenlm.github.io/blog/qwen2-audio/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-08-29",
+    "title": "Qwen2-VL",
+    "desc": "增强文档、图像与长视频理解，改进多语言视觉识别。",
+    "source": "https://qwenlm.github.io/blog/qwen2-vl/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2024-09-05",
+    "title": "DeepSeek-V2.5",
+    "desc": "合并通用对话与 Coder 能力。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2024-09-05",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2024-09-12",
+    "title": "o1-preview / o1-mini",
+    "desc": "用更多推理时间处理数学、科学与编程问题，开启推理模型系列。",
+    "source": "https://openai.com/index/introducing-openai-o1-preview/",
+    "tag": "预览"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-09-19",
+    "title": "Qwen2.5",
+    "desc": "通用、Coder 与 Math 系列并进，形成专用模型分工。",
+    "source": "https://qwenlm.github.io/blog/qwen2.5/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2024-10-22",
+    "title": "新版 Claude 3.5 Sonnet",
+    "desc": "增强编程与工具使用，并成为 computer use 公开测试的基础。",
+    "source": "https://www.anthropic.com/news/3-5-models-and-computer-use",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2024-11-04",
+    "title": "Claude 3.5 Haiku（Bedrock 可用）",
+    "desc": "轻量模型在 Bedrock 开放，增强编程与工具调用能力。",
+    "source": "https://aws.amazon.com/about-aws/whats-new/2024/11/anthropics-claude-3-5-haiku-model-amazon-bedrock/",
+    "tag": "API 上线"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-11-12",
+    "title": "Qwen2.5-Coder 完整系列",
+    "desc": "加入 0.5B、3B、14B、32B，补齐六档代码模型。",
+    "source": "https://qwenlm.github.io/blog/qwen2.5-coder-family/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2024-11-20",
+    "title": "DeepSeek-R1-Lite-Preview",
+    "desc": "公开长思考推理预览，在正式 R1 之前探索推理时扩展。",
+    "source": "https://api-docs.deepseek.com/news/news1120/",
+    "tag": "研究预览"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2024-11-28",
+    "title": "QwQ-32B-Preview",
+    "desc": "探索延长思考过程的推理能力，聚焦数学与代码。",
+    "source": "https://qwenlm.github.io/blog/qwq-32b-preview/",
+    "tag": "研究预览"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2024-12-05",
+    "title": "o1 / o1 pro 模式",
+    "desc": "o1 系列在 ChatGPT 中提供更多推理计算，新增 pro 模式。",
+    "source": "https://openai.com/index/introducing-chatgpt-pro/",
+    "tag": "产品可用"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2024-12-09",
+    "title": "Sora Turbo",
+    "desc": "加速视频生成，从研究预览走向面向订阅用户的产品。",
+    "source": "https://openai.com/index/sora-is-here/",
+    "tag": "产品可用"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2024-12-26",
+    "title": "DeepSeek-V3",
+    "desc": "V3 成为 API 通用模型。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2024-12-26",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2025-01-14",
+    "title": "MiniMax-01 技术报告",
+    "desc": "公开长上下文模型研究，结合 Lightning Attention 与混合架构。",
+    "source": "https://arxiv.org/abs/2501.08313",
+    "tag": "技术报告"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2025-01-20",
+    "title": "DeepSeek-R1",
+    "desc": "推理模型上线，扩展深度思考能力。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2025-01-20",
+    "tag": "发布"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2025-01-20",
+    "title": "Kimi K1.5",
+    "desc": "公布多模态推理与强化学习技术进展。",
+    "source": "https://www.kimi.com/en/blog/",
+    "tag": "技术报告"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2025-01-26",
+    "title": "Qwen2.5-VL",
+    "desc": "增强文档结构理解、视觉定位与长视频事件识别。",
+    "source": "https://qwenlm.github.io/blog/qwen2.5-vl/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2025-01-28",
+    "title": "Qwen2.5-Max",
+    "desc": "大规模 MoE 模型通过 API 提供，扩展通用与代码能力。",
+    "source": "https://qwenlm.github.io/blog/qwen2.5-max/",
+    "tag": "API 上线"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-01-31",
+    "title": "o3-mini",
+    "desc": "以小模型提供推理能力，并支持工具调用与结构化输出。",
+    "source": "https://openai.com/index/openai-o3-mini/",
+    "tag": "发布"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2025-02-17",
+    "title": "Kimi Latest",
+    "desc": "推出随产品滚动更新的视觉模型 API 别名。",
+    "source": "https://platform.kimi.com/blog/posts/kimi-latest",
+    "tag": "API 别名"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2025-02-24",
+    "title": "Claude 3.7 Sonnet",
+    "desc": "普通回答与扩展思考合为一个混合推理模型。",
+    "source": "https://www.anthropic.com/news/claude-3-7-sonnet",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-02-27",
+    "title": "GPT-4.5",
+    "desc": "继续扩展预训练与后训练，改善通用对话和知识理解。",
+    "source": "https://openai.com/index/introducing-gpt-4-5/",
+    "tag": "研究预览"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2025-03-06",
+    "title": "QwQ-32B",
+    "desc": "通过强化学习扩展推理能力，开放正式 32B 模型权重。",
+    "source": "https://qwenlm.github.io/blog/qwq-32b/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2025-03-27",
+    "title": "Qwen2.5-Omni",
+    "desc": "统一文本、图像、音频和视频输入，支持流式文本与语音输出。",
+    "source": "https://qwenlm.github.io/blog/qwen2.5-omni/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-04-14",
+    "title": "GPT-4.1 / mini / nano",
+    "desc": "改善编程与指令遵循，API 上下文扩展至 1M。",
+    "source": "https://openai.com/index/gpt-4-1/",
+    "tag": "API 上线"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2025-04-14",
+    "title": "GLM-4 / GLM-Z1 32B",
+    "desc": "对话、推理与沉思模型并行，强化代码与函数调用。",
+    "source": "https://github.com/zai-org/GLM-4",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-04-16",
+    "title": "o3 / o4-mini",
+    "desc": "推理模型成为早期 Codex CLI 可用的能力基础。",
+    "source": "https://developers.openai.com/api/docs/changelog",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2025-04-29",
+    "title": "Qwen3",
+    "desc": "统一思考与非思考模式，提供 Dense 与 MoE 系列。",
+    "source": "https://qwenlm.github.io/blog/qwen3/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-05-16",
+    "title": "codex-1 / Codex mini",
+    "desc": "分别面向云端软件工程和快速本地编程；此处按产品公告日列示。",
+    "source": "https://openai.com/index/introducing-codex/",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2025-05-22",
+    "title": "Claude Opus 4 / Sonnet 4",
+    "desc": "强化持续编程与 Agent 工作；扩展思考可与工具调用交替。",
+    "source": "https://www.anthropic.com/news/claude-4",
+    "tag": "发布"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2025-05-28",
+    "title": "DeepSeek-R1-0528",
+    "desc": "增强推理，并加入函数调用。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2025-05-28",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2025-06-16",
+    "title": "MiniMax-M1",
+    "desc": "开放混合架构推理模型，强化长上下文推理与工具使用。",
+    "source": "https://www.minimaxi.com/news/minimaxm1",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2025-07-11",
+    "title": "Kimi K2",
+    "desc": "开放 MoE 模型，面向代码与工具驱动任务。",
+    "source": "https://www.kimi.com/en/blog/kimi-k2",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2025-07-22",
+    "title": "Qwen3-Coder",
+    "desc": "面向 Agent 编程、浏览器操作与工具使用优化。",
+    "source": "https://qwenlm.github.io/blog/qwen3-coder/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2025-07-28",
+    "title": "GLM-4.5",
+    "desc": "融合推理、编程与 Agent 能力。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2025-08-05",
+    "title": "Claude Opus 4.1",
+    "desc": "增强真实代码修改、复杂推理与任务执行能力。",
+    "source": "https://www.anthropic.com/news/claude-opus-4-1/",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-08-05",
+    "title": "gpt-oss-120b / 20b",
+    "desc": "以 Apache 2.0 开放推理模型权重，支持本地部署与工具使用。",
+    "source": "https://openai.com/index/introducing-gpt-oss/",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-08-07",
+    "title": "GPT-5",
+    "desc": "结合快速回答、深度推理与路由，增强通用任务和编程能力。",
+    "source": "https://openai.com/index/introducing-gpt-5/",
+    "tag": "发布"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2025-08-21",
+    "title": "DeepSeek-V3.1",
+    "desc": "混合推理，强化工具与 Agent 任务。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2025-08-21",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-09-15",
+    "title": "GPT-5-Codex",
+    "desc": "面向 Agent 编程专门优化，覆盖 CLI、IDE、云端与评审。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2025-09-15",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2025-09-29",
+    "title": "Claude Sonnet 4.5",
+    "desc": "面向复杂 Agent 与长时间编程任务的主要换代。",
+    "source": "https://www.anthropic.com/news/claude-sonnet-4-5",
+    "tag": "发布"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2025-09-30",
+    "title": "GLM-4.6",
+    "desc": "扩展至 200K 上下文，强化编程。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2025-10-15",
+    "title": "Claude Haiku 4.5",
+    "desc": "将更强编程与推理能力带入低延迟、低成本档位。",
+    "source": "https://www.anthropic.com/news/claude-haiku-4-5",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2025-10-27",
+    "title": "MiniMax-M2",
+    "desc": "针对编程与 Agent 工作流优化，支持工具调用和多步执行。",
+    "source": "https://www.minimax.cn/blog/minimax-m2",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2025-11-06",
+    "title": "Kimi K2 Thinking",
+    "desc": "将持续思考与多步骤工具调用结合。",
+    "source": "https://www.kimi.com/en/blog/kimi-k2-thinking",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-11-12",
+    "title": "GPT-5.1",
+    "desc": "升级 Instant 与 Thinking，改善指令遵循与推理时间分配。",
+    "source": "https://openai.com/index/gpt-5-1/",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-11-13",
+    "title": "GPT-5.1-Codex / Mini",
+    "desc": "面向长任务，并提供更轻量的选择。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2025-11-13",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-11-18",
+    "title": "GPT-5.1-Codex-Max",
+    "desc": "强化 Agent 编程，引入更高推理强度。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2025-11-18",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2025-11-24",
+    "title": "Claude Opus 4.5",
+    "desc": "增强编程、Agent 与电脑操作；面向更复杂的多步骤工作。",
+    "source": "https://www.anthropic.com/news/claude-opus-4-5",
+    "tag": "发布"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2025-12-01",
+    "title": "DeepSeek-V3.2",
+    "desc": "统一升级思考与非思考模式。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2025-12-01",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-12-11",
+    "title": "GPT-5.2",
+    "desc": "增强长上下文、工具使用与专业知识工作能力。",
+    "source": "https://openai.com/index/introducing-gpt-5-2/",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2025-12-18",
+    "title": "GPT-5.2-Codex",
+    "desc": "强化长任务、重构迁移及 Windows 环境能力。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2025-12-18",
+    "tag": "发布"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2025-12-22",
+    "title": "GLM-4.7",
+    "desc": "强化代码与多步骤任务执行。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2026-01-27",
+    "title": "Kimi K2.5",
+    "desc": "原生多模态，强化视觉编程与 Agent 工作。",
+    "source": "https://www.kimi.com/en/blog/kimi-k2-5",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-02-05",
+    "title": "Claude Opus 4.6",
+    "desc": "增强长期任务，引入自适应思考与 1M 上下文测试。",
+    "source": "https://www.anthropic.com/news/claude-opus-4-6",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-02-05",
+    "title": "GPT-5.3-Codex",
+    "desc": "增强推理和执行中协作，支持实时引导。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2026-02-05",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-02-12",
+    "title": "GPT-5.3-Codex-Spark",
+    "desc": "面向即时编程的小型低延迟模型。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2026-02-12",
+    "tag": "研究预览"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2026-02-12",
+    "title": "GLM-5",
+    "desc": "面向复杂系统工程与长期任务。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2026-02-12",
+    "title": "MiniMax-M2.5",
+    "desc": "继续增强编程、搜索和办公任务能力，面向真实工作场景优化。",
+    "source": "https://www.minimax.cn/news/minimax-m25",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-02-15",
+    "title": "Qwen3.5",
+    "desc": "原生多模态模型，首发 397B-A17B 开放权重。",
+    "source": "https://qwen.ai/blog?id=qwen3.5",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-02-17",
+    "title": "Claude Sonnet 4.6",
+    "desc": "升级编程、电脑操作与 Agent 规划，提供 1M 上下文测试。",
+    "source": "https://platform.claude.com/docs/en/release-notes/overview#february-17-2026",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-03-05",
+    "title": "GPT-5.4",
+    "desc": "将编程、推理与原生电脑操作能力整合。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2026-03-05",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-03-17",
+    "title": "GPT-5.4 mini",
+    "desc": "面向轻量编程与子 Agent。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2026-03-17",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2026-03-18",
+    "title": "MiniMax-M2.7",
+    "desc": "强化软件工程、复杂 Skills 与 Office 任务，探索模型参与自身研发迭代。",
+    "source": "https://www.minimax.cn/news/minimax-m27-zh",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-04-07",
+    "title": "Claude Mythos Preview",
+    "desc": "以受限研究预览提供，开放范围限于获邀参与者。",
+    "source": "https://platform.claude.com/docs/en/release-notes/overview#april-7-2026",
+    "tag": "受限研究预览"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2026-04-07",
+    "title": "GLM-5.1",
+    "desc": "强化自主规划、执行和持续修正。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-04-16",
+    "title": "Claude Opus 4.7",
+    "desc": "升级复杂推理、视觉与 Agent 编程，并调整模型接口行为。",
+    "source": "https://www.anthropic.com/news/claude-opus-4-7",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-04-18",
+    "title": "Qwen3.6-Max-Preview",
+    "desc": "增强 Agent 编程、知识与指令遵循。",
+    "source": "https://qwen.ai/blog?id=qwen3.6-max-preview",
+    "tag": "预览"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2026-04-20",
+    "title": "Kimi K2.6",
+    "desc": "进一步提升编程与复杂 Agent 任务能力。",
+    "source": "https://www.kimi.com/en/blog/kimi-k2-6",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-04-23",
+    "title": "GPT-5.5",
+    "desc": "继续融合编程、电脑操作、知识工作与研究。",
+    "source": "https://learn.chatgpt.com/docs/changelog#codex-2026-04-23",
+    "tag": "发布"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2026-04-24",
+    "title": "DeepSeek-V4 Pro / Flash",
+    "desc": "双模型预览进入 API。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2026-04-24",
+    "tag": "预览 / API"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-05-20",
+    "title": "Qwen3.7-Max",
+    "desc": "公布面向长任务的旗舰模型，覆盖编程与办公。",
+    "source": "https://www.alibabacloud.com/en/press-room/alibaba-announces-comprehensive-full-stack-ai",
+    "tag": "公布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-05-28",
+    "title": "Claude Opus 4.8",
+    "desc": "默认 1M 上下文，继续推进 Opus 系列能力。",
+    "source": "https://platform.claude.com/docs/en/release-notes/overview#may-28-2026",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2026-06-01",
+    "title": "MiniMax-M3",
+    "desc": "MSA 架构支持百万上下文、原生图像与视频输入，强化编程和电脑操作。",
+    "source": "https://www.minimax.cn/blog/minimax-m3",
+    "tag": "产品 / API"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-06-09",
+    "title": "Claude Fable 5 / Mythos 5",
+    "desc": "Fable 扩展通用能力；Mythos 面向 Glasswing 参与者。",
+    "source": "https://platform.claude.com/docs/en/release-notes/overview#june-9-2026",
+    "tag": "含受限模型"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2026-06-16",
+    "title": "GLM-5.2",
+    "desc": "百万上下文支持长期工程任务。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-06-30",
+    "title": "Claude Sonnet 5",
+    "desc": "Sonnet 进入第五代，默认开启自适应思考。",
+    "source": "https://platform.claude.com/docs/en/release-notes/overview#june-30-2026",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-07-09",
+    "title": "GPT-5.6：Sol / Terra / Luna",
+    "desc": "按能力与成本分层，并增强工具调用和多 Agent 能力。",
+    "source": "https://developers.openai.com/api/docs/changelog",
+    "tag": "发布"
+  },
+  {
+    "brand": "kimi",
+    "kind": "model",
+    "date": "2026-07-16",
+    "title": "Kimi K3",
+    "desc": "在 Kimi、Work、Code 与 API 提供新一代模型。",
+    "source": "https://www.kimi.com/en/blog/kimi-k3",
+    "tag": "产品 / API"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-07-24",
+    "title": "Claude Opus 5",
+    "desc": "Opus 系列换代，继续支持长时间 Agent 任务。",
+    "source": "https://www.anthropic.com/news/claude-opus-5",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-08-03",
+    "title": "Qwen3.8-Max",
+    "desc": "发布新一代旗舰，继续扩展复杂 Agent 任务能力。",
+    "source": "https://www.alibabacloud.com/en/press-room/alibaba-unveils-qwen3-8-max",
+    "tag": "官方公告"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-08-12",
+    "title": "Qwen3.8-2.4T-A95B",
+    "desc": "开放 Qwen-Max 级别模型权重，扩展本地部署与复杂 Agent 任务。",
+    "source": "https://github.com/QwenLM/Qwen3.8",
+    "tag": "开放权重"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2026-08-13",
+    "title": "DeepSeek-V4 Pro 正式版",
+    "desc": "面向生产环境增强 Agent 能力。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2026-08-13",
+    "tag": "GA"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2026-08-18",
+    "title": "GLM-5.3",
+    "desc": "增强编程与安全审查能力。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2026-08-21",
+    "title": "DeepSeek-V4-Flash-Vision-Exp",
+    "desc": "视觉理解实验模型进入 API，扩展需要视觉输入的 Agent 任务。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2026-08-21",
+    "tag": "实验 / API"
+  },
+  {
+    "brand": "glm",
+    "kind": "model",
+    "date": "2026-08-26",
+    "title": "GLM-5.3-Flash",
+    "desc": "原生视觉连接代码、浏览器与 GUI。",
+    "source": "https://docs.z.ai/release-notes/new-released",
+    "tag": "平台发布记录"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-08-26",
+    "title": "Qwen3.8-Flash",
+    "desc": "原生视觉、百万上下文与工具调用进入轻量高效系列。",
+    "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+    "tag": "平台上线"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-08-26",
+    "title": "Qwen3.8-Flash-Next",
+    "desc": "开放新混合架构模型权重，作为下一代 Qwen4 架构的早期预览。",
+    "source": "https://github.com/QwenLM/Qwen3.8-Flash-Next",
+    "tag": "开放权重 / 架构预览"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-09-01",
+    "title": "Claude Fable 5.1 / Mythos 5.1",
+    "desc": "升级长期编程、知识工作与研究；Mythos 仍为受限访问。",
+    "source": "https://platform.claude.com/docs/en/release-notes/overview#september-1-2026",
+    "tag": "含受限模型"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-09-03",
+    "title": "GPT-6 Astra",
+    "desc": "面向端到端复杂任务，结合推理、编程、电脑操作与研究。",
+    "source": "https://developers.openai.com/api/docs/changelog",
+    "tag": "发布"
+  },
+  {
+    "brand": "deepseek",
+    "kind": "model",
+    "date": "2026-09-10",
+    "title": "DeepSeek-V4.1 Flash",
+    "desc": "新架构引入原生视觉理解。",
+    "source": "https://api-docs.deepseek.com/updates/#date-2026-09-10",
+    "tag": "发布"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-09-17",
+    "title": "Qwen3.8-Omni-Flash",
+    "desc": "全模态模型进入平台，支持文本、图像、音频和视频输入，以及工具调用与联网搜索。",
+    "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+    "tag": "平台上线"
+  },
+  {
+    "brand": "qwen",
+    "kind": "model",
+    "date": "2026-09-21",
+    "title": "Qwen3.8-Omni-Flash-Realtime",
+    "desc": "实时音视频交互模型上线，引入多声道音频、视频聚合与远程 MCP 工具。",
+    "source": "https://www.alibabacloud.com/help/en/model-studio/newly-released-models",
+    "tag": "平台上线"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-09-22",
+    "title": "Claude Opus 5.5",
+    "desc": "Claude 5.5 家族首发，增强长期编程与知识工作，提升执行效率。",
+    "source": "https://www.anthropic.com/claude-opus-5-5",
+    "tag": "发布"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-09-22",
+    "title": "GPT-6 Sol / Luna",
+    "desc": "扩展 GPT-6 模型分层，支持文本与图像输入，提供不同能力与成本选择。",
+    "source": "https://developers.openai.com/api/docs/changelog",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-09-28",
+    "title": "Claude Sonnet 5.5",
+    "desc": "升级日常编程与文档任务，在速度、成本与能力之间提供新的平衡。",
+    "source": "https://www.anthropic.com/claude-sonnet-5-5",
+    "tag": "发布"
+  },
+  {
+    "brand": "minimax",
+    "kind": "model",
+    "date": "2026-09-28",
+    "title": "MiniMax-M3.1-Flash-Preview",
+    "desc": "预览模型进入 MiniMax Code，面向日常开发；暂限 M Plan 与 Code 使用。",
+    "source": "https://agent.minimax.io/docs/changelog",
+    "tag": "预览 / 产品更新"
+  },
+  {
+    "brand": "codex",
+    "kind": "model",
+    "date": "2026-09-29",
+    "title": "GPT-6.1 Sol",
+    "desc": "面向复杂编程与专业工作，并在 Responses API 中支持多 Agent 测试。",
+    "source": "https://developers.openai.com/api/docs/changelog",
+    "tag": "发布"
+  },
+  {
+    "brand": "claude",
+    "kind": "model",
+    "date": "2026-10-07",
+    "title": "Claude Haiku 5.5",
+    "desc": "面向高频与低延迟任务，扩展小模型在浏览器操作和编程子 Agent 中的用途。",
+    "source": "https://www.anthropic.com/claude-haiku-5-5",
+    "tag": "发布"
+  }
+]</script>
+</body>
+</html>

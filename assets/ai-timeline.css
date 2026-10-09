@@ -1,0 +1,92 @@
+/* A shared monthly coordinate; model and Agent records live on separate pages. */
+html{scroll-padding-top:72px}
+.skip-link{position:fixed;left:16px;top:-60px;z-index:100;background:var(--ink);color:white;padding:10px 14px;border-radius:6px}
+.skip-link:focus{top:12px}
+.timeline-hero{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px 20px;padding-block:14px 12px}
+.timeline-heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 16px;min-width:0}
+.timeline-hero h1{margin:0;color:var(--blue);font:750 28px/1.3 var(--display);letter-spacing:-.035em}
+.timeline-hero p{margin:0;font-size:12px;color:var(--muted)}
+.timeline-controls{display:flex;align-items:center;justify-content:flex-end}
+.timeline-hero .updated{font:10px var(--mono);color:var(--muted);white-space:nowrap}
+.year-filter{display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.year-filter button{min-height:28px;padding:3px 8px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--muted);font-size:12px;line-height:20px;white-space:nowrap}
+.year-filter button:hover{color:var(--blue)}
+.year-filter button[aria-pressed="true"]{border-bottom-color:var(--blue);color:var(--blue);font-weight:650}
+.year-filter button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.timeline-main{padding-block:4px 20px}
+.compare-shell{background:white;border:1px solid var(--line);border-radius:14px;overflow:visible}
+.comparison{--products:7;padding:0 clamp(12px,1.4vw,24px) 12px}
+.comparison-head,.month-row{display:grid;grid-template-columns:64px repeat(var(--products),minmax(0,1fr));column-gap:clamp(10px,1.1vw,22px)}
+.comparison-head{position:sticky;top:0;z-index:3;background:white;border-bottom:2px solid var(--line);padding:10px 0 9px;box-shadow:0 4px 8px #102c3b08}
+.axis-heading{align-self:end;font:11px var(--mono);color:var(--muted)}
+.axis-sort{display:inline-flex;align-items:center;gap:5px;min-height:28px;padding:0;border:0;border-radius:3px;background:transparent;color:inherit;font:inherit;white-space:nowrap}
+.axis-sort:hover{color:var(--blue)}
+.axis-sort:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.product-heading{position:relative;min-width:0;padding-left:12px;overflow-wrap:anywhere}
+.product-heading+.product-heading:before{content:"";position:absolute;left:-7px;top:0;bottom:0;width:1px;background:var(--line)}
+.product-heading small{display:block;font:700 9px/1.2 var(--mono);color:var(--muted);letter-spacing:.1em}
+.product-heading h2{margin:4px 0;color:var(--blue);font:700 clamp(20px,1.4vw,25px)/1.2 var(--display)}
+.month-row{border-bottom:1px solid var(--line)}
+.month-row:last-child{border-bottom:0}
+.month-label{padding-top:22px}
+.month-label strong{display:block;color:var(--blue);font:600 19px/1.2 var(--display)}
+.month-label span{display:block;margin-top:4px;color:var(--muted);font:12px var(--mono)}
+.year-start{display:block;width:26px;height:3px;margin-bottom:9px;background:var(--amber)}
+.year-divider{border-top:2px solid #bfd3da}
+.year-divider:first-of-type{border-top:0}
+.stream{position:relative;display:flex;flex-direction:column;gap:10px;min-width:0;padding:18px 0 18px 12px}
+.stream:before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--line)}
+.event{position:relative;border:1px solid var(--line);border-radius:10px;padding:11px clamp(8px,.8vw,14px);background:linear-gradient(110deg,#f5fafb,#fff);overflow-wrap:anywhere}
+.event:before{content:"";position:absolute;left:-18px;top:19px;width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px white}
+.event-model{background:linear-gradient(110deg,#fffaf0,#fff);border-color:#eee2ca}
+.event-model:before{background:var(--amber);border-radius:2px;transform:rotate(45deg)}
+.event-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px;color:var(--muted)}
+.event time{font:11px var(--mono)}
+.tag{padding:0 5px;border:1px solid var(--line);border-radius:5px;background:white;font-size:10px;white-space:nowrap}
+.event h3{margin:6px 0 5px;color:var(--ink);font-size:clamp(13px,1vw,17px);line-height:1.4}
+.event p{margin:0;color:var(--muted);font-size:12px;line-height:1.7}
+.source{display:inline-block;margin-top:7px;font-size:10px;font-weight:700}
+.month-empty{padding:5px 0;font-size:11px;color:#788c95}
+.month-empty:before{content:"—";margin-right:7px}
+#empty-comparison{padding:30px;text-align:center;color:var(--muted);border:1px solid var(--line);border-radius:14px;background:white}
+.sources-panel{margin-top:18px;padding:16px 20px;border:1px solid var(--line);border-radius:12px;background:white}
+.sources-panel summary{font-weight:700;color:var(--blue);cursor:pointer}
+.sources-panel p{font-size:12px;color:var(--muted)}
+.source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;font-size:12px}
+.source-grid a{padding:6px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+@media(max-width:1799px){
+  .comparison-head{grid-template-columns:1fr;padding:6px 0}
+  .comparison-head .product-heading{display:none}
+  .month-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 20px;padding-bottom:12px}
+  .month-label{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:18px 0 10px;border-bottom:1px dashed var(--line)}
+  .month-label span{margin:0}.month-label .year-start{margin:0;width:4px;height:22px}
+  .stream:after{content:attr(data-name);order:-1;display:block;font-size:14px;font-weight:700;color:var(--blue);padding-bottom:4px}
+  .stream{margin-top:14px;padding-top:0;padding-bottom:10px}
+  .event h3{font-size:15px}
+}
+@media(max-width:799px){.month-row{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}}
+@media(max-width:700px){
+  .timeline-hero{grid-template-columns:1fr;gap:8px}
+  .timeline-controls{justify-content:flex-start}
+}
+@media(max-width:519px){
+  .timeline-hero{padding-block:14px 10px}.timeline-hero h1{font-size:26px}
+  .timeline-heading{gap:4px 12px}
+  .month-row{grid-template-columns:1fr}.stream:has(.month-empty){display:none}
+  .comparison{padding:0 16px 12px}.event{padding:12px 14px}
+  .source-grid{grid-template-columns:1fr}.sources-panel{padding:14px}
+}
+@media print{
+  @page{size:A3 landscape;margin:12mm}
+  .skip-link,.year-filter,.sources-panel{display:none}
+  .timeline-hero{padding:0 0 12px}.timeline-main{padding:0}
+  .compare-shell{border:0;border-radius:0}.comparison{padding:0}
+  .comparison-head{position:static;box-shadow:none}
+  .comparison-head,.month-row{grid-template-columns:52px repeat(var(--products),minmax(0,1fr));column-gap:12px}
+  .comparison-head .product-heading{display:block}.product-heading h2{font-size:18px}
+  .month-label{display:block;grid-column:auto;border:0;padding-top:12px}.month-label span{margin-top:4px}
+  .month-label .year-start{width:26px;height:3px;margin-bottom:9px}
+  .stream{margin-top:0;padding-block:12px}.stream:after{display:none}
+  .event{break-inside:avoid;padding:8px 9px;background:white}.event h3{font-size:11px}.event p{font-size:10px}
+  .axis-sort{display:none}.axis-heading:after{content:"年月"}
+}

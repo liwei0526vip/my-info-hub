@@ -1,0 +1,4 @@
+interface:
+  display_name: "更新模型与 Agent 演进时间图"
+  short_description: "核验七家 AI 厂商的官方发布记录，更新模型与 Agent 关键时间节点"
+  default_prompt: "使用 $update-agent-model-timeline 核验最新官方发布记录，并分别更新 ai-model-timeline.html 与 ai-agent-timeline.html 的演进时间图。"

@@ -1,0 +1,161 @@
+{
+  "checkedOn": "2026-10-09",
+  "purpose": "保留撤下记录与专业来源候选，供后续核验；不是 merge 输入，不由页面加载。",
+  "excluded": [
+    {
+      "brand": "claude",
+      "record": {
+        "date": "2025-01-31",
+        "value": 2900000,
+        "relation": "approx",
+        "tier": "third-party",
+        "metric": "App 月活（MAU）",
+        "scope": "app",
+        "timeLabel": "2025.01",
+        "period": "2025-01",
+        "provider": "AICPB · Backlinko 引用",
+        "url": "https://backlinko.com/claude-users",
+        "verifiedOn": "2026-10-09",
+        "sourceNote": "Backlinko 的 Claude App Users Worldwide 段落引用 AICPB，统计2025年1月App月活约290万；不使用网站用户或下载量。"
+      },
+      "status": "pending-original-source",
+      "reason": "仅核到媒体引用，尚未取得原始统计发布或原表；撤下不表示已判定数字错误。"
+    },
+    {
+      "brand": "claude",
+      "record": {
+        "date": "2026-02-28",
+        "period": "2026-02",
+        "value": 12480000,
+        "relation": "eq",
+        "tier": "third-party",
+        "metric": "App 月活（MAU）",
+        "scope": "app",
+        "timeLabel": "2026.02",
+        "provider": "AICPB · 90说科技引用",
+        "url": "https://m.sohu.com/a/993719558_121948415",
+        "publishedOn": "2026-03-07",
+        "verifiedOn": "2026-10-09",
+        "sourceNote": "90说科技转载第19期AICPB应用榜，国内总榜/全球增速榜的App MAU行；单位M。"
+      },
+      "status": "pending-original-source",
+      "reason": "仅核到媒体引用，尚未取得原始统计发布或原表；撤下不表示已判定数字错误。"
+    },
+    {
+      "brand": "glm",
+      "record": {
+        "date": "2026-02-28",
+        "period": "2026-02",
+        "value": 5760000,
+        "relation": "eq",
+        "tier": "third-party",
+        "metric": "App 月活（MAU）",
+        "scope": "app",
+        "timeLabel": "2026.02",
+        "provider": "AICPB · 90说科技引用",
+        "url": "https://m.sohu.com/a/993719558_121948415",
+        "publishedOn": "2026-03-07",
+        "verifiedOn": "2026-10-09",
+        "sourceNote": "90说科技转载第19期AICPB应用榜，国内总榜/全球增速榜的App MAU行；单位M。"
+      },
+      "status": "pending-original-source",
+      "reason": "仅核到媒体引用，尚未取得原始统计发布或原表；撤下不表示已判定数字错误。"
+    },
+    {
+      "brand": "kimi",
+      "record": {
+        "date": "2026-02-28",
+        "period": "2026-02",
+        "value": 24730000,
+        "relation": "eq",
+        "tier": "third-party",
+        "metric": "App 月活（MAU）",
+        "scope": "app",
+        "timeLabel": "2026.02",
+        "provider": "AICPB · 90说科技引用",
+        "url": "https://m.sohu.com/a/993719558_121948415",
+        "publishedOn": "2026-03-07",
+        "verifiedOn": "2026-10-09",
+        "sourceNote": "90说科技转载第19期AICPB应用榜，国内总榜/全球增速榜的App MAU行；单位M。"
+      },
+      "status": "pending-original-source",
+      "reason": "仅核到媒体引用，尚未取得原始统计发布或原表；撤下不表示已判定数字错误。"
+    },
+    {
+      "brand": "deepseek",
+      "record": {
+        "date": "2026-02-28",
+        "period": "2026-02",
+        "value": 132570000,
+        "relation": "eq",
+        "tier": "third-party",
+        "metric": "App 月活（MAU）",
+        "scope": "app",
+        "timeLabel": "2026.02",
+        "provider": "AICPB · 90说科技引用",
+        "url": "https://m.sohu.com/a/993719558_121948415",
+        "publishedOn": "2026-03-07",
+        "verifiedOn": "2026-10-09",
+        "sourceNote": "90说科技转载第19期AICPB应用榜，国内总榜/全球增速榜的App MAU行；单位M。"
+      },
+      "status": "pending-original-source",
+      "reason": "仅核到媒体引用，尚未取得原始统计发布或原表；撤下不表示已判定数字错误。"
+    }
+  ],
+  "candidates": [
+    {
+      "brand": "claude",
+      "period": "2025-06",
+      "value": 7300000,
+      "relation": "approx",
+      "tier": "third-party",
+      "metric": "App 月活（MAU）",
+      "provider": "Similarweb",
+      "geography": "worldwide",
+      "platforms": "iOS + Android",
+      "dataVersion": null,
+      "publishedOn": "2026-09-08",
+      "verifiedOn": "2026-10-09",
+      "url": "https://aisearch.similarweb.com/blog/claude-vs-chatgpt/",
+      "sourceNote": "Apps: the growth gap is even wider on mobile 段落直接公布起止月全球 App MAU，单位 million。",
+      "status": "candidate-only",
+      "reason": "未取得完整历史序列与估算版本；不能与 AICPB 拼接。"
+    },
+    {
+      "brand": "claude",
+      "period": "2026-05",
+      "value": 103900000,
+      "relation": "approx",
+      "tier": "third-party",
+      "metric": "App 月活（MAU）",
+      "provider": "Similarweb",
+      "geography": "worldwide",
+      "platforms": "iOS + Android",
+      "dataVersion": null,
+      "publishedOn": "2026-09-08",
+      "verifiedOn": "2026-10-09",
+      "url": "https://aisearch.similarweb.com/blog/claude-vs-chatgpt/",
+      "sourceNote": "Apps: the growth gap is even wider on mobile 段落直接公布起止月全球 App MAU，单位 million。",
+      "status": "candidate-only",
+      "reason": "未取得完整历史序列与估算版本；不能与 AICPB 拼接。"
+    },
+    {
+      "brand": "deepseek",
+      "period": "2026-03",
+      "value": 127000000,
+      "relation": "approx",
+      "tier": "third-party",
+      "metric": "国内 App 月活（MAU）",
+      "provider": "QuestMobile",
+      "geography": "China",
+      "platforms": "国内移动端 App",
+      "dataVersion": null,
+      "publishedOn": "2026-04-21",
+      "verifiedOn": "2026-10-09",
+      "url": "https://www.questmobile.com.cn/research/report/2046482337382842370/",
+      "sourceNote": "报告引言：截至2026年3月 DeepSeek 月活1.27亿。",
+      "status": "candidate-only",
+      "reason": "中国境内范围，与当前全球 App MAU 不同；不入当前曲线。"
+    }
+  ]
+}

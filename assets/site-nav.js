@@ -1,23 +1,25 @@
 /* Shared site identity and navigation. Relative paths work when opened from disk. */
 (() => {
   const pages = [
-    { href: 'ai-agent-model-timeline.html', label: '演进时间图' },
+    { href: 'ai.html', label: 'AI' },
     { href: 'ai-model-comparison.html', label: '大模型对比' },
     { href: 'agent.html', label: 'Agent' },
     { href: 'ai-knowledge-base.html', label: '知识库' },
-    { href: 'ai-learning-index.html', label: '学习收藏' },
     { href: 'ops-agent.html', label: '运维智能体' },
-    { href: 'market-memo.html', label: '随手记录' },
+    { href: 'market-memo.html', label: '随笔' },
+    { href: 'thoughts.html', label: '思考' },
     { href: 'life.html', label: '生活' },
+    { href: 'ai-learning-index.html', label: '收藏' },
   ];
   const currentFile = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';
-  const current = currentFile === 'index.html' ? 'ai-agent-model-timeline.html' : currentFile;
+  const aiDetailPages = ['ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html'];
+  const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html' : currentFile;
 
   const wordmark = document.querySelector('.site-wordmark');
   if (wordmark) {
     const home = document.createElement('a');
     home.className = 'site-brand';
-    home.href = 'ai-agent-model-timeline.html';
+    home.href = 'ai.html';
     home.setAttribute('aria-label', '知行簿 首页');
 
     const mark = document.createElement('img');

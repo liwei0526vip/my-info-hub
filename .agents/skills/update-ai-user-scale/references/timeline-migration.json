@@ -1,0 +1,228 @@
+{
+  "reviewedOn": "2026-10-09",
+  "origin": "ai-agent-model-timeline.html#timeline-user-history",
+  "target": "ai-user-scale.html",
+  "results": [
+    {
+      "original": {
+        "brand": "qwen",
+        "month": "2026-01",
+        "value": "超 1 亿",
+        "metric": "千问 App 月活",
+        "when": "披露：2026.01.15",
+        "provider": "阿里巴巴 · 官方",
+        "url": "https://www.alibabagroup.com/en-US/document-1948497434959151104"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "excluded-by-user-preference",
+      "reason": "用户此前要求移除千问；本次不恢复品牌展示。App、全平台及第三方估算的口径和提供方不同，不能拼接。",
+      "sourceVerified": true
+    },
+    {
+      "original": {
+        "brand": "codex",
+        "month": "2026-02",
+        "value": "超 100 万",
+        "metric": "过去一个月使用的开发者",
+        "when": "披露：2026.02.02",
+        "provider": "OpenAI · 官方",
+        "url": "https://openai.com/index/introducing-the-codex-app/"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "merged-as-independent-disclosure",
+      "target": "ai-user-scale.html#users-rows",
+      "reason": "OpenAI原文明确为过去一个月使用人数；不是周活，也不是指定自然月MAU，仅入来源表。",
+      "sourceVerified": true
+    },
+    {
+      "original": {
+        "brand": "qwen",
+        "month": "2026-02",
+        "value": "超 3 亿",
+        "metric": "千问全平台月活",
+        "when": "统计：2026.02 · 披露：03.19",
+        "provider": "阿里巴巴 · 官方",
+        "url": "https://home.alibabagroup.com/en-US/document-1971445322303406080"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "excluded-by-user-preference",
+      "reason": "用户此前要求移除千问；本次不恢复品牌展示。App、全平台及第三方估算的口径和提供方不同，不能拼接。",
+      "sourceVerified": true
+    },
+    {
+      "original": {
+        "brand": "codex",
+        "month": "2026-03",
+        "value": "超 200 万",
+        "metric": "Codex 周活",
+        "when": "披露：2026.03.19",
+        "provider": "OpenAI · 官方",
+        "url": "https://openai.com/index/openai-to-acquire-astral/"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "codex",
+        "date": "2026-03-19",
+        "scope": "codex-wau"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    },
+    {
+      "original": {
+        "brand": "codex",
+        "month": "2026-04",
+        "value": "300 万",
+        "metric": "Codex 周活",
+        "when": "披露：2026.04.08",
+        "provider": "OpenAI · 官方",
+        "url": "https://openai.com/index/next-phase-of-enterprise-ai/"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "codex",
+        "date": "2026-04-08",
+        "scope": "codex-wau"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    },
+    {
+      "original": {
+        "brand": "claude",
+        "month": "2026-06",
+        "value": "3,981 万",
+        "metric": "Claude App 月活",
+        "when": "统计：2026.06",
+        "provider": "AICPB · 第三方",
+        "url": "https://www.aicpb.com/zh/product/Claude-by-Anthropic/appid1D6F33BC9"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "claude",
+        "date": "2026-06-30",
+        "scope": "app"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    },
+    {
+      "original": {
+        "brand": "codex",
+        "month": "2026-06",
+        "value": "超 500 万",
+        "metric": "Codex 周活",
+        "when": "披露：2026.06.02",
+        "provider": "OpenAI · 官方",
+        "url": "https://openai.com/index/codex-for-knowledge-work/"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "codex",
+        "date": "2026-06-02",
+        "scope": "codex-wau"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    },
+    {
+      "original": {
+        "brand": "deepseek",
+        "month": "2026-06",
+        "value": "1.3908 亿",
+        "metric": "DeepSeek App 月活",
+        "when": "统计：2026.06",
+        "provider": "AICPB · 第三方",
+        "url": "https://www.aicpb.com/zh/ai-rankings/products/china-ai-rankings/apps"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "deepseek",
+        "date": "2026-06-30",
+        "scope": "app"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    },
+    {
+      "original": {
+        "brand": "glm",
+        "month": "2026-06",
+        "value": "482 万",
+        "metric": "智谱清言 App 月活",
+        "when": "统计：2026.06",
+        "provider": "AICPB · 第三方",
+        "url": "https://www.aicpb.com/zh/product/智谱清言-一站式解放AI生产力/appid1D6F37CE9"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "glm",
+        "date": "2026-06-30",
+        "scope": "app"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    },
+    {
+      "original": {
+        "brand": "kimi",
+        "month": "2026-06",
+        "value": "2,269 万",
+        "metric": "Kimi App 月活",
+        "when": "统计：2026.06",
+        "provider": "AICPB · 第三方",
+        "url": "https://www.aicpb.com/zh/product/Kimi/appid1D6F332E1"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "kimi",
+        "date": "2026-06-30",
+        "scope": "app"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    },
+    {
+      "original": {
+        "brand": "qwen",
+        "month": "2026-06",
+        "value": "2.5113 亿",
+        "metric": "千问 App 月活",
+        "when": "统计：2026.06",
+        "provider": "AICPB · 第三方",
+        "url": "https://www.aicpb.com/zh/product/千问-阿里最强模型官方AI助手/appid1D6F37F69"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "excluded-by-user-preference",
+      "reason": "用户此前要求移除千问；本次不恢复品牌展示。App、全平台及第三方估算的口径和提供方不同，不能拼接。",
+      "sourceVerified": true
+    },
+    {
+      "original": {
+        "brand": "codex",
+        "month": "2026-07",
+        "value": "超 500 万",
+        "metric": "Codex 周活",
+        "when": "披露：2026.07.09",
+        "provider": "OpenAI · 官方",
+        "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work/"
+      },
+      "reviewedOn": "2026-10-09",
+      "status": "deduplicated",
+      "target": {
+        "page": "ai-user-scale.html",
+        "brand": "codex",
+        "date": "2026-07-09",
+        "scope": "codex-wau"
+      },
+      "reason": "与已收录点的产品、日期、数值、范围和原始来源一致；沿用专题页已保存的来源核验信息。"
+    }
+  ]
+}
