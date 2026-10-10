@@ -19,16 +19,27 @@ function mount({ html, json }, initialWidth, observe) {
     innerHTML: '', textContent: '', getBoundingClientRect: () => ({ width }),
   }]));
   nodes.get('ai-data').textContent = json;
-  const buttons = [...html.matchAll(/<button[^>]*data-(user-scale|company-view)="([^"]+)"[^>]*>/g)].map(([, key, value]) => ({
-    dataset: { [key === 'user-scale' ? 'userScale' : 'companyView']: value },
-    attrs: {},
-    addEventListener(_type, fn) { this.click = fn; },
-    setAttribute(key, value) { this.attrs[key] = value; },
-  }));
+  const camel = key => key.replace(/-(.)/g, (_, char) => char.toUpperCase());
+  const buttons = [...html.matchAll(/<button([^>]*)>/g)].map(([, attrs]) => {
+    const dataset = {};
+    for (const [, key, value] of attrs.matchAll(/data-([a-z-]+)="([^"]*)"/g)) dataset[camel(key)] = value;
+    return {
+      dataset,
+      attrs: {},
+      addEventListener(_type, fn) { this.click = fn; },
+      setAttribute(key, value) { this.attrs[key] = value; },
+    };
+  });
   const grid = {};
   const document = {
     getElementById: id => nodes.get(id) ?? null,
-    querySelectorAll: selector => buttons.filter(button => selector === '[data-user-scale]' ? button.dataset.userScale : button.dataset.companyView),
+    querySelectorAll: selector => {
+      const match = selector.match(/^\[data-([a-z-]+)(?:="([^"]+)")?\]$/);
+      if (!match) return [];
+      const [, attr, value] = match;
+      const prop = camel(attr);
+      return buttons.filter(button => button.dataset[prop] !== undefined && (value === undefined || button.dataset[prop] === value));
+    },
     querySelector: selector => selector === '.data-grid' ? grid : null,
   };
   const window = { addEventListener(_type, fn) { resize = fn; } };
@@ -51,47 +62,75 @@ test('AI directory links to two separate data pages', async () => {
 });
 
 test('each page renders and switches its own chart without the other section', () => {
+  const metricKeyOf = entry => (/周活/.test(entry.metric) ? 'wau' : /累计/.test(entry.metric) ? 'cumulative' : 'mau');
+  const userKeys = ['mau', 'wau', 'cumulative'];
   for (const page of pages) {
+    const isUsersPage = Boolean(page.data.users);
+    const chartIds = isUsersPage ? userKeys.map(key => `${key}-chart`) : ['listed-chart', 'unlisted-chart'];
     for (const width of [320, 900, 1800]) {
       for (const observe of [false, true]) {
         const mounted = mount(page, width, observe);
-        const id = page.data.users ? 'users-chart' : 'company-chart';
-        const rowId = page.data.users ? 'users-rows' : 'company-rows';
-        assert.ok(!mounted.nodes.has(page.data.users ? 'company-chart' : 'users-chart'));
-        for (const button of mounted.buttons) {
-          button.click();
-          const svg = mounted.nodes.get(id).innerHTML;
-          assert.doesNotMatch(svg, /NaN|undefined/);
-          assert.equal(button.attrs['aria-pressed'], 'true');
-          const records = page.data.users ? Object.values(page.data.users).flatMap(entry => entry.points) : page.data.companies[button.dataset.companyView];
-          const disclosures = page.data.disclosures ?? [];
-          assert.equal((mounted.nodes.get(rowId).innerHTML.match(/<tr>/g) ?? []).length, records.length + disclosures.length);
-          assert.equal((svg.match(page.data.users ? /class="source-point"/g : /class="company-source"/g) ?? []).length, records.length);
-          if (page.data.users) {
-            assert.match(svg, button.dataset.userScale === 'log' ? /对数刻度/ : /线性刻度/);
-            for (const record of disclosures) {
-              assert.ok(mounted.nodes.get(rowId).innerHTML.includes(record.metric));
-              assert.ok(!svg.includes(record.scope));
-            }
+        assert.ok(isUsersPage ? !mounted.nodes.has('listed-chart') : !mounted.nodes.has('mau-chart'));
+        if (isUsersPage) {
+          for (const key of userKeys) {
+            assert.ok(!mounted.nodes.has(`${key}-rows`) && !mounted.nodes.has(`${key}-note`));
+            const svg = mounted.nodes.get(`${key}-chart`).innerHTML;
+            const visible = Object.values(page.data.users).filter(entry => metricKeyOf(entry) === key).flatMap(entry => entry.points);
+            assert.doesNotMatch(svg, /NaN|undefined/);
+            assert.equal((svg.match(/class="source-point"/g) ?? []).length, visible.length);
+            assert.match(svg, /线性刻度/);
+            assert.doesNotMatch(svg, /对数刻度/);
+            assert.doesNotMatch(mounted.nodes.get(`${key}-legend`).innerHTML, /<small>/);
           }
-          else for (const record of records) assert.ok(svg.includes(record.name));
+        }
+        else {
+          assert.equal(mounted.buttons.length, 0);
+          for (const key of ['listed', 'unlisted']) {
+            const svg = mounted.nodes.get(`${key}-chart`).innerHTML;
+            const records = page.data.companies[key].flatMap(entry => entry.points);
+            assert.ok(!mounted.nodes.has(`${key}-rows`) && !mounted.nodes.has(`${key}-note`));
+            assert.doesNotMatch(svg, /NaN|undefined/);
+            assert.equal((svg.match(/class="source-point"/g) ?? []).length, records.length);
+            assert.match(svg, /线性刻度/);
+            assert.doesNotMatch(svg, /对数刻度/);
+            assert.match(svg, /亿美元/);
+            assert.doesNotMatch(svg, /十亿美元/);
+            assert.doesNotMatch(mounted.nodes.get(`${key}-legend`).innerHTML, /<small>/);
+            for (const entry of page.data.companies[key]) assert.ok(svg.includes(entry.name));
+          }
         }
         mounted.resize(640);
-        assert.match(mounted.nodes.get(id).innerHTML, /viewBox="0 0 640 /);
+        for (const id of chartIds) assert.match(mounted.nodes.get(id).innerHTML, /viewBox="0 0 640 /);
         assert.deepEqual(JSON.parse(mounted.nodes.get('ai-data').textContent), page.data);
       }
     }
   }
 });
 
-test('independent disclosures remain readable without any trend points', () => {
+test('hover titles stay brand-only and empty charts keep the fallback text', () => {
   const page = pages.find(page => page.data.users);
+  const metricKeyOf = entry => (/周活/.test(entry.metric) ? 'wau' : /累计/.test(entry.metric) ? 'cumulative' : 'mau');
+  const headings = { mau: 'App 月活', wau: '周活（WAU）', cumulative: '累计用户' };
+  const mounted = mount(page, 900, false);
+  for (const key of ['mau', 'wau', 'cumulative']) {
+    const names = new Set(Object.values(page.data.users).filter(entry => metricKeyOf(entry) === key).map(entry => entry.name));
+    const titles = [...mounted.nodes.get(`${key}-chart`).innerHTML.matchAll(/<title>([^<]*)<\/title>/g)].map(([, title]) => title);
+    assert.ok(titles.length > 1);
+    for (const title of titles) assert.ok(names.has(title) || title === headings[key], `unexpected title: ${title}`);
+  }
   const data = JSON.parse(page.json);
   for (const entry of Object.values(data.users)) entry.points = [];
-  const mounted = mount({ ...page, json: JSON.stringify(data) }, 900, false);
-  assert.match(mounted.nodes.get('users-chart').textContent, /尚无可核实/);
-  assert.equal((mounted.nodes.get('users-rows').innerHTML.match(/<tr>/g) ?? []).length, data.disclosures.length);
-  assert.match(mounted.nodes.get('users-rows').innerHTML, /独立披露/);
+  const emptied = mount({ ...page, json: JSON.stringify(data) }, 900, false);
+  for (const key of ['mau', 'wau', 'cumulative']) assert.match(emptied.nodes.get(`${key}-chart`).textContent, /尚无可核实/);
+  const companyPage = pages.find(candidate => candidate.data.companies);
+  const companyHeadings = { listed: '上市市值趋势', unlisted: '未上市估值趋势' };
+  const companyMounted = mount(companyPage, 900, false);
+  for (const key of ['listed', 'unlisted']) {
+    const names = new Set(companyPage.data.companies[key].map(entry => entry.name));
+    const titles = [...companyMounted.nodes.get(`${key}-chart`).innerHTML.matchAll(/<title>([^<]*)<\/title>/g)].map(([, title]) => title);
+    assert.ok(titles.length > 1);
+    for (const title of titles) assert.ok(names.has(title) || title === companyHeadings[key], `unexpected title: ${title}`);
+  }
 });
 
 test('data pages select AI in the main navigation without adding their own entries', () => {

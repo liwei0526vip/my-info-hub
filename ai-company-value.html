@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="AI 厂商融资估值与上市公司市值快照，附日期、统计口径与来源。">
+  <meta name="description" content="AI 厂商上市市值与未上市融资估值趋势，附日期、统计口径与来源。">
   <title>估值市值｜知行簿</title>
   <link rel="icon" href="assets/site-mark.svg">
   <link rel="stylesheet" href="assets/site-nav.css">
@@ -29,101 +29,181 @@
 
   <main class="data-main page-shell" id="main">
     <header class="data-hero">
-      <div class="data-heading"><h1>估值市值</h1><p>融资估值与上市市值。</p></div>
-      <p class="data-updated">公开数据 · 核对 <time datetime="2026-10-09">2026.10.09</time></p>
+      <div class="data-heading"><h1>估值市值</h1><p>上市市值与融资估值趋势。</p></div>
+      <p class="data-updated">公开数据 · 核对 <time datetime="2026-10-10">2026.10.10</time></p>
     </header>
 
-    <div class="data-grid">
-      <section class="data-panel" aria-labelledby="company-heading">
-        <header class="panel-heading"><h2 id="company-heading">厂商估值与市值</h2><span class="chart-kind">快照</span></header>
-        <div class="chart-switch" role="group" aria-label="选择金额口径">
-          <button type="button" data-company-view="valuation" aria-pressed="true" aria-controls="company-figure">融资估值</button>
-          <button type="button" data-company-view="marketCap" aria-pressed="false" aria-controls="company-figure">上市市值</button>
-        </div>
-        <figure id="company-figure">
-          <figcaption class="chart-context" id="company-context" aria-live="polite"></figcaption>
-          <div class="chart-frame" id="company-chart"></div>
-        </figure>
-        <p class="chart-note" id="company-note"></p>
-        <details class="data-details">
-          <summary>数据与来源</summary>
-          <div class="table-scroll">
-            <table class="source-table">
-              <caption id="company-table-caption">公司公开估值与市值记录</caption>
-              <thead><tr><th scope="col">厂商</th><th scope="col">日期</th><th scope="col">十亿美元</th><th scope="col">口径 / 来源</th></tr></thead>
-              <tbody id="company-rows"></tbody>
-            </table>
+    <div class="data-grid data-grid--split">
+      <section class="data-panel" aria-labelledby="listed-heading">
+        <header class="panel-heading"><h2 id="listed-heading">上市市值趋势</h2><span class="chart-kind">趋势</span></header>
+        <figure id="listed-figure">
+          <figcaption class="chart-context" id="listed-context" aria-live="polite"></figcaption>
+          <div class="company-figure">
+            <div class="chart-frame" id="listed-chart"></div>
+            <ul class="company-legend" id="listed-legend" aria-label="上市厂商"></ul>
           </div>
-        </details>
+        </figure>
+      </section>
+      <section class="data-panel" aria-labelledby="unlisted-heading">
+        <header class="panel-heading"><h2 id="unlisted-heading">未上市估值趋势</h2><span class="chart-kind">趋势</span></header>
+        <figure id="unlisted-figure">
+          <figcaption class="chart-context" id="unlisted-context" aria-live="polite"></figcaption>
+          <div class="company-figure">
+            <div class="chart-frame" id="unlisted-chart"></div>
+            <ul class="company-legend" id="unlisted-legend" aria-label="未上市厂商"></ul>
+          </div>
+        </figure>
       </section>
     </div>
-    <noscript><p class="data-noscript">请启用 JavaScript 查看图表。数据来源：<a href="https://www.anthropic.com/news/series-h">Anthropic</a>、<a href="https://openai.com/index/accelerating-the-next-phase-ai/">OpenAI</a>、<a href="https://cohere.com/blog/september-2025-funding-round">Cohere</a>、<a href="https://stockanalysis.com/stocks/nvda/market-cap/">Stock Analysis</a>。</p></noscript>
+    <noscript><p class="data-noscript">请启用 JavaScript 查看图表。数据来源：<a href="https://www.anthropic.com/news/series-h">Anthropic</a>、<a href="https://openai.com/index/accelerating-the-next-phase-ai/">OpenAI</a>、<a href="https://stockanalysis.com/quote/hkg/2513/">Stock Analysis</a>、<a href="https://www.reuters.com">Reuters</a>。</p></noscript>
   </main>
 
-  <!-- Company values are USD billions at each disclosure or snapshot date. -->
+  <!-- Company values are USD billions; listed caps follow Zhipu's post-IPO milestones, unlisted follow each disclosure date. -->
   <script type="application/json" id="ai-data">
 {
-  "checkedOn": "2026-10-09",
+  "checkedOn": "2026-10-10",
   "companies": {
-    "valuation": [
+    "listed": [
       {
-        "name": "Anthropic",
-        "date": "2026-05-28",
-        "value": 965,
-        "relation": "eq",
-        "basis": "投后估值",
-        "provider": "Anthropic",
-        "url": "https://www.anthropic.com/news/series-h"
-      },
-      {
-        "name": "OpenAI",
-        "date": "2026-03-31",
-        "value": 852,
-        "relation": "eq",
-        "basis": "投后估值",
-        "provider": "OpenAI",
-        "url": "https://openai.com/index/accelerating-the-next-phase-ai/"
-      },
-      {
-        "name": "Cohere",
-        "date": "2025-09-24",
-        "value": 7,
-        "relation": "approx",
-        "basis": "融资估值",
-        "provider": "Cohere",
-        "url": "https://cohere.com/blog/september-2025-funding-round"
+        "id": "zhipu",
+        "name": "智谱",
+        "ticker": "2513.HK",
+        "color": "#2673ad",
+        "points": [
+          {
+            "date": "2026-01-08",
+            "value": 7.4,
+            "relation": "approx",
+            "basis": "上市首日收盘市值 · 港元折算",
+            "provider": "财新",
+            "url": "https://m.caixin.com",
+            "sourceNote": "2026.01.08港交所上市首日收报131.5港元，收盘市值约579亿港元，按7.8折算美元。"
+          },
+          {
+            "date": "2026-02-20",
+            "value": 41.4,
+            "relation": "approx",
+            "basis": "报道市值 · 港元折算",
+            "provider": "36氪",
+            "url": "https://www.36kr.com",
+            "sourceNote": "上市43天累计涨超524%，市值约3232亿港元（2026年2月报道）。"
+          },
+          {
+            "date": "2026-06-22",
+            "value": 137,
+            "relation": "approx",
+            "basis": "收盘市值 · 港元折算",
+            "provider": "财新",
+            "url": "https://m.caixin.com",
+            "sourceNote": "2026.06.22收报2410港元，收盘市值约1.07万亿港元；同日盘中最高2980港元。"
+          },
+          {
+            "date": "2026-10-09",
+            "value": 38.3,
+            "relation": "approx",
+            "basis": "最新收盘市值 · 港元折算",
+            "provider": "Stock Analysis",
+            "url": "https://stockanalysis.com/quote/hkg/2513/",
+            "sourceNote": "2026.10.09收报641.5港元，市值2987亿港元。"
+          }
+        ]
       }
     ],
-    "marketCap": [
+    "unlisted": [
       {
-        "name": "NVIDIA",
-        "ticker": "NVDA",
-        "date": "2026-10-08",
-        "value": 5570,
-        "relation": "eq",
-        "basis": "公司整体市值",
-        "provider": "Stock Analysis",
-        "url": "https://stockanalysis.com/stocks/nvda/market-cap/"
+        "id": "anthropic",
+        "name": "Anthropic",
+        "color": "#b96745",
+        "points": [
+          {
+            "date": "2023-05-23",
+            "value": 4.1,
+            "relation": "approx",
+            "basis": "报道估值",
+            "provider": "TechCrunch",
+            "url": "https://techcrunch.com",
+            "sourceNote": "Series C融资4.5亿美元，报道投后约41亿美元。"
+          },
+          {
+            "date": "2025-03-03",
+            "value": 61.5,
+            "relation": "eq",
+            "basis": "投后估值",
+            "provider": "Anthropic",
+            "url": "https://www.anthropic.com/news/anthropic-raises-series-e-at-61-5b-post-money-valuation",
+            "sourceNote": "Series E融资35亿美元，投后615亿美元（2025.03.03公告）。"
+          },
+          {
+            "date": "2025-09-02",
+            "value": 183,
+            "relation": "eq",
+            "basis": "投后估值",
+            "provider": "Anthropic",
+            "url": "https://www.anthropic.com/news/anthropic-raises-13b-series-f-at-183b-valuation",
+            "sourceNote": "Series F融资130亿美元，投后1830亿美元（2025.09.02公告）。"
+          },
+          {
+            "date": "2026-02-12",
+            "value": 380,
+            "relation": "eq",
+            "basis": "投后估值",
+            "provider": "Reuters",
+            "url": "https://www.reuters.com",
+            "sourceNote": "2026年2月Series G融资300亿美元，投后3800亿美元（Reuters 2026.09.29回顾）。"
+          },
+          {
+            "date": "2026-05-28",
+            "value": 965,
+            "relation": "eq",
+            "basis": "投后估值",
+            "provider": "Anthropic",
+            "url": "https://www.anthropic.com/news/series-h",
+            "sourceNote": "Series H，投后9650亿美元。"
+          }
+        ]
       },
       {
-        "name": "Alphabet",
-        "ticker": "GOOGL",
-        "date": "2026-10-08",
-        "value": 4260,
-        "relation": "eq",
-        "basis": "公司整体市值",
-        "provider": "Stock Analysis",
-        "url": "https://stockanalysis.com/stocks/googl/market-cap/"
-      },
-      {
-        "name": "Microsoft",
-        "ticker": "MSFT",
-        "date": "2026-10-08",
-        "value": 3880,
-        "relation": "eq",
-        "basis": "公司整体市值",
-        "provider": "Stock Analysis",
-        "url": "https://stockanalysis.com/stocks/msft/market-cap/"
+        "id": "openai",
+        "name": "OpenAI",
+        "color": "#00647f",
+        "points": [
+          {
+            "date": "2024-10-02",
+            "value": 157,
+            "relation": "eq",
+            "basis": "投后估值",
+            "provider": "OpenAI",
+            "url": "https://openai.com/index/openai-raises-6-6b-at-157b-valuation/",
+            "sourceNote": "融资66亿美元，投后1570亿美元。"
+          },
+          {
+            "date": "2025-03-31",
+            "value": 300,
+            "relation": "eq",
+            "basis": "投后估值",
+            "provider": "OpenAI",
+            "url": "https://openai.com/index/new-funding-to-build-towards-agi/",
+            "sourceNote": "New funding to build towards AGI：融资400亿美元，投后3000亿美元。"
+          },
+          {
+            "date": "2025-10-01",
+            "value": 500,
+            "relation": "eq",
+            "basis": "老股转让估值",
+            "provider": "Reuters",
+            "url": "https://www.reuters.com",
+            "sourceNote": "66亿美元老股转让完成，估值5000亿美元（Reuters 2025.10.01）。"
+          },
+          {
+            "date": "2026-03-31",
+            "value": 852,
+            "relation": "eq",
+            "basis": "投后估值",
+            "provider": "OpenAI",
+            "url": "https://openai.com/index/accelerating-the-next-phase-ai/",
+            "sourceNote": "投后8520亿美元。"
+          }
+        ]
       }
     ]
   }

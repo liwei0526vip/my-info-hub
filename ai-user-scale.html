@@ -34,32 +34,37 @@
     </header>
 
     <div class="data-grid">
-      <section class="data-panel data-panel--users" aria-labelledby="users-heading">
-        <header class="panel-heading"><h2 id="users-heading">用户规模趋势</h2><span class="chart-kind">趋势</span></header>
-        <div class="users-tools">
-          <ul class="users-legend" id="users-legend" aria-label="品牌及统计口径"></ul>
-          <div class="chart-switch scale-switch" role="group" aria-label="纵轴刻度">
-            <button type="button" data-user-scale="log" aria-pressed="true" aria-controls="users-figure">对数</button>
-            <button type="button" data-user-scale="linear" aria-pressed="false" aria-controls="users-figure">线性</button>
+      <section class="data-panel data-panel--users" aria-labelledby="mau-heading">
+        <header class="panel-heading"><h2 id="mau-heading">App 月活</h2><span class="chart-kind">趋势</span></header>
+        <figure id="mau-figure">
+          <figcaption class="chart-context" id="mau-context" aria-live="polite"></figcaption>
+          <div class="users-layout">
+            <div class="chart-frame" id="mau-chart"></div>
+            <ul class="users-legend" id="mau-legend" aria-label="品牌"></ul>
           </div>
-        </div>
-        <figure id="users-figure">
-          <figcaption class="chart-context" id="users-context" aria-live="polite"></figcaption>
-          <div class="chart-frame" id="users-chart"></div>
         </figure>
-        <p class="chart-note">实心点为官方披露，空心点为 AICPB 补充估算；“&gt;”为下限。各品牌口径不同，仅观察各自变化；缺月留空。</p>
-        <details class="data-details">
-          <summary>数据与来源</summary>
-          <div class="table-scroll">
-            <table class="source-table">
-              <caption id="users-table-caption">用户规模公开披露记录</caption>
-              <thead><tr><th scope="col">品牌</th><th scope="col">时间</th><th scope="col">规模（万）</th><th scope="col">统计口径</th><th scope="col">来源</th></tr></thead>
-              <tbody id="users-rows"></tbody>
-            </table>
+      </section>
+    </div>
+    <div class="data-grid data-grid--split">
+      <section class="data-panel data-panel--users" aria-labelledby="wau-heading">
+        <header class="panel-heading"><h2 id="wau-heading">周活（WAU）</h2><span class="chart-kind">趋势</span></header>
+        <figure id="wau-figure">
+          <figcaption class="chart-context" id="wau-context" aria-live="polite"></figcaption>
+          <div class="users-layout">
+            <div class="chart-frame" id="wau-chart"></div>
+            <ul class="users-legend" id="wau-legend" aria-label="品牌"></ul>
           </div>
-          <p class="source-note">月度统计按月末定位，时点披露按对应日期定位；虚线仅连接同口径记录。品牌以对应产品统计，不代表模型的独立使用人数。AICPB 仅作趋势参考；仅有媒体转述、未核原表的记录暂不入图。不同统计窗口的可靠历史披露仅收于下表，不接入趋势线。</p>
-          <ul class="scope-notes" id="users-scope-notes"></ul>
-        </details>
+        </figure>
+      </section>
+      <section class="data-panel data-panel--users" aria-labelledby="cumulative-heading">
+        <header class="panel-heading"><h2 id="cumulative-heading">累计用户</h2><span class="chart-kind">趋势</span></header>
+        <figure id="cumulative-figure">
+          <figcaption class="chart-context" id="cumulative-context" aria-live="polite"></figcaption>
+          <div class="users-layout">
+            <div class="chart-frame" id="cumulative-chart"></div>
+            <ul class="users-legend" id="cumulative-legend" aria-label="品牌"></ul>
+          </div>
+        </figure>
       </section>
     </div>
     <noscript><p class="data-noscript">请启用 JavaScript 查看图表。数据来源：<a href="https://openai.com/index/codex-for-knowledge-work/">OpenAI</a>、<a href="https://www.prnasia.com/story/545325-1.shtml">MiniMax</a>、<a href="https://www.aicpb.com/zh/ai-rankings/products/china-ai-rankings/apps">AICPB</a>。</p></noscript>
