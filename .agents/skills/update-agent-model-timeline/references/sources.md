@@ -1,6 +1,6 @@
 # 模型与 Agent 来源索引
 
-索引更新：2026-10-09。按需使用以下入口；已收录事件的具体出处以页面卡片为准。
+索引更新：2026-10-10。按需使用以下入口；已收录事件的具体出处以页面卡片为准。
 
 按当前 `timeline-products` 覆盖全部品牌。下面是查新入口；写入事件时优先使用具体公告或带日期锚点的链接。入口迁移时用官方新地址更新，不把抓取失败解释为事件不存在。
 
@@ -15,6 +15,8 @@
 | Kimi | [Kimi 博客](https://www.kimi.com/en/blog/)、[官方 API 博客](https://platform.kimi.com/blog) | [Kimi Work](https://www.kimi.com/en/help/kimi-work/release-notes)、[Kimi Code](https://www.kimi.com/code/docs/en/changelog.html) |
 | DeepSeek | [API Changelog](https://api-docs.deepseek.com/updates/)、[官方模型仓库](https://github.com/deepseek-ai) | 同一 Changelog 中的兼容接口与工具调用；标签说明“接口 / 生态”，不要描述成独立 Agent 产品 |
 | MiniMax | [中文公告](https://www.minimax.cn/news)、[模型发布记录](https://platform.minimax.io/docs/release-notes/models)、[官方模型仓库](https://github.com/MiniMax-AI) | [MiniMax Agent / Code Changelog](https://agent.minimax.io/docs/changelog)、[MiniMax Agent 公告](https://www.minimax.io/news/minimax-agent) |
+| Gemini | [Gemini API Changelog](https://ai.google.dev/gemini-api/docs/changelog)、[DeepMind 模型页](https://deepmind.google/models/gemini/) | [Gemini CLI 仓库](https://github.com/google-gemini/gemini-cli)、[Antigravity 官网](https://antigravity.google) |
+| Grok | [xAI 新闻](https://x.ai/news)、[xAI API Release Notes](https://docs.x.ai/developers/release-notes) | 同左（Grok Build、Grok Bot、Team Bots 等产品公告见 xAI 新闻） |
 
 ## 历史追溯
 
@@ -43,6 +45,7 @@
 ## 维护来源
 
 - 日常入口用于发现变化；写入节点时保留具体公告或带日期锚点的原文，不只链接首页。
+- x.com 仅用匿名网页访问（如 [@SpaceXAI](https://x.com/xai)）作辅助核验：仅在官方公告、Changelog、模型仓库等来源缺失时使用，帖子日期与内容作线索，不作唯一证据；不配置账号、不使用付费 API。
 - 论文保存版本和初次提交日期；PDF 记录文件版本、PDF 页码及印刷页码，表格或时间图须检查原始版面。
 - URL 迁移时核对官方归属与正文再更新。2026-10-09 已确认旧 Moonshot Changelog 跳转为入门文档，因此改用官方 API 博客，不将入门页标作发布记录。
 - 当前页面或平台文档中的使用示例、退役记录和快照名，只能作为核验线索，不自动生成发布节点。
