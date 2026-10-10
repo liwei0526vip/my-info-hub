@@ -13,6 +13,7 @@ const pageNames = [
   'ai-knowledge-base.html',
   'ai-learning-index.html',
   'ops-agent.html',
+  'ops-agent-backup-2026-10-09.html',
   'market-memo.html',
   'thoughts.html',
   'life.html',
@@ -53,9 +54,11 @@ assert.match(knowledgePage, /<title>AI知识库｜知行簿<\/title>/);
 assert.match(learningPage, /<title>收藏｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<title>运维智能体｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<link rel="stylesheet" href="assets\/ops-agent\.css">/);
-assert.match(opsAgentPage, /id="problems"/);
-assert.match(opsAgentPage, /id="questions"/);
-assert.match(opsAgentPage, /id="vision"/);
+assert.match(opsAgentPage, /id="preface"/);
+const opsAgentBackup = pages.find(([name]) => name === 'ops-agent-backup-2026-10-09.html')[1];
+assert.match(opsAgentBackup, /id="problems"/);
+assert.match(opsAgentBackup, /id="questions"/);
+assert.match(opsAgentBackup, /id="vision"/);
 assert.match(memoPage, /<title>随笔｜知行簿<\/title>/);
 assert.match(memoPage, /<link rel="stylesheet" href="assets\/market-memo\.css">/, 'market-memo must load its page layout');
 

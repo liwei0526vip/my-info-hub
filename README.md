@@ -11,7 +11,8 @@
 - `agent.html`：Agent学习（Harness Engineering 笔记与关注 Agent：Codex、Claude Code、Pi Agent、DSH；入口收于 AI 页）
 - `ai-knowledge-base.html`：AI知识库（实践与产品研究；入口收于 AI 页）
 - `ai-learning-index.html`：收藏（工具、工作流、课程与文章索引）
-- `ops-agent.html`：运维智能体（白皮书精读与产品思考；入口收于 AI 页）
+- `ops-agent.html`：运维智能体（按所提供资料逐页摘录核心信息；入口收于 AI 页）
+- `ops-agent-backup-2026-10-09.html`：运维智能体原页面完整备份（含原版样式；入口在运维智能体页）
 - `market-memo.html`：随笔（想法、线索与讨论，留待后续整理总结）
 - `thoughts.html`：思考（待学习主题：第一性原理、向上管理）
 - `life.html`：生活（日常做饭菜单与食物热量、主要成分记录）

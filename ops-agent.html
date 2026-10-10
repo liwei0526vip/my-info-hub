@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="运维智能体白皮书精读：核心问题、典型场景、本质意义、专业追问与产品设想。">
+  <meta name="description" content="运维智能体阅读笔记：前言、运维挑战、模式升级、产品定义、产品定位、设计理念、核心能力与 AI 原生核心技术。">
   <title>运维智能体｜知行簿</title>
   <link rel="icon" href="assets/site-mark.svg">
   <link rel="stylesheet" href="assets/site-nav.css">
@@ -26,181 +26,305 @@
     </div>
   </header>
 
-  <main id="main">
-    <header class="ops-hero">
-      <div class="page-shell hero-copy">
-        <p class="eyebrow">INTERNAL REVIEW / 运维智能体白皮书精读</p>
-        <h1>不只会回答。<br><em>要在边界内完成闭环。</em></h1>
-        <p class="hero-lead">白皮书将产品定位为既有运维体系之上的 AI 执行与协同中枢：理解目标，组织数据、知识与工具，再通过审批和审计把分析变成安全行动。</p>
-        <p class="source-note">基于《格尔智能运维系统｜深见明策》产品白皮书 · 2026.05 · 以下“专业判断”不代表产品实测结论</p>
+  <main class="ops-notes page-shell" id="main">
+    <header class="notes-heading">
+      <div class="notes-title">
+        <h1>运维智能体</h1>
+        <p>白皮书阅读笔记</p>
       </div>
-
-      <div class="incident-stage" aria-label="运维智能体从异常感知到经验沉淀的闭环示意">
-        <div class="page-shell incident-shell">
-          <div class="incident-head">
-            <div><span class="pulse" aria-hidden="true"></span><strong>INC-0427</strong> 核心网关响应异常</div>
-            <span>目标：恢复服务并控制变更风险</span>
-          </div>
-          <ol class="opar-rail">
-            <li>
-              <span class="step-code">O / OBSERVE</span>
-              <strong>感知环境</strong>
-              <small>指标 · 日志 · 告警 · 拓扑</small>
-            </li>
-            <li>
-              <span class="step-code">P / PLAN</span>
-              <strong>形成假设</strong>
-              <small>知识 · 经验 · 影响路径</small>
-            </li>
-            <li class="risk-gate">
-              <span class="step-code">POLICY GATE</span>
-              <strong>风险分级</strong>
-              <small>L1 自动 · 高风险确认</small>
-            </li>
-            <li>
-              <span class="step-code">A / ACT</span>
-              <strong>受控执行</strong>
-              <small>技能 · 工具 · 审批 · 回滚</small>
-            </li>
-            <li>
-              <span class="step-code">R / REFLECT</span>
-              <strong>验证沉淀</strong>
-              <small>结果 · 复盘 · 记忆 · 技能</small>
-            </li>
-          </ol>
-        </div>
-      </div>
+      <nav class="topic-links" aria-label="运维智能体主题">
+        <a href="#preface">前言</a>
+        <a href="#ops-challenges">运维挑战</a>
+        <a href="#ai-ops-evolution">模式升级</a>
+        <a href="#product-definition">产品定义</a>
+        <a href="#product-positioning">产品定位</a>
+        <a href="#design-principles">设计理念</a>
+        <a href="#core-capabilities">核心能力</a>
+        <a href="#ai-native-technology">核心技术</a>
+        <a class="backup-link" href="ops-agent-backup-2026-10-09.html" title="原页面完整备份 · 2026-10-09">原页面备份 ↗</a>
+      </nav>
     </header>
 
-    <nav class="page-nav" aria-label="本页目录">
-      <div class="page-shell">
-        <a href="#problems">要解决什么</a>
-        <a href="#scenarios">使用场景</a>
-        <a href="#essence">本质意义</a>
-        <a href="#questions">深度问题</a>
-        <a href="#vision">进一步设想</a>
-      </div>
-    </nav>
-
-    <section class="ops-section page-shell" id="problems" aria-labelledby="problems-title">
-      <header class="section-head">
+    <article class="reading-note" id="preface" aria-labelledby="preface-title">
+      <header class="note-heading">
         <div>
-          <p class="eyebrow">01 / CORE PROBLEMS</p>
-          <h2 id="problems-title">它要解决的，不是“缺一个聊天框”</h2>
+          <h2 id="preface-title">前言</h2>
         </div>
-        <p>白皮书把痛点指向组织运维能力的断裂，而非单点工具能力不足。</p>
       </header>
-      <div class="problem-grid">
-        <article><span>工具链</span><h3>系统多，处理链仍靠人串</h3><p>监控、日志、脚本、工单和协同工具彼此割裂，异常处置在平台切换中损耗时间。</p></article>
-        <article><span>诊断</span><h3>复杂问题受制于少数专家</h3><p>跨网络、系统、数据库与应用的判断难复制，定位速度取决于个人经验。</p></article>
-        <article><span>知识</span><h3>解决过的问题仍会重来</h3><p>案例、判断依据与处置路径没有变成可调用的知识、记忆和技能。</p></article>
-        <article><span>闭环</span><h3>能发现，不等于能解决</h3><p>传统 AIOps 偏重识别与分析，决策、执行、验证仍存在明显人工断点。</p></article>
-        <article><span>治理</span><h3>生产环境不能接受黑盒行动</h3><p>智能体必须同时满足最小权限、风险分级、人工确认、全程留痕与责任可追溯。</p></article>
+      <p class="note-thesis">从自动化运维，走向智能协同。</p>
+      <div class="note-grid">
+        <section class="note-section" aria-labelledby="position-title">
+          <h3 id="position-title">定位与目标</h3>
+          <dl class="note-points">
+            <div><dt>技术</dt><dd>AI 原生：大模型 + Agent + RAG（知识增强）+ Memory（经验记忆）+ 权限受控执行。</dd></div>
+            <div><dt>目标</dt><dd>从设备管理转向业务保障与持续运营，提高效率、降低故障影响。</dd></div>
+          </dl>
+        </section>
+        <section class="note-section" aria-labelledby="system-title">
+          <h3 id="system-title">能力与集成</h3>
+          <dl class="note-points">
+            <div><dt>能力</dt><dd><span class="agent-loop">感知 → 规划 → 执行 → 反馈</span>；关联分析、根因定位、提前识别风险与协同处置。</dd></div>
+            <div><dt>集成</dt><dd>开放架构，融合既有监控、日志、知识、协同通道与基础设施。</dd></div>
+          </dl>
+        </section>
       </div>
-    </section>
+    </article>
 
-    <section class="ops-section scenario-band" id="scenarios" aria-labelledby="scenarios-title">
-      <div class="page-shell">
-        <header class="section-head">
-          <div>
-            <p class="eyebrow">02 / USE CASES</p>
-            <h2 id="scenarios-title">三类场景，一条演进路线</h2>
-          </div>
-          <p>从减少人工查找，到提前识别风险，再到降低协同与操作门槛。</p>
-        </header>
-        <div class="scenario-grid">
-          <article>
-            <div class="scenario-index">DIAGNOSE</div>
-            <h3>故障诊断与根因分析</h3>
-            <p>融合告警、指标、日志、变更和拓扑，形成故障上下文，给出原因假设、影响范围与处置建议。</p>
-            <dl><dt>关键价值</dt><dd>把跨平台排查从小时级压向分钟级</dd><dt>关键约束</dt><dd>根因必须有证据链，不能只是模型推测</dd></dl>
-          </article>
-          <article>
-            <div class="scenario-index">PREVENT</div>
-            <h3>智能巡检与健康评估</h3>
-            <p>自动执行巡检，结合历史趋势、运行基线和业务依赖，识别尚未越过阈值的容量与配置风险。</p>
-            <dl><dt>关键价值</dt><dd>从“检查是否异常”升级为“判断未来风险”</dd><dt>关键约束</dt><dd>基线、趋势窗口和风险等级需要可配置</dd></dl>
-          </article>
-          <article>
-            <div class="scenario-index">COLLABORATE</div>
-            <h3>对话即运维</h3>
-            <p>把业务语言转换为技术分析任务，并按角色输出业务影响或技术细节；移动端承担告警、查询和审批入口。</p>
-            <dl><dt>关键价值</dt><dd>减少跨角色沟通和多平台操作成本</dd><dt>关键约束</dt><dd>自然语言便利不能绕过权限与变更流程</dd></dl>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="ops-section page-shell" id="essence" aria-labelledby="essence-title">
-      <header class="section-head">
+    <article class="reading-note" id="ops-challenges" aria-labelledby="challenges-title">
+      <header class="note-heading">
         <div>
-          <p class="eyebrow">03 / ESSENCE</p>
-          <h2 id="essence-title">本质是运维控制面的升级</h2>
+          <h2 id="challenges-title">运维面临的挑战</h2>
         </div>
-        <p>不是再造监控平台，而是在既有系统之上增加目标理解、动态编排和安全决策。</p>
       </header>
-      <div class="essence-layout">
-        <blockquote>把“专家如何判断并组织工具”编码成可治理、可验证、可持续学习的系统能力。</blockquote>
-        <div class="control-plane">
-          <div class="plane-row inputs"><span>实时信号</span><span>环境拓扑</span><span>组织知识</span><span>历史经验</span></div>
-          <div class="plane-core"><span>AI 执行与协同中枢</span><strong>理解目标 → 规划任务 → 选择技能 → 受控行动</strong><small>OPAR 闭环 · 多模型编排 · Human in the Loop</small></div>
-          <div class="plane-row outputs"><span>诊断证据</span><span>执行计划</span><span>审计记录</span><span>组织技能</span></div>
-        </div>
+      <div class="note-grid">
+        <section class="note-section" aria-labelledby="environment-data-title">
+          <h3 id="environment-data-title">环境与数据</h3>
+          <dl class="note-points">
+            <div><dt>环境</dt><dd>云、容器、微服务等架构并存，依赖复杂，故障需跨系统、跨领域分析。</dd></div>
+            <div><dt>数据</dt><dd>指标、日志、告警、配置与业务数据分散，缺少统一关联分析，难支撑决策。</dd></div>
+          </dl>
+        </section>
+        <section class="note-section" aria-labelledby="experience-governance-title">
+          <h3 id="experience-governance-title">经验与治理</h3>
+          <dl class="note-points">
+            <div><dt>经验</dt><dd>自动化擅长明确场景；复杂诊断与业务影响评估依赖专家，经验难沉淀复用。</dd></div>
+            <div><dt>治理</dt><dd>权限、审批、责任追溯与合规审计要求提升，AI 执行必须可控、可解释。</dd></div>
+          </dl>
+        </section>
       </div>
-      <div class="meaning-strip">
-        <p><strong>对个人</strong> 从“记命令、找入口”转向“描述目标、审核方案”。</p>
-        <p><strong>对团队</strong> 从“依赖专家”转向“复用被验证的判断路径”。</p>
-        <p><strong>对组织</strong> 从“工具资产”转向“数据、知识、技能与治理共同演进”。</p>
-      </div>
-    </section>
+    </article>
 
-    <section class="ops-section question-band" id="questions" aria-labelledby="questions-title">
-      <div class="page-shell">
-        <header class="section-head inverse">
-          <div>
-            <p class="eyebrow">04 / PROFESSIONAL QUESTIONS</p>
-            <h2 id="questions-title">真正决定产品可信度的六个问题</h2>
-          </div>
-          <p>这些问题白皮书尚未给出足够可验证的答案，适合进入产品评审与 PoC。</p>
-        </header>
-        <div class="question-grid">
-          <article><span>01 · 诊断真实性</span><h3>如何证明“根因”而非相关性？</h3><p>是否展示假设、证据、反证、置信度和验证动作？误判如何被发现与纠正？</p></article>
-          <article><span>02 · 环境可信度</span><h3>拓扑与配置过期时会怎样？</h3><p>拓扑来源、刷新频率、冲突处理和数据质量是否进入推理置信度？</p></article>
-          <article><span>03 · 执行安全</span><h3>“人工确认”是否足够？</h3><p>还需验证最小权限、幂等、超时、回滚、影响面限制与紧急熔断。</p></article>
-          <article><span>04 · 记忆治理</span><h3>错误经验会不会被反复放大？</h3><p>记忆应有来源、版本、适用范围、审批、过期和撤销机制。</p></article>
-          <article><span>05 · 权限一致性</span><h3>智能体能否严格继承源系统权限？</h3><p>跨监控、日志、知识库和执行工具时，身份、资源权限与审计主体如何统一？</p></article>
-          <article><span>06 · 价值证明</span><h3>“分钟级”改善如何被复现？</h3><p>应以同一故障集对比 MTTA、MTTR、误报率、自动化完成率和人工接管率。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="ops-section page-shell" id="vision" aria-labelledby="vision-title">
-      <header class="section-head">
+    <article class="reading-note" id="ai-ops-evolution" aria-labelledby="evolution-title">
+      <header class="note-heading">
         <div>
-          <p class="eyebrow">05 / PRODUCT VISION</p>
-          <h2 id="vision-title">从“能执行”继续走向“可证明地自治”</h2>
+          <h2 id="evolution-title">AI 推动运维模式升级</h2>
         </div>
-        <p>进一步设想应优先增强证据、安全和工程化，而不是单纯增加更多对话入口。</p>
       </header>
-      <div class="vision-list">
-        <article><span>证据优先诊断</span><h3>把结论变成可审阅的推理包</h3><p>每个判断同时给出证据、反证、时间窗、数据缺口和可执行的验证步骤。</p></article>
-        <article><span>事件回放沙箱</span><h3>先在历史事故里证明自己</h3><p>用脱敏数据回放故障，评估诊断质量与动作风险，再逐级开放生产权限。</p></article>
-        <article><span>技能工程体系</span><h3>让技能像代码一样被管理</h3><p>版本、测试、签名、依赖、审批、灰度和回滚齐备，避免“提示词即生产逻辑”。</p></article>
-        <article><span>自治等级</span><h3>按场景而非全局授权</h3><p>从只读观察、建议、确认后执行，到受限自治；每个场景用指标决定是否升级。</p></article>
-        <article><span>业务 SLO 视角</span><h3>从设备健康走向业务韧性</h3><p>把根因、影响范围和处置优先级映射到用户体验、交易链路与业务目标。</p></article>
-        <article><span>持续评测控制面</span><h3>模型可替换，能力可比较</h3><p>建立任务集、风险集和成本基线，让模型路由、提示、知识与技能都可回归验证。</p></article>
+      <p class="note-thesis">从经验驱动，经数据驱动，走向目标驱动。</p>
+      <div class="note-grid evolution-grid">
+        <section class="note-section" aria-labelledby="stages-title">
+          <h3 id="stages-title">四阶段对比</h3>
+          <table class="mode-comparison" aria-label="运维模式四阶段对比">
+            <thead><tr><th scope="col">阶段</th><th scope="col">核心方式</th><th scope="col">作用与边界</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">人工</th><td>凭经验分析与执行。</td><td>效率低，标准化不足，经验难复制。</td></tr>
+              <tr><th scope="row">自动化</th><td>脚本、固定规则与预定流程。</td><td>减少重复操作；复杂诊断与动态场景仍靠人判断。</td></tr>
+              <tr><th scope="row">AIOps</th><td>数据关联、异常检测、预测与根因分析。</td><td>偏重分析识别与辅助决策，仍需人工进一步分析和执行。</td></tr>
+              <tr><th scope="row">AI Agent</th><td>结合知识、实时数据与工具，理解目标、规划并协同执行。</td><td>从辅助决策延伸到发现、研判、处置的闭环，在权限边界内与人协同。</td></tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="note-section" aria-labelledby="practice-title">
+          <h3 id="practice-title">应用与分工</h3>
+          <dl class="note-points">
+            <div><dt>应用</dt><dd>故障分析、风险识别、巡检评估、变更验证。</dd></div>
+            <div><dt>分工</dt><dd>AI 承担重复、规则化与数据密集工作；人聚焦架构优化、风险治理与业务保障。</dd></div>
+          </dl>
+        </section>
       </div>
-      <div class="landing-path" aria-label="建议落地路径">
-        <div><span>阶段一</span><strong>只读观察</strong><small>统一查询、诊断证据、事故复盘</small></div>
-        <div><span>阶段二</span><strong>辅助决策</strong><small>计划生成、人工确认、结果验证</small></div>
-        <div><span>阶段三</span><strong>受限自治</strong><small>标准场景自动执行、异常立即接管</small></div>
+    </article>
+    <article class="reading-note" id="product-definition" aria-labelledby="definition-title">
+      <header class="note-heading">
+        <div>
+          <h2 id="definition-title">产品定义</h2>
+        </div>
+      </header>
+      <p class="note-thesis">面向企业级 IT 基础设施的 AI 原生智能运维系统。</p>
+      <div class="note-grid">
+        <section class="note-section" aria-labelledby="definition-mechanism-title">
+          <h3 id="definition-mechanism-title">场景与机制</h3>
+          <dl class="note-points">
+            <div><dt>场景</dt><dd>大规模分布式系统，贯通网络、系统与应用层。</dd></div>
+            <div><dt>机制</dt><dd>大模型负责推理，Agent 负责执行，人机协作构成安全责任模型。</dd></div>
+          </dl>
+        </section>
+        <section class="note-section" aria-labelledby="definition-action-title">
+          <h3 id="definition-action-title">目标与行动</h3>
+          <dl class="note-points">
+            <div><dt>任务</dt><dd>理解运维目标 → 关联知识 → 规划任务 → 调用专业工具执行。</dd></div>
+            <div><dt>闭环</dt><dd><span class="agent-loop">故障发现 → 根因诊断 → 策略决策 → 闭环处置</span>。</dd></div>
+          </dl>
+        </section>
       </div>
-    </section>
+    </article>
+
+    <article class="reading-note" id="product-positioning" aria-labelledby="positioning-title">
+      <header class="note-heading">
+        <div>
+          <h2 id="positioning-title">产品定位</h2>
+        </div>
+      </header>
+      <p class="note-thesis">企业智能运维体系中的 AI 执行与协同中枢。</p>
+      <div class="note-grid">
+        <section class="note-section" aria-labelledby="positioning-layer-title">
+          <h3 id="positioning-layer-title">体系位置</h3>
+          <dl class="note-points">
+            <div><dt>层次</dt><dd>复用既有监控、日志、CMDB、ITSM、自动化及知识系统，在其上构建智能能力层。</dd></div>
+            <div><dt>服务</dt><dd>连接运行数据、组织知识与运维工具，支持运维、业务与研发人员协同。</dd></div>
+          </dl>
+        </section>
+        <section class="note-section" aria-labelledby="positioning-problems-title">
+          <h3 id="positioning-problems-title">四类核心问题</h3>
+          <dl class="note-points">
+            <div><dt>孤岛</dt><dd>Agent 串联数据、流程与工具，形成信息理解、任务编排和闭环执行链路。</dd></div>
+            <div><dt>专家</dt><dd>结合模型推理、知识增强与拓扑分析，将专家排查与处置经验沉淀为可调用的 Skill。</dd></div>
+            <div><dt>经验</dt><dd>持续积累规范、案例、流程与最佳实践，将个人经验转为组织知识资产。</dd></div>
+            <div><dt>断点</dt><dd>连接原因分析、策略生成、工具调用与执行验证，在权限控制与人工确认下完成处置。</dd></div>
+          </dl>
+        </section>
+      </div>
+    </article>
+
+    <article class="reading-note" id="design-principles" aria-labelledby="design-principles-title">
+      <header class="note-heading">
+        <div>
+          <h2 id="design-principles-title">产品设计理念</h2>
+        </div>
+      </header>
+      <div class="note-grid">
+        <section class="note-section" aria-labelledby="ai-native-title">
+          <h3 id="ai-native-title">AI 原生</h3>
+          <p class="principle-text">以模型与 Agent 为核心，贯穿需求理解、知识利用、任务规划、工具执行与经验沉淀。</p>
+        </section>
+        <section class="note-section" aria-labelledby="open-integration-title">
+          <h3 id="open-integration-title">开放融合</h3>
+          <p class="principle-text">通过标准接口与开放协议接入既有数据源、工具及第三方能力，支持跨平台编排与执行反馈，保护既有 IT 投资。</p>
+        </section>
+        <section class="note-section" aria-labelledby="safe-trusted-title">
+          <h3 id="safe-trusted-title">安全可信</h3>
+          <p class="principle-text">按风险分级：低风险查询与分析自动完成；配置修改、服务启停、批量执行等关键操作经既有审批与人工确认。分析、工具调用、执行与用户操作全程留痕，形成可追溯的审计链。</p>
+        </section>
+        <section class="note-section" aria-labelledby="continuous-growth-title">
+          <h3 id="continuous-growth-title">持续成长</h3>
+          <p class="principle-text">以知识增强与经验记忆持续沉淀故障、规范、流程、最佳实践及可复用技能，让平台能力、组织知识与运维流程共同演进。</p>
+        </section>
+      </div>
+    </article>
+    <article class="reading-note" id="core-capabilities" aria-labelledby="core-capabilities-title">
+      <header class="note-heading">
+        <div>
+          <h2 id="core-capabilities-title">产品核心能力</h2>
+        </div>
+      </header>
+      <div class="note-grid">
+        <section class="note-section" aria-labelledby="intelligent-interaction-title">
+          <h3 id="intelligent-interaction-title">智能交互</h3>
+          <p class="principle-text">自然语言完成查询、分析、巡检、知识检索与任务下发，结构化输出判断依据和处置建议。</p>
+        </section>
+        <section class="note-section" aria-labelledby="intelligent-analysis-title">
+          <h3 id="intelligent-analysis-title">智能分析</h3>
+          <p class="principle-text">自动采集指标、日志与业务数据，结合拓扑、知识和历史经验跨层关联，定位根因与业务影响路径。</p>
+        </section>
+        <section class="note-section" aria-labelledby="proactive-operations-title">
+          <h3 id="proactive-operations-title">主动运维</h3>
+          <p class="principle-text">关联 Prometheus 数据并支持 PromQL 查询，融合实时状态与历史趋势，识别异常模式、预测容量与性能风险并提前预警。</p>
+        </section>
+        <section class="note-section" aria-labelledby="workflow-loop-title">
+          <h3 id="workflow-loop-title">流程闭环</h3>
+          <p class="principle-text">融入既有监控、协同、审批与变更流程，贯通发现、分析、执行和反馈；计划任务记录“何时何地做什么”，技能复用“怎么做”。</p>
+        </section>
+        <section class="note-section" aria-labelledby="controlled-execution-title">
+          <h3 id="controlled-execution-title">自动执行</h3>
+          <p class="principle-text">支持定时与告警触发，受控执行远程、批量任务，管理超时、目标范围与反馈；按风险和权限自动执行、审批后执行或仅输出计划，全程留痕。</p>
+        </section>
+        <section class="note-section" aria-labelledby="mobile-operations-title">
+          <h3 id="mobile-operations-title">移动化运维</h3>
+          <p class="principle-text">通过钉钉等移动入口接收告警、报告与审批消息，完成状态查询、故障分析、任务确认和指令下发。</p>
+        </section>
+      </div>
+    </article>
+    <article class="reading-note" id="ai-native-technology" aria-labelledby="ai-native-technology-title">
+      <header class="note-heading">
+        <div>
+          <h2 id="ai-native-technology-title">AI 原生核心技术能力</h2>
+        </div>
+      </header>
+      <table class="technology-table" role="table" aria-labelledby="ai-native-technology-title">
+        <colgroup><col class="technology-module-col"><col class="technology-purpose-col"><col></colgroup>
+        <thead role="rowgroup">
+          <tr role="row">
+            <th scope="col" role="columnheader" id="technology-module-column">技术模块</th>
+            <th scope="col" role="columnheader" id="technology-purpose-column">核心作用</th>
+            <th scope="col" role="columnheader" id="technology-mechanisms-column">关键机制</th>
+          </tr>
+        </thead>
+        <tbody role="rowgroup">
+          <tr role="row" id="opar-framework">
+            <th scope="row" role="rowheader" id="opar-title">OPAR 运行框架</th>
+            <td role="cell" headers="opar-title technology-purpose-column"><span class="technology-cell-label" aria-hidden="true">核心作用</span>组织智能体持续运行的闭环。</td>
+            <td class="technology-mechanisms" role="cell" headers="opar-title technology-mechanisms-column">
+              <span class="technology-cell-label" aria-hidden="true">关键机制</span>
+              <p><strong id="opar-observe-title">Observe · 感知</strong>：融合访问、服务、指标与日志，识别环境变化和异常趋势。</p>
+              <p><strong id="opar-plan-title">Plan · 规划</strong>：结合状态、知识、历史经验与依赖，提出假设，按优先级规划诊断路径和策略。</p>
+              <p><strong id="opar-act-title">Act · 执行</strong>：调用技能、命令行、REST API 与流程，将分析落实为受控行动。</p>
+              <p><strong id="opar-reflect-title">Reflect · 反馈</strong>：复盘结果、处置过程及用户反馈，将有效路径和经验沉淀到知识与记忆，进入下一轮闭环。</p>
+            </td>
+          </tr>
+          <tr role="row" id="model-orchestration">
+            <th scope="row" role="rowheader" id="model-orchestration-title">模型编排</th>
+            <td role="cell" headers="model-orchestration-title technology-purpose-column"><span class="technology-cell-label" aria-hidden="true">核心作用</span>按任务匹配能力，平衡效果、成本与响应效率。</td>
+            <td class="technology-mechanisms" role="cell" headers="model-orchestration-title technology-mechanisms-column">
+              <span class="technology-cell-label" aria-hidden="true">关键机制</span>
+              <p><strong id="model-compatibility-title">多模型</strong>：兼容 OpenAI、Anthropic API 标准及国产模型，按业务、部署与安全要求选型。</p>
+              <p><strong id="tool-registration-title">工具注册</strong>：明确用途、输入、风险与边界，按任务分发；系统提示规范探索、规划和执行顺序。</p>
+              <p><strong id="intelligent-orchestration-title">任务编排</strong>：复杂问题采用多轮推理与多工具协同，标准任务复用技能。</p>
+            </td>
+          </tr>
+          <tr role="row" id="knowledge-memory">
+            <th scope="row" role="rowheader" id="knowledge-memory-title">知识与经验</th>
+            <td role="cell" headers="knowledge-memory-title technology-purpose-column"><span class="technology-cell-label" aria-hidden="true">核心作用</span>理解组织环境，复用历史处置经验。</td>
+            <td class="technology-mechanisms" role="cell" headers="knowledge-memory-title technology-mechanisms-column">
+              <span class="technology-cell-label" aria-hidden="true">关键机制</span>
+              <p><strong id="rag-knowledge-title">RAG</strong>：检索组织文档、设备手册与规范，提供上下文，支持命令理解、配置核对、语法匹配与处置建议。</p>
+              <p><strong id="host-memory-title">Memory</strong>：按主机沉淀故障案例、分析路径、方案与最佳实践，供后续诊断复用。</p>
+            </td>
+          </tr>
+          <tr role="row" id="skills-tools">
+            <th scope="row" role="rowheader" id="skills-tools-title">技能与工具</th>
+            <td role="cell" headers="skills-tools-title technology-purpose-column"><span class="technology-cell-label" aria-hidden="true">核心作用</span>技能封装方法，工具提供实际操作手段。</td>
+            <td class="technology-mechanisms" role="cell" headers="skills-tools-title technology-mechanisms-column">
+              <span class="technology-cell-label" aria-hidden="true">关键机制</span>
+              <p><strong id="skill-library-title">Skill</strong>：内置巡检、部署与日志分析等技能，将 SOP、脚本、流程和专家经验封装为可复用、可共享的方法。</p>
+              <p><strong id="tool-calling-title">Tool Calling</strong>：统一查询、远程与批量命令、文件传输和 REST API 调用；区分只读与有副作用工具，管理条件、参数及结果。</p>
+              <p><strong id="tool-integration-title">接入扩展</strong>：结合标准接口与设备文档理解，减少新增设备和系统的专用插件开发与重复适配。</p>
+            </td>
+          </tr>
+          <tr role="row" id="topology-reasoning">
+            <th scope="row" role="rowheader" id="topology-reasoning-title">拓扑推理</th>
+            <td role="cell" headers="topology-reasoning-title technology-purpose-column"><span class="technology-cell-label" aria-hidden="true">核心作用</span>判断业务影响，辅助定位根因。</td>
+            <td class="technology-mechanisms" role="cell" headers="topology-reasoning-title technology-mechanisms-column">
+              <span class="technology-cell-label" aria-hidden="true">关键机制</span>
+              <p><strong id="topology-model-title">关系建模</strong>：统一网络、应用拓扑与业务依赖，识别节点层级、角色、上下游邻接关系与根节点路径。</p>
+              <p><strong id="dependency-impact-title">路径分析</strong>：结合运行数据沿依赖链判断影响，缩小排查范围，定位关键节点。</p>
+            </td>
+          </tr>
+          <tr role="row" id="workflow-hitl">
+            <th scope="row" role="rowheader" id="workflow-hitl-title">流程与协同</th>
+            <td role="cell" headers="workflow-hitl-title technology-purpose-column"><span class="technology-cell-label" aria-hidden="true">核心作用</span>管控执行，衔接既有审批与长期调度。</td>
+            <td class="technology-mechanisms" role="cell" headers="workflow-hitl-title technology-mechanisms-column">
+              <span class="technology-cell-label" aria-hidden="true">关键机制</span>
+              <p><strong id="hitl-visibility-title">HITL</strong>：AI 承担标准任务，关键环节由人判断；展示工具、目标、状态及待确认节点，涉及业务影响或配置变更时按策略确认。</p>
+              <p><strong id="operation-risk-title">风险分级</strong>：L1 只读、L2 可逆、L3 难以逆转、L4 不可逆。</p>
+              <p><strong id="permission-modes-title">权限模式</strong>：默认询问、自动执行、只出计划、只读。</p>
+              <p><strong id="workflow-scheduling-title">流程调度</strong>：对接审批与流转，将运维动作沉淀为计划任务，调度触发后通过协同通道通知结果。</p>
+            </td>
+          </tr>
+          <tr role="row" id="enterprise-governance">
+            <th scope="row" role="rowheader" id="enterprise-governance-title">运营治理</th>
+            <td role="cell" headers="enterprise-governance-title technology-purpose-column"><span class="technology-cell-label" aria-hidden="true">核心作用</span>管理用量、安全边界与审计追溯。</td>
+            <td class="technology-mechanisms" role="cell" headers="enterprise-governance-title technology-mechanisms-column">
+              <span class="technology-cell-label" aria-hidden="true">关键机制</span>
+              <p><strong id="usage-cost-title">用量成本</strong>：按用户、团队、任务与模型统计调用和资源消耗，管理 Token 用量、配额及异常消耗。</p>
+              <p><strong id="identity-access-title">访问权限</strong>：按角色、资源与 API Token 管理设备、系统及执行能力的访问边界。</p>
+              <p><strong id="credential-protection-title">凭据保护</strong>：密码、SSH 私钥与密钥口令以 AES-256-GCM 落盘加密，不直接暴露给模型，执行时受控调用。</p>
+              <p><strong id="operation-audit-title">全程审计</strong>：记录用户交互、分析、执行和结果，支持追溯与责任界定。</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </article>
   </main>
 
-  <footer class="page-shell site-footer">
-    <p>内容归纳自公司内部产品白皮书；专业问题与产品设想为独立分析。</p>
-  </footer>
   <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
 </body>
 </html>

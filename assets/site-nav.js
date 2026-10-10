@@ -10,6 +10,7 @@
   const currentFile = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';
   const aiDetailPages = [
     'ai-model-comparison.html', 'agent.html', 'ai-knowledge-base.html', 'ops-agent.html',
+    'ops-agent-backup-2026-10-09.html',
     'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html',
   ];
   const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html' : currentFile;

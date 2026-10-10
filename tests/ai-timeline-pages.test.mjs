@@ -135,7 +135,7 @@ test('year options follow new records and an empty timeline remains readable', (
 });
 
 test('AI topic navigation selects AI and sends the site brand to the AI directory', async () => {
-  for (const name of [...pages.map(page => page.name), 'ai-model-comparison.html', 'agent.html', 'ai-knowledge-base.html', 'ops-agent.html', 'ai-user-scale.html', 'ai-company-value.html', 'ai.html', 'index.html']) {
+  for (const name of [...pages.map(page => page.name), 'ai-model-comparison.html', 'agent.html', 'ai-knowledge-base.html', 'ops-agent.html', 'ops-agent-backup-2026-10-09.html', 'ai-user-scale.html', 'ai-company-value.html', 'ai.html', 'index.html']) {
     const host = { replaceChildren(fragment) { this.links = fragment.children; } };
     const wordmark = { replaceChildren(link) { this.link = link; } };
     const backTop = { setAttribute() {}, classList: { add() {}, toggle() {} } };
