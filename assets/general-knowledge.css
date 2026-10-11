@@ -1,0 +1,35 @@
+/* Collected fragments on a warm tea-brown theme within the shared site shell. */
+.gk-page {
+  --gk-bg: #f7f3ec;
+  --gk-paper: #fffdf7;
+  --gk-ink: #3b3226;
+  --gk-muted: #7c6d55;
+  --gk-accent: #8a5a1e;
+  --gk-line: #e6dcc8;
+  background: var(--gk-bg);
+  color: var(--gk-ink);
+}
+
+.gk-page .skip-link{position:fixed;left:16px;top:-60px;z-index:100;background:var(--gk-ink);color:var(--gk-paper);padding:10px 14px;border-radius:6px;text-decoration:none}
+.gk-page .skip-link:focus{top:12px}
+
+.gk-main{padding-block:22px 10px}
+.gk-hero{display:flex;align-items:baseline;gap:20px;margin-bottom:16px}
+.gk-hero h1{margin:0;color:var(--gk-accent);font:750 28px/1.3 var(--display);letter-spacing:-.035em}
+.gk-hero p{margin:0;color:var(--gk-muted);font-size:12px}
+
+.gk-index{display:flex;flex-wrap:wrap;gap:8px}
+.gk-index a{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px solid var(--gk-line);border-radius:9px;background:var(--gk-paper);color:var(--gk-ink);font-size:13px;font-weight:600;line-height:1.4;text-decoration:none;transition:border-color .16s ease,color .16s ease}
+.gk-index a:hover{border-color:var(--gk-accent);color:var(--gk-accent)}
+.gk-index svg{flex:0 0 16px;width:16px;height:14px;color:var(--gk-accent)}
+
+@media(max-width:600px){
+  .gk-main{padding-top:18px}
+  .gk-hero{align-items:flex-start;flex-direction:column;gap:5px;margin-bottom:14px}
+  .gk-hero h1{font-size:26px}
+}
+@media print{
+  .gk-page{background:var(--gk-paper)}
+  .gk-page .skip-link{display:none}
+  .gk-main{padding:0}
+}

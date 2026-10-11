@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="思考：待学习的第一性原理、向上管理等主题。">
+  <meta name="description" content="思考：认同的话与待学习的第一性原理、向上管理等主题。">
   <title>思考｜知行簿</title>
   <link rel="icon" href="assets/site-mark.svg">
   <link rel="stylesheet" href="assets/site-nav.css">
@@ -20,6 +20,7 @@
         <a href="ai.html">AI</a>
         <a href="market-memo.html">随笔</a>
         <a href="thoughts.html" aria-current="page">思考</a>
+        <a href="general-knowledge.html">拾零</a>
         <a href="life.html">生活</a>
         <a href="ai-learning-index.html">收藏</a>
       </nav>
@@ -28,10 +29,24 @@
 
   <main class="thoughts-main page-shell" id="main">
     <h1>思考</h1>
-    <ul class="thoughts-list" aria-label="思考主题">
-      <li><h2>第一性原理</h2><span class="thoughts-status">待学习</span></li>
-      <li><h2>向上管理</h2><span class="thoughts-status">待学习</span></li>
-    </ul>
+    <div class="thoughts-sections">
+      <section aria-labelledby="quotes-heading">
+        <h2 id="quotes-heading">认同的话</h2>
+        <ul class="quotes-list" aria-label="认同的话">
+          <li>
+            <blockquote>以大多数人的努力程度之低，根本轮不到拼天赋。</blockquote>
+            <p class="quote-meta">—— 网络佚名 · <time datetime="2026-10-11">2026-10-11</time></p>
+          </li>
+        </ul>
+      </section>
+      <section aria-labelledby="topics-heading">
+        <h2 id="topics-heading">待学习主题</h2>
+        <ul class="thoughts-list" aria-label="思考主题">
+          <li><h3>第一性原理</h3><span class="thoughts-status">待学习</span></li>
+          <li><h3>向上管理</h3><span class="thoughts-status">待学习</span></li>
+        </ul>
+      </section>
+    </div>
   </main>
 
   <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>

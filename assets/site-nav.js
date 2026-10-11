@@ -4,6 +4,7 @@
     { href: 'ai.html', label: 'AI' },
     { href: 'market-memo.html', label: '随笔' },
     { href: 'thoughts.html', label: '思考' },
+    { href: 'general-knowledge.html', label: '拾零' },
     { href: 'life.html', label: '生活' },
     { href: 'ai-learning-index.html', label: '收藏' },
   ];
@@ -13,7 +14,10 @@
     'ops-agent-backup-2026-10-09.html',
     'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html',
   ];
-  const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html' : currentFile;
+  const gkDetailPages = ['gk-countries.html', 'china-regions.html'];
+  const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html'
+    : gkDetailPages.includes(currentFile) ? 'general-knowledge.html'
+    : currentFile;
 
   const wordmark = document.querySelector('.site-wordmark');
   if (wordmark) {

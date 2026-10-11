@@ -146,7 +146,7 @@ test('AI topic navigation selects AI and sends the site brand to the AI director
     };
     vm.runInNewContext(navScript, { document, location: { pathname: `/site/${name}` }, window: { scrollY: 0, addEventListener() {} } });
     assert.equal(host.links.find(link => link.attrs['aria-current'] === 'page').href, 'ai.html');
-    assert.deepEqual(host.links.map(link => link.href), ['ai.html', 'market-memo.html', 'thoughts.html', 'life.html', 'ai-learning-index.html']);
+    assert.deepEqual(host.links.map(link => link.href), ['ai.html', 'market-memo.html', 'thoughts.html', 'general-knowledge.html', 'life.html', 'ai-learning-index.html']);
     assert.equal(wordmark.link.href, 'ai.html');
   }
   const index = await readFile(new URL('index.html', root), 'utf8');
