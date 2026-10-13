@@ -1,4 +1,4 @@
-/* Country reference: dense single table with search, region filter and sorting. */
+/* Country reference: searchable country table and independent global top-ten lists. */
 const COUNTRIES = [
   {"n":"印度","e":"India","c":"IN","cap":"新德里","r":"亚洲","a":3287590,"p":1450935791,"g":3760813470500.86,"mr":4,"mi":0.12},
   {"n":"中国","e":"China","c":"CN","cap":"北京","r":"亚洲","a":9706961,"p":1408975000,"g":18729668435848,"mr":3,"mi":0.08},
@@ -199,9 +199,13 @@ const COUNTRIES = [
 
 (() => {
   const state = { query: '', region: '全部', sortKey: 'p', sortDir: 'desc' };
-  const defaultDir = { n: 'asc', m: 'asc', a: 'desc', p: 'desc', g: 'desc' };
+  const defaultDir = { n: 'asc', a: 'desc', p: 'desc' };
 
   const tbody = document.getElementById('country-rows');
+  const tableWrap = document.querySelector('.gkc-table-wrap');
+  const tableHead = document.querySelector('.gkc-table thead');
+  const tableHint = document.getElementById('country-table-hint');
+  const emptyEl = document.getElementById('country-empty');
   const countEl = document.getElementById('country-count');
   const sumEl = document.getElementById('population-sum');
   const search = document.getElementById('country-search');
@@ -209,17 +213,62 @@ const COUNTRIES = [
   const heads = [...document.querySelectorAll('[data-sort]')];
 
   const fmtInt = value => value.toLocaleString('en-US');
+  const fmtArea = area => area >= 1e4
+    ? (area / 1e4).toLocaleString('zh-CN', { maximumFractionDigits: 2, useGrouping: false }) + ' 万'
+    : fmtInt(area);
   const fmtPop = p => p >= 1e8 ? (p / 1e8).toFixed(2) + ' 亿'
     : p >= 1e4 ? fmtInt(Math.round(p / 1e4)) + ' 万'
     : fmtInt(p);
-  const fmtGdp = g => g >= 1e12 ? (g / 1e12).toFixed(2) + ' 万亿'
-    : g >= 1e10 ? fmtInt(Math.round(g / 1e8)) + ' 亿'
-    : g >= 1e8 ? (g / 1e8).toFixed(1) + ' 亿'
-    : Math.round(g / 1e6) + ' 百万';
+  const flag = (row, width = 28, height = 20) =>
+    `<img class="gkc-flag" src="https://flagcdn.com/w80/${row.c.toLowerCase()}.png" alt="" loading="lazy" decoding="async" width="${width}" height="${height}">`;
 
-  const gdpRank = new Map(
-    COUNTRIES.filter(row => row.g != null).sort((x, y) => y.g - x.g).map((row, index) => [row.c, index + 1]));
-  const sortValue = (row, key) => key === 'm' ? (row.mr ?? Infinity) : key === 'g' ? (row.g ?? -Infinity) : row[key];
+  function renderCharts() {
+    const fillChart = (id, key, divisor, maxId, unit) => {
+      const rows = [...COUNTRIES].sort((x, y) => y[key] - x[key]).slice(0, 10);
+      const maximum = rows[0][key];
+      document.getElementById(id).replaceChildren(...rows.map((row, index) => {
+        const li = document.createElement('li');
+        const value = (row[key] / divisor).toLocaleString('zh-CN', { maximumFractionDigits: 2, useGrouping: false });
+        const width = (row[key] / maximum * 100).toFixed(3);
+        const label = `${row.n}，第 ${index + 1} 名，${value} ${unit}`;
+        li.setAttribute('aria-label', label);
+        li.title = `${row.n}：${fmtInt(row[key])} ${key === 'a' ? '平方公里' : '人'}`;
+        li.innerHTML = `<span class="gkc-rank-number">${index + 1}</span>` +
+          `<span class="gkc-chart-country">${row.n}</span>` +
+          `<span class="gkc-chart-track" aria-hidden="true"><span class="gkc-chart-bar" style="width:${width}%"></span></span>` +
+          `<span class="gkc-chart-value">${value}</span>`;
+        return li;
+      }));
+      document.getElementById(maxId).textContent = (maximum / divisor).toLocaleString('zh-CN', { maximumFractionDigits: 2, useGrouping: false });
+    };
+    fillChart('area-top-ten', 'a', 1e4, 'area-chart-max', '万平方公里');
+    fillChart('population-top-ten', 'p', 1e8, 'population-chart-max', '亿人');
+  }
+
+  function renderRankings() {
+    const military = COUNTRIES.filter(row => row.mr != null).sort((x, y) => x.mr - y.mr).slice(0, 10);
+    const gdp = COUNTRIES.filter(row => row.g != null).sort((x, y) => y.g - x.g).slice(0, 10);
+    const fillList = (id, rows, militaryList) => {
+      document.getElementById(id).replaceChildren(...rows.map((row, index) => {
+        const li = document.createElement('li');
+        const value = militaryList ? row.mi.toFixed(2) : (row.g / 1e12).toFixed(2);
+        const label = militaryList ? `军力指数 ${value}` : `GDP ${value} 万亿美元`;
+        if (index < 3) li.className = 'gkc-rank-top';
+        li.innerHTML = `<span class="gkc-rank-number">${index + 1}</span>` + flag(row, 24, 17) +
+          `<span class="gkc-rank-country">${row.n}</span><span class="gkc-rank-value" aria-label="${label}">${value}</span>`;
+        return li;
+      }));
+    };
+    fillList('military-top-ten', military, true);
+    fillList('gdp-top-ten', gdp, false);
+  }
+
+  function syncTableOverflow() {
+    tableWrap.style.setProperty('--gkc-table-header-height', `${tableHead.getBoundingClientRect().height}px`);
+    const overflowing = !tableWrap.hidden && tableWrap.scrollWidth > tableWrap.clientWidth;
+    tableHint.hidden = !overflowing;
+    tableWrap.classList.toggle('has-overflow', overflowing);
+  }
 
   function visible() {
     const q = state.query.trim().toLowerCase();
@@ -227,11 +276,10 @@ const COUNTRIES = [
       .filter(row => (state.region === '全部' || row.r === state.region)
         && (!q || [row.n, row.e, row.c, row.cap].some(t => t.toLowerCase().includes(q))))
       .sort((x, y) => {
-        const vx = sortValue(x, state.sortKey), vy = sortValue(y, state.sortKey);
-        const xNull = !isFinite(vx), yNull = !isFinite(vy);
-        if (xNull || yNull) return xNull && yNull ? 0 : xNull ? 1 : -1;
-        if (vx === vy) return 0;
-        return (vx < vy ? -1 : 1) * (state.sortDir === 'asc' ? 1 : -1);
+        const order = state.sortKey === 'n'
+          ? x.n.localeCompare(y.n, 'zh-CN')
+          : x[state.sortKey] - y[state.sortKey];
+        return order * (state.sortDir === 'asc' ? 1 : -1);
       });
   }
 
@@ -240,31 +288,39 @@ const COUNTRIES = [
     tbody.replaceChildren(...rows.map(row => {
       const tr = document.createElement('tr');
       tr.innerHTML =
-        `<td class="flag-cell"><img src="https://flagcdn.com/w40/${row.c.toLowerCase()}.png" alt="" loading="lazy" decoding="async" width="29" height="20"></td>` +
-        `<th scope="row"><span class="cn">${row.n}</span><span class="en">${row.e}</span></th>` +
-        `<td class="code-cell">${row.c}</td>` +
+        `<th scope="row" class="country-cell"><div class="gkc-country">${flag(row)}` +
+        `<div class="gkc-country-copy"><span class="cn">${row.n}</span>` +
+        `<span class="gkc-country-sub"><span class="en" title="${row.e}">${row.e}</span><span class="gkc-code">${row.c}</span></span></div></div></th>` +
         `<td>${row.cap}</td>` +
         `<td class="region-cell">${row.r}</td>` +
-        `<td class="num">${fmtInt(row.a)}</td>` +
-        `<td class="num" title="${fmtInt(row.p)}">${fmtPop(row.p)}</td>` +
-        `<td class="num">${row.mr ? `#${row.mr} · ${row.mi.toFixed(2)}` : '—'}</td>` +
-        `<td class="num">${row.g == null ? '—' : `#${gdpRank.get(row.c)} ${fmtGdp(row.g)}`}</td>`;
+        `<td class="num" title="${fmtInt(row.a)} 平方公里">${fmtArea(row.a)}</td>` +
+        `<td class="num" title="${fmtInt(row.p)} 人">${fmtPop(row.p)}</td>`;
       return tr;
     }));
-    countEl.textContent = `显示 ${rows.length} / ${COUNTRIES.length} 国`;
-    sumEl.textContent = `合计人口 ${fmtPop(rows.reduce((sum, row) => sum + row.p, 0))}`;
+    countEl.innerHTML = `显示 <strong>${rows.length}</strong> / ${COUNTRIES.length} 国`;
+    sumEl.innerHTML = `合计人口 <strong>${fmtPop(rows.reduce((sum, row) => sum + row.p, 0))}</strong>`;
+    tableWrap.hidden = rows.length === 0;
+    emptyEl.hidden = rows.length !== 0;
+    chips.forEach(chip => {
+      const active = chip.dataset.region === state.region;
+      chip.classList.toggle('is-active', active);
+      chip.setAttribute('aria-pressed', String(active));
+    });
     heads.forEach(head => {
       const active = head.dataset.sort === state.sortKey;
       head.classList.toggle('is-sorted', active);
-      head.dataset.dir = active ? state.sortDir : '';
       head.setAttribute('aria-sort', active ? (state.sortDir === 'asc' ? 'ascending' : 'descending') : 'none');
+      head.querySelector('.gkc-sort-icon').textContent = active ? (state.sortDir === 'asc' ? '↑' : '↓') : '↕';
+      const nextDir = active ? (state.sortDir === 'asc' ? 'desc' : 'asc') : defaultDir[head.dataset.sort];
+      const name = { n: '国家名称', a: '面积', p: '人口' }[head.dataset.sort];
+      head.querySelector('button').setAttribute('aria-label', `按${name}${nextDir === 'asc' ? '升序' : '降序'}排列`);
     });
+    syncTableOverflow();
   }
 
   search.addEventListener('input', () => { state.query = search.value; render(); });
   chips.forEach(chip => chip.addEventListener('click', () => {
     state.region = chip.dataset.region;
-    chips.forEach(c => c.classList.toggle('is-active', c === chip));
     render();
   }));
   heads.forEach(head => head.addEventListener('click', () => {
@@ -277,5 +333,16 @@ const COUNTRIES = [
     render();
   }));
 
+  document.getElementById('country-reset').addEventListener('click', () => {
+    state.query = '';
+    state.region = '全部';
+    search.value = '';
+    render();
+    search.focus();
+  });
+
+  new ResizeObserver(syncTableOverflow).observe(tableWrap);
+  renderCharts();
+  renderRankings();
   render();
 })();

@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="全球国家概览：195 国的国旗、首都、所在洲、面积、人口、军力指数与 GDP 速查。">
+  <meta name="description" content="全球国家概览：195 国的国旗、首都、所在洲、面积与人口速查，附面积、人口前十图表与军力、GDP 前十榜单。">
   <title>全球国家概览｜知行簿</title>
   <link rel="icon" href="assets/site-mark.svg">
   <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/general-knowledge.css">
   <link rel="stylesheet" href="assets/gk-countries.css">
   <script src="assets/site-nav.js" defer></script>
   <script src="assets/gk-countries.js" defer></script>
@@ -32,48 +33,90 @@
     <header class="gkc-hero">
       <div class="gkc-title">
         <h1>全球国家概览</h1>
-        <p>拾零 · 195 国速查 <span class="gkc-stamp">资料快照 2026-10</span></p>
       </div>
-      <label class="gkc-search">
-        <span class="visually-hidden">搜索国家、首都或代码</span>
-        <input id="country-search" type="search" placeholder="搜索：国家 / 首都 / 代码" autocomplete="off">
-      </label>
+      <div class="gkc-toolbar">
+        <label class="gkc-search">
+          <span class="visually-hidden">搜索国家、首都或代码</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg>
+          <input id="country-search" type="search" placeholder="搜索国家、首都或代码" autocomplete="off">
+        </label>
+        <nav class="gkc-filters" aria-label="按所在洲筛选">
+          <button type="button" class="is-active" data-region="全部" aria-pressed="true">全部</button>
+          <button type="button" data-region="亚洲" aria-pressed="false">亚洲</button>
+          <button type="button" data-region="欧洲" aria-pressed="false">欧洲</button>
+          <button type="button" data-region="非洲" aria-pressed="false">非洲</button>
+          <button type="button" data-region="北美洲" aria-pressed="false">北美洲</button>
+          <button type="button" data-region="南美洲" aria-pressed="false">南美洲</button>
+          <button type="button" data-region="大洋洲" aria-pressed="false">大洋洲</button>
+        </nav>
+        <div class="gkc-stats" role="status" aria-live="polite" aria-atomic="true"><span id="country-count">显示 195 / 195 国</span><span id="population-sum"></span></div>
+      </div>
     </header>
 
-    <nav class="gkc-filters" aria-label="按所在洲筛选">
-      <button type="button" class="is-active" data-region="全部">全部</button>
-      <button type="button" data-region="亚洲">亚洲</button>
-      <button type="button" data-region="欧洲">欧洲</button>
-      <button type="button" data-region="非洲">非洲</button>
-      <button type="button" data-region="北美洲">北美洲</button>
-      <button type="button" data-region="南美洲">南美洲</button>
-      <button type="button" data-region="大洋洲">大洋洲</button>
-      <span class="gkc-stats"><span id="country-count">显示 195 / 195 国</span><span id="population-sum"></span></span>
-    </nav>
+    <div class="gkc-layout">
+      <section class="gkc-reference" aria-label="国家资料速查">
+        <p class="gk-table-hint" id="country-table-hint" hidden>左右滑动查看，国家名称保持可见。</p>
+        <div class="gkc-table-wrap" tabindex="0" role="region" aria-label="国家资料表格" aria-describedby="country-table-hint">
+          <table class="gkc-table">
+            <caption class="visually-hidden">全球 195 个国家的国旗、中英文名、代码、首都、所在洲、面积与人口。</caption>
+            <colgroup>
+              <col class="gkc-col-country">
+              <col class="gkc-col-capital">
+              <col class="gkc-col-region">
+              <col>
+              <col class="gkc-col-population">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col" data-sort="n" class="country-cell sortable"><button type="button">国家 <span class="gkc-sort-icon" aria-hidden="true">↕</span></button></th>
+                <th scope="col">首都</th>
+                <th scope="col">所在洲</th>
+                <th scope="col" data-sort="a" class="sortable num"><button type="button">面积 <span class="gkc-sort-icon" aria-hidden="true">↕</span></button><span class="gkc-column-unit">km²</span></th>
+                <th scope="col" data-sort="p" class="sortable num"><button type="button">人口 <span class="gkc-sort-icon" aria-hidden="true">↓</span></button><span class="gkc-column-unit">2024</span></th>
+              </tr>
+            </thead>
+            <tbody id="country-rows"></tbody>
+          </table>
+        </div>
+        <div class="gkc-empty" id="country-empty" hidden>
+          <p>没有找到匹配的国家</p>
+          <span>试试其他国家名、首都或代码，也可以清除当前筛选。</span>
+          <button type="button" id="country-reset">清除筛选</button>
+        </div>
+      </section>
 
-    <div class="gkc-table-wrap">
-      <table class="gkc-table">
-        <caption class="visually-hidden">全球 195 个国家的国旗、首都、所在洲、面积、人口、军力指数与 GDP。</caption>
-        <thead>
-          <tr>
-            <th scope="col" class="flag-cell">国旗</th>
-            <th scope="col" data-sort="n" class="sortable">国家</th>
-            <th scope="col">代码</th>
-            <th scope="col">首都</th>
-            <th scope="col">所在洲</th>
-            <th scope="col" data-sort="a" class="sortable num">面积 km²</th>
-            <th scope="col" data-sort="p" class="sortable num">人口</th>
-            <th scope="col" data-sort="m" class="sortable num">军力指数</th>
-            <th scope="col" data-sort="g" class="sortable num">GDP</th>
-          </tr>
-        </thead>
-        <tbody id="country-rows"></tbody>
-      </table>
+      <aside class="gkc-insights" aria-label="全球前十概览">
+        <section class="gkc-charts" aria-label="面积与人口前十图表">
+          <figure class="gkc-ranking gkc-chart gkc-chart-area" aria-labelledby="area-chart-title">
+            <figcaption class="gkc-ranking-heading"><h2 id="area-chart-title">面积前十</h2><span class="gkc-ranking-year">总面积</span></figcaption>
+            <p class="gkc-ranking-source">单位：万平方公里</p>
+            <ol class="gkc-chart-list" id="area-top-ten" role="list"></ol>
+            <div class="gkc-chart-axis" aria-hidden="true"><span>0</span><span id="area-chart-max"></span></div>
+          </figure>
+          <figure class="gkc-ranking gkc-chart gkc-chart-population" aria-labelledby="population-chart-title">
+            <figcaption class="gkc-ranking-heading"><h2 id="population-chart-title">人口前十</h2><span class="gkc-ranking-year">2024 年</span></figcaption>
+            <p class="gkc-ranking-source">单位：亿人 · 世界银行</p>
+            <ol class="gkc-chart-list" id="population-top-ten" role="list"></ol>
+            <div class="gkc-chart-axis" aria-hidden="true"><span>0</span><span id="population-chart-max"></span></div>
+          </figure>
+        </section>
+        <section class="gkc-rankings" aria-label="全球军力与 GDP 前十国家">
+          <article class="gkc-ranking" aria-labelledby="military-title">
+            <header class="gkc-ranking-heading"><h2 id="military-title">军力前十</h2><span class="gkc-ranking-year">2026 年</span></header>
+            <p class="gkc-ranking-source">Global Firepower · 指数越低，军力越强</p>
+            <div class="gkc-ranking-labels" aria-hidden="true"><span>国家</span><span>军力指数</span></div>
+            <ol class="gkc-ranking-list" id="military-top-ten" role="list"></ol>
+          </article>
+          <article class="gkc-ranking" aria-labelledby="gdp-title">
+            <header class="gkc-ranking-heading"><h2 id="gdp-title">GDP 前十</h2><span class="gkc-ranking-year">2024 年</span></header>
+            <p class="gkc-ranking-source">世界银行 · 现价美元</p>
+            <div class="gkc-ranking-labels" aria-hidden="true"><span>国家</span><span>万亿美元</span></div>
+            <ol class="gkc-ranking-list" id="gdp-top-ten" role="list"></ol>
+          </article>
+        </section>
+      </aside>
     </div>
 
-    <footer class="gkc-note">
-      <p>口径：193 个联合国会员国，另含梵蒂冈、巴勒斯坦 2 个观察员国。人口为世界银行 2024 年估计（梵蒂冈约 800 人，为通行估计值）；面积为总面积口径；首都取行政或首选首都，多首都国家（南非、玻利维亚等）取首个。军力指数为 Global Firepower 2026 排名与分数（分数越低越强，本表列示前 50 名，其余国家未列示）。GDP 为世界银行 2024 年现价美元，数据缺口国（朝鲜、古巴、叙利亚等）记 —。</p>
-    </footer>
   </main>
 
   <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
