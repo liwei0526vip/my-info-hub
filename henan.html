@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="河南省城市速查：17 个省辖市及济源的下辖区县、人口、面积和 GDP，支持排序与逐市展开区县，附三项指标 TOP5 图表。">
+  <title>河南省城市｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/general-knowledge.css">
+  <link rel="stylesheet" href="assets/china-regions.css">
+  <link rel="stylesheet" href="assets/province-cities.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/province-cities.js" defer></script>
+</head>
+<body id="top" class="gk-page cr-page pc-page">
+  <a class="skip-link" href="#main">跳到河南省城市正文</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">知行簿</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai.html">AI</a>
+        <a href="market-memo.html">随笔</a>
+        <a href="thoughts.html">思考</a>
+        <a href="general-knowledge.html" aria-current="page">拾零</a>
+        <a href="life.html">生活</a>
+        <a href="ai-learning-index.html">收藏</a>
+        <a href="learning.html">学习</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cr-main pc-main page-shell" id="main">
+    <header class="cr-hero pc-hero">
+      <h1 id="province-cities-heading">河南省城市 <span class="pc-abbr" title="河南省简称">豫</span></h1>
+      <span class="cr-count" id="province-cities-count">18 个城市</span>
+    </header>
+
+    <div class="pc-layout">
+      <section class="pc-reference" aria-labelledby="province-cities-heading">
+        <p class="gk-table-hint" id="province-cities-table-hint" hidden>左右滑动查看，城市名称保持可见。</p>
+        <div class="cr-table-wrap pc-table-wrap" tabindex="0" role="region" aria-label="河南城市区县与指标表格" aria-describedby="province-cities-table-hint">
+          <table class="cr-table pc-table" id="province-cities-table">
+            <caption class="visually-hidden">河南 17 个省辖市及济源的下辖区县、2020 年七普人口、面积与 2024 年 GDP；点击城市行展开完整区县名单。</caption>
+            <colgroup>
+              <col class="pc-col-name"><col class="pc-col-divisions"><col class="pc-col-pop"><col class="pc-col-area"><col class="pc-col-gdp">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col" data-sort="n" class="is-sortable"><button type="button">城市 <span class="cr-sort-icon" aria-hidden="true">↕</span></button></th>
+                <th scope="col">下辖区县 <span class="cr-unit">数量</span></th>
+                <th scope="col" data-sort="pop" class="is-sortable is-numeric"><button type="button">人口 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万人 · 2020 七普</span></th>
+                <th scope="col" data-sort="area" class="is-sortable is-numeric"><button type="button">面积 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万平方公里</span></th>
+                <th scope="col" data-sort="gdp" class="is-sortable is-numeric"><button type="button">GDP <span class="cr-sort-icon" aria-hidden="true">↓</span></button><span class="cr-unit">亿元 · 2024</span></th>
+              </tr>
+            </thead>
+            <tbody id="province-cities-rows"></tbody>
+          </table>
+        </div>
+        <p class="pc-table-note">点击城市行展开完整区县名单；悬停数值查看原始精度。</p>
+      </section>
+      <aside class="pc-rankings" id="province-cities-rankings" aria-label="河南城市人口、面积与 GDP TOP5 图表"></aside>
+    </div>
+
+    <details class="cr-sources pc-sources">
+      <summary>资料说明 <span class="cr-source-date">核对 <time datetime="2026-10-13">2026.10.13</time></span></summary>
+      <p>17 个省辖市的人口、面积和 GDP 与中国省份城市页河南部分保持一致：人口为 2020 年七普常住人口，GDP 为 2024 年。区县名单取自河南省政府现有行政区划资料，共 54 个市辖区、20 个县级市和 82 个县。</p>
+      <p>济源为省直辖县级市，下辖 5 个街道和 11 个镇；人口为 2020 年七普，GDP 为 2024 年，面积采用济源市政府现有市情值。开发区、示范区等功能区不计入行政区划数量。</p>
+      <p>表格与 TOP5 统一使用万人、万平方公里、亿元，单位集中标在表头或图表说明中，数据区域仅显示数字；省略多余小数，悬停数值可查看原始精度。图表按全部 18 个城市排名，不随表格排序或展开状态变化。</p>
+      <ul id="province-cities-sources"></ul>
+    </details>
+    <noscript><p class="cr-noscript">请启用 JavaScript 查看河南城市区县表格。</p></noscript>
+  </main>
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+
+  <script type="application/json" id="province-cities-data">
+  {
+    "checkedOn": "2026-10-13",
+    "sources": [
+      {
+        "label": "河南省人民政府：行政区划与区县名单",
+        "url": "https://www.henan.gov.cn/jchn/xzqh/"
+      },
+      {
+        "label": "人口、面积、GDP：与本站中国省份城市页河南部分一致",
+        "url": "china-regions.html"
+      },
+      {
+        "label": "维基百科：中华人民共和国地级行政区列表（人口、土地面积）",
+        "url": "https://zh.wikipedia.org/wiki/中华人民共和国地级行政区列表"
+      },
+      {
+        "label": "维基百科：河南各地级市地区生产总值列表（2024 年）",
+        "url": "https://zh.wikipedia.org/wiki/河南各地级市地区生产总值列表"
+      },
+      {
+        "label": "济源第七次全国人口普查公报（2020 年常住人口）",
+        "url": "https://fgw.jiyuan.gov.cn/14186/17304/20647/t723973.html"
+      },
+      {
+        "label": "济源 2024 年国民经济和社会发展统计公报",
+        "url": "https://fgw.jiyuan.gov.cn/14186/17304/20647/t976771.html"
+      },
+      {
+        "label": "济源市政府：市情与全域面积",
+        "url": "https://www.jiyuan.gov.cn/shiqing/index.html"
+      }
+    ],
+    "cities": [
+      {"id":1,"n":"郑州市","capital":true,"direct":false,"pop":1260.1,"popYear":2020,"area":7567.18,"areaNote":"土地面积，与中国省份城市页一致","gdp":14532.07,"gdpYear":2024,"source":"https://www.henan.gov.cn/2026/01-08/3304164.html","groups":[{"label":"市辖区","names":["中原区","二七区","管城回族区","金水区","上街区","惠济区"]},{"label":"县级市","names":["荥阳市","新密市","新郑市","登封市","巩义市"]},{"label":"县","names":["中牟县"]}]},
+      {"id":2,"n":"开封市","capital":false,"direct":false,"pop":482.4,"popYear":2020,"area":6240.22,"areaNote":"土地面积，与中国省份城市页一致","gdp":2761.1,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/04-14/3147615.html","groups":[{"label":"市辖区","names":["龙亭区","顺河回族区","鼓楼区","禹王台区","祥符区"]},{"label":"县","names":["杞县","通许县","尉氏县","兰考县"]}]},
+      {"id":3,"n":"洛阳市","capital":false,"direct":false,"pop":705.7,"popYear":2020,"area":15235.85,"areaNote":"土地面积，与中国省份城市页一致","gdp":5818.6,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/02-26/3128365.html","groups":[{"label":"市辖区","names":["老城区","西工区","瀍河回族区","涧西区","洛龙区","偃师区","孟津区"]},{"label":"县","names":["新安县","栾川县","嵩县","汝阳县","宜阳县","洛宁县","伊川县"]}]},
+      {"id":4,"n":"平顶山市","capital":false,"direct":false,"pop":498.7,"popYear":2020,"area":7910.12,"areaNote":"土地面积，与中国省份城市页一致","gdp":2831.97,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/03-04/3131369.html","groups":[{"label":"市辖区","names":["新华区","卫东区","石龙区","湛河区"]},{"label":"县级市","names":["舞钢市","汝州市"]},{"label":"县","names":["宝丰县","叶县","鲁山县","郏县"]}]},
+      {"id":5,"n":"安阳市","capital":false,"direct":false,"pop":547.8,"popYear":2020,"area":7351.54,"areaNote":"土地面积，与中国省份城市页一致","gdp":2672.06,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/02-26/3128283.html","groups":[{"label":"市辖区","names":["文峰区","北关区","殷都区","龙安区"]},{"label":"县级市","names":["林州市"]},{"label":"县","names":["安阳县","汤阴县","内黄县","滑县"]}]},
+      {"id":6,"n":"鹤壁市","capital":false,"direct":false,"pop":156.6,"popYear":2020,"area":2140.43,"areaNote":"土地面积，与中国省份城市页一致","gdp":1094.39,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/03-03/3130855.html","groups":[{"label":"市辖区","names":["鹤山区","山城区","淇滨区"]},{"label":"县","names":["浚县","淇县"]}]},
+      {"id":7,"n":"新乡市","capital":false,"direct":false,"pop":625.2,"popYear":2020,"area":8290.89,"areaNote":"土地面积，与中国省份城市页一致","gdp":3569.7,"gdpYear":2024,"source":"https://www.henan.gov.cn/2018/05-30/231067.html","groups":[{"label":"市辖区","names":["红旗区","卫滨区","凤泉区","牧野区"]},{"label":"县级市","names":["卫辉市","辉县市","长垣市"]},{"label":"县","names":["新乡县","获嘉县","原阳县","延津县","封丘县"]}]},
+      {"id":8,"n":"焦作市","capital":false,"direct":false,"pop":352.1,"popYear":2020,"area":3972.58,"areaNote":"土地面积，与中国省份城市页一致","gdp":2369.22,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/02-27/3128975.html","groups":[{"label":"市辖区","names":["解放区","中站区","马村区","山阳区"]},{"label":"县级市","names":["沁阳市","孟州市"]},{"label":"县","names":["修武县","博爱县","武陟县","温县"]}]},
+      {"id":9,"n":"濮阳市","capital":false,"direct":false,"pop":377.2,"popYear":2020,"area":4271.16,"areaNote":"土地面积，与中国省份城市页一致","gdp":2018.55,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/03-03/3130852.html","groups":[{"label":"市辖区","names":["华龙区"]},{"label":"县","names":["清丰县","南乐县","范县","台前县","濮阳县"]}]},
+      {"id":10,"n":"许昌市","capital":false,"direct":false,"pop":438,"popYear":2020,"area":4978.83,"areaNote":"土地面积，与中国省份城市页一致","gdp":3441.13,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/02-27/3129280.html","groups":[{"label":"市辖区","names":["魏都区","建安区"]},{"label":"县级市","names":["禹州市","长葛市"]},{"label":"县","names":["鄢陵县","襄城县"]}]},
+      {"id":11,"n":"漯河市","capital":false,"direct":false,"pop":236.7,"popYear":2020,"area":2692.41,"areaNote":"土地面积，与中国省份城市页一致","gdp":1869.87,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/06-16/3169991.html","groups":[{"label":"市辖区","names":["源汇区","郾城区","召陵区"]},{"label":"县","names":["舞阳县","临颍县"]}]},
+      {"id":12,"n":"三门峡市","capital":false,"direct":false,"pop":203.5,"popYear":2020,"area":9935.74,"areaNote":"土地面积，与中国省份城市页一致","gdp":1618.69,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/03-21/3139435.html","groups":[{"label":"市辖区","names":["湖滨区","陕州区"]},{"label":"县级市","names":["义马市","灵宝市"]},{"label":"县","names":["渑池县","卢氏县"]}]},
+      {"id":13,"n":"南阳市","capital":false,"direct":false,"pop":971.3,"popYear":2020,"area":26511.48,"areaNote":"土地面积，与中国省份城市页一致","gdp":4879.08,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/03-10/3134849.html","groups":[{"label":"市辖区","names":["宛城区","卧龙区"]},{"label":"县级市","names":["邓州市"]},{"label":"县","names":["南召县","方城县","西峡县","镇平县","内乡县","淅川县","社旗县","唐河县","新野县","桐柏县"]}]},
+      {"id":14,"n":"商丘市","capital":false,"direct":false,"pop":781.7,"popYear":2020,"area":10703.55,"areaNote":"土地面积，与中国省份城市页一致","gdp":3272.27,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/02-27/3129283.html","groups":[{"label":"市辖区","names":["梁园区","睢阳区"]},{"label":"县级市","names":["永城市"]},{"label":"县","names":["民权县","睢县","宁陵县","柘城县","虞城县","夏邑县"]}]},
+      {"id":15,"n":"信阳市","capital":false,"direct":false,"pop":623.4,"popYear":2020,"area":18915.61,"areaNote":"土地面积，与中国省份城市页一致","gdp":3073.36,"gdpYear":2024,"source":"https://www.henan.gov.cn/2018/05-30/231073.html","groups":[{"label":"市辖区","names":["浉河区","平桥区"]},{"label":"县","names":["罗山县","光山县","新县","商城县","固始县","潢川县","淮滨县","息县"]}]},
+      {"id":16,"n":"周口市","capital":false,"direct":false,"pop":902.6,"popYear":2020,"area":11961.04,"areaNote":"土地面积，与中国省份城市页一致","gdp":3635.62,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/09-05/3209354.html","groups":[{"label":"市辖区","names":["川汇区","淮阳区"]},{"label":"县级市","names":["项城市"]},{"label":"县","names":["扶沟县","西华县","商水县","沈丘县","郸城县","太康县","鹿邑县"]}]},
+      {"id":17,"n":"驻马店市","capital":false,"direct":false,"pop":700.8,"popYear":2020,"area":15086.28,"areaNote":"土地面积，与中国省份城市页一致","gdp":3342.7,"gdpYear":2024,"source":"https://www.henan.gov.cn/2018/05-30/231061.html","groups":[{"label":"市辖区","names":["驿城区"]},{"label":"县","names":["西平县","上蔡县","平舆县","正阳县","确山县","泌阳县","汝南县","遂平县","新蔡县"]}]},
+      {"id":18,"n":"济源市","capital":false,"direct":true,"pop":72.7265,"popYear":2020,"area":1898.73,"areaNote":"济源市政府现有市情值","gdp":789.56,"gdpYear":2024,"source":"https://www.henan.gov.cn/2025/03-10/3134851.html","groups":[{"label":"街道","names":["天坛街道","沁园街道","北海街道","济水街道","玉泉街道"]},{"label":"镇","names":["五龙口镇","克井镇","邵原镇","坡头镇","轵城镇","承留镇","大峪镇","梨林镇","思礼镇","王屋镇","下冶镇"]}]}
+    ]
+  }
+  </script>
+</body>
+</html>

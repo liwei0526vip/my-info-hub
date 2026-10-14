@@ -7,6 +7,7 @@
     { href: 'general-knowledge.html', label: '拾零' },
     { href: 'life.html', label: '生活' },
     { href: 'ai-learning-index.html', label: '收藏' },
+    { href: 'learning.html', label: '学习' },
   ];
   const currentFile = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';
   const aiDetailPages = [
@@ -14,7 +15,7 @@
     'ops-agent-backup-2026-10-09.html',
     'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html',
   ];
-  const gkDetailPages = ['gk-countries.html', 'china-regions.html'];
+  const gkDetailPages = ['gk-countries.html', 'china-regions.html', 'henan.html', 'shaanxi.html'];
   const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html'
     : gkDetailPages.includes(currentFile) ? 'general-knowledge.html'
     : currentFile;

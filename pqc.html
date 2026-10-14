@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="抗量子通用知识：量子计算威胁、后量子密码标准、混合迁移与密码敏捷性。">
+  <title>抗量子｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/post-quantum.css">
+  <script src="assets/site-nav.js" defer></script>
+</head>
+<body id="top" class="post-quantum-page">
+  <a class="skip-link" href="#main">跳到抗量子正文</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">知行簿</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai.html">AI</a>
+        <a href="market-memo.html">随笔</a>
+        <a href="thoughts.html">思考</a>
+        <a href="general-knowledge.html">拾零</a>
+        <a href="life.html">生活</a>
+        <a href="ai-learning-index.html">收藏</a>
+        <a href="learning.html">学习</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="post-quantum-main page-shell" id="main">
+    <header class="pq-heading">
+      <div>
+        <h1>抗量子</h1>
+        <p>量子威胁、后量子密码与迁移基础</p>
+      </div>
+      <p class="pq-date">通用知识笔记 · <time datetime="2026-10-13">2026-10-13</time></p>
+    </header>
+
+    <section class="pq-paper pq-refined" id="pqc-definition" aria-labelledby="pqc-definition-title">
+      <h2 id="pqc-definition-title">什么是抗量子，为什么需要？</h2>
+      <p>RSA 等传统密码算法，未来可能被足够强大的量子计算机破解，让原本保密的信息泄露。为此，人们设计了专门抵御量子破解的新算法，这就是抗量子算法。有些信息需要保密很多年，所以要提前升级保护方式。</p>
+      <p class="pq-reference"><a href="https://www.nist.gov/cybersecurity-and-privacy/what-post-quantum-cryptography" target="_blank" rel="noopener noreferrer">NIST · 后量子密码概念说明 ↗</a></p>
+    </section>
+
+    <hr class="pq-divider">
+    <h2 class="pq-unreviewed-title">待整理内容</h2>
+
+    <div class="pq-layout">
+      <nav class="pq-toc" aria-label="抗量子知识目录">
+        <p>阅读目录</p>
+        <a href="#basics">基本概念</a>
+        <a href="#threats">现有密码的风险</a>
+        <a href="#urgency">为什么现在准备</a>
+        <a href="#algorithms">主要算法与标准</a>
+        <a href="#hybrid">混合迁移与敏捷性</a>
+        <a href="#scenarios">通用应用场景</a>
+        <a href="#migration">迁移步骤</a>
+        <a href="#sources">来源与整理说明</a>
+      </nav>
+
+      <article class="pq-paper" aria-label="抗量子通用知识">
+        <div class="pq-intro">
+          <p class="pq-thesis">抗量子的核心，是升级容易受到量子攻击的密码环节，让数据保密和身份信任能够持续到未来。</p>
+          <p>优先识别依赖传统公钥密码的系统，关注长期敏感数据、密钥协商与数字签名，再分阶段改造协议、证书和密钥管理体系。</p>
+        </div>
+
+        <section class="pq-section" id="basics" aria-labelledby="basics-title">
+          <h2 id="basics-title">基本概念</h2>
+          <p>量子计算使用量子比特，利用叠加、纠缠和干涉等机制处理特定计算问题。它对密码的影响取决于具体量子算法、硬件规模和纠错能力；某项实验取得量子优势，并不等于已经具备破解实际密码的能力。</p>
+          <p><strong>后量子密码（PQC，Post-Quantum Cryptography）</strong>采用目前认为能抵抗经典计算和量子计算攻击的数学问题，主要补足公钥密码的密钥建立与数字签名能力。PQC 可运行在普通计算机、服务器和密码设备上。</p>
+          <div class="pq-table-wrap" tabindex="0" role="region" aria-label="PQC、QKD 与 QRNG 对比表，可横向滚动">
+            <table class="pq-table pq-concepts">
+              <caption class="visually-hidden">PQC、QKD 与 QRNG 的作用区别</caption>
+              <thead><tr><th scope="col">概念</th><th scope="col">解决的问题</th><th scope="col">理解重点</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">PQC<span>后量子密码</span></th><td>抵抗量子攻击的密钥建立与数字签名。</td><td>通过算法与协议升级融入现有信息系统。</td></tr>
+                <tr><th scope="row">QKD<span>量子密钥分发</span></th><td>利用量子物理机制分发密钥。</td><td>需要专门的设备和链路，可以与其他密码技术配合。</td></tr>
+                <tr><th scope="row">QRNG<span>量子随机数发生器</span></th><td>为密钥生成等环节提供随机数。</td><td>改善随机数来源，无法单独改变 RSA、ECC 的量子脆弱性。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="pq-reference"><a href="https://www.nist.gov/cybersecurity-and-privacy/what-post-quantum-cryptography" target="_blank" rel="noopener noreferrer">NIST · 后量子密码概念说明 ↗</a></p>
+        </section>
+
+        <section class="pq-section" id="threats" aria-labelledby="threats-title">
+          <h2 id="threats-title">现有密码的风险</h2>
+          <div class="pq-table-wrap" tabindex="0" role="region" aria-label="密码风险对比表，可横向滚动">
+            <table class="pq-table pq-threats">
+              <caption class="visually-hidden">不同密码类别面对量子计算的风险与应对方向</caption>
+              <thead><tr><th scope="col">密码类别</th><th scope="col">量子影响</th><th scope="col">应对方向</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">公钥密码<span>RSA、ECC、SM2、DH/ECDH 等</span></th><td>具备足够能力的量子计算机可用 <strong>Shor 算法</strong>求解大数分解、离散对数问题，危及密钥建立、身份认证和签名。</td><td>规划用 PQC 升级相关功能；单纯增大 RSA 密钥或椭圆曲线参数无法解决根本问题。</td></tr>
+                <tr><th scope="row">对称密码<span>AES、SM4 等</span></th><td><strong>Grover 算法</strong>对穷举搜索提供理论上的平方级加速，实际收益受到量子硬件和并行能力限制。</td><td>按安全目标评估算法与密钥强度。AES-256 可作为较高安全余量的选择；不能据理论加速直接判定 AES-128 已失效。</td></tr>
+                <tr><th scope="row">哈希函数<span>SHA-2、SHA-3、SM3 等</span></th><td>量子算法会影响部分安全性质，风险随输出长度和具体用途而变化。</td><td>结合完整性校验、签名等用途评估参数，遵循适用的标准要求。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>前向保密的边界。</strong>前向保密（PFS）旨在保护长期密钥日后泄露时的历史会话。当未来量子计算能够破解 DH/ECDH 时，已录制握手中的临时公钥仍可能用于恢复会话密钥，因此使用临时密钥或 TLS 1.3 本身并不等于具备抗量子保护。</p>
+          <p class="pq-note">通道的数据加密即使使用强对称密码，如果会话密钥仍通过脆弱的公钥机制建立，历史通信仍可能面临泄露风险。需要同时检查密钥建立与身份认证。</p>
+          <p class="pq-reference"><a href="https://csrc.nist.gov/projects/post-quantum-cryptography/faqs" target="_blank" rel="noopener noreferrer">NIST FAQ · 对称密码的实际量子风险 ↗</a></p>
+        </section>
+
+        <section class="pq-section" id="urgency" aria-labelledby="urgency-title">
+          <h2 id="urgency-title">为什么现在准备</h2>
+          <p><strong>先采集、后解密（HNDL，Harvest Now, Decrypt Later）</strong>指攻击者先保存目前无法解密的通信或密文，等待未来具备破解能力后再恢复敏感内容。医疗记录、身份信息、长期合同、研发资料与交易档案等，可能在多年后仍有价值。</p>
+          <figure class="pq-window">
+            <ol class="pq-window-path">
+              <li><strong>今天</strong><span>攻击者截获并保存密文</span></li>
+              <li><strong>未来</strong><span>获得破解相关密码的能力</span></li>
+              <li><strong>仍在保密期内</strong><span>历史敏感数据被恢复</span></li>
+            </ol>
+            <div class="pq-window-rule"><strong>数据需继续保密的年限 + 完成迁移所需年限</strong><span>如果达到或超过威胁可能到来的时间，就需要提前行动。</span></div>
+            <figcaption>风险评估同时看数据寿命和改造耗时。示例：数据还需保密 10 年、迁移需 5 年，即使假设威胁在 12 年后出现，也已经存在时间缺口。该数字仅用于说明。</figcaption>
+          </figure>
+          <p>具备现实密码破解能力的量子计算机出现的时间常称为 <strong>Q-Day</strong>，目前没有确定日期。迁移规划可以采用多种时间假设，不能把某一年预测当作所有系统的统一期限。</p>
+          <p class="pq-note">未来升级系统无法撤回攻击者已经保存的旧密文。对长期保密数据，应尽早保护新增传输，并评估历史存储、备份及其密钥保护方式。</p>
+        </section>
+
+        <section class="pq-section" id="algorithms" aria-labelledby="algorithms-title">
+          <h2 id="algorithms-title">主要算法与标准</h2>
+          <p>先区分两项功能：<strong>密钥封装机制（KEM）</strong>让双方建立共享秘密，供对称加密等使用；<strong>数字签名</strong>用于验证消息来源与完整性。二者承担不同职责，不能相互替代。</p>
+          <p>NIST 于 <time datetime="2024-08-13">2024 年 8 月 13 日</time>发布以下三项正式标准，可作为理解 PQC 的主要入口。</p>
+          <div class="pq-table-wrap" tabindex="0" role="region" aria-label="主要算法与标准对比表，可横向滚动">
+            <table class="pq-table pq-algorithms">
+              <caption class="visually-hidden">三项 NIST 后量子密码标准的功能与适用方向</caption>
+              <thead><tr><th scope="col">算法与标准</th><th scope="col">功能与路线</th><th scope="col">常见用途与取舍</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">ML-KEM<span><a href="https://csrc.nist.gov/pubs/fips/203/final" target="_blank" rel="noopener noreferrer">FIPS 203 ↗</a> · 源自 Kyber</span></th><td>密钥封装，基于模格问题。</td><td>用于安全通道等场景的共享秘密建立。大体量业务数据仍交由对称密码加密。</td></tr>
+                <tr><th scope="row">ML-DSA<span><a href="https://csrc.nist.gov/pubs/fips/204/final" target="_blank" rel="noopener noreferrer">FIPS 204 ↗</a> · 源自 Dilithium</span></th><td>数字签名，基于模格问题。</td><td>用于证书、身份认证和业务签名。适配时要关注公钥、签名体积及处理性能。</td></tr>
+                <tr><th scope="row">SLH-DSA<span><a href="https://csrc.nist.gov/pubs/fips/205/final" target="_blank" rel="noopener noreferrer">FIPS 205 ↗</a> · 源自 SPHINCS+</span></th><td>无状态数字签名，基于哈希。</td><td>提供与格密码不同的安全假设，适合评估用于代码、固件等签名；签名体积和生成耗时是重要取舍。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>算法研究还有基于编码等路线，用于增加选择与安全假设的多样性。第一版先掌握已发布标准的职责，具体参数、候选算法和协议格式留到实际选型时再展开。</p>
+          <p><strong>国内路线与国密兼容。</strong>国内也在推进新一代商用密码算法征集、评估与标准化。迁移时需结合现有国密体系规划与 PQC 的共存，分别确认算法、协议和产品支持。SM2 是公钥算法，SM3 是哈希算法，SM4 是对称算法，不能仅凭“支持国密”判断系统具备抗量子能力。</p>
+          <p class="pq-note">算法标准发布、协议支持、产品实现和行业应用要求是不同层次。选择时需要分别确认，原始竞赛算法名称也不能直接等同于最终标准实现。</p>
+        </section>
+
+        <section class="pq-section" id="hybrid" aria-labelledby="hybrid-title">
+          <h2 id="hybrid-title">混合迁移与密码敏捷性</h2>
+          <dl class="pq-definitions">
+            <div><dt>混合密钥建立</dt><dd>在同一协议中组合经典算法与 PQC 的共享秘密，再按照经过分析的组合方式生成密钥。目标是在至少一个组件仍安全时维持保护，但这一性质依赖正确的协议设计和实现。</dd></div>
+            <div><dt>混合数字签名</dt><dd>用多种签名共同保护同一消息。NIST 所述双签名验证要求各组成签名均通过；若“任一通过即可接受”，被攻破的算法就可能成为绕过路径。</dd></div>
+            <div><dt>密码敏捷性<span>Crypto Agility</span></dt><dd>让系统能够有计划地替换算法、参数、密钥和证书，而不用每次从头改造。需要清楚的密码接口、集中策略、版本管理，以及经过验证的切换和回退流程。</dd></div>
+          </dl>
+          <p>混合方案有助于过渡和管理算法风险，也增加报文体积、实现复杂度与验证成本。是否采用、如何组合，应按应用要求判断，不能概括成全球统一的强制方案。</p>
+          <p class="pq-note">兼容旧客户端时，传统连接可能仍然存在。应能识别哪些会话真正使用 PQC，并防止攻击者诱导降级；“支持 PQC”并不意味着所有连接都已获得抗量子保护。</p>
+          <p class="pq-reference"><a href="https://csrc.nist.gov/projects/post-quantum-cryptography/faqs" target="_blank" rel="noopener noreferrer">NIST FAQ · 混合密钥建立与双签名 ↗</a></p>
+        </section>
+
+        <section class="pq-section" id="scenarios" aria-labelledby="scenarios-title">
+          <h2 id="scenarios-title">通用应用场景</h2>
+          <div class="pq-table-wrap" tabindex="0" role="region" aria-label="通用应用场景表，可横向滚动">
+            <table class="pq-table pq-scenarios">
+              <caption class="visually-hidden">通用信息系统中的抗量子迁移关注点</caption>
+              <thead><tr><th scope="col">场景</th><th scope="col">需要识别的依赖</th><th scope="col">迁移关注点</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">网站、API、VPN</th><td>TLS、IPsec 等协议中的密钥协商与身份认证。</td><td>同时评估客户端、服务端和中间设备。密钥协商升级与证书签名升级需要分别验证。</td></tr>
+                <tr><th scope="row">PKI / CA 与身份认证</th><td>根证书、中间证书、终端证书及完整验证链。</td><td>关注信任根、证书签发与吊销、终端兼容性，利用证书轮换逐步迁移。</td></tr>
+                <tr><th scope="row">合同、业务报文、代码与固件</th><td>数字签名、验签服务和长期有效的软件信任。</td><td>升级签名端与验证端，对长期文档和旧固件另行设计信任延续方案。</td></tr>
+                <tr><th scope="row">数据库、文件与备份</th><td>数据加密密钥，以及密钥的封装、分发和恢复机制。</td><td>同时检查对称加密与公钥保护环节，覆盖 KMS、HSM 和备份恢复流程。</td></tr>
+                <tr><th scope="row">长期归档</th><td>保密期长的数据，以及多年后仍需验证的签名材料。</td><td>把保密与真实性分开评估。必要时重新保护存量数据，并为长期签名保留验证证据。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="pq-note">HSM 是硬件安全模块，KMS 是密钥管理系统。设备升级需要结合密钥用途和调用链评估，不能仅凭设备支持某种算法判断整个系统已经完成迁移。</p>
+        </section>
+
+        <section class="pq-section" id="migration" aria-labelledby="migration-title">
+          <h2 id="migration-title">迁移步骤</h2>
+          <p>迁移从密码资产清单开始，再围绕真实业务验证。下面六步由演示稿的迁移框架归纳，适用于组织初步梳理工作。</p>
+          <ol class="pq-steps">
+            <li><div><h3>发现密码资产</h3><p>盘点算法、参数、密钥、证书、密码库和使用位置，补齐系统负责人、上下游依赖及数据保密期限。</p></div><span>产出：密码资产与依赖清单</span></li>
+            <li><div><h3>评估风险与优先级</h3><p>结合数据价值、剩余保密期、暴露程度和迁移难度排序，优先评估长期敏感数据及关键通信、签名链路。</p></div><span>产出：风险排序与迁移计划</span></li>
+            <li><div><h3>设计迁移方案</h3><p>明确算法、协议、证书和密钥管理的改造范围，决定混合或并行过渡方式，预留后续替换能力。</p></div><span>产出：架构、策略与兼容方案</span></li>
+            <li><div><h3>小范围试点</h3><p>在代表性业务中验证安全性、互操作性和实际性能，检查握手时延、报文体积、网络分片、资源占用及失败处理。</p></div><span>产出：试点报告与性能基线</span></li>
+            <li><div><h3>分批部署</h3><p>按系统和证书轮换周期逐步推进，监测传统与 PQC 的实际使用比例，验证回退机制与防降级策略。</p></div><span>产出：部署记录与迁移覆盖情况</span></li>
+            <li><div><h3>持续运营</h3><p>更新密码资产和标准跟踪记录，监测算法使用与异常，定期演练更换算法、轮换密钥和恢复数据。</p></div><span>产出：长期维护与敏捷切换能力</span></li>
+          </ol>
+          <p><strong>实现安全仍需验证。</strong>采用 PQC 后，仍要检查密码库与设备的正确实现、侧信道防护、随机数质量和私钥保护。侧信道攻击可能通过执行时间、功耗等信息推断秘密。应使用经过评估的实现，并持续维护补丁和密钥生命周期。</p>
+          <p class="pq-note">验收关注完整业务链路：算法可用、协议互通、证书可验证、密钥可管理、历史数据可处理，以及故障时可恢复。实现了一个算法只是其中一环。</p>
+          <p class="pq-reference"><a href="https://pages.nist.gov/nccoe-migration-post-quantum-cryptography/FAQ/index.html" target="_blank" rel="noopener noreferrer">NIST NCCoE · PQC 迁移常见问题 ↗</a></p>
+        </section>
+
+        <details class="pq-sources" id="sources">
+          <summary>来源与整理说明</summary>
+          <div>
+            <p>全文阅读《金融行业抗量子密码算法应用与迁移-V1.2》58 页 PDF 演示稿，并查看页面图示。主要提炼第 7–15、19–30、32–37、39、55–57 页中的通用概念、威胁与迁移框架。</p>
+            <p>略去公司介绍、厂商产品矩阵、专利、客户案例和具体部署参数。银行专属场景已归纳为通用信息系统场景，迁移步骤为编辑归纳。</p>
+            <p>结合下列官方资料与研究资料核对核心概念、三项正式标准、AES 风险与混合方案，并简补国内路线、实现安全与前向保密的边界。未沿用原稿中确定的 Q-Day 年份、笼统的全球强制迁移期限、“AES-128 已失效”及“双签名任一通过即可”等表述。</p>
+            <ul>
+              <li><a href="https://www.nist.gov/cybersecurity-and-privacy/what-post-quantum-cryptography" target="_blank" rel="noopener noreferrer">NIST · What Is Post-Quantum Cryptography?</a><span>PQC 定义、量子威胁、HNDL 与时间不确定性。</span></li>
+              <li><a href="https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards" target="_blank" rel="noopener noreferrer">NIST · 首批三项正式 PQC 标准公告</a><span>2024-08-13 发布；FIPS 203、204、205 原文链接见算法表。</span></li>
+              <li><a href="https://csrc.nist.gov/projects/post-quantum-cryptography/faqs" target="_blank" rel="noopener noreferrer">NIST · PQC FAQs</a><span>对称密码、混合密钥建立与双签名验证。</span></li>
+              <li><a href="https://pages.nist.gov/nccoe-migration-post-quantum-cryptography/FAQ/index.html" target="_blank" rel="noopener noreferrer">NIST NCCoE · PQC 迁移常见问题</a><span>密码发现、互操作性和迁移实践。</span></li>
+              <li><a href="https://www.niccs.org.cn/symmbzyjy/tzgg/pc/content/1937422988373135360/content_1937422988373135360.html" target="_blank" rel="noopener noreferrer">商用密码标准研究院 · 新一代商用密码算法征集公告</a><span>国内新一代算法评估与标准化方向。</span></li>
+              <li><a href="https://csrc.nist.gov/csrc/media/Events/2024/fifth-pqc-standardization-conference/documents/papers/single-trace-side-channel-attacks.pdf" target="_blank" rel="noopener noreferrer">研究论文 · Dilithium 实现的侧信道攻击</a><span>NIST 会议收录研究，说明算法之外的实现安全风险。</span></li>
+              <li><a href="https://www.rfc-editor.org/rfc/rfc9973.html#section-7" target="_blank" rel="noopener noreferrer">IETF · RFC 9973 安全考虑</a><span>量子破解 DH/ECDH 时，传统前向保密的保护边界。</span></li>
+            </ul>
+            <p class="pq-source-date">整理与官方资料核对：<time datetime="2026-10-13">2026-10-13</time>。</p>
+          </div>
+        </details>
+      </article>
+    </div>
+  </main>
+
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+</body>
+</html>

@@ -4,6 +4,8 @@ html { scrollbar-gutter: stable; }
   --ink: var(--gk-ink); --muted: var(--gk-muted); --blue: var(--gk-accent);
   --bg: var(--gk-bg); --paper: var(--gk-paper); --line: var(--gk-line);
   --pale: var(--gk-soft); --warm: var(--gk-soft); --brown: var(--gk-accent);
+  --cr-capital-ink: #2f6460; --cr-capital-bg: #edf3ec;
+  --cr-capital-hover: #e1ebdf; --cr-capital-badge-bg: #dce9da;
   padding-block: 8px 20px;
 }
 .cr-hero { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 6px 16px; margin-bottom: 6px; }
@@ -45,6 +47,7 @@ html { scrollbar-gutter: stable; }
 .cr-rank-number { color: var(--muted); font-size: 10px; font-variant-numeric: tabular-nums; }
 .cr-chart-list li:nth-child(-n+3) .cr-rank-number { color: var(--cr-bar-color); font-weight: 700; }
 .cr-chart-name { min-width: 0; overflow: hidden; color: var(--ink); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.cr-chart-list .is-capital .cr-chart-name { color: var(--cr-capital-ink); font-weight: 700; }
 .cr-chart-track { display: block; height: 9px; overflow: hidden; border-radius: 2px; background: var(--pale); }
 .cr-chart-bar { display: block; height: 100%; border-radius: 2px; background: var(--cr-bar-color); }
 .cr-chart-value { color: var(--ink); font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -90,11 +93,14 @@ html { scrollbar-gutter: stable; }
 .cr-city .cr-name::after { position: absolute; top: 50%; left: 24px; width: 10px; height: 1px; background: var(--line); content: ""; }
 .cr-name-line { display: flex; align-items: center; gap: 6px; min-width: 0; }
 .cr-city-type { flex: 0 0 auto; border-bottom: 1px dotted #c5b79f; color: var(--muted); font-size: 10px; line-height: 1.4; cursor: help; white-space: nowrap; }
+.cr-city--capital > td { background: var(--cr-capital-bg); }
+.cr-table tbody .cr-city--capital:hover > td { background: var(--cr-capital-hover); }
+.cr-city--capital .cr-city-name { color: var(--cr-capital-ink); font-weight: 700; }
+.cr-capital-badge { flex: 0 0 auto; padding: 1px 4px; border-radius: 3px; background: var(--cr-capital-badge-bg); color: var(--cr-capital-ink); font-size: 10px; font-weight: 650; line-height: 1.4; white-space: nowrap; }
 .cr-location { overflow: hidden; color: var(--muted); text-overflow: ellipsis; white-space: nowrap; }
 .cr-gdp { display: inline-grid; grid-template-columns: auto 4ch; align-items: baseline; gap: 6px; }
 .cr-year { color: var(--muted); font-size: 10px; font-weight: 400; }
 .cr-year--old { color: var(--brown); }
-.cr-flag { flex: 0 0 auto; color: var(--brown); font-size: 11px; }
 .cr-sub { color: var(--muted); }
 .cr-table .cr-empty { padding: 24px 10px; background: var(--paper); color: var(--muted); }
 
@@ -144,7 +150,7 @@ html { scrollbar-gutter: stable; }
   .cr-main .gk-table-hint { font-size: 10px; }
   .cr-table-wrap { --cr-header-height: 40px; max-height: min(60svh, 480px); }
   .cr-table { min-width: 580px; }
-  .cr-col-name { width: 156px; }
+  .cr-col-name { width: 180px; }
   .cr-col-location { width: 100px; }
   .cr-col-population { width: 92px; }
   .cr-col-area { width: 108px; }
@@ -158,6 +164,7 @@ html { scrollbar-gutter: stable; }
   .cr-city .cr-name::after { width: 8px; }
   .cr-name-line { gap: 4px; }
   .cr-city-type { font-size: 9px; }
+  .cr-capital-badge { padding-inline: 3px; font-size: 9px; }
   .cr-sources summary { min-height: 44px; }
   .cr-sources ul { grid-template-columns: minmax(0, 1fr); }
 }

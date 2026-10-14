@@ -30,7 +30,15 @@
   const areaTitle = value => value == null ? '未列示面积' : `${number(value)} 平方公里`;
 
   const REGION_ORDER = ['华北', '东北', '华东', '中南', '西南', '西北', '港澳台'];
-  const model = data.provinces.map(p => ({ ...p, cities: data.cities.filter(c => c.p === p.n) }));
+  const model = data.provinces.map(p => {
+    const capitalLabel = p.cap === '—' ? '' : p.level === '省' ? '省会' : p.level === '自治区' ? '首府' : '';
+    return {
+      ...p,
+      cities: data.cities.filter(c => c.p === p.n).map(c => ({
+        ...c, capitalLabel: c.n.replace(/市$/, '') === p.cap ? capitalLabel : '',
+      })),
+    };
+  });
   const typeCounts = data.cities.reduce((counts, city) => {
     counts[city.t] = (counts[city.t] ?? 0) + 1;
     return counts;
@@ -82,7 +90,7 @@
 
   function renderRankings() {
     // Municipalities also enter city rankings; prefectures retain the table's scope.
-    const cityRows = [...data.cities, ...data.provinces.filter(p => p.level === '直辖市')
+    const cityRows = [...model.flatMap(p => p.cities), ...data.provinces.filter(p => p.level === '直辖市')
       .map(p => ({ ...p, p: p.n, t: p.level, year: gdpYear(p) }))];
     const scopes = [
       { key: 'province', label: '省份', rows: data.provinces },
@@ -99,12 +107,11 @@
         const detail = metric.key === 'pop' ? popTitle(row.pop, row.popNote || '2020年七普')
           : metric.key === 'area' ? areaTitle(row.area)
             : `${number(row.gdp)} 亿元${year ? ` · ${year} 年` : ''}${row.gdpNote ? ` · ${row.gdpNote}` : ''}`;
-        const location = scope.key === 'city' ? `${row.t}${row.t !== '直辖市' ? ` · ${row.p}` : ''}` : row.level;
+        const location = scope.key === 'city' ? `${row.t}${row.t !== '直辖市' ? ` · ${row.p}` : ''}${row.capitalLabel ? ` · ${row.capitalLabel}` : ''}` : row.level;
         const title = `${row.n} · ${location} · ${detail}`;
-        const flag = row.region === '港澳台' ? '<span class="cr-flag">＊</span>' : '';
-        return `<li data-name="${escapeHTML(row.n)}" data-value="${row[metric.key]}" aria-label="${escapeHTML(`第 ${index + 1} 名，${title}`)}">
+        return `<li${row.capitalLabel ? ' class="is-capital"' : ''} data-name="${escapeHTML(row.n)}" data-value="${row[metric.key]}" aria-label="${escapeHTML(`第 ${index + 1} 名，${title}`)}">
           <span class="cr-rank-number" aria-hidden="true">${index + 1}</span>
-          <span class="cr-chart-name" title="${escapeHTML(title)}">${escapeHTML(chartName(row))}${flag}</span>
+          <span class="cr-chart-name" title="${escapeHTML(title)}">${escapeHTML(chartName(row))}</span>
           <span class="cr-chart-track" aria-hidden="true"><span class="cr-chart-bar" style="width:${(row[metric.key] / maximum * 100).toFixed(2)}%"></span></span>
           <span class="cr-chart-value" title="${escapeHTML(detail)}">${value}${metric.key === 'gdp' && scope.key === 'city' && year ? `<span class="cr-chart-year">${year}</span>` : ''}</span>
         </li>`;
@@ -136,16 +143,15 @@
       const matches = cityMatches(p, query);
       const open = isOpen(p, matches);
       const expandable = p.cities.length > 0;
-      const flag = p.region === '港澳台' ? '<span class="cr-flag">＊</span>' : '';
       const name = `<span class="cr-toggle" aria-hidden="true">${expandable ? '▸' : ''}</span>`
-        + `<span class="cr-province-name">${escapeHTML(p.n)}</span><span class="cr-abbr">${escapeHTML(p.abbr)}</span>${flag}`;
+        + `<span class="cr-province-name">${escapeHTML(p.n)}</span><span class="cr-abbr">${escapeHTML(p.abbr)}</span>`;
       const nameTitle = `${p.n}（${p.abbr}） · ${p.level}${expandable ? ` · ${p.cities.length} 个地级行政区` : ''}`;
       const nameCell = expandable
         ? `<button type="button" class="cr-province-button" aria-expanded="${open}" aria-label="${escapeHTML(`${open ? '收起' : '展开'}${p.n}下辖的 ${p.cities.length} 个地级行政区`)}" title="${escapeHTML(nameTitle)}">${name}</button>`
         : `<span class="cr-province-label" title="${escapeHTML(nameTitle)}">${name}</span>`;
       fragment.push(`<tr class="cr-prov${expandable ? ' is-expandable' : ''}" data-prov="${escapeHTML(p.n)}"${expandable ? ` aria-expanded="${open}"` : ''}>
         <td class="cr-name">${nameCell}</td>
-        <td class="cr-location"${p.cap !== '—' ? ` title="省会 / 驻地：${escapeHTML(p.cap)}"` : ''}>${escapeHTML(p.region)}</td>
+        <td class="cr-location">${escapeHTML(p.region)}</td>
         <td class="num" title="${escapeHTML(popTitle(p.pop, p.popNote))}">${fmtPop(p.pop)}</td>
         <td class="num" title="${escapeHTML(areaTitle(p.area))}">${fmtArea(p.area)}</td>
         <td class="num" title="${escapeHTML(p.gdpNote)}">${gdpCell(p.gdp, 2025)}</td>
@@ -155,8 +161,10 @@
       for (const c of ordered([...matches], key, dir)) {
         const typeTitle = `${c.t}${c.subs ? ` · 区县组成：${c.subs}` : ''}`;
         const gdpTitle = c.gdp == null ? '未公布 GDP' : `${number(c.gdp)} 亿元${c.year ? ` · ${c.year} 年` : ''}`;
-        fragment.push(`<tr class="cr-city" data-parent="${escapeHTML(p.n)}" data-city="${escapeHTML(c.n)}">
-          <td class="cr-name"><span class="cr-name-line"><span class="cr-city-name" title="${escapeHTML(c.n)}">${escapeHTML(c.n)}</span><span class="cr-city-type" title="${escapeHTML(typeTitle)}">${escapeHTML(c.t)}</span></span></td>
+        const capitalBadge = c.capitalLabel ? `<span class="cr-capital-badge" title="${escapeHTML(`${p.n}${c.capitalLabel}`)}">${c.capitalLabel}</span>` : '';
+        const typeBadge = c.t === '地级市' ? '' : `<span class="cr-city-type" title="${escapeHTML(typeTitle)}">${escapeHTML(c.t)}</span>`;
+        fragment.push(`<tr class="cr-city${c.capitalLabel ? ' cr-city--capital' : ''}" data-parent="${escapeHTML(p.n)}" data-city="${escapeHTML(c.n)}">
+          <td class="cr-name"><span class="cr-name-line"><span class="cr-city-name" title="${escapeHTML(`${c.n} · ${typeTitle}`)}">${escapeHTML(c.n)}</span>${capitalBadge}${typeBadge}</span></td>
           <td class="cr-location" title="驻地：${escapeHTML(c.s)}">${escapeHTML(c.s)}</td>
           <td class="num" title="${escapeHTML(popTitle(c.pop))}">${fmtPop(c.pop)}</td>
           <td class="num" title="${escapeHTML(areaTitle(c.area))}">${fmtArea(c.area)}</td>

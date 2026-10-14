@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="陕西省城市速查：10 个城市的下辖区县、人口、面积和 GDP，支持排序与逐市展开区县，附三项指标 TOP5 图表。">
+  <title>陕西省城市｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/general-knowledge.css">
+  <link rel="stylesheet" href="assets/china-regions.css">
+  <link rel="stylesheet" href="assets/province-cities.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/province-cities.js" defer></script>
+</head>
+<body id="top" class="gk-page cr-page pc-page">
+  <a class="skip-link" href="#main">跳到陕西省城市正文</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">知行簿</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai.html">AI</a>
+        <a href="market-memo.html">随笔</a>
+        <a href="thoughts.html">思考</a>
+        <a href="general-knowledge.html" aria-current="page">拾零</a>
+        <a href="life.html">生活</a>
+        <a href="ai-learning-index.html">收藏</a>
+        <a href="learning.html">学习</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cr-main pc-main page-shell" id="main">
+    <header class="cr-hero pc-hero">
+      <h1 id="province-cities-heading">陕西省城市 <span class="pc-abbr" title="陕西省简称">陕 / 秦</span></h1>
+      <span class="cr-count" id="province-cities-count">10 个城市</span>
+    </header>
+
+    <div class="pc-layout">
+      <section class="pc-reference" aria-labelledby="province-cities-heading">
+        <p class="gk-table-hint" id="province-cities-table-hint" hidden>左右滑动查看，城市名称保持可见。</p>
+        <div class="cr-table-wrap pc-table-wrap" tabindex="0" role="region" aria-label="陕西城市区县与指标表格" aria-describedby="province-cities-table-hint">
+          <table class="cr-table pc-table" id="province-cities-table">
+            <caption class="visually-hidden">陕西 10 个城市的下辖区县、2025 年末常住人口、面积与 2025 年 GDP；点击城市行展开完整区县名单。</caption>
+            <colgroup>
+              <col class="pc-col-name"><col class="pc-col-divisions"><col class="pc-col-pop"><col class="pc-col-area"><col class="pc-col-gdp">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col" data-sort="n" class="is-sortable"><button type="button">城市 <span class="cr-sort-icon" aria-hidden="true">↕</span></button></th>
+                <th scope="col">下辖区县 <span class="cr-unit">数量</span></th>
+                <th scope="col" data-sort="pop" class="is-sortable is-numeric"><button type="button">人口 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万人 · 2025 年末</span></th>
+                <th scope="col" data-sort="area" class="is-sortable is-numeric"><button type="button">面积 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万平方公里</span></th>
+                <th scope="col" data-sort="gdp" class="is-sortable is-numeric"><button type="button">GDP <span class="cr-sort-icon" aria-hidden="true">↓</span></button><span class="cr-unit">亿元 · 2025</span></th>
+              </tr>
+            </thead>
+            <tbody id="province-cities-rows"></tbody>
+          </table>
+        </div>
+        <p class="pc-table-note">点击城市行展开完整区县名单；悬停数值查看原始精度。</p>
+      </section>
+      <aside class="pc-rankings" id="province-cities-rankings" aria-label="陕西城市人口、面积与 GDP TOP5 图表"></aside>
+    </div>
+
+    <details class="cr-sources pc-sources">
+      <summary>资料说明 <span class="cr-source-date">核对 <time datetime="2026-10-14">2026.10.14</time></span></summary>
+      <p>陕西现有 10 个城市，共辖 31 个市辖区、7 个县级市和 69 个县。区县按行政建制归属列出：杨陵区列在咸阳市下，实际由杨凌示范区管理；西咸新区和各类开发区不另列为城市或区县。</p>
+      <p>人口采用各市 2025 年末常住人口，GDP 采用 2025 年统计公报初步核算值。汉中 2025 年 GDP 准确总量暂缺，表内以“—”表示，GDP TOP5 仅按其余 9 市已核实数值排列。统计指标按各市公报口径，西安、咸阳等的统计范围与行政区划归属不完全相同，杨凌示范区未另计入城市指标。</p>
+      <p>面积采用中国省份城市页的行政区域土地面积。表格与 TOP5 统一使用万人、万平方公里、亿元，单位集中标在表头或图表说明中；数据区域仅显示数字，悬停可查看原始精度。三项图表独立排名，不随表格排序或展开状态变化。</p>
+      <ul id="province-cities-sources"></ul>
+    </details>
+    <noscript><p class="cr-noscript">请启用 JavaScript 查看陕西城市区县表格。</p></noscript>
+  </main>
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+
+  <script type="application/json" id="province-cities-data">
+  {
+    "checkedOn": "2026-10-14",
+    "populationBasis": "末常住人口",
+    "populationNote": "2025 年末",
+    "gdpNote": "2025 年",
+    "divisionSourceLabel": "行政区划资料",
+    "sources": [
+      {
+        "label": "行政区划网：陕西省县级行政区名单（2023 年末）",
+        "url": "https://www.xzqh.org/show/china/61/2023.html"
+      },
+      {
+        "label": "西安市政府：市情简介（11 区 2 县及西咸新区代管说明）",
+        "url": "https://www.xa.gov.cn/sq/csgk/sqjj/1.html"
+      },
+      {
+        "label": "土地面积：与本站中国省份城市页陕西部分一致",
+        "url": "china-regions.html"
+      },
+      {
+        "label": "维基百科：陕西省（各城市行政区域土地面积）",
+        "url": "https://zh.wikipedia.org/wiki/陕西省"
+      },
+      {
+        "label": "2025 年西安市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260609_3645959.html"
+      },
+      {
+        "label": "2025 年铜川市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260608_3645576.html"
+      },
+      {
+        "label": "2025 年宝鸡市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260608_3645574.html"
+      },
+      {
+        "label": "2025 年咸阳市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260609_3645946.html"
+      },
+      {
+        "label": "2025 年渭南市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260609_3645947.html"
+      },
+      {
+        "label": "2025 年延安市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260608_3645571.html"
+      },
+      {
+        "label": "2025 年汉中市国民经济和社会发展统计公报（汉中市统计局）",
+        "url": "https://tjj.hanzhong.gov.cn/hztjj/tjgb/202606/a327c601520c4b0888cbd094803dd422.shtml"
+      },
+      {
+        "label": "2025 年榆林市国民经济和社会发展统计公报（榆林市统计局发布，公报库转载）",
+        "url": "https://tjgb.hongheiku.com/xjtjgb/xj2020/74748.html"
+      },
+      {
+        "label": "2025 年安康市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260608_3645577.html"
+      },
+      {
+        "label": "2025 年商洛市国民经济和社会发展统计公报（陕西省统计局）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/P020260608622204239754.pdf"
+      },
+      {
+        "label": "汉中市 2025 年末常住人口 312.76 万人（公报数据转载）",
+        "url": "https://www.hongheiku.com/shijirenkou/1381.html"
+      }
+    ],
+    "cities": [
+      {
+        "id": 1,
+        "n": "西安市",
+        "capital": true,
+        "direct": false,
+        "pop": 1323.63,
+        "popYear": 2025,
+        "area": 10096.81,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 13902.67,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "新城区",
+              "碑林区",
+              "莲湖区",
+              "灞桥区",
+              "未央区",
+              "雁塔区",
+              "阎良区",
+              "临潼区",
+              "长安区",
+              "高陵区",
+              "鄠邑区"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "蓝田县",
+              "周至县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "n": "铜川市",
+        "capital": false,
+        "direct": false,
+        "pop": 70.36,
+        "popYear": 2025,
+        "area": 3884.81,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 607.15,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "王益区",
+              "印台区",
+              "耀州区"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "宜君县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "n": "宝鸡市",
+        "capital": false,
+        "direct": false,
+        "pop": 321.56,
+        "popYear": 2025,
+        "area": 18116.93,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 2648.87,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "渭滨区",
+              "金台区",
+              "陈仓区",
+              "凤翔区"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "岐山县",
+              "扶风县",
+              "眉县",
+              "陇县",
+              "千阳县",
+              "麟游县",
+              "凤县",
+              "太白县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "n": "咸阳市",
+        "capital": false,
+        "direct": false,
+        "pop": 403.77,
+        "popYear": 2025,
+        "area": 10323.99,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 3104.53,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "秦都区",
+              "杨陵区",
+              "渭城区"
+            ]
+          },
+          {
+            "label": "县级市",
+            "names": [
+              "兴平市",
+              "彬州市"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "三原县",
+              "泾阳县",
+              "乾县",
+              "礼泉县",
+              "永寿县",
+              "长武县",
+              "旬邑县",
+              "淳化县",
+              "武功县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "n": "渭南市",
+        "capital": false,
+        "direct": false,
+        "pop": 453.38,
+        "popYear": 2025,
+        "area": 13030.56,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 2231.76,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "临渭区",
+              "华州区"
+            ]
+          },
+          {
+            "label": "县级市",
+            "names": [
+              "韩城市",
+              "华阴市"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "潼关县",
+              "大荔县",
+              "合阳县",
+              "澄城县",
+              "蒲城县",
+              "白水县",
+              "富平县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "n": "延安市",
+        "capital": false,
+        "direct": false,
+        "pop": 221.82,
+        "popYear": 2025,
+        "area": 37030.54,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 2372.17,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "宝塔区",
+              "安塞区"
+            ]
+          },
+          {
+            "label": "县级市",
+            "names": [
+              "子长市"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "延长县",
+              "延川县",
+              "志丹县",
+              "吴起县",
+              "甘泉县",
+              "富县",
+              "洛川县",
+              "宜川县",
+              "黄龙县",
+              "黄陵县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "n": "汉中市",
+        "capital": false,
+        "direct": false,
+        "pop": 312.76,
+        "popYear": 2025,
+        "area": 27096.43,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": null,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "汉台区",
+              "南郑区"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "城固县",
+              "洋县",
+              "西乡县",
+              "勉县",
+              "宁强县",
+              "略阳县",
+              "镇巴县",
+              "留坝县",
+              "佛坪县"
+            ]
+          }
+        ],
+        "gdpNote": "暂未核实到 2025 年准确总量，不参与 GDP 排名"
+      },
+      {
+        "id": 8,
+        "n": "榆林市",
+        "capital": false,
+        "direct": false,
+        "pop": 360.13,
+        "popYear": 2025,
+        "area": 42920.18,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 7501.06,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "榆阳区",
+              "横山区"
+            ]
+          },
+          {
+            "label": "县级市",
+            "names": [
+              "神木市"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "府谷县",
+              "靖边县",
+              "定边县",
+              "绥德县",
+              "米脂县",
+              "佳县",
+              "吴堡县",
+              "清涧县",
+              "子洲县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "n": "安康市",
+        "capital": false,
+        "direct": false,
+        "pop": 242.64,
+        "popYear": 2025,
+        "area": 23536.31,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 1190.03,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "汉滨区"
+            ]
+          },
+          {
+            "label": "县级市",
+            "names": [
+              "旬阳市"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "汉阴县",
+              "石泉县",
+              "宁陕县",
+              "紫阳县",
+              "岚皋县",
+              "平利县",
+              "镇坪县",
+              "白河县"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "n": "商洛市",
+        "capital": false,
+        "direct": false,
+        "pop": 200.51,
+        "popYear": 2025,
+        "area": 19587.31,
+        "areaNote": "行政区域土地面积，与中国省份城市页一致",
+        "gdp": 823.92,
+        "gdpYear": 2025,
+        "source": "https://www.xzqh.org/show/china/61/2023.html",
+        "groups": [
+          {
+            "label": "市辖区",
+            "names": [
+              "商州区"
+            ]
+          },
+          {
+            "label": "县",
+            "names": [
+              "洛南县",
+              "丹凤县",
+              "商南县",
+              "山阳县",
+              "镇安县",
+              "柞水县"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</body>
+</html>

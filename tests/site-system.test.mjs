@@ -20,16 +20,21 @@ const pageNames = [
   'gk-countries.html',
   'life.html',
   'china-regions.html',
+  'henan.html',
+  'shaanxi.html',
+  'learning.html',
 ];
 
 const pages = await Promise.all(
   pageNames.map(async name => [name, await readFile(new URL(name, root), 'utf8')]),
 );
 const siteNav = await readFile(new URL('assets/site-nav.js', root), 'utf8');
-const mainTargets = ['ai.html', 'market-memo.html', 'thoughts.html', 'general-knowledge.html', 'life.html', 'ai-learning-index.html'];
+const mainTargets = ['ai.html', 'market-memo.html', 'thoughts.html', 'general-knowledge.html', 'life.html', 'ai-learning-index.html', 'learning.html'];
 const detailParents = new Map([
   ['gk-countries.html', 'general-knowledge.html'],
   ['china-regions.html', 'general-knowledge.html'],
+  ['henan.html', 'general-knowledge.html'],
+  ['shaanxi.html', 'general-knowledge.html'],
   ['ai-model-comparison.html', 'ai.html'],
   ['agent.html', 'ai.html'],
   ['ai-knowledge-base.html', 'ai.html'],
@@ -50,7 +55,7 @@ for (const [name, html] of pages) {
   const fallbackNav = html.match(/<nav[^>]*data-site-nav[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
   const navTargets = [...fallbackNav.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(navTargets).size, navTargets.length, `${name} must not duplicate navigation entries`);
-  assert.deepEqual(navTargets, mainTargets, `${name} must expose only the six main navigation entries`);
+  assert.deepEqual(navTargets, mainTargets, `${name} must expose only the seven main navigation entries`);
   const selectedTarget = fallbackNav.match(/<a href="([^"]+)" aria-current="page">/)?.[1];
   assert.equal(selectedTarget, mainTargets.includes(name) ? name : detailParents.get(name) ?? 'ai.html', `${name} must select its main page or parent page without JavaScript`);
   for (const target of navTargets) {
@@ -58,7 +63,7 @@ for (const [name, html] of pages) {
   }
 }
 
-assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions)\.html'/);
+assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions|henan|shaanxi)\.html'/);
 assert.match(siteNav, /href: 'ai-learning-index\.html', label: '收藏'/);
 assert.match(siteNav, /href: 'market-memo\.html', label: '随笔'/);
 assert.match(siteNav, /href: 'general-knowledge\.html', label: '拾零'/);
@@ -73,6 +78,8 @@ assert.match(generalKnowledgePage, /<title>拾零｜知行簿<\/title>/);
 assert.match(generalKnowledgePage, /<link rel="stylesheet" href="assets\/general-knowledge\.css">/, 'general-knowledge must load its page layout');
 assert.match(generalKnowledgePage, /href="gk-countries\.html"/, 'general-knowledge must link to its country reference');
 assert.match(generalKnowledgePage, /href="china-regions\.html"/, 'general-knowledge must link to its regions reference');
+assert.match(generalKnowledgePage, /href="henan\.html"/, 'general-knowledge must link to its Henan reference');
+assert.match(generalKnowledgePage, /href="shaanxi\.html"/, 'general-knowledge must link to its Shaanxi reference');
 const countriesPage = pages.find(([name]) => name === 'gk-countries.html')[1];
 assert.match(countriesPage, /<title>全球国家概览｜知行簿<\/title>/);
 assert.match(countriesPage, /<link rel="stylesheet" href="assets\/gk-countries\.css">/, 'gk-countries must load its page layout');
@@ -84,7 +91,7 @@ assert.match(regionsPage, /<title>中国省份城市｜知行簿<\/title>/);
 assert.match(regionsPage, /<link rel="stylesheet" href="assets\/china-regions\.css">/, 'china-regions must load its page layout');
 assert.match(regionsPage, /<script src="assets\/china-regions\.js" defer><\/script>/, 'china-regions must load its dataset and behavior');
 assert.equal((regionsPage.match(/\{"n":/g) ?? []).length, 367, 'china-regions must carry the 34-province 333-city dataset');
-assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'china-regions\.html'\]/, 'site-nav must group gk pages under 拾零');
+assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html'\]/, 'site-nav must group gk pages under 拾零');
 assert.match(learningPage, /<title>收藏｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<title>运维智能体｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<link rel="stylesheet" href="assets\/ops-agent\.css">/);

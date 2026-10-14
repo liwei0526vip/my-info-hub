@@ -1,0 +1,67 @@
+/* City / district hierarchy extends the existing China reference table. */
+.pc-hero { display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; }
+.pc-hero h1 { display: flex; align-items: center; gap: 10px; }
+.pc-abbr { padding: 3px 6px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); font: 600 13px/1 var(--body); letter-spacing: 0; }
+.pc-layout { display: grid; grid-template-columns: minmax(790px, 1fr) minmax(280px, .34fr); align-items: start; gap: 12px; }
+.pc-reference { min-width: 0; }
+.pc-main .pc-table-wrap { height: auto; min-height: 0; max-height: clamp(420px, calc(100svh - 170px), 940px); }
+.pc-table { min-width: 790px; }
+.pc-col-name { width: 166px; }
+.pc-col-divisions { width: 292px; }
+.pc-col-pop { width: 96px; }
+.pc-col-area { width: 116px; }
+.pc-col-gdp { width: 120px; }
+.pc-table .cr-unit { display: block; margin: 0; line-height: 1.25; }
+.pc-table thead th { height: 42px; }
+.pc-city-row > td { background: var(--paper); }
+.pc-city-row .cr-name { font-weight: 600; }
+.pc-city-row { cursor: pointer; }
+.pc-city-row.cr-city--capital > td { background: var(--cr-capital-bg); }
+.pc-city-row .cr-city-name { overflow: visible; }
+.pc-direct { flex: 0 0 auto; color: var(--muted); font-size: 9px; font-weight: 400; }
+.pc-composition-count { display: block; color: var(--ink); font-size: 11px; font-weight: 550; }
+.pc-table .pc-divisions-row > td { padding: 10px 14px 10px 24px; background: #faf7f0; }
+.pc-table .pc-divisions-row:hover > td { background: #faf7f0; }
+.pc-divisions { display: grid; gap: 8px; margin: 0; }
+.pc-division-group { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: baseline; gap: 10px; }
+.pc-division-group dt { color: var(--muted); font-size: 11px; }
+.pc-division-group dt span { margin-left: 4px; font-variant-numeric: tabular-nums; }
+.pc-division-group dd { display: flex; flex-wrap: wrap; gap: 4px 6px; margin: 0; }
+.pc-division-name { padding: 2px 6px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); color: var(--ink); font-size: 12px; white-space: nowrap; }
+.pc-city-source { display: inline-block; margin: 8px 0 0 74px; color: var(--blue); font-size: 10px; }
+.pc-table-note { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+.pc-rankings { display: grid; gap: 10px; min-width: 0; }
+.pc-rankings .cr-chart { --cr-chart-label: 60px; --cr-chart-value: 66px; }
+.pc-sources p { margin: 8px 12px; color: var(--muted); font-size: 12px; line-height: 1.65; }
+@media (max-width: 1200px) {
+  .pc-layout { grid-template-columns: minmax(0, 1fr); }
+  .pc-rankings { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .pc-rankings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .pc-main .pc-table-wrap { max-height: min(64svh, 540px); }
+  .pc-table { min-width: 746px; }
+  .pc-col-name { width: 146px; }
+  .pc-col-divisions { width: 270px; }
+  .pc-col-pop { width: 94px; }
+  .pc-col-area { width: 116px; }
+  .pc-col-gdp { width: 120px; }
+  .pc-city-row .cr-city-name { font-size: 12px; }
+  .pc-division-group { grid-template-columns: 58px minmax(0, 1fr); gap: 8px; }
+  .pc-city-source { margin-left: 66px; }
+}
+@media (max-width: 620px) {
+  .pc-rankings { grid-template-columns: minmax(0, 1fr); }
+}
+@media print {
+  .pc-layout { display: block; }
+  .pc-main .pc-table-wrap { height: auto; max-height: none; overflow: visible; }
+  .pc-table { min-width: 0; }
+  .pc-col-name { width: 18%; }
+  .pc-col-divisions { width: 38%; }
+  .pc-col-pop, .pc-col-area, .pc-col-gdp { width: auto; }
+  .pc-rankings { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 12px; }
+  .pc-divisions-row { break-inside: avoid; }
+}
