@@ -22,6 +22,7 @@ const pageNames = [
   'china-regions.html',
   'henan.html',
   'shaanxi.html',
+  'xian.html',
   'learning.html',
 ];
 
@@ -35,6 +36,7 @@ const detailParents = new Map([
   ['china-regions.html', 'general-knowledge.html'],
   ['henan.html', 'general-knowledge.html'],
   ['shaanxi.html', 'general-knowledge.html'],
+  ['xian.html', 'general-knowledge.html'],
   ['ai-model-comparison.html', 'ai.html'],
   ['agent.html', 'ai.html'],
   ['ai-knowledge-base.html', 'ai.html'],
@@ -63,7 +65,7 @@ for (const [name, html] of pages) {
   }
 }
 
-assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions|henan|shaanxi)\.html'/);
+assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions|henan|shaanxi|xian)\.html'/);
 assert.match(siteNav, /href: 'ai-learning-index\.html', label: '收藏'/);
 assert.match(siteNav, /href: 'market-memo\.html', label: '随笔'/);
 assert.match(siteNav, /href: 'general-knowledge\.html', label: '拾零'/);
@@ -80,6 +82,7 @@ assert.match(generalKnowledgePage, /href="gk-countries\.html"/, 'general-knowled
 assert.match(generalKnowledgePage, /href="china-regions\.html"/, 'general-knowledge must link to its regions reference');
 assert.match(generalKnowledgePage, /href="henan\.html"/, 'general-knowledge must link to its Henan reference');
 assert.match(generalKnowledgePage, /href="shaanxi\.html"/, 'general-knowledge must link to its Shaanxi reference');
+assert.match(generalKnowledgePage, /href="xian\.html"/, 'general-knowledge must link to its Xi’an reference');
 const countriesPage = pages.find(([name]) => name === 'gk-countries.html')[1];
 assert.match(countriesPage, /<title>全球国家概览｜知行簿<\/title>/);
 assert.match(countriesPage, /<link rel="stylesheet" href="assets\/gk-countries\.css">/, 'gk-countries must load its page layout');
@@ -91,7 +94,7 @@ assert.match(regionsPage, /<title>中国省份城市｜知行簿<\/title>/);
 assert.match(regionsPage, /<link rel="stylesheet" href="assets\/china-regions\.css">/, 'china-regions must load its page layout');
 assert.match(regionsPage, /<script src="assets\/china-regions\.js" defer><\/script>/, 'china-regions must load its dataset and behavior');
 assert.equal((regionsPage.match(/\{"n":/g) ?? []).length, 367, 'china-regions must carry the 34-province 333-city dataset');
-assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html'\]/, 'site-nav must group gk pages under 拾零');
+assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html', 'xian\.html'\]/, 'site-nav must group gk pages under 拾零');
 assert.match(learningPage, /<title>收藏｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<title>运维智能体｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<link rel="stylesheet" href="assets\/ops-agent\.css">/);

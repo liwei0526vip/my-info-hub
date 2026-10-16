@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="西安城市概览：城市人口、面积、GDP 与人均 GDP，13 个区县指标对比及 TOP5，附重点产业、开发区和代表高校速查。">
+  <title>西安城市概览｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/general-knowledge.css">
+  <link rel="stylesheet" href="assets/china-regions.css">
+  <link rel="stylesheet" href="assets/xian.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/xian.js" defer></script>
+</head>
+<body id="top" class="gk-page cr-page xa-page">
+  <a class="skip-link" href="#main">跳到西安城市概览正文</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">知行簿</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai.html">AI</a>
+        <a href="market-memo.html">随笔</a>
+        <a href="thoughts.html">思考</a>
+        <a href="general-knowledge.html" aria-current="page">拾零</a>
+        <a href="life.html">生活</a>
+        <a href="ai-learning-index.html">收藏</a>
+        <a href="learning.html">学习</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cr-main xa-main page-shell" id="main">
+    <header class="xa-hero">
+      <h1>西安城市概览</h1>
+      <span class="xa-identity">陕西 · 省会</span>
+      <p>古称长安 · 国家中心城市</p>
+      <a class="xa-parent" href="shaanxi.html">陕西省城市 ↗</a>
+    </header>
+    <nav class="xa-section-nav" aria-label="西安页内导航">
+      <a href="#overview">城市概况</a><a href="#districts">区县对比</a><a href="#industries">重点产业</a><a href="#universities">代表高校</a>
+    </nav>
+
+    <section class="xa-section" id="overview" aria-labelledby="overview-heading">
+      <div class="xa-section-heading"><h2 id="overview-heading">城市概况</h2><p>人口与经济指标 · 2025 年</p></div>
+      <div class="xa-scroll" tabindex="0" role="region" aria-label="西安城市概况指标">
+        <table class="xa-overview">
+          <caption class="visually-hidden">西安市主要指标，年份和单位列于表头，面积采用行政区划口径。</caption>
+          <thead><tr>
+            <th scope="col">常住人口<small>万人 · 2025 年末</small></th>
+            <th scope="col">土地面积<small>万平方公里 · 2023</small></th>
+            <th scope="col">GDP<small>亿元 · 2025</small></th>
+            <th scope="col">人均 GDP<small>万元 · 2025</small></th>
+            <th scope="col">城镇化率<small>% · 2025</small></th>
+            <th scope="col">行政区划<small>市辖区 / 县</small></th>
+          </tr></thead>
+          <tbody><tr>
+            <td title="1323.63 万人">1323.6</td><td title="10096.89 平方公里，西安统计年鉴 2025 表 1-2，2023 年土地面积">1.01</td>
+            <td title="13902.67 亿元，初步核算">13902.7</td><td title="105308 元，官方人均 GDP">10.53</td><td>81.01</td><td class="xa-division-total">11 区 · 2 县</td>
+          </tr></tbody>
+        </table>
+      </div>
+      <p class="xa-note">面积为行政区划口径，人口与经济指标按统计公报口径；悬停数值可查看原始精度。</p>
+    </section>
+
+    <section class="xa-section" id="districts" aria-labelledby="districts-heading">
+      <div class="xa-section-heading"><h2 id="districts-heading">区县对比</h2><p>11 区 2 县 · 点击表头排序，点击区县展开资料</p></div>
+      <div class="xa-district-layout">
+        <div>
+          <p class="xa-note xa-table-hint" id="xian-table-hint" hidden>左右滑动查看，区县名称保持可见。</p>
+          <div class="cr-table-wrap xa-table-wrap" tabindex="0" role="region" aria-label="西安区县指标对比" aria-describedby="districts-note">
+            <table class="cr-table xa-table" id="xian-district-table">
+              <caption class="visually-hidden">西安 13 个区县的 2024 年末常住人口、2023 年行政区划面积及 2024 年 GDP。默认按 GDP 降序。</caption>
+              <colgroup><col class="xa-col-name"><col class="xa-col-pop"><col class="xa-col-area"><col class="xa-col-gdp"><col class="xa-col-focus"></colgroup>
+              <thead><tr>
+                <th scope="col" data-sort="n" class="is-sortable"><button type="button">区县 <span class="cr-sort-icon" aria-hidden="true">↕</span></button></th>
+                <th scope="col" data-sort="pop" class="is-sortable is-numeric"><button type="button">人口 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万人 · 2024 年末</span></th>
+                <th scope="col" data-sort="area" class="is-sortable is-numeric"><button type="button">面积 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">平方公里 · 2023</span></th>
+                <th scope="col" data-sort="gdp" class="is-sortable is-numeric"><button type="button">GDP <span class="cr-sort-icon" aria-hidden="true">↓</span></button><span class="cr-unit">亿元 · 2024</span></th>
+                <th scope="col">区域特点<span class="cr-unit">简要归纳</span></th>
+              </tr></thead>
+              <tbody id="xian-district-rows"></tbody>
+            </table>
+          </div>
+          <p class="xa-note" id="districts-note">人口与 GDP 取自《西安统计年鉴 2025》；面积原表注明使用 2023 年行政区划数据。西咸新区单列统计，不加入区县 TOP5。</p>
+        </div>
+        <aside class="xa-rankings" id="xian-rankings" aria-label="西安区县人口、面积与 GDP TOP5"></aside>
+      </div>
+    </section>
+
+    <div class="xa-context-grid">
+      <section class="xa-section" id="industries" aria-labelledby="industries-heading">
+        <div class="xa-section-heading"><h2 id="industries-heading">重点产业</h2><p>代表企业、院所与主要承载区域</p></div>
+        <div class="xa-scroll" tabindex="0" role="region" aria-label="西安重点产业速查">
+          <table class="xa-reference-table xa-industry-table">
+            <caption class="visually-hidden">西安六类代表产业，企业与院所仅为示例，不作排名。</caption>
+            <thead><tr><th scope="col">产业 / 方向</th><th scope="col">代表企业 / 院所</th><th scope="col">主要承载区域</th></tr></thead>
+            <tbody id="xian-industry-rows"></tbody>
+          </table>
+        </div>
+        <details class="xa-zones"><summary>开发区与新区的功能定位</summary><dl id="xian-zones"></dl></details>
+        <p class="xa-note">开发区、新区与行政区县的范围可能重叠，按功能平台单列，不计入 13 个区县。产业名称链接至官方资料。</p>
+      </section>
+      <section class="xa-section" id="universities" aria-labelledby="universities-heading">
+        <div class="xa-section-heading"><h2 id="universities-heading">代表高校</h2><p>特色领域与西安主要校区</p></div>
+        <div class="xa-scroll" tabindex="0" role="region" aria-label="西安代表高校速查">
+          <table class="xa-reference-table xa-university-table">
+            <caption class="visually-hidden">西安八所代表高校的特色方向及主要西安校区，不作学校排名。</caption>
+            <thead><tr><th scope="col">高校</th><th scope="col">特色领域</th><th scope="col">校区 / 行政区</th></tr></thead>
+            <tbody id="xian-university-rows"></tbody>
+          </table>
+        </div>
+        <p class="xa-note">高校名称链接至官网，985、211 标识按教育部公布名单标注，领域为特色摘要。校区仅精选西安行政区内主要校区；交大创新港位于西咸新区沣西新城，与西安区县内校区分开。</p>
+      </section>
+    </div>
+
+    <details class="cr-sources xa-sources">
+      <summary>资料说明 <span class="cr-source-date">核对 <time datetime="2026-10-16">2026.10.16</time></span></summary>
+      <p>全市概况采用 2025 年统计公报；区县表采用《西安统计年鉴 2025》所列 2024 年末常住人口与 2024 年 GDP 公布值。土地面积按该年鉴表 1-2 的行政区划口径，原表注明为 2023 年数据。各项年份已标在表头，未将最新年度指标与旧年度指标混入同一排名。</p>
+      <p>年鉴将西咸新区作为独立统计区域，2024 年数据不含西安、咸阳共管区。行政区划与统计管理范围存在差异，区县表只列西安 11 区 2 县；开发区及西咸新区另列功能定位，与区县可能交叉。全市人均 GDP 使用官方公布值。</p>
+      <p>区域特点为速查归纳，不是法定功能分区。产业与高校均选取代表内容，不作完整名录或名次判断；可点击产业、高校和功能区名称查看原始资料。</p>
+      <ul id="xian-sources"></ul>
+    </details>
+    <noscript><p class="cr-noscript">请启用 JavaScript 查看区县对比、产业和高校表格。</p></noscript>
+  </main>
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+  <script type="application/json" id="xian-data">
+  {
+    "checkedOn": "2026-10-16",
+    "metricSource": "https://tjj.xa.gov.cn/tjnj/2025/zk/html/01-15.jpg",
+    "areaSource": "https://tjj.xa.gov.cn/tjnj/2025/zk/html/01-02.jpg",
+    "contextSource": "https://www.xa.gov.cn/gk/ghjh/fzgh/5f9a8102f8fd1c59663e4fc7.html",
+    "districts": [
+      {
+        "id": 1,
+        "n": "新城区",
+        "pop": 62.75,
+        "area": 30.13,
+        "gdp": 801.12,
+        "focus": "商贸服务 · 老城生活",
+        "about": "以传统商贸、城市服务和老城生活片区为主要辨识点。"
+      },
+      {
+        "id": 2,
+        "n": "碑林区",
+        "pop": 77.91,
+        "area": 23.37,
+        "gdp": 1162.92,
+        "focus": "文教科研 · 商务服务",
+        "about": "高校与科研资源集中，兼有历史文化街区和商务服务功能。"
+      },
+      {
+        "id": 3,
+        "n": "莲湖区",
+        "pop": 103.77,
+        "area": 38.32,
+        "gdp": 894.24,
+        "focus": "商贸服务 · 装备制造",
+        "about": "老城西部的重要生活与商贸片区，具有装备制造产业基础。"
+      },
+      {
+        "id": 4,
+        "n": "灞桥区",
+        "pop": 109.03,
+        "area": 324.5,
+        "gdp": 809.21,
+        "focus": "城市东部 · 产业转型",
+        "about": "位于城市东部，具有纺织产业基础，推进产业转型与城市更新。"
+      },
+      {
+        "id": 5,
+        "n": "未央区",
+        "pop": 163.92,
+        "area": 264.41,
+        "gdp": 1685.61,
+        "focus": "城市北部 · 产城融合",
+        "about": "位于城市北部，政务服务、商贸与制造业并重，相关开发区与行政区范围存在交叉。"
+      },
+      {
+        "id": 6,
+        "n": "雁塔区",
+        "pop": 214.85,
+        "area": 151.44,
+        "gdp": 3312.67,
+        "focus": "科教研发 · 现代服务",
+        "about": "高校、科研与现代服务业集聚，是西安重要的科教与城市消费片区。"
+      },
+      {
+        "id": 7,
+        "n": "阎良区",
+        "pop": 31.38,
+        "area": 244.55,
+        "gdp": 342.76,
+        "focus": "航空制造",
+        "about": "以航空整机、零部件制造及配套服务为鲜明特色，与航空基地协同发展。"
+      },
+      {
+        "id": 8,
+        "n": "临潼区",
+        "pop": 68.73,
+        "area": 915.98,
+        "gdp": 301.08,
+        "focus": "文化旅游 · 装备制造",
+        "about": "历史文化旅游资源与装备制造产业并存，文旅是区域的重要辨识点。"
+      },
+      {
+        "id": 9,
+        "n": "长安区",
+        "pop": 165.84,
+        "area": 1588.54,
+        "gdp": 1593.02,
+        "focus": "高等教育 · 秦岭生态",
+        "about": "高校校区集中，兼具秦岭生态与城乡融合功能；航天基地按功能平台另列。"
+      },
+      {
+        "id": 10,
+        "n": "高陵区",
+        "pop": 47.32,
+        "area": 285.03,
+        "gdp": 463.83,
+        "focus": "汽车制造 · 工业配套",
+        "about": "汽车、装备制造与工业配套是重要产业方向，与经开区产业平台协同。"
+      },
+      {
+        "id": 11,
+        "n": "鄠邑区",
+        "pop": 59.05,
+        "area": 1279.43,
+        "gdp": 544.61,
+        "focus": "先进制造 · 生态文旅",
+        "about": "兼具先进制造、产业配套与秦岭北麓生态文旅资源。"
+      },
+      {
+        "id": 12,
+        "n": "蓝田县",
+        "pop": 49.13,
+        "area": 2005.96,
+        "gdp": 205.96,
+        "focus": "生态农业 · 文化旅游",
+        "about": "生态农业、玉文化与休闲旅游是便于理解区域特点的主要线索。"
+      },
+      {
+        "id": 13,
+        "n": "周至县",
+        "pop": 55.42,
+        "area": 2945.23,
+        "gdp": 259.53,
+        "focus": "特色农业 · 生态保护",
+        "about": "以猕猴桃等特色农业及秦岭生态资源为代表，地域面积在各区县中较大。"
+      }
+    ],
+    "industries": [
+      {
+        "name": "电子信息",
+        "description": "芯片设计、制造、封测与智能终端",
+        "examples": [
+          "三星",
+          "美光",
+          "中兴"
+        ],
+        "zones": [
+          "高新区"
+        ],
+        "source": "https://gxj.xa.gov.cn/ywxx/dzxx/62cbec2ef8fd1c4c21086c7a.html"
+      },
+      {
+        "name": "汽车",
+        "description": "新能源乘用车、重卡与零部件",
+        "examples": [
+          "比亚迪",
+          "陕汽",
+          "西安吉利"
+        ],
+        "zones": [
+          "高新区",
+          "经开区"
+        ],
+        "source": "https://xetdz.xa.gov.cn/zwgk/jyta/2075485331184943105.html"
+      },
+      {
+        "name": "航空航天",
+        "description": "飞机及部件、航天动力与卫星应用",
+        "examples": [
+          "中航西飞",
+          "三角防务",
+          "航天六院（院所）"
+        ],
+        "zones": [
+          "航空基地",
+          "航天基地"
+        ],
+        "source": "https://caib.xa.gov.cn/zwgk/ghjh/ndjhzj/1897122341004554241.html"
+      },
+      {
+        "name": "高端装备",
+        "description": "输变电、能量转换与专用装备",
+        "examples": [
+          "中国西电",
+          "陕鼓动力"
+        ],
+        "zones": [
+          "高新区",
+          "经开区",
+          "临潼区"
+        ],
+        "source": "https://xdz.xa.gov.cn/xwzx/gxyw/6307405af8fd1c4c21135e18.html"
+      },
+      {
+        "name": "新材料新能源",
+        "description": "稀有金属、超导材料与太阳能光伏",
+        "examples": [
+          "西部超导",
+          "西部材料",
+          "隆基绿能"
+        ],
+        "zones": [
+          "经开区",
+          "高新区",
+          "航天基地"
+        ],
+        "source": "https://xetdz.xa.gov.cn/xwzx/jkdt/2062714302487429122.html"
+      },
+      {
+        "name": "生物医药",
+        "description": "化学药、生物材料与医疗器械",
+        "examples": [
+          "西安杨森",
+          "巨子生物"
+        ],
+        "zones": [
+          "高新区草堂基地",
+          "集贤园"
+        ],
+        "source": "https://xdz.xa.gov.cn/xwzx/gxyw/62e0aeb9f8fd1c4c210c2cbf.html"
+      }
+    ],
+    "universities": [
+      {
+        "name": "西安交通大学",
+        "short": "西安交大",
+        "programs": ["985", "211"],
+        "fields": "能源动力、电气、机械，兼具医学与管理。",
+        "url": "https://www.xjtu.edu.cn/jdgk/jdjj.htm",
+        "campuses": [
+          {
+            "name": "兴庆校区",
+            "district": "碑林区"
+          },
+          {
+            "name": "雁塔校区",
+            "district": "雁塔区"
+          },
+          {
+            "name": "曲江校区",
+            "district": "雁塔区"
+          }
+        ]
+      },
+      {
+        "name": "西北工业大学",
+        "short": "西工大",
+        "programs": ["985", "211"],
+        "fields": "航空、航天、航海领域教学与科研。",
+        "url": "https://www.nwpu.edu.cn/xxgk/xxjj.htm",
+        "campuses": [
+          {
+            "name": "友谊校区",
+            "district": "碑林区"
+          },
+          {
+            "name": "长安校区",
+            "district": "长安区"
+          }
+        ]
+      },
+      {
+        "name": "西安电子科技大学",
+        "short": "西电",
+        "programs": ["211"],
+        "fields": "通信、计算机、微电子与网络安全。",
+        "url": "https://www.xidian.edu.cn/xxgk/xxjj.htm",
+        "campuses": [
+          {
+            "name": "北校区",
+            "district": "雁塔区"
+          },
+          {
+            "name": "南校区",
+            "district": "长安区"
+          }
+        ]
+      },
+      {
+        "name": "西北大学",
+        "short": "西大",
+        "programs": ["211"],
+        "fields": "地质学、考古学等基础与人文学科。",
+        "url": "https://www.nwu.edu.cn/",
+        "campuses": [
+          {
+            "name": "太白校区",
+            "district": "碑林区"
+          },
+          {
+            "name": "长安校区",
+            "district": "长安区"
+          },
+          {
+            "name": "桃园校区",
+            "district": "莲湖区"
+          }
+        ]
+      },
+      {
+        "name": "长安大学",
+        "short": "长大",
+        "programs": ["211"],
+        "fields": "交通运输、国土资源与城乡建设。",
+        "url": "https://www.chd.edu.cn/xxgk/xxjj.htm",
+        "campuses": [
+          {
+            "name": "南校区",
+            "district": "雁塔区"
+          },
+          {
+            "name": "北校区（渭水）",
+            "district": "未央区"
+          }
+        ]
+      },
+      {
+        "name": "陕西师范大学",
+        "short": "陕师大",
+        "programs": ["211"],
+        "fields": "教师教育、中国语言文学等学科。",
+        "url": "https://www.snnu.cn/xxgk/xxjj.htm",
+        "campuses": [
+          {
+            "name": "雁塔校区",
+            "district": "雁塔区"
+          },
+          {
+            "name": "长安校区",
+            "district": "长安区"
+          }
+        ]
+      },
+      {
+        "name": "陕西科技大学",
+        "short": "陕科大",
+        "programs": [],
+        "fields": "轻工特色，覆盖材料、食品与环境。",
+        "url": "https://www.sust.edu.cn/xxgk/xxjj.htm",
+        "campuses": [
+          {
+            "name": "未央校区",
+            "district": "未央区"
+          }
+        ]
+      },
+      {
+        "name": "西安理工大学",
+        "short": "西理工",
+        "programs": [],
+        "fields": "水利水电、装备制造等领域。",
+        "url": "https://www.xaut.edu.cn/xxgk/xxjj.htm",
+        "campuses": [
+          {
+            "name": "金花校区",
+            "district": "碑林区"
+          },
+          {
+            "name": "曲江校区",
+            "district": "雁塔区"
+          }
+        ]
+      }
+    ],
+    "zones": [
+      {
+        "name": "高新区",
+        "focus": "硬科技创新、电子信息、汽车、生物医药与智能制造。",
+        "url": "https://xdz.xa.gov.cn/gxgk/tzgx/60c9cc9df8fd1c0bdc32aea1.html"
+      },
+      {
+        "name": "经开区",
+        "focus": "汽车、新材料、新能源与高端装备制造。",
+        "url": "https://xetdz.xa.gov.cn/zwgk/jyta/2075485331184943105.html"
+      },
+      {
+        "name": "航空基地",
+        "focus": "飞机研制制造、航空配套与航空材料。",
+        "url": "https://caib.xa.gov.cn/zwgk/ghjh/ndjhzj/1897122341004554241.html"
+      },
+      {
+        "name": "航天基地",
+        "focus": "航天动力、卫星制造与应用、新能源新材料。",
+        "url": "https://xcaib.xa.gov.cn/zsyz/tzhj/5e86961cfd850815d1cd708c.html"
+      },
+      {
+        "name": "曲江新区",
+        "focus": "文化产业、文化旅游与文商旅融合。",
+        "url": "https://qjxq.xa.gov.cn/zjqj/qyts/5df21c46f99d657750e6dde3.html"
+      },
+      {
+        "name": "浐灞国际港",
+        "focus": "国际物流、对外开放与现代服务业。",
+        "url": "https://www.xa.gov.cn/zzzb/xwdt/zfwj/2044274527574188033.html"
+      },
+      {
+        "name": "西咸新区",
+        "focus": "秦创原总窗口、成果转化与新兴产业；涉及西安、咸阳两市行政区划。",
+        "url": "https://www.xixianxinqu.gov.cn/zwgk/fdzdgknr/xqjj/601912b8f8fd1c2073f2a7c6.html"
+      }
+    ],
+    "sources": [
+      {
+        "label": "教育部：“985工程”学校名单",
+        "url": "https://www.moe.gov.cn/srcsite/A22/s7065/200612/t20061206_128833.html"
+      },
+      {
+        "label": "教育部：“211工程”学校名单",
+        "url": "https://www.moe.gov.cn/srcsite/A22/s7065/200512/t20051223_82762.html"
+      },
+      {
+        "label": "西安市 2025 年国民经济和社会发展统计公报",
+        "url": "https://tjj.xa.gov.cn/tjsj/tjgb/gmjjhshfzgb/2055106184529166338.html"
+      },
+      {
+        "label": "陕西省统计局转载：西安市 2025 年统计公报（含人均 GDP、城镇化率）",
+        "url": "https://tjj.shaanxi.gov.cn/tjsj/ndsj/tjgb/gs/202606/t20260609_3645959.html"
+      },
+      {
+        "label": "西安市政府：市情简介与 11 区 2 县",
+        "url": "https://www.xa.gov.cn/sq/csgk/sqjj/1.html"
+      },
+      {
+        "label": "西安统计年鉴 2025：土地面积及人口（表 1-2）",
+        "url": "https://tjj.xa.gov.cn/tjnj/2025/zk/html/01-02.jpg"
+      },
+      {
+        "label": "西安统计年鉴 2025：区县主要指标（表 1-15）",
+        "url": "https://tjj.xa.gov.cn/tjnj/2025/zk/html/01-15.jpg"
+      },
+      {
+        "label": "西安统计年鉴 2025：区县常住人口及统计口径（表 4-5）",
+        "url": "https://tjj.xa.gov.cn/tjnj/2025/zk/html/04-05.jpg"
+      },
+      {
+        "label": "西安市现代产业布局规划（区域特点归纳参考）",
+        "url": "https://www.xa.gov.cn/gk/ghjh/fzgh/5f9a8102f8fd1c59663e4fc7.html"
+      },
+      {
+        "label": "西安市“十五五”规划纲要（功能区与产业布局）",
+        "url": "https://www.xa.gov.cn/zzzb/xwdt/zfwj/2044274527574188033.html"
+      },
+      {
+        "label": "西安高新区：比亚迪西安基地",
+        "url": "https://xdz.xa.gov.cn/zwgk/shgysyjs/wtly/2069337263314128898.html"
+      },
+      {
+        "label": "航天基地简介：航天六院与产业方向",
+        "url": "https://xcaib.xa.gov.cn/zsyz/tzhj/5e86961cfd850815d1cd708c.html"
+      },
+      {
+        "label": "长安大学：校区所属行政区说明",
+        "url": "https://gac.chd.edu.cn/2023/0526/c6169a231164/page.htm"
+      },
+      {
+        "label": "西北大学：2026 年本科招生章程与校区地址",
+        "url": "https://zsb.nwu.edu.cn/info/1050/3121.htm"
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
