@@ -77,15 +77,16 @@
     </section>
 
     <section class="xa-section" id="districts" aria-labelledby="districts-heading">
-      <div class="xa-section-heading"><h2 id="districts-heading">区县对比</h2><p>11 区 2 县 · 点击表头排序，点击区县展开资料</p></div>
+      <div class="xa-section-heading xa-district-heading"><h2 id="districts-heading">西安 13 个区县主要指标对比</h2><p>11 区 2 县 · 点击表头排序，点击区县展开资料</p></div>
       <div class="xa-district-layout">
         <div>
           <p class="xa-note xa-table-hint" id="xian-table-hint" hidden>左右滑动查看，区县名称保持可见。</p>
           <div class="cr-table-wrap xa-table-wrap" tabindex="0" role="region" aria-label="西安区县指标对比" aria-describedby="districts-note">
             <table class="cr-table xa-table" id="xian-district-table">
               <caption class="visually-hidden">西安 13 个区县的 2024 年末常住人口、2023 年行政区划面积及 2024 年 GDP。默认按 GDP 降序。</caption>
-              <colgroup><col class="xa-col-name"><col class="xa-col-pop"><col class="xa-col-area"><col class="xa-col-gdp"><col class="xa-col-focus"></colgroup>
+              <colgroup><col class="xa-col-rank"><col class="xa-col-name"><col class="xa-col-pop"><col class="xa-col-area"><col class="xa-col-gdp"><col class="xa-col-focus"></colgroup>
               <thead><tr>
+                <th scope="col" class="xa-rank-heading" id="xian-rank-heading"><span id="xian-rank-label">排名</span></th>
                 <th scope="col" data-sort="n" class="is-sortable"><button type="button">区县 <span class="cr-sort-icon" aria-hidden="true">↕</span></button></th>
                 <th scope="col" data-sort="pop" class="is-sortable is-numeric"><button type="button">人口 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万人 · 2024 年末</span></th>
                 <th scope="col" data-sort="area" class="is-sortable is-numeric"><button type="button">面积 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">平方公里 · 2023</span></th>
@@ -95,7 +96,7 @@
               <tbody id="xian-district-rows"></tbody>
             </table>
           </div>
-          <p class="xa-note" id="districts-note">人口与 GDP 取自《西安统计年鉴 2025》；面积原表注明使用 2023 年行政区划数据。西咸新区单列统计，不加入区县 TOP5。</p>
+          <p class="xa-note" id="districts-note">人口与 GDP 取自《西安统计年鉴 2025》；面积原表注明使用 2023 年行政区划数据。排名按当前指标从高到低计算；按区县名称排序时显示序号。西咸新区单列统计，不加入区县 TOP5。</p>
         </div>
         <aside class="xa-rankings" id="xian-rankings" aria-label="西安区县人口、面积与 GDP TOP5"></aside>
       </div>

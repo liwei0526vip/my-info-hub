@@ -9,7 +9,7 @@
   const state = { sort: { key: 'gdp', dir: -1 }, expanded: new Set() };
   const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const number = (value, digits = 2) => new Intl.NumberFormat('zh-CN', { useGrouping: false, maximumFractionDigits: digits }).format(value);
-  const formats = { pop: value => number(value, 1), area: value => number(value, 1), gdp: value => number(value, 1) };
+  const formats = { pop: value => number(value), area: value => number(value), gdp: value => number(value) };
   const units = { pop: '万人', area: '平方公里', gdp: '亿元' };
   const sort = (key, dir) => [...data.districts].sort((a, b) => dir * (typeof a[key] === 'string' ? a[key].localeCompare(b[key], 'zh-CN') : a[key] - b[key]));
   const link = (url, label) => `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(label)}</a>`;
@@ -22,17 +22,24 @@
   }
 
   function renderDistricts() {
-    body.innerHTML = sort(state.sort.key, state.sort.dir).map(district => {
+    const ranked = state.sort.key !== 'n';
+    const ranks = new Map(sort(state.sort.key, -1).map((district, i) => [district.id, i + 1]));
+    const metricLabel = { pop: '人口', area: '面积', gdp: 'GDP' }[state.sort.key];
+    byId('xian-rank-label').textContent = ranked ? '排名' : '序号';
+    byId('xian-rank-heading').setAttribute('title', ranked ? `按${metricLabel}从高到低排名` : '按当前区县名称顺序编号');
+    body.innerHTML = sort(state.sort.key, state.sort.dir).map((district, i) => {
       const open = state.expanded.has(district.n);
+      const rank = ranked ? ranks.get(district.id) : i + 1;
       const row = `<tr class="xa-district-row" data-district="${escape(district.n)}" aria-expanded="${open}">
+        <td class="xa-rank-cell"><span class="xa-rank-badge${ranked && rank <= 3 ? ` xa-rank-badge--${rank}` : ''}"${ranked ? ` title="${metricLabel}第 ${rank} 名"` : ''}>${rank}</span></td>
         <td class="cr-name"><button class="cr-province-button xa-district-button" type="button" aria-expanded="${open}" aria-controls="xian-detail-${district.id}" aria-label="${open ? '收起' : '展开'}${escape(district.n)}资料"><span class="cr-toggle" aria-hidden="true">▸</span>${escape(district.n)}</button></td>
         <td class="num" title="${number(district.pop)}万人 · 2024 年末常住人口">${formats.pop(district.pop)}</td>
         <td class="num" title="${number(district.area)}平方公里 · 行政区划面积，2023 年数据">${formats.area(district.area)}</td>
-        <td class="num" title="${number(district.gdp)}亿元 · 2024 年">${formats.gdp(district.gdp)}</td>
+        <td class="num xa-gdp-value" title="${number(district.gdp)}亿元 · 2024 年">${formats.gdp(district.gdp)}</td>
         <td class="xa-focus">${escape(district.focus)}</td>
       </tr>`;
       const campuses = data.universities.flatMap(school => school.campuses.filter(campus => campus.district === district.n).map(campus => `${school.short}·${campus.name}`));
-      const details = `<tr class="xa-detail-row" id="xian-detail-${district.id}"${open ? '' : ' hidden'}><td colspan="5"><dl class="xa-detail"><dt>区域特点</dt><dd>${escape(district.about)}</dd>${campuses.length ? `<dt>代表高校</dt><dd>${escape(campuses.join('、'))}</dd>` : ''}</dl><p class="xa-data-links">${link(data.metricSource, '人口与 GDP 原表 ↗')}${link(data.areaSource, '面积原表 ↗')}${link(data.contextSource, '产业布局参考 ↗')}</p></td></tr>`;
+      const details = `<tr class="xa-detail-row" id="xian-detail-${district.id}"${open ? '' : ' hidden'}><td colspan="6"><dl class="xa-detail"><dt>区域特点</dt><dd>${escape(district.about)}</dd>${campuses.length ? `<dt>代表高校</dt><dd>${escape(campuses.join('、'))}</dd>` : ''}</dl><p class="xa-data-links">${link(data.metricSource, '人口与 GDP 原表 ↗')}${link(data.areaSource, '面积原表 ↗')}${link(data.contextSource, '产业布局参考 ↗')}</p></td></tr>`;
       return row + details;
     }).join('');
     heads.forEach(head => {
@@ -49,13 +56,13 @@
 
   function renderRankings() {
     byId('xian-rankings').innerHTML = [
-      { key: 'pop', label: '人口', note: '2024 年末' },
-      { key: 'area', label: '面积', note: '2023 年' },
-      { key: 'gdp', label: 'GDP', note: '2024 年' },
+      { key: 'pop', label: '人口', note: '2024 年末', icon: 'people' },
+      { key: 'area', label: '面积', note: '2023 年', icon: 'map' },
+      { key: 'gdp', label: 'GDP', note: '2024 年', icon: 'chart' },
     ].map(metric => {
       const districts = sort(metric.key, -1).slice(0, 5);
       const maximum = districts[0][metric.key];
-      return `<figure class="cr-chart cr-chart--${metric.key}" aria-labelledby="xa-ranking-${metric.key}"><figcaption><h2 id="xa-ranking-${metric.key}">区县${metric.label} TOP5</h2><span class="cr-chart-note">${metric.note} · ${units[metric.key]}</span></figcaption><ol class="cr-chart-list">${districts.map((district, i) => `<li data-name="${escape(district.n)}" aria-label="第 ${i + 1} 名，${escape(district.n)}，${formats[metric.key](district[metric.key])}${units[metric.key]}"><span class="cr-rank-number" aria-hidden="true">${i + 1}</span><span class="cr-chart-name">${escape(district.n)}</span><span class="cr-chart-track" aria-hidden="true"><span class="cr-chart-bar" style="width:${(district[metric.key] / maximum * 100).toFixed(2)}%"></span></span><span class="cr-chart-value" title="${number(district[metric.key])}${units[metric.key]}">${formats[metric.key](district[metric.key])}</span></li>`).join('')}</ol></figure>`;
+      return `<figure class="cr-chart cr-chart--${metric.key}" aria-labelledby="xa-ranking-${metric.key}"><figcaption><svg class="xa-ranking-icon" aria-hidden="true"><use href="#xa-icon-${metric.icon}"/></svg><h2 id="xa-ranking-${metric.key}">${metric.label} TOP5</h2><span class="cr-chart-note">${units[metric.key]}</span></figcaption><ol class="cr-chart-list">${districts.map((district, i) => `<li data-name="${escape(district.n)}" aria-label="第 ${i + 1} 名，${escape(district.n)}，${formats[metric.key](district[metric.key])}${units[metric.key]}"><span class="cr-rank-number" aria-hidden="true">${i + 1}</span><span class="cr-chart-name">${escape(district.n)}</span><span class="cr-chart-track" aria-hidden="true"><span class="cr-chart-bar" style="width:${(district[metric.key] / maximum * 100).toFixed(2)}%"></span></span><span class="cr-chart-value" title="${number(district[metric.key])}${units[metric.key]}">${formats[metric.key](district[metric.key])}</span></li>`).join('')}</ol><p class="xa-ranking-year">${metric.note}</p></figure>`;
     }).join('');
   }
 
