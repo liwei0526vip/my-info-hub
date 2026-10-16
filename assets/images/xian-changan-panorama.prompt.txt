@@ -1,0 +1,10 @@
+Tool: built-in image_gen.imagegen
+Purpose: Xi'an city page hero background
+Reference: User-supplied Chang'an-style page design
+
+Use case: historical-scene.
+Asset type: decorative panoramic hero background for an existing Xi'an city reference webpage.
+Input Image 1: STYLE REFERENCE ONLY, not an edit target. Borrow its Chinese heritage travel-poster illustration style, aged ivory rice paper, cinnabar red, deep petrol teal, antique gold, fine ink outlines, subtle paper grain, painted mountains, pale auspicious cloud curls, warm terracotta details.
+Primary request: generate ONE new very wide landscape illustration, aspect ratio approximately 3:1, with a graceful panorama of Xi'an landmarks across the LOWER HALF: a large recognizable terracotta warrior bust at the left edge, the Bell Tower near left-center, the Big Wild Goose Pagoda near right-center, and the historic city wall and a Chinese gate tower on the right. Behind them, gentle misty Qinling mountain silhouettes, a restrained modern skyline, a soft orange sun and a few red-orange autumn trees. Make an elegant designed heritage collage in the same visual language as the reference.
+Composition: leave the TOP 48 percent predominantly clean warm ivory parchment and faint clouds for a real HTML heading that will be overlaid later. Keep the important landmark silhouettes in the lower 52 percent and avoid crowding the center upper area. Along the very bottom, painted teal-and-gold brush ribbons and fine wisps that fade back into clean ivory, so it can merge naturally with a web page. Architecture should remain crisp and legible at banner scale.
+Constraints: illustration asset only. Absolutely NO text, NO Chinese characters, NO Latin lettering, NO numbers, NO logos, NO seals, NO labels, NO UI, NO statistic cards, NO borders around the whole canvas, NO screenshot or full-page layout. Do not reproduce any of the reference poster's typography or data. Opaque ivory background.
