@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
-  <meta name="description" content="西安城市概览：城市人口、面积、GDP 与人均 GDP，13 个区县指标对比及 TOP5，附重点产业、开发区和代表高校速查。">
+  <meta name="description" content="西安城市概览：认识西安、城市发展、游览西安三大板块，涵盖历史文化、区县指标、产业高校、城市变化、地铁、景点与美食。">
   <title>西安城市概览｜知行簿</title>
   <link rel="icon" href="assets/site-mark.svg">
   <link rel="stylesheet" href="assets/site-nav.css">
@@ -26,6 +26,8 @@
       <symbol id="xa-icon-divisions" viewBox="0 0 32 32"><path d="M12 3h8v7h-8zM3 22h7v7H3zM22 22h7v7h-7zM13 22h6v7h-6zM16 10v12M6.5 22v-6h19v6"/></symbol>
       <symbol id="xa-icon-industry" viewBox="0 0 32 32"><path d="m4 18 6-5v5l7-5v5h11v11H4zM22 18V4h4v14M9 23v2M15 23v2M22 23v2"/></symbol>
       <symbol id="xa-icon-school" viewBox="0 0 32 32"><path d="m2 11 14-7 14 7-14 7zM7 14v9c6 4 12 4 18 0v-9M30 11v12"/></symbol>
+      <symbol id="xa-icon-landmark" viewBox="0 0 32 32"><path d="M3 28h26M7 28V16h18v12M3 16l5-5h16l5 5zM7 11l5-5h8l5 5M16 2v4M12 21h8v7"/></symbol>
+      <symbol id="xa-icon-food" viewBox="0 0 32 32"><path d="M3 16h26M5 16a11 11 0 0 0 22 0M10 28h12M10 12V9c0-2 2-2 2-4M17 12V8c0-2 2-2 2-4M23 13l5-10M27 14l4-9"/></symbol>
     </defs>
   </svg>
   <header class="site-header">
@@ -56,92 +58,156 @@
       <span class="xa-hero-aside xa-hero-aside--right" aria-hidden="true">古今交汇</span>
       <a class="xa-parent" href="shaanxi.html">陕西省城市 ↗</a>
     </header>
-    <nav class="xa-section-nav" aria-label="西安页内导航">
-      <a href="#overview"><svg aria-hidden="true"><use href="#xa-icon-city"/></svg><span>城市概况<small>人口与经济</small></span></a>
-      <a href="#districts"><svg aria-hidden="true"><use href="#xa-icon-map"/></svg><span>区县对比<small>11 区 2 县</small></span></a>
-      <a href="#industries"><svg aria-hidden="true"><use href="#xa-icon-industry"/></svg><span>重点产业<small>企业与承载区域</small></span></a>
-      <a href="#universities"><svg aria-hidden="true"><use href="#xa-icon-school"/></svg><span>代表高校<small>领域与主要校区</small></span></a>
+    <nav class="xa-section-nav" aria-label="西安三大板块导航">
+      <a href="#understand"><svg aria-hidden="true"><use href="#xa-icon-city"/></svg><span>认识西安<small>概况 · 历史 · 区县</small></span></a>
+      <a href="#development"><svg aria-hidden="true"><use href="#xa-icon-industry"/></svg><span>城市发展<small>产业 · 高校 · 城市变化</small></span></a>
+      <a href="#travel"><svg aria-hidden="true"><use href="#xa-icon-landmark"/></svg><span>游览西安<small>景点 · 地铁 · 美食</small></span></a>
     </nav>
 
-    <section class="xa-section" id="overview" aria-labelledby="overview-heading">
-      <div class="xa-section-heading"><h2 id="overview-heading">城市概况</h2><p>人口与经济指标 · 2025 年</p></div>
-      <dl class="xa-stats" aria-label="西安城市概况指标">
-        <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-people"/></svg>常住人口 <span>万人 · 2025 年末</span></dt><dd title="1323.63 万人">1323.6</dd></div>
-        <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-map"/></svg>土地面积 <span>万平方公里 · 2023</span></dt><dd title="10096.89 平方公里，西安统计年鉴 2025 表 1-2，2023 年土地面积">1.01</dd></div>
-        <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-chart"/></svg>GDP <span>亿元 · 2025</span></dt><dd title="13902.67 亿元，初步核算">13902.7</dd></div>
-        <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-coins"/></svg>人均 GDP <span>万元 · 2025</span></dt><dd title="105308 元，官方人均 GDP">10.53</dd></div>
-        <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-city"/></svg>城镇化率 <span>% · 2025</span></dt><dd>81.01</dd></div>
-        <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-divisions"/></svg>行政区划 <span>市辖区 / 县</span></dt><dd class="xa-division-total">11 区 · 2 县</dd></div>
-      </dl>
-      <p class="xa-note">面积为行政区划口径，人口与经济指标按统计公报口径；悬停数值可查看原始精度。</p>
+    <section class="xa-chapter" id="understand" aria-labelledby="understand-heading">
+      <header class="xa-chapter-header">
+        <div><h2 id="understand-heading">认识西安</h2><p>从城市概况与历史脉络，读到各区县的差异。</p></div>
+        <nav class="xa-chapter-links" aria-label="认识西安栏目"><a href="#overview">城市概况</a><a href="#history">历史文化</a><a href="#districts">区县对比</a></nav>
+      </header>
+      <section class="xa-section" id="overview" aria-labelledby="overview-heading">
+        <div class="xa-section-heading"><h3 id="overview-heading">城市概况</h3><p>人口与经济指标 · 2025 年</p></div>
+        <dl class="xa-stats" aria-label="西安城市概况指标">
+          <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-people"/></svg>常住人口 <span>万人 · 2025 年末</span></dt><dd title="1323.63 万人">1323.6</dd></div>
+          <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-map"/></svg>土地面积 <span>万平方公里 · 2023</span></dt><dd title="10096.89 平方公里，西安统计年鉴 2025 表 1-2，2023 年土地面积">1.01</dd></div>
+          <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-chart"/></svg>GDP <span>亿元 · 2025</span></dt><dd title="13902.67 亿元，初步核算">13902.7</dd></div>
+          <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-coins"/></svg>人均 GDP <span>万元 · 2025</span></dt><dd title="105308 元，官方人均 GDP">10.53</dd></div>
+          <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-city"/></svg>城镇化率 <span>% · 2025</span></dt><dd>81.01</dd></div>
+          <div class="xa-stat"><dt><svg aria-hidden="true"><use href="#xa-icon-divisions"/></svg>行政区划 <span>市辖区 / 县</span></dt><dd class="xa-division-total">11 区 · 2 县</dd></div>
+        </dl>
+        <p class="xa-note">面积为行政区划口径，人口与经济指标按统计公报口径；悬停数值可查看原始精度。</p>
+      </section>
+
+      <section class="xa-section" id="history" aria-labelledby="history-heading">
+        <div class="xa-section-heading"><h3 id="history-heading">历史文化</h3><p>沿历史脉络认识长安，也看今天仍在延续的文化</p></div>
+        <ol class="xa-history" id="xian-history"></ol>
+        <dl class="xa-culture" id="xian-culture"></dl>
+        <p class="xa-note">各时期都城与遗址的范围不同，不能与今天的西安市行政范围直接等同；丰镐遗址现由西咸新区管理。秦代一项列帝陵遗存，秦都为咸阳。</p>
+      </section>
+
+      <section class="xa-section" id="districts" aria-labelledby="districts-heading">
+        <div class="xa-section-heading xa-district-heading"><h3 id="districts-heading">西安 13 个区县主要指标对比</h3><p>11 区 2 县 · 点击表头排序，点击区县展开资料</p></div>
+        <div class="xa-district-layout">
+          <div>
+            <p class="xa-note xa-table-hint" id="xian-table-hint" hidden>左右滑动查看，区县名称保持可见。</p>
+            <div class="cr-table-wrap xa-table-wrap" tabindex="0" role="region" aria-label="西安区县指标对比" aria-describedby="districts-note">
+              <table class="cr-table xa-table" id="xian-district-table">
+                <caption class="visually-hidden">西安 13 个区县的 2024 年末常住人口、2023 年行政区划面积及 2024 年 GDP。默认按 GDP 降序。</caption>
+                <colgroup><col class="xa-col-rank"><col class="xa-col-name"><col class="xa-col-pop"><col class="xa-col-area"><col class="xa-col-gdp"><col class="xa-col-focus"></colgroup>
+                <thead><tr>
+                  <th scope="col" class="xa-rank-heading" id="xian-rank-heading"><span id="xian-rank-label">排名</span></th>
+                  <th scope="col" data-sort="n" class="is-sortable"><button type="button">区县 <span class="cr-sort-icon" aria-hidden="true">↕</span></button></th>
+                  <th scope="col" data-sort="pop" class="is-sortable is-numeric"><button type="button">人口 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万人 · 2024 年末</span></th>
+                  <th scope="col" data-sort="area" class="is-sortable is-numeric"><button type="button">面积 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">平方公里 · 2023</span></th>
+                  <th scope="col" data-sort="gdp" class="is-sortable is-numeric"><button type="button">GDP <span class="cr-sort-icon" aria-hidden="true">↓</span></button><span class="cr-unit">亿元 · 2024</span></th>
+                  <th scope="col">区域特点<span class="cr-unit">简要归纳</span></th>
+                </tr></thead>
+                <tbody id="xian-district-rows"></tbody>
+              </table>
+            </div>
+            <p class="xa-note" id="districts-note">人口与 GDP 取自《西安统计年鉴 2025》；面积原表注明使用 2023 年行政区划数据。排名按当前指标从高到低计算；按区县名称排序时显示序号。西咸新区单列统计，不加入区县 TOP5。</p>
+          </div>
+          <aside class="xa-rankings" id="xian-rankings" aria-label="西安区县人口、面积与 GDP TOP5"></aside>
+        </div>
+      </section>
     </section>
 
-    <section class="xa-section" id="districts" aria-labelledby="districts-heading">
-      <div class="xa-section-heading xa-district-heading"><h2 id="districts-heading">西安 13 个区县主要指标对比</h2><p>11 区 2 县 · 点击表头排序，点击区县展开资料</p></div>
-      <div class="xa-district-layout">
-        <div>
-          <p class="xa-note xa-table-hint" id="xian-table-hint" hidden>左右滑动查看，区县名称保持可见。</p>
-          <div class="cr-table-wrap xa-table-wrap" tabindex="0" role="region" aria-label="西安区县指标对比" aria-describedby="districts-note">
-            <table class="cr-table xa-table" id="xian-district-table">
-              <caption class="visually-hidden">西安 13 个区县的 2024 年末常住人口、2023 年行政区划面积及 2024 年 GDP。默认按 GDP 降序。</caption>
-              <colgroup><col class="xa-col-rank"><col class="xa-col-name"><col class="xa-col-pop"><col class="xa-col-area"><col class="xa-col-gdp"><col class="xa-col-focus"></colgroup>
-              <thead><tr>
-                <th scope="col" class="xa-rank-heading" id="xian-rank-heading"><span id="xian-rank-label">排名</span></th>
-                <th scope="col" data-sort="n" class="is-sortable"><button type="button">区县 <span class="cr-sort-icon" aria-hidden="true">↕</span></button></th>
-                <th scope="col" data-sort="pop" class="is-sortable is-numeric"><button type="button">人口 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">万人 · 2024 年末</span></th>
-                <th scope="col" data-sort="area" class="is-sortable is-numeric"><button type="button">面积 <span class="cr-sort-icon" aria-hidden="true">↕</span></button><span class="cr-unit">平方公里 · 2023</span></th>
-                <th scope="col" data-sort="gdp" class="is-sortable is-numeric"><button type="button">GDP <span class="cr-sort-icon" aria-hidden="true">↓</span></button><span class="cr-unit">亿元 · 2024</span></th>
-                <th scope="col">区域特点<span class="cr-unit">简要归纳</span></th>
-              </tr></thead>
-              <tbody id="xian-district-rows"></tbody>
+    <section class="xa-chapter" id="development" aria-labelledby="development-heading">
+      <header class="xa-chapter-header">
+        <div><h2 id="development-heading">城市发展</h2><p>产业、高校与功能平台，以及近年的城市变化。</p></div>
+        <nav class="xa-chapter-links" aria-label="城市发展栏目"><a href="#industries">重点产业</a><a href="#universities">代表高校</a><a href="#zones">功能区</a><a href="#changes">城市变化</a></nav>
+      </header>
+      <div class="xa-context-grid">
+        <section class="xa-section" id="industries" aria-labelledby="industries-heading">
+          <div class="xa-section-heading"><h3 id="industries-heading">重点产业</h3><p>代表企业、院所与主要承载区域</p></div>
+          <div class="xa-scroll" tabindex="0" role="region" aria-label="西安重点产业速查">
+            <table class="xa-reference-table xa-industry-table">
+              <caption class="visually-hidden">西安六类代表产业，企业与院所仅为示例，不作排名。</caption>
+              <thead><tr><th scope="col">产业 / 方向</th><th scope="col">代表企业 / 院所</th><th scope="col">主要承载区域</th></tr></thead>
+              <tbody id="xian-industry-rows"></tbody>
             </table>
           </div>
-          <p class="xa-note" id="districts-note">人口与 GDP 取自《西安统计年鉴 2025》；面积原表注明使用 2023 年行政区划数据。排名按当前指标从高到低计算；按区县名称排序时显示序号。西咸新区单列统计，不加入区县 TOP5。</p>
+          <p class="xa-note">产业选取代表内容，企业与院所仅作示例；名称链接至官方资料。开发区与新区的功能定位见下方。</p>
+        </section>
+        <section class="xa-section" id="universities" aria-labelledby="universities-heading">
+          <div class="xa-section-heading"><h3 id="universities-heading">代表高校</h3><p>特色领域与西安主要校区</p></div>
+          <div class="xa-scroll" tabindex="0" role="region" aria-label="西安代表高校速查">
+            <table class="xa-reference-table xa-university-table">
+              <caption class="visually-hidden">西安八所代表高校的特色方向及主要西安校区，不作学校排名。</caption>
+              <thead><tr><th scope="col">高校</th><th scope="col">特色领域</th><th scope="col">校区 / 行政区</th></tr></thead>
+              <tbody id="xian-university-rows"></tbody>
+            </table>
+          </div>
+          <p class="xa-note">高校名称链接至官网，985、211 标识按教育部公布名单标注，领域为特色摘要。校区仅精选西安行政区内主要校区；交大创新港位于西咸新区沣西新城，与西安区县内校区分开。</p>
+        </section>
+      </div>
+
+      <div class="xa-function-strip" id="zones">
+        <details class="xa-zones"><summary>开发区与新区的功能定位</summary><dl id="xian-zones"></dl></details>
+        <p class="xa-note">开发区、新区与行政区县的范围可能重叠，按功能平台单列，不计入 13 个区县。</p>
+      </div>
+
+      <section class="xa-section" id="changes" aria-labelledby="changes-heading">
+        <div class="xa-section-heading"><h3 id="changes-heading">城市变化</h3><p>2023—2025 年 · 人口、经济与城镇化</p></div>
+        <div class="xa-trends" id="xian-trends" aria-label="西安三年变化曲线"></div>
+        <div class="xa-scroll" tabindex="0" role="region" aria-label="西安年度指标" aria-describedby="changes-note">
+          <table class="xa-reference-table xa-annual-table">
+            <caption class="visually-hidden">2023 至 2025 年西安年度指标。GDP 绝对值为各年公报当年公布值，实际增速按不变价格计算。</caption>
+            <thead><tr><th scope="col">年度<span class="cr-unit">链接至统计公报</span></th><th scope="col" class="num">常住人口<span class="cr-unit">万人 · 年末</span></th><th scope="col" class="num">GDP · 当年公布值<span class="cr-unit">亿元 · 现价</span></th><th scope="col" class="num">GDP 实际增速<span class="cr-unit">% · 不变价</span></th><th scope="col" class="num">城镇化率<span class="cr-unit">% · 年末</span></th></tr></thead>
+            <tbody id="xian-annual-rows"></tbody>
+          </table>
         </div>
-        <aside class="xa-rankings" id="xian-rankings" aria-label="西安区县人口、面积与 GDP TOP5"></aside>
+        <p class="xa-note" id="changes-note">人口与城镇化率为年末值，GDP 为各年度公报公布值；经济普查会修订历史 GDP，不能用表中相邻年度金额之比代替实际增速。曲线分别缩放纵轴，精确数值见表。</p>
+      </section>
+    </section>
+
+    <section class="xa-chapter" id="travel" aria-labelledby="travel-heading">
+      <header class="xa-chapter-header">
+        <div><h2 id="travel-heading">游览西安</h2><p>代表景点、地铁线路与特色美食速览。</p></div>
+        <nav class="xa-chapter-links" aria-label="游览西安栏目"><a href="#sights">游玩景点</a><a href="#metro">地铁线路</a><a href="#foods">特色美食</a></nav>
+      </header>
+      <div class="xa-travel-guide">
+        <section class="xa-travel-panel xa-travel-sights" id="sights" aria-labelledby="sights-heading">
+          <h3 class="xa-travel-heading" id="sights-heading"><svg aria-hidden="true"><use href="#xa-icon-landmark"/></svg>游玩景点</h3>
+          <div id="xian-sight-rows"></div>
+        </section>
+        <div class="xa-travel-utilities">
+          <section class="xa-travel-panel xa-travel-metro" id="metro" aria-labelledby="metro-heading">
+            <h3 class="xa-travel-heading" id="metro-heading"><svg aria-hidden="true"><use href="#xa-icon-map"/></svg>地铁线路<small><span id="xian-metro-count"></span> 条已运营</small></h3>
+            <div id="living">
+              <ul class="xa-metro-lines" id="xian-metro-lines" aria-label="西安地铁线路与起讫站" aria-describedby="metro-note"></ul>
+            </div>
+            <p class="xa-note" id="metro-note">核对：<time id="xian-transport-checked"></time> · <a href="https://www.xianrail.com/static/line-query/index.html" target="_blank" rel="noopener noreferrer">官方运营线网 ↗</a></p>
+          </section>
+          <section class="xa-travel-panel xa-travel-foods" id="foods" aria-labelledby="foods-heading">
+            <h3 class="xa-travel-heading" id="foods-heading"><svg aria-hidden="true"><use href="#xa-icon-food"/></svg>特色美食</h3>
+            <ul class="xa-food-list" id="xian-food-list" aria-labelledby="foods-heading"></ul>
+          </section>
+        </div>
       </div>
     </section>
 
-    <div class="xa-context-grid">
-      <section class="xa-section" id="industries" aria-labelledby="industries-heading">
-        <div class="xa-section-heading"><h2 id="industries-heading">重点产业</h2><p>代表企业、院所与主要承载区域</p></div>
-        <div class="xa-scroll" tabindex="0" role="region" aria-label="西安重点产业速查">
-          <table class="xa-reference-table xa-industry-table">
-            <caption class="visually-hidden">西安六类代表产业，企业与院所仅为示例，不作排名。</caption>
-            <thead><tr><th scope="col">产业 / 方向</th><th scope="col">代表企业 / 院所</th><th scope="col">主要承载区域</th></tr></thead>
-            <tbody id="xian-industry-rows"></tbody>
-          </table>
-        </div>
-        <details class="xa-zones"><summary>开发区与新区的功能定位</summary><dl id="xian-zones"></dl></details>
-        <p class="xa-note">开发区、新区与行政区县的范围可能重叠，按功能平台单列，不计入 13 个区县。产业名称链接至官方资料。</p>
-      </section>
-      <section class="xa-section" id="universities" aria-labelledby="universities-heading">
-        <div class="xa-section-heading"><h2 id="universities-heading">代表高校</h2><p>特色领域与西安主要校区</p></div>
-        <div class="xa-scroll" tabindex="0" role="region" aria-label="西安代表高校速查">
-          <table class="xa-reference-table xa-university-table">
-            <caption class="visually-hidden">西安八所代表高校的特色方向及主要西安校区，不作学校排名。</caption>
-            <thead><tr><th scope="col">高校</th><th scope="col">特色领域</th><th scope="col">校区 / 行政区</th></tr></thead>
-            <tbody id="xian-university-rows"></tbody>
-          </table>
-        </div>
-        <p class="xa-note">高校名称链接至官网，985、211 标识按教育部公布名单标注，领域为特色摘要。校区仅精选西安行政区内主要校区；交大创新港位于西咸新区沣西新城，与西安区县内校区分开。</p>
-      </section>
-    </div>
-
     <details class="cr-sources xa-sources">
-      <summary>资料说明 <span class="cr-source-date">核对 <time datetime="2026-10-16">2026.10.16</time></span></summary>
+      <summary>资料说明 <span class="cr-source-date">核对 <time datetime="2026-10-17">2026.10.17</time></span></summary>
       <p>全市概况采用 2025 年统计公报；区县表采用《西安统计年鉴 2025》所列 2024 年末常住人口与 2024 年 GDP 公布值。土地面积按该年鉴表 1-2 的行政区划口径，原表注明为 2023 年数据。各项年份已标在表头，未将最新年度指标与旧年度指标混入同一排名。</p>
       <p>年鉴将西咸新区作为独立统计区域，2024 年数据不含西安、咸阳共管区。行政区划与统计管理范围存在差异，区县表只列西安 11 区 2 县；开发区及西咸新区另列功能定位，与区县可能交叉。全市人均 GDP 使用官方公布值。</p>
       <p>区域特点为速查归纳，不是法定功能分区。产业与高校均选取代表内容，不作完整名录或名次判断；可点击产业、高校和功能区名称查看原始资料。</p>
+      <p>景点与美食于 <time datetime="2026-10-17">2026.10.17</time> 核对。景点与街区以市文旅局名录、地方志、文物部门及场馆资料为基础，按四类列出名称与核心看点，点击景点名称查看资料。区县关联按实际区位归纳，未将西咸新区场馆混入西安区县。美食列出代表名称，点击可查看资料。</p>
+      <p>历史文化、地铁线路与城市变化于 <time datetime="2026-10-17">2026.10.17</time> 核对。历史参考地方志、文物与非遗名录；地铁起讫站参考官方运营线网。年度表保留各年公报公布值，GDP 实际增速使用官方不变价增速，经济普查修订口径不与名义金额混算。</p>
       <ul id="xian-sources"></ul>
     </details>
     <div class="xa-colophon" aria-label="西安页尾"><span>古今交汇 · 开放包容</span><strong>千年长安，一座西安</strong><span>XI’AN · CHINA</span></div>
-    <noscript><p class="cr-noscript">请启用 JavaScript 查看区县对比、产业和高校表格。</p></noscript>
+    <noscript><p class="cr-noscript">请启用 JavaScript 查看历史文化、区县对比、产业高校、城市变化与地铁、景点、美食资料。</p></noscript>
   </main>
   <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
   <script type="application/json" id="xian-data">
   {
     "checkedOn": "2026-10-16",
+    "travelCheckedOn": "2026-10-17",
     "metricSource": "https://tjj.xa.gov.cn/tjnj/2025/zk/html/01-15.jpg",
     "areaSource": "https://tjj.xa.gov.cn/tjnj/2025/zk/html/01-02.jpg",
     "contextSource": "https://www.xa.gov.cn/gk/ghjh/fzgh/5f9a8102f8fd1c59663e4fc7.html",
@@ -353,7 +419,10 @@
       {
         "name": "西安交通大学",
         "short": "西安交大",
-        "programs": ["985", "211"],
+        "programs": [
+          "985",
+          "211"
+        ],
         "fields": "能源动力、电气、机械，兼具医学与管理。",
         "url": "https://www.xjtu.edu.cn/jdgk/jdjj.htm",
         "campuses": [
@@ -374,7 +443,10 @@
       {
         "name": "西北工业大学",
         "short": "西工大",
-        "programs": ["985", "211"],
+        "programs": [
+          "985",
+          "211"
+        ],
         "fields": "航空、航天、航海领域教学与科研。",
         "url": "https://www.nwpu.edu.cn/xxgk/xxjj.htm",
         "campuses": [
@@ -391,7 +463,9 @@
       {
         "name": "西安电子科技大学",
         "short": "西电",
-        "programs": ["211"],
+        "programs": [
+          "211"
+        ],
         "fields": "通信、计算机、微电子与网络安全。",
         "url": "https://www.xidian.edu.cn/xxgk/xxjj.htm",
         "campuses": [
@@ -408,7 +482,9 @@
       {
         "name": "西北大学",
         "short": "西大",
-        "programs": ["211"],
+        "programs": [
+          "211"
+        ],
         "fields": "地质学、考古学等基础与人文学科。",
         "url": "https://www.nwu.edu.cn/",
         "campuses": [
@@ -429,7 +505,9 @@
       {
         "name": "长安大学",
         "short": "长大",
-        "programs": ["211"],
+        "programs": [
+          "211"
+        ],
         "fields": "交通运输、国土资源与城乡建设。",
         "url": "https://www.chd.edu.cn/xxgk/xxjj.htm",
         "campuses": [
@@ -446,7 +524,9 @@
       {
         "name": "陕西师范大学",
         "short": "陕师大",
-        "programs": ["211"],
+        "programs": [
+          "211"
+        ],
         "fields": "教师教育、中国语言文学等学科。",
         "url": "https://www.snnu.cn/xxgk/xxjj.htm",
         "campuses": [
@@ -491,6 +571,252 @@
         ]
       }
     ],
+    "sights": [
+      {
+        "id": "qin-mausoleum",
+        "name": "秦始皇帝陵博物院",
+        "districts": [
+          "临潼区"
+        ],
+        "focus": "兵马俑军阵与丽山园铜车马",
+        "url": "https://www.bmy.com.cn/about/",
+        "category": "culture"
+      },
+      {
+        "id": "shaanxi-history",
+        "name": "陕西历史博物馆",
+        "districts": [
+          "雁塔区"
+        ],
+        "focus": "何家村珍宝与陕西古代文明",
+        "url": "https://www.sxhm.com/guide.html",
+        "category": "culture"
+      },
+      {
+        "id": "beilin",
+        "name": "西安碑林博物馆",
+        "districts": [
+          "碑林区"
+        ],
+        "focus": "历代碑刻书法与昭陵六骏",
+        "url": "https://beilin-museum.com/index.php?a=index&c=Lists&m=home&tid=68",
+        "category": "culture"
+      },
+      {
+        "id": "xian-museum",
+        "name": "西安博物院·小雁塔",
+        "districts": [
+          "碑林区"
+        ],
+        "focus": "小雁塔古建与西安历史陈列",
+        "url": "https://www.xabwy.com/",
+        "category": "culture"
+      },
+      {
+        "id": "archaeology",
+        "name": "陕西考古博物馆",
+        "districts": [
+          "长安区"
+        ],
+        "focus": "考古发掘历程与文物保护技艺",
+        "url": "https://pcticket.shxkgy.cn/museum/",
+        "category": "culture"
+      },
+      {
+        "id": "banpo",
+        "name": "西安半坡博物馆",
+        "districts": [
+          "灞桥区"
+        ],
+        "focus": "仰韶聚落遗址与史前彩陶",
+        "url": "https://www.banpomuseum.com.cn/index.php?a=lists&c=index&catid=8&kid=29&m=content",
+        "category": "culture"
+      },
+      {
+        "id": "daming",
+        "name": "大明宫国家遗址公园",
+        "districts": [
+          "未央区"
+        ],
+        "focus": "丹凤门与含元殿唐宫遗址",
+        "url": "https://qjxq.xa.gov.cn/zjqj/qyts/5df21c4065cbd81235fc1c82.html",
+        "category": "culture"
+      },
+      {
+        "id": "weiyang-palace",
+        "name": "汉长安城未央宫遗址公园",
+        "districts": [
+          "未央区"
+        ],
+        "focus": "汉代宫城格局与前殿遗址",
+        "url": "https://www.xa.gov.cn/gk/wtly/hddt/2098684421634846721.html",
+        "category": "culture"
+      },
+      {
+        "id": "city-wall",
+        "name": "西安城墙",
+        "districts": [
+          "碑林区",
+          "新城区",
+          "莲湖区"
+        ],
+        "focus": "明代城墙城门与古城风貌",
+        "url": "https://qjxq.xa.gov.cn/zjqj/gyqj/tsqj/5df21c5565cbd81235fc1efa.html",
+        "category": "city"
+      },
+      {
+        "id": "bell-drum",
+        "name": "钟楼·鼓楼",
+        "districts": [
+          "莲湖区"
+        ],
+        "focus": "明代钟鼓楼建筑与古城街景",
+        "url": "https://wwj.xa.gov.cn/xwzx/tzgg/2101956552978165762.html",
+        "category": "city"
+      },
+      {
+        "id": "huimin-street",
+        "name": "回民街",
+        "districts": [
+          "莲湖区"
+        ],
+        "focus": "北院门老街与回坊传统小吃",
+        "url": "https://xadfz.xa.gov.cn/xadq/dqtk/1901530303720120321.html",
+        "category": "city"
+      },
+      {
+        "id": "sajinqiao",
+        "name": "洒金桥",
+        "districts": [
+          "莲湖区"
+        ],
+        "focus": "回坊街巷生活与泡馍小吃",
+        "url": "https://news.hsw.cn/system/2026/0206/1907158.shtml",
+        "category": "city"
+      },
+      {
+        "id": "qinglong",
+        "name": "青龙寺遗址",
+        "districts": [
+          "雁塔区"
+        ],
+        "focus": "惠果空海纪念堂与春日樱花",
+        "url": "https://wwj.xa.gov.cn/xwzx/tzgg/1902288108237918209.html",
+        "category": "city"
+      },
+      {
+        "id": "huaqing",
+        "name": "华清宫",
+        "districts": [
+          "临潼区"
+        ],
+        "focus": "唐御汤遗址与骊山宫苑风光",
+        "url": "https://www.hqc.cn/about/",
+        "category": "night"
+      },
+      {
+        "id": "big-wild-goose",
+        "name": "大雁塔·大慈恩寺",
+        "districts": [
+          "雁塔区"
+        ],
+        "focus": "玄奘文化与唐代寺塔建筑",
+        "url": "https://xadfz.xa.gov.cn/xadq/rwxa/1802954373708996609.html",
+        "category": "night"
+      },
+      {
+        "id": "datang",
+        "name": "大唐不夜城",
+        "districts": [
+          "雁塔区"
+        ],
+        "focus": "唐风街景灯光与街头演艺",
+        "url": "https://qjxq.xa.gov.cn/xwzx/xwdt/2090369656621707266.html",
+        "category": "night"
+      },
+      {
+        "id": "tang-paradise",
+        "name": "大唐芙蓉园",
+        "districts": [
+          "雁塔区"
+        ],
+        "focus": "紫云楼与芙蓉湖仿唐园林",
+        "url": "https://www.tangparadise.cn/about.html",
+        "category": "night"
+      },
+      {
+        "id": "xingqing",
+        "name": "兴庆宫公园",
+        "districts": [
+          "碑林区"
+        ],
+        "focus": "兴庆湖沉香亭与唐宫遗韵",
+        "url": "https://www.xa.gov.cn/gk/jyta/rddbjybl/2079856077273378818.html",
+        "category": "nature"
+      },
+      {
+        "id": "qujiang-pool",
+        "name": "曲江池遗址公园",
+        "districts": [
+          "雁塔区"
+        ],
+        "focus": "曲江文化遗韵与环湖水岸",
+        "url": "https://qjxq.xa.gov.cn/zjqj/gyqj/tsqj/5df21c6365cbd81235fc2049.html",
+        "category": "nature"
+      },
+      {
+        "id": "cuihua",
+        "name": "翠华山",
+        "districts": [
+          "长安区"
+        ],
+        "focus": "天池山崩石海与风洞冰洞",
+        "url": "https://wlj.xa.gov.cn/wlml/lyjq/1.html",
+        "category": "nature"
+      }
+    ],
+    "foods": [
+      {
+        "id": "lazhi-roujiamo",
+        "name": "腊汁肉夹馍",
+        "url": "https://en.xa.gov.cn/CultureTravel/Food%26Retail/1691691509202145282.html"
+      },
+      {
+        "id": "paomo",
+        "name": "牛羊肉泡馍",
+        "url": "https://en.xa.gov.cn/CultureTravel/Food%26Retail/1691691511953608706.html"
+      },
+      {
+        "id": "liangpi",
+        "name": "凉皮",
+        "url": "https://daj.shaanxi.gov.cn/Article/View?id=4474"
+      },
+      {
+        "id": "youpo-mian",
+        "name": "油泼面",
+        "url": "https://www.mct.gov.cn/whzx/qgwhxxlb/sx_7740/202509/t20250909_962096.htm"
+      },
+      {
+        "id": "huluji",
+        "name": "葫芦鸡",
+        "url": "https://en.xa.gov.cn/CultureTravel/Food%26Retail/1691691511953608706.html"
+      },
+      {
+        "id": "hulatang",
+        "name": "肉丸胡辣汤",
+        "url": "https://en.xa.gov.cn/CultureTravel/Food%26Retail/1691691509877428225.html"
+      },
+      {
+        "id": "zenggao",
+        "name": "甑糕",
+        "url": "https://daj.shaanxi.gov.cn/Article/View?id=2437"
+      },
+      {
+        "id": "jinggao",
+        "name": "镜糕",
+        "url": "https://en.xa.gov.cn/CultureTravel/Food%26Retail/1691691507226628098.html"
+      }
+    ],
     "zones": [
       {
         "name": "高新区",
@@ -529,6 +855,38 @@
       }
     ],
     "sources": [
+      {
+        "label": "西安市文旅局：2026 年 A 级景区名录（景点区位参考）",
+        "url": "https://wlj.xa.gov.cn/wlml/lyjq/1.html"
+      },
+      {
+        "label": "西安市文物局：全国重点文物保护单位（含城墙跨区范围）",
+        "url": "https://wwj.xa.gov.cn/xxgk/wbxx/5fbb551ff8fd1c59664b3711.html"
+      },
+      {
+        "label": "陕西历史博物馆：本馆与秦汉馆导览",
+        "url": "https://www.sxhm.com/guide.html"
+      },
+      {
+        "label": "西安市政府英文网：地方美食与传统老字号",
+        "url": "https://en.xa.gov.cn/CultureTravel/Food%26Retail/1691691511953608706.html"
+      },
+      {
+        "label": "文化和旅游部：西安非遗美食与油泼面体验",
+        "url": "https://www.mct.gov.cn/whzx/qgwhxxlb/sx_7740/202509/t20250909_962096.htm"
+      },
+      {
+        "label": "陕西省档案馆：美食文化·甑糕",
+        "url": "https://daj.shaanxi.gov.cn/Article/View?id=2437"
+      },
+      {
+        "label": "陕西省地方志：传统腊汁肉夹馍与葫芦鸡",
+        "url": "https://dfz.shaanxi.gov.cn/zslm/fzzlk/xbsxsz/szdylpdf/201404/P020240923624459406898.pdf"
+      },
+      {
+        "label": "陕西省卫健委：凉皮地方标准修订说明（米皮、面皮等品类）",
+        "url": "https://sxwjw.shaanxi.gov.cn/hdjl/dczj/202511/P020251103589745415792.pdf"
+      },
       {
         "label": "教育部：“985工程”学校名单",
         "url": "https://www.moe.gov.cn/srcsite/A22/s7065/200612/t20061206_128833.html"
@@ -584,8 +942,297 @@
       {
         "label": "西北大学：2026 年本科招生章程与校区地址",
         "url": "https://zsb.nwu.edu.cn/info/1050/3121.htm"
+      },
+      {
+        "label": "西安市政府：建置沿革与“西安”名称由来",
+        "url": "https://www.xa.gov.cn/sq/csgk/lsyg/1.html"
+      },
+      {
+        "label": "西安市地方志：隋大兴城、唐长安城遗址",
+        "url": "https://xadfz.xa.gov.cn/xadq/rwxa/1960625284585664514.html"
+      },
+      {
+        "label": "西安市政府：非物质文化遗产项目名录",
+        "url": "https://www.xa.gov.cn/gk/wtly/ssml/5da81d18f99d6527b6baee84.html"
+      },
+      {
+        "label": "西安地铁：当前运营线网与起讫站",
+        "url": "https://www.xianrail.com/static/line-query/index.html"
+      },
+      {
+        "label": "陕西日报：2026.6.30 地铁 5 号线西安东站投用",
+        "url": "https://esb.sxdaily.com.cn/pad/content/202607/04/content_2049595.html"
+      },
+      {
+        "label": "西安市交通运输局：轨道交通线网示意图（2025.12）",
+        "url": "https://jtj.xa.gov.cn/zmhd/xxcx/dtxl/2005485975194095618.html"
+      },
+      {
+        "label": "西安市 2023 年国民经济和社会发展统计公报",
+        "url": "https://tjj.xa.gov.cn/tjsj/tjgb/gmjjhshfzgb/1777151845830565889.html"
+      },
+      {
+        "label": "西安市 2024 年国民经济和社会发展统计公报",
+        "url": "https://tjj.xa.gov.cn/tjsj/tjgb/gmjjhshfzgb/1911952493551058945.html"
+      },
+      {
+        "label": "西安市统计局：2025 年统计公报原文（PDF）",
+        "url": "https://tjj.xa.gov.cn/web_files/tjj/file/2026/05/15/202605151000219859531.pdf"
+      },
+      {
+        "label": "秦始皇帝陵博物院：票务、两园参观与园际摆渡",
+        "url": "https://www.bmy.com.cn/jingtai/bmyweb/ticketing.html"
+      },
+      {
+        "label": "西安碑林博物馆：2025 年全面开放与门票价格公告",
+        "url": "https://www.beilin-museum.com/index.php?m=home&c=View&a=index&aid=4627"
+      },
+      {
+        "label": "西安博物院官方微博：2026.8.27 新预约系统",
+        "url": "https://weibo.com/2/detail/5336240712324028"
+      },
+      {
+        "label": "陕西考古博物馆：官方参观与票务系统",
+        "url": "https://pcticket.shxkgy.cn/museum/"
+      },
+      {
+        "label": "西安半坡博物馆：服务指南与淡旺季票价",
+        "url": "https://www.banpomuseum.com.cn/index.php?a=lists&c=index&catid=8&kid=29&m=content"
+      },
+      {
+        "label": "西安市钟鼓楼博物馆：2026 年双节开放与实名预约说明",
+        "url": "https://wwj.xa.gov.cn/xwzx/tzgg/2101956552978165762.html"
+      },
+      {
+        "label": "西安市文物局：青龙寺遗址、纪念堂与遗址博物馆",
+        "url": "https://wwj.xa.gov.cn/xwzx/tzgg/1902288108237918209.html"
+      },
+      {
+        "label": "西安市政府：兴庆宫公园免费开放及园区介绍",
+        "url": "https://www.xa.gov.cn/gk/jyta/rddbjybl/2079856077273378818.html"
+      },
+      {
+        "label": "曲江新区：曲江池遗址公园",
+        "url": "https://qjxq.xa.gov.cn/zjqj/gyqj/tsqj/5df21c6365cbd81235fc2049.html"
+      },
+      {
+        "label": "曲江新区：大明宫遗址保护区",
+        "url": "https://qjxq.xa.gov.cn/zjqj/qyts/5df21c4065cbd81235fc1c82.html"
+      },
+      {
+        "label": "西安市政府：未央宫遗址保护与 XR 体验",
+        "url": "https://www.xa.gov.cn/gk/wtly/hddt/2098684421634846721.html"
+      },
+      {
+        "label": "华清宫：官方游玩攻略与演出购票",
+        "url": "https://www.hqc.cn/Play/"
+      },
+      {
+        "label": "大唐芙蓉园：官方园区介绍与游园资讯",
+        "url": "https://www.tangparadise.cn/"
+      },
+      {
+        "label": "曲江新区：城墙全票 54 元及价格管理说明",
+        "url": "https://qjxq.xa.gov.cn/zwgk/ndzdxxgk/jytabl/1958091978013503489.html"
+      },
+      {
+        "label": "华商网转载陕视新闻：2026.7.30 翠华山防汛闭园公告",
+        "url": "https://news.hsw.cn/system/2026/0731/1948651.shtml"
+      },
+      {
+        "label": "西安市地方志：6 号线与交通大学·兴庆宫站",
+        "url": "https://xadfz.xa.gov.cn/xadq/yxxa/2081926328441991170.html"
+      },
+      {
+        "label": "西安市地方志：北院门回坊文化风情街与街巷范围",
+        "url": "https://xadfz.xa.gov.cn/xadq/dqtk/1901530303720120321.html"
+      },
+      {
+        "label": "华商网现场采访：洒金桥街区与泡馍商户（2026）",
+        "url": "https://news.hsw.cn/system/2026/0206/1907158.shtml"
       }
-    ]
+    ],
+    "contextCheckedOn": "2026-10-17",
+    "history": [
+      {
+        "period": "西周",
+        "name": "丰镐起源",
+        "summary": "丰京、镐京见证周人营建都城的历史。",
+        "trace": "丰镐遗址 · 沣河两岸",
+        "source": "https://wwj.xa.gov.cn/xxgk/wbxx/5fbb551ff8fd1c59664b3711.html"
+      },
+      {
+        "period": "秦",
+        "name": "帝陵遗存",
+        "summary": "临潼的秦始皇陵与兵马俑，留下秦代制度与工艺的实物。",
+        "trace": "秦始皇陵 · 兵马俑",
+        "source": "https://wwj.xa.gov.cn/xxgk/wbxx/5fbb551ff8fd1c59664b3711.html"
+      },
+      {
+        "period": "西汉",
+        "name": "长安与丝路",
+        "summary": "汉长安城成为都城，长安是古代丝绸之路的重要起点。",
+        "trace": "汉长安城遗址",
+        "source": "https://www.xa.gov.cn/sq/csgk/lsyg/1.html"
+      },
+      {
+        "period": "隋唐",
+        "name": "大兴与长安",
+        "summary": "隋建大兴城，唐沿用并扩展；宫城、坊市与寺塔构成古都记忆。",
+        "trace": "大明宫 · 大小雁塔",
+        "source": "https://xadfz.xa.gov.cn/xadq/rwxa/1960625284585664514.html"
+      },
+      {
+        "period": "明清",
+        "name": "西安府城",
+        "summary": "1369 年改奉元路为西安府，“西安”之名沿用至今。",
+        "trace": "明城墙 · 钟鼓楼",
+        "source": "https://www.xa.gov.cn/sq/csgk/lsyg/1.html"
+      },
+      {
+        "period": "近现代",
+        "name": "省会与中心城市",
+        "summary": "古城逐步发展为现代省会，2018 年获支持建设国家中心城市。",
+        "trace": "古城保护 · 城市发展",
+        "source": "https://www.xa.gov.cn/sq/csgk/lsyg/1.html"
+      }
+    ],
+    "culture": [
+      {
+        "name": "丝路交流",
+        "summary": "从汉唐长安看城市与外部世界的往来。",
+        "source": "https://www.xa.gov.cn/sq/csgk/lsyg/1.html"
+      },
+      {
+        "name": "碑刻书法",
+        "summary": "碑林将历代碑刻与书法名迹保存在城市之中。",
+        "source": "https://www.beilin-museum.com/"
+      },
+      {
+        "name": "秦腔与鼓乐",
+        "summary": "秦腔、西安鼓乐等非遗延续地方戏曲与音乐传统。",
+        "source": "https://www.xa.gov.cn/gk/wtly/ssml/5da81d18f99d6527b6baee84.html"
+      }
+    ],
+    "annualSeries": [
+      {
+        "year": 2023,
+        "pop": 1307.82,
+        "gdp": 12010.76,
+        "growth": 5.2,
+        "urban": 79.88,
+        "source": "https://tjj.xa.gov.cn/tjsj/tjgb/gmjjhshfzgb/1777151845830565889.html"
+      },
+      {
+        "year": 2024,
+        "pop": 1316.76,
+        "gdp": 13317.78,
+        "growth": 4.6,
+        "urban": 80.43,
+        "source": "https://tjj.xa.gov.cn/tjsj/tjgb/gmjjhshfzgb/1911952493551058945.html"
+      },
+      {
+        "year": 2025,
+        "pop": 1323.63,
+        "gdp": 13902.67,
+        "growth": 4.7,
+        "urban": 81.01,
+        "source": "https://tjj.xa.gov.cn/tjsj/tjgb/gmjjhshfzgb/2055106184529166338.html"
+      }
+    ],
+    "sightGroups": [
+      {
+        "id": "culture",
+        "name": "古迹文博"
+      },
+      {
+        "id": "city",
+        "name": "古城漫游"
+      },
+      {
+        "id": "night",
+        "name": "唐风夜游"
+      },
+      {
+        "id": "nature",
+        "name": "自然休闲"
+      }
+    ],
+    "metroLines": [
+      {
+        "line": 1,
+        "from": "咸阳西站",
+        "to": "纺织城",
+        "circular": false
+      },
+      {
+        "line": 2,
+        "from": "草滩",
+        "to": "常宁宫",
+        "circular": false
+      },
+      {
+        "line": 3,
+        "from": "鱼化寨",
+        "to": "保税区",
+        "circular": false
+      },
+      {
+        "line": 4,
+        "from": "西安北站",
+        "to": "航天新城",
+        "circular": false
+      },
+      {
+        "line": 5,
+        "from": "创新港",
+        "to": "西安东站",
+        "circular": false
+      },
+      {
+        "line": 6,
+        "from": "西安南站",
+        "to": "纺织城",
+        "circular": false
+      },
+      {
+        "line": 8,
+        "from": null,
+        "to": null,
+        "circular": true
+      },
+      {
+        "line": 9,
+        "from": "纺织城",
+        "to": "秦陵西",
+        "circular": false
+      },
+      {
+        "line": 10,
+        "from": "井上村",
+        "to": "昭慧广场",
+        "circular": false
+      },
+      {
+        "line": 14,
+        "from": "机场西（T1、T2、T3）",
+        "to": "贺韶",
+        "circular": false
+      },
+      {
+        "line": 15,
+        "from": "细柳",
+        "to": "东兆余",
+        "circular": false
+      },
+      {
+        "line": 16,
+        "from": "诗经里",
+        "to": "秦创原中心",
+        "circular": false
+      }
+    ],
+    "transportCheckedOn": "2026-10-17"
   }
   </script>
 </body>
