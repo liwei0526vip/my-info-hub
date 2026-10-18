@@ -1,0 +1,177 @@
+/* Chapter 03: compact relationship maps and parallel service views. */
+.system-chapter { min-width: 0; }
+.system-chapter figure { margin: 0; }
+.sys-foundations { display: grid; grid-template-columns: 1fr 1fr 1.15fr; flex-basis: 100%; gap: 12px 20px; margin: 5px 0 0; padding-top: 9px; border-top: 1px solid var(--boot-line); }
+.sys-foundations > div { min-width: 0; }
+.sys-foundations dt { color: var(--boot-ink); font-size: 11px; font-weight: 700; line-height: 1.6; }
+.sys-foundations dd { margin: 3px 0 0; color: var(--boot-muted); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.sys-foundations code { overflow-wrap: anywhere; }
+.sys-relations { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; min-width: 0; }
+.sys-relation-card { min-width: 0; }
+.sys-relation-card h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 0; padding: 10px 0; border-top: 2px solid var(--boot-teal); border-bottom: 1px solid var(--boot-line); font-size: 18px; letter-spacing: -.025em; line-height: 1.3; }
+.sys-relation-card h3 > span:last-child { margin-left: auto; color: var(--boot-teal); font-size: 12px; font-weight: 650; letter-spacing: 0; }
+.sys-step { display: inline-grid; flex: 0 0 auto; width: 25px; height: 25px; place-items: center; border-radius: 3px; color: #fff; background: var(--boot-teal); font-family: var(--boot-display); font-size: 17px; font-weight: 800; line-height: 1; }
+.sys-ordering h3 { border-top-color: var(--boot-amber); }
+.sys-ordering h3 > span:last-child { color: #865207; }
+.sys-ordering .sys-step { background: var(--boot-amber); color: var(--boot-ink); }
+.sys-dependency-map { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 64px 42px 74px; max-width: 500px; height: 180px; margin: 9px auto 7px; }
+.sys-dependency-edges { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--boot-teal); pointer-events: none; }
+.sys-dependency-edges > path { fill: none; stroke: currentColor; stroke-width: 3; }
+.sys-dependency-edges .sys-weak-edge { stroke-dasharray: 7 6; }
+.sys-service-node { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-width: 0; text-align: center; line-height: 1.25; }
+.sys-service-node > .boot-icon { width: 27px; height: 27px; margin-bottom: 4px; color: var(--boot-teal); stroke-width: 1.5; }
+.sys-service-node > strong { padding: 4px 11px; border-radius: 3px; background: var(--boot-teal); color: #fff; font-size: 15px; font-weight: 750; }
+.sys-service-node > code { margin-top: 4px; color: var(--boot-muted); font-family: var(--boot-mono); font-size: 10px; }
+.sys-service-node > small { margin-top: 7px; color: var(--boot-muted); font-size: 12px; }
+.sys-web-node { grid-column: 1 / -1; grid-row: 1; }
+.sys-db-node { grid-column: 1; grid-row: 3; }
+.sys-cache-node { grid-column: 2; grid-row: 3; }
+.sys-cache-node > .boot-icon { color: #ac6940; }
+.sys-edge-label { z-index: 1; align-self: center; width: fit-content; color: var(--boot-teal); font-family: var(--boot-mono); font-size: 11px; font-weight: 750; background: var(--boot-paper); }
+.sys-requires-label { grid-column: 1; grid-row: 2; justify-self: start; margin-left: 10%; }
+.sys-wants-label { grid-column: 2; grid-row: 2; justify-self: end; margin-right: 12%; }
+.sys-card-caption { margin: 0; padding: 9px 0 0; border-top: 1px solid var(--boot-line); color: var(--boot-muted); font-size: 12px; line-height: 1.65; }
+.sys-card-caption strong { color: var(--boot-ink); }
+.sys-order-map { display: grid; grid-template-columns: 1fr minmax(76px, .85fr) 1fr; align-items: center; height: 180px; margin: 9px 0 7px; }
+.sys-order-map .sys-service-node > .boot-icon { width: 35px; height: 35px; margin-bottom: 7px; }
+.sys-order-link { display: flex; flex-direction: column; align-items: center; min-width: 0; padding: 0 3px; color: #945c08; text-align: center; }
+.sys-order-link code { font-family: var(--boot-mono); font-size: 13px; font-weight: 800; }
+.sys-order-link > span { margin-top: -9px; color: var(--boot-amber); font-family: sans-serif; font-size: 47px; line-height: 1.2; }
+.sys-order-link small { font-family: var(--boot-mono); font-size: 9px; overflow-wrap: anywhere; }
+.sys-rule-note { display: flex; align-items: center; gap: 9px; margin: 15px 0; padding: 9px 12px; border-left: 3px solid var(--boot-amber); background: var(--boot-amber-soft); color: #785019; }
+.sys-rule-note > span { display: grid; flex: 0 0 auto; width: 20px; height: 20px; place-items: center; border-radius: 50%; background: var(--boot-amber); color: var(--boot-ink); font-family: var(--boot-display); font-weight: 800; }
+.sys-rule-note p { margin: 0; font-size: 13px; font-weight: 650; line-height: 1.6; }
+.sys-rule-note code { font-family: var(--boot-mono); font-weight: 800; }
+.sys-example { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 20px; min-width: 0; margin: 0 0 18px; }
+.sys-small-label { color: var(--boot-muted); font-family: var(--boot-mono); font-size: 10px; font-weight: 650; line-height: 1.5; letter-spacing: .035em; }
+.sys-example-intro h3 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.035em; line-height: 1.4; }
+.sys-example pre { min-width: 0; margin: 0; padding: 13px 16px; overflow: auto; border-left: 3px solid var(--boot-teal); border-radius: 0; background: #12313f; color: #e4f4f1; font-family: var(--boot-mono); font-size: 12px; line-height: 1.65; }
+.sys-code-comment { color: #a1bebf; }
+.sys-code-section { color: #edbb6a; }
+.sys-code-key { color: #8cd2d0; }
+.sys-timeline-panel, .sys-architecture-panel { min-width: 0; border-top: 2px solid var(--boot-teal); }
+.sys-panel-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; padding: 10px 0; border-bottom: 1px solid var(--boot-line); }
+.sys-panel-heading h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -.035em; line-height: 1.4; }
+.sys-timeline { padding: 9px 0 12px; }
+.sys-timeline-row { display: grid; grid-template-columns: 75px minmax(0, 1fr); gap: 10px; align-items: center; min-height: 49px; }
+.sys-track-name { display: flex; align-items: center; gap: 7px; font-size: 13px; }
+.sys-track-name .boot-icon { width: 23px; height: 23px; color: var(--boot-teal); }
+.sys-track { position: relative; height: 49px; background-image: linear-gradient(to right, rgba(104, 134, 140, .22) 1px, transparent 1px); background-size: 31% 100%; }
+.sys-track::before { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: #d0dcd9; }
+.sys-track::after { content: ""; position: absolute; right: 0; top: calc(50% - 3px); border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid #b4c4c2; }
+.sys-task { position: absolute; z-index: 1; top: 13px; display: grid; place-items: center; height: 24px; border-radius: 3px; background: var(--boot-teal); color: #fff; font-size: 11px; font-weight: 700; }
+.sys-task i { position: absolute; right: -4px; width: 9px; height: 9px; border: 2px solid var(--boot-paper); border-radius: 50%; background: var(--boot-teal); }
+.sys-task-db { left: 0; width: 31%; }
+.sys-task-web { left: 31%; width: 60%; background: var(--boot-amber); color: var(--boot-ink); }
+.sys-task-web i { background: #a36513; }
+.sys-task-cache { left: 0; width: 53%; }
+.sys-task-wait { position: absolute; top: 13px; left: 0; display: grid; place-items: center; width: 31%; height: 24px; background: repeating-linear-gradient(-45deg, #e4e9e6, #e4e9e6 3px, #f1f2ed 3px, #f1f2ed 6px); color: var(--boot-muted); font-size: 10px; }
+.sys-complete-label { position: absolute; top: 17px; color: var(--boot-muted); font-size: 11px; }
+.sys-db-complete { left: calc(31% + 9px); }
+.sys-cache-complete { left: calc(53% + 9px); }
+.sys-time-axis { display: flex; justify-content: space-between; margin-left: 85px; padding-top: 5px; border-top: 2px solid var(--boot-ink); color: var(--boot-muted); font-family: var(--boot-mono); font-size: 10px; }
+.sys-time-axis b { padding-left: 4px; color: var(--boot-ink); font-size: 17px; font-weight: 500; }
+.sys-readiness-note { display: flex; align-items: flex-start; gap: 8px; margin: 0; padding: 10px 0; border-top: 1px solid var(--boot-line); }
+.sys-readiness-note .boot-icon { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; color: #9c650f; }
+.sys-readiness-note p { margin: 0; color: var(--boot-muted); font-size: 12px; line-height: 1.7; }
+.sys-readiness-note strong { color: var(--boot-ink); }
+.sys-readiness-note code { color: #875811; font-family: var(--boot-mono); font-size: 11px; }
+.sys-failure-details { margin: 12px 0 18px; border-top: 1px solid var(--boot-line); border-bottom: 1px solid var(--boot-line); }
+.sys-failure-details summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; cursor: pointer; font-size: 13px; font-weight: 750; list-style: none; }
+.sys-failure-details summary::-webkit-details-marker { display: none; }
+.sys-failure-details summary > span { color: var(--boot-teal); font-size: 20px; transition: transform .2s; }
+.sys-failure-details[open] summary > span { transform: rotate(45deg); }
+.sys-failure-details summary:focus-visible { outline: 2px solid var(--boot-teal); outline-offset: 3px; }
+.sys-failure-details > div { padding: 0 0 12px; }
+.sys-failure-details p { margin: 0 0 8px; color: var(--boot-muted); font-size: 12px; line-height: 1.75; }
+.sys-failure-details code { color: var(--boot-ink); font-family: var(--boot-mono); font-size: 11px; }
+.sys-failure-details a { color: var(--boot-teal); font-size: 12px; font-weight: 650; text-underline-offset: 3px; }
+.sys-architecture-panel .sys-privilege-note { margin: 8px 0; color: var(--boot-muted); font-size: 11px; line-height: 1.7; }
+.sys-privilege-note strong { color: var(--boot-ink); font-weight: 650; }
+.sys-privilege-note + .sys-user-layer { margin-top: 0; }
+.sys-user-layer { margin: 12px 0 0; padding: 10px 12px; background: var(--boot-teal-soft); }
+.sys-layer-label { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; font-size: 12px; font-weight: 800; }
+.sys-layer-label small { font-family: var(--boot-mono); font-size: 9px; font-weight: 550; letter-spacing: .055em; opacity: .72; }
+.sys-userspace { display: grid; grid-template-columns: minmax(0, 1fr) 53px minmax(0, 1.2fr) 53px minmax(0, 1fr); align-items: center; }
+.sys-architecture-node { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-height: 68px; padding: 5px 4px; border-radius: 3px; background: var(--boot-paper); text-align: center; }
+.sys-architecture-node .boot-icon { width: 25px; height: 25px; color: var(--boot-ink); }
+.sys-architecture-node strong { font-size: 13px; font-weight: 800; line-height: 1.4; }
+.sys-architecture-node strong small { display: block; color: var(--boot-teal); font-family: var(--boot-mono); font-size: 9px; font-weight: 700; white-space: nowrap; }
+.sys-flow-arrow { display: flex; flex-direction: column; align-items: center; color: var(--boot-teal); text-align: center; }
+.sys-flow-arrow span { font-size: 9px; font-weight: 700; }
+.sys-flow-arrow b { font-family: sans-serif; font-size: 29px; font-weight: 500; line-height: .9; }
+.sys-system-calls { display: flex; justify-content: space-evenly; color: var(--boot-teal); }
+.sys-system-calls > span { display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; }
+.sys-system-calls b { font-family: sans-serif; font-size: 24px; font-weight: 500; line-height: 1.25; }
+.sys-kernel-layer { display: grid; grid-template-columns: 49px minmax(0, 1fr); align-items: center; gap: 10px; margin: 0 0 9px; padding: 13px 12px; background: var(--boot-ink); color: #eef4ef; }
+.sys-kernel-layer .sys-layer-label { flex-direction: column; align-items: flex-start; gap: 3px; margin-bottom: 0; }
+.sys-kernel-content { min-width: 0; }
+.sys-kernel-content h4 { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 0 0 8px; font-size: 17px; font-weight: 750; }
+.sys-kernel-content h4 .boot-icon { width: 22px; height: 22px; }
+.sys-kernel-content ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px 15px; margin: 0; padding: 0; list-style: none; color: #c5d6d7; font-size: 10px; }
+.sys-kernel-content li { white-space: nowrap; }
+@media (min-width: 1120px) {
+  .system-chapter { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; column-gap: 24px; row-gap: 14px; }
+  .system-chapter > .chapter-heading { grid-column: 1 / -1; margin-bottom: 0; }
+  .system-chapter > .sys-relations { grid-column: 1 / 9; grid-row: 2; }
+  .system-chapter > .sys-example { grid-column: 9 / -1; grid-row: 2; grid-template-columns: 1fr; gap: 12px; margin: 0; padding: 8px 0 0 22px; border-left: 1px solid var(--boot-line); }
+  .system-chapter > .sys-rule-note { grid-column: 1 / -1; grid-row: 3; margin: 0; }
+  .system-chapter > .sys-timeline-panel { grid-column: 1 / 7; grid-row: 4; }
+  .system-chapter > .sys-architecture-panel { grid-column: 7 / -1; grid-row: 4; }
+  .system-chapter > .sys-failure-details { grid-column: 1 / -1; grid-row: 5; margin: 0; }
+}
+@media (max-width: 760px) {
+  .sys-foundations { grid-template-columns: 1fr; gap: 8px; }
+  .sys-relations { gap: 16px; }
+  .sys-relation-card h3 { gap: 6px; font-size: 17px; }
+  .sys-relation-card h3 > span:last-child { font-size: 10px; }
+  .sys-service-node > strong { padding-inline: 9px; font-size: 14px; }
+  .sys-service-node > code { font-size: 9px; }
+  .sys-order-map { grid-template-columns: 1fr 70px 1fr; }
+  .sys-order-link small { font-size: 8px; }
+  .sys-example { gap: 16px; }
+  .sys-example pre { padding: 12px; font-size: 11px; }
+  .sys-panel-heading h3 { font-size: 17px; }
+}
+@media (max-width: 620px) {
+  .sys-relations { grid-template-columns: 1fr; gap: 16px; }
+  .sys-relation-card h3 { font-size: 18px; }
+  .sys-relation-card h3 > span:last-child { font-size: 12px; }
+  .sys-service-node > strong { padding-inline: 12px; font-size: 15px; }
+  .sys-service-node > code { font-size: 10px; }
+  .sys-dependency-map { max-width: 380px; }
+  .sys-order-map { grid-template-columns: 1fr 90px 1fr; height: 145px; }
+  .sys-order-link small { font-size: 9px; }
+  .sys-rule-note { padding: 9px 10px; }
+  .sys-rule-note p { font-size: 12px; }
+  .sys-example { grid-template-columns: 1fr; gap: 10px; margin-bottom: 16px; }
+  .sys-example-intro h3 { font-size: 19px; }
+  .sys-example pre { padding: 12px 14px; font-size: 12px; }
+  .sys-panel-heading { gap: 5px 10px; padding: 9px 0; }
+  .sys-panel-heading h3 { align-items: flex-start; font-size: 16px; }
+  .sys-panel-heading .sys-small-label { margin-left: 33px; }
+  .sys-step { width: 24px; height: 24px; font-size: 16px; }
+  .sys-timeline-row { grid-template-columns: 64px minmax(0, 1fr); gap: 7px; }
+  .sys-track-name { gap: 5px; font-size: 12px; }
+  .sys-track-name .boot-icon { width: 20px; height: 20px; }
+  .sys-task { font-size: 10px; }
+  .sys-task-wait { font-size: 9px; letter-spacing: -.03em; }
+  .sys-complete-label { font-size: 10px; }
+  .sys-time-axis { margin-left: 71px; font-size: 9px; }
+  .sys-readiness-note { gap: 7px; }
+  .sys-readiness-note p { font-size: 11px; }
+  .sys-failure-details summary { font-size: 12px; }
+  .system-chapter > .sys-architecture-panel { margin-top: 18px; }
+  .sys-user-layer { padding: 9px; }
+  .sys-userspace { grid-template-columns: minmax(0, 1fr) 31px minmax(0, 1.15fr) 31px minmax(0, 1fr); }
+  .sys-architecture-node { min-height: 74px; gap: 4px; padding-inline: 3px; }
+  .sys-architecture-node strong { font-size: 12px; }
+  .sys-architecture-node .boot-icon { width: 23px; height: 23px; }
+  .sys-flow-arrow span { max-width: 30px; font-size: 9px; line-height: 1.4; }
+  .sys-flow-arrow b { font-size: 24px; }
+  .sys-kernel-layer { grid-template-columns: 43px minmax(0, 1fr); gap: 7px; padding: 12px 9px; }
+  .sys-kernel-content h4 { gap: 5px; font-size: 15px; }
+  .sys-kernel-content h4 .boot-icon { width: 20px; height: 20px; }
+  .sys-kernel-content ul { gap: 5px 10px; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .sys-failure-details summary > span { transition: none; } }

@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Linux 系统启动图解：从 UEFI、GRUB、内核，到 initramfs、systemd 与用户登录，理解根文件系统交接和服务关系，用命令观察一次真实启动。">
+  <title>Linux 系统启动图解｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/linux-boot.css">
+  <link rel="stylesheet" href="assets/linux-boot-initramfs.css">
+  <link rel="stylesheet" href="assets/linux-boot-systemd.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/linux-boot.js" defer></script>
+</head>
+<body id="top">
+  <a class="boot-skip" href="#main">跳到正文</a>
+  <header class="site-header">
+    <div class="site-inner">
+      <div class="site-wordmark">知行簿</div>
+      <nav class="site-links" data-site-nav aria-label="站点导航">
+        <a href="ai.html">AI</a>
+        <a href="market-memo.html">随笔</a>
+        <a href="thoughts.html">思考</a>
+        <a href="general-knowledge.html">拾零</a>
+        <a href="life.html">生活</a>
+        <a href="ai-learning-index.html">收藏</a>
+        <a href="learning.html" aria-current="page">学习</a>
+      </nav>
+    </div>
+  </header>
+
+  <svg class="boot-symbols" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="board-top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b3d0ce"/><stop offset="1" stop-color="#679b9f"/></linearGradient>
+      <linearGradient id="chip-top" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#f1f4ef"/><stop offset="1" stop-color="#b7c8cd"/></linearGradient>
+      <linearGradient id="chip-front" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#476477"/><stop offset="1" stop-color="#102c3e"/></linearGradient>
+      <symbol id="i-chip" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4m6-4v4M9 19v4m6-4v4M1 9h4m-4 6h4m14-6h4m-4 6h4"/><rect x="9" y="9" width="6" height="6" rx="1"/></symbol>
+      <symbol id="i-disk" viewBox="0 0 24 24"><path d="m5 3-3 12v5a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-5L19 3Z"/><path d="M2 15h20"/><circle cx="17.5" cy="18" r=".7" fill="currentColor"/><ellipse cx="12" cy="8.5" rx="4.5" ry="3"/><path d="m12 8.5 3 3"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M2 6a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1Z"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M5 2h9l5 5v15H5Z"/><path d="M14 2v6h5M8 12h8m-8 4h8"/></symbol>
+      <symbol id="i-tools" viewBox="0 0 24 24"><path d="m14 5 3 3m-7 6-7 7m3-1 8-8a6 6 0 0 0 7-7l-4 4-3-3 4-4a6 6 0 0 0-7 7L3 17a2 2 0 0 0 3 3Z"/></symbol>
+      <symbol id="i-server" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 7h8m-8 4h8m-8 4h4"/><circle cx="16" cy="18" r=".7" fill="currentColor"/></symbol>
+      <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"/></symbol>
+      <symbol id="i-cache" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7Zm-10 9 10 5 10-5M2 15l10 5 10-5"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 22v-3a8 8 0 0 1 16 0v3Z"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><path d="m9 2-.6 3-2 .9-2.8-1L1 9l2.4 2v2L1 15l2.6 4.1 2.8-1 2 .9.6 3h6l.6-3 2-.9 2.8 1L23 15l-2.4-2v-2L23 9l-2.6-4.1-2.8 1-2-.9L15 2Z"/><circle cx="12" cy="12" r="3.5"/></symbol>
+      <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="17" rx="2"/><path d="m6 8 4 4-4 4m7 0h5"/></symbol>
+      <symbol id="i-network" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-5h14v5"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="12" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 5v3"/></symbol>
+      <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 2v9M6 5a9 9 0 1 0 12 0"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="art-motherboard" viewBox="0 0 380 190">
+        <ellipse cx="187" cy="153" rx="164" ry="22" fill="#102c3e" opacity=".06"/>
+        <path d="m28 109 189-87 141 69v11l-189 87L28 120Z" fill="#487b86" stroke="#356474" stroke-width="1.4"/>
+        <path d="m28 109 189-87 141 69-189 87Z" fill="url(#board-top)" stroke="#4f7d87" stroke-width="1.4"/>
+        <g fill="none" stroke="#c5e2dc" stroke-width="1.5" opacity=".9"><path d="m54 113 111-51 124 60m-209 3 89-41 85 41m-155 12 67-31 61 30m-20-99 113 56m-181 47 37-17 35 18m-66-3 23 11 56-26m-139-20 25 12 106-49m-75 95 43-21 26 13 56-26"/></g>
+        <g fill="#224958" stroke="#b5cecf" stroke-width="1.2"><path d="m62 100 18-8 19 9-18 8Z"/><path d="m84 89 18-8 19 9-18 8Z"/><path d="m106 78 18-8 19 9-18 8Z"/><path d="m128 67 18-8 19 9-18 8Z"/><path d="m261 67 20-9 32 15-20 9Z"/><path d="m286 81 20-9 32 15-20 9Z"/></g>
+        <path d="m101 101 83-38 83 40v12l-82 38-84-40Z" fill="#587a86" stroke="#4b6a77"/>
+        <path d="m101 101 83-38 83 40-82 38Z" fill="#d3bb72" stroke="#a68d4c"/>
+        <path d="m112 95 72-33 72 35v11l-71 33-73-35Z" fill="#829ba7" stroke="#547081"/>
+        <path d="m112 95 72-33 72 35-71 33Z" fill="url(#chip-top)" stroke="#6e8997"/>
+        <g fill="#c8d5d5" stroke="#587d87"><path d="m190 37 13-6 16 8v13l-13 6-16-8Z"/><path d="m212 47 13-6 16 8v13l-13 6-16-8Z"/></g>
+        <g fill="#426575" stroke="#a6c8c9"><path d="m76 125 11-5 14 7v10l-11 5-14-7Z"/><path d="m96 134 11-5 14 7v10l-11 5-14-7Z"/><path d="m116 143 11-5 14 7v10l-11 5-14-7Z"/></g>
+        <g fill="#345b64" stroke="#94c0bd"><path d="m215 131 48-22 9 5v11l-48 22-9-5Z"/><path d="m229 140 48-22 9 5v11l-48 22-9-5Z"/></g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="boot-main page-shell" id="main">
+    <header class="boot-hero">
+      <nav class="boot-breadcrumb" aria-label="当前位置"><a href="learning.html">学习</a><span aria-hidden="true">/</span><span>系统基础</span><span aria-hidden="true">/</span><span>Linux 启动</span></nav>
+      <div class="boot-hero-body">
+        <div>
+          <h1>Linux <span>系统启动</span></h1>
+          <p class="boot-intro">从第一条指令到用户登录，读懂启动链路、根目录交接与服务组织。</p>
+        </div>
+        <aside class="boot-thesis" aria-label="启动的核心思路">
+          <strong>启动的本质：逐步建立下一阶段所需的运行条件。</strong>
+          <p>看清谁在执行、准备了什么、如何衔接下一步。</p>
+        </aside>
+      </div>
+    </header>
+
+    <nav class="boot-contents" aria-label="文章章节导航">
+      <a href="#overview" aria-current="location"><span>01</span> 启动全貌</a>
+      <a href="#initramfs"><span>02</span> 根目录交接</a>
+      <a href="#systemd"><span>03</span> 服务与登录</a>
+      <a href="#observe"><span>04</span> 实机观察</a>
+    </nav>
+
+    <section class="boot-chapter" id="overview" aria-labelledby="overview-title">
+      <header class="chapter-heading">
+        <span class="chapter-kicker">01 / 启动全貌</span>
+        <h2 id="overview-title">六个阶段，<span>一条启动链路。</span></h2>
+        <p>加载文件不等于执行程序。</p>
+      </header>
+      <div class="overview-scope"><strong>主线示例：常见桌面 / 服务器 Linux</strong><span>x86-64 · UEFI · GRUB · initramfs · systemd</span></div>
+
+      <div class="boot-flow" role="group" aria-label="从 UEFI 到用户登录的六阶段启动流程">
+        <article class="boot-stage stage-01">
+          <div class="stage-text"><span class="stage-number">01</span><div class="stage-heading"><h3>UEFI 固件</h3></div><p>CPU 复位后，从规定入口执行固件代码。<br>初始化关键硬件，选择启动项。</p></div>
+          <div class="stage-art firmware-art" aria-hidden="true">
+            <svg viewBox="0 0 380 190"><use href="#art-motherboard"/><text x="184" y="101" text-anchor="middle" transform="rotate(-25 184 101)" class="art-label">CPU</text><g transform="translate(274 81)"><path d="M0 0 45 17v61L0 61Z" fill="url(#chip-front)" stroke="#5c7d8c" stroke-width="2"/><path d="m0 0 9-5 45 17-9 5Z" fill="#b4c6cb"/><path d="m45 17 9-5v61l-9 5Z" fill="#668a98"/><text x="23" y="33" fill="white" font-size="12" font-weight="750" text-anchor="middle" transform="skewY(21)">UEFI</text></g><text x="294" y="174" class="art-micro">FIRMWARE</text></svg>
+          </div>
+          <aside class="stage-tasks firmware-tasks">
+            <h4>这一阶段做什么</h4>
+            <ol class="action-flow" role="list" aria-label="UEFI 固件的四个启动动作">
+              <li><div class="action-node"><h5>CPU 复位</h5><p>进入初始状态，从复位入口执行主板 Flash 中的 UEFI 固件。</p></div></li>
+              <li><div class="action-node"><h5>准备硬件</h5><p>准备内存、总线和启动存储，按需启用显示与输入。</p></div></li>
+              <li><div class="action-node"><h5>选择启动项</h5><p>读取固件配置，按启动顺序定位设备与 EFI 文件；本地入口通常位于 FAT 格式的 EFI 系统分区（ESP）。</p></div></li>
+              <li><div class="action-node action-node-handoff"><h5>加载并执行</h5><p>将 EFI 引导程序读入内存并执行；安全启动可先运行 shim，由它校验并加载 GRUB。</p></div></li>
+            </ol>
+            <p class="firmware-note"><strong>UEFI 固件与 EFI 程序是两段程序</strong>，均由 CPU 执行。传统 BIOS 通常读取启动盘的引导扇区并执行其中代码。</p>
+          </aside>
+        </article>
+        <div class="stage-handoff handoff-01"><span>交给 EFI 引导程序（如 GRUB）</span></div>
+
+        <article class="boot-stage stage-02">
+          <div class="stage-text"><span class="stage-number">02</span><div class="stage-heading"><h3>引导加载器 GRUB</h3></div><p>将<strong>内核与 initramfs 放入内存</strong>，<br>交出控制权。</p></div>
+          <div class="stage-art load-art" aria-hidden="true">
+            <svg class="boot-icon load-disk"><use href="#i-disk"/></svg><span class="load-arrow">→</span><div class="mini-processor">GRUB</div>
+            <div class="artifact-stack"><span><svg class="boot-icon"><use href="#i-chip"/></svg>内核映像</span><span><svg class="boot-icon"><use href="#i-file"/></svg>启动参数</span><span><svg class="boot-icon"><use href="#i-folder"/></svg>initramfs</span></div>
+          </div>
+          <aside class="stage-tasks">
+            <h4>这一阶段做什么</h4>
+            <ol class="action-flow" role="list" aria-label="GRUB 的四个引导动作">
+              <li><div class="action-node"><h5>选择启动项</h5><p>按 GRUB 配置默认启动，也可用菜单选择系统、内核版本、恢复入口，或修改参数。</p></div></li>
+              <li><div class="action-node"><h5>加载文件</h5><p>按配置读取两类文件：</p><div class="action-branch action-branch-merge" aria-label="Linux 内核（如 /boot/vmlinuz-*）和 initramfs 都加载到内存"><span>Linux 内核<small>如 <code>/boot/vmlinuz-*</code></small></span><span>initramfs</span></div><div class="action-endpoint"><svg class="boot-icon" aria-hidden="true"><use href="#i-chip"/></svg>内存</div></div></li>
+              <li><div class="action-node"><h5>准备参数</h5><p>传递根文件系统位置等参数，如 <code>root=UUID=… ro</code>。</p></div></li>
+              <li><div class="action-node action-node-handoff"><h5>交给内核</h5><p>转入内核启动入口。</p></div></li>
+            </ol>
+            <p class="task-note"><strong>initramfs：GRUB 加载，内核解包。</strong>也可换用其他引导器，或由 UEFI 直接加载带 EFI stub 的内核。</p>
+          </aside>
+        </article>
+        <div class="stage-handoff handoff-02"><span>控制权交给内核</span></div>
+
+        <article class="boot-stage stage-03">
+          <div class="stage-text"><span class="stage-number">03</span><div class="stage-heading"><h3>Linux 内核</h3></div><p>建立进程、内存、文件与设备的运行基础。</p></div>
+          <div class="stage-art kernel-art" aria-hidden="true"><div class="kernel-board"></div><div class="mini-processor"><svg class="boot-icon"><use href="#i-chip"/></svg>Linux<small>KERNEL</small></div><span class="kernel-label">内存管理</span><span class="kernel-label">进程调度</span><span class="kernel-label">设备驱动</span><span class="kernel-label">文件系统</span></div>
+          <aside class="stage-tasks">
+            <h4>这一阶段做什么</h4>
+            <ol class="action-flow" role="list" aria-label="Linux 内核从初始化到启动早期用户空间">
+              <li><div class="action-node"><h5>接收参数</h5><p>读取 GRUB 传来的根设备等参数。</p></div></li>
+              <li><div class="action-node"><h5>初始化内核</h5><p>管理内存、建立虚拟地址空间（进程的内存视图），初始化调度、中断/异常、内建驱动与文件系统支持。</p></div></li>
+              <li><div class="action-node"><h5>解包 initramfs</h5><p>展开其中的文件：</p><div class="action-volume"><div class="action-volume-label"><svg class="boot-icon" aria-hidden="true"><use href="#i-chip"/></svg><span>内存 · 临时根</span><code>/</code></div><div class="action-tree"><code>/init</code><span>工具</span><span>驱动模块</span></div></div></div></li>
+              <li><div class="action-node action-node-handoff"><h5>启动 /init</h5><p>以 PID 1 运行，进入早期用户空间。</p></div></li>
+            </ol>
+            <p class="task-note"><strong>用户态启动后，内核仍持续运行。</strong>固件做早期准备，内核以自身驱动管理硬件。</p>
+          </aside>
+        </article>
+        <div class="stage-handoff handoff-03"><span>执行第一个用户态程序 /init</span></div>
+
+        <article class="boot-stage stage-04">
+          <div class="stage-text"><span class="stage-number">04</span><div class="stage-heading"><h3>早期用户空间 /init</h3><span class="pill">PID 1</span></div><p>接通真正的根文件系统，衔接 systemd。</p></div>
+          <div class="stage-art branch-art" aria-hidden="true"><div class="mini-processor">/init</div><div class="art-branches"><span><svg class="boot-icon"><use href="#i-tools"/></svg>加载模块</span><span><svg class="boot-icon"><use href="#i-lock"/></svg>解锁存储</span><span><svg class="boot-icon"><use href="#i-disk"/></svg>挂载真正的根</span></div></div>
+          <aside class="stage-tasks">
+            <h4>这一阶段做什么</h4>
+            <ol class="action-flow" role="list" aria-label="从准备根设备到切换根目录并执行 systemd">
+              <li><div class="action-node"><h5>准备根设备</h5><p>按需加载驱动模块、解锁存储、激活逻辑卷。</p></div></li>
+              <li><div class="action-node"><h5>挂载真正的根</h5><p>按 <code>root=</code> 等参数定位根设备。</p><div class="action-volume action-volume-disk"><div class="action-volume-label"><svg class="boot-icon" aria-hidden="true"><use href="#i-disk"/></svg><span>磁盘 · 根文件系统</span></div><div class="action-root-state"><span>挂载到</span><code>/sysroot</code><span>示例挂载点</span></div></div></div></li>
+              <li><div class="action-node action-node-switch"><h5>切换根目录</h5><p>将已挂载的文件系统作为新根。</p><div class="action-root-change"><code>/sysroot</code><span aria-hidden="true">→</span><code>/</code></div></div></li>
+              <li><div class="action-node action-node-handoff"><h5>衔接 systemd</h5><p>用 <code>exec</code> 衔接 systemd，保留 PID 1。</p></div></li>
+            </ol>
+            <p class="task-note"><strong>挂载由 <code>/init</code> 发起、内核完成</strong>；磁盘内容按需读取。</p>
+          </aside>
+        </article>
+        <div class="stage-handoff handoff-04"><span>切换根目录，衔接最终初始化程序</span></div>
+
+        <article class="boot-stage stage-05">
+          <div class="stage-text"><span class="stage-number">05</span><div class="stage-heading"><h3>systemd</h3><span class="pill">PID 1</span></div><p>按依赖组织服务，建立登录入口。</p></div>
+          <div class="stage-art branch-art" aria-hidden="true"><div class="mini-processor">systemd</div><div class="art-branches"><span><svg class="boot-icon"><use href="#i-gear"/></svg>系统服务</span><span><svg class="boot-icon"><use href="#i-network"/></svg>网络服务</span><span><svg class="boot-icon"><use href="#i-disk"/></svg>设备服务</span><span><svg class="boot-icon"><use href="#i-terminal"/></svg>登录入口</span></div></div>
+          <aside class="stage-tasks">
+            <h4>这一阶段做什么</h4>
+            <ol class="action-flow" role="list" aria-label="systemd 按目标和依赖组织服务与登录入口">
+              <li><div class="action-node"><h5>确定启动目标</h5><p>通常从 <code>default.target</code> 出发，读取依赖单元配置。</p></div></li>
+              <li><div class="action-node"><h5>拉起所需单元</h5><p>按 <code>Wants</code>、<code>Requires</code> 等关系拉起依赖单元。</p><div class="action-branch action-branch-fork" aria-label="依赖关系可以拉起服务和挂载等单元"><span>服务单元</span><span>挂载等单元</span></div></div></li>
+              <li><div class="action-node"><h5>安排顺序与并行</h5><p>用 <code>After</code>、<code>Before</code> 约束先后；无顺序约束时可并行。</p><div class="action-schedules" aria-hidden="true"><div><span>有先后</span><i class="action-bars action-bars-ordered"></i></div><div><span>可并行</span><i class="action-bars action-bars-parallel"></i></div></div></div></li>
+              <li><div class="action-node action-node-handoff"><h5>建立登录入口</h5><p>启动终端或图形登录服务。</p></div></li>
+            </ol>
+            <p class="task-note"><strong>systemd 是用户态的 PID 1</strong>，持续管理系统服务。</p>
+          </aside>
+        </article>
+        <div class="stage-handoff handoff-05"><span>登录入口就绪；部分服务仍可继续启动</span></div>
+
+        <article class="boot-stage stage-06">
+          <div class="stage-text"><span class="stage-number">06</span><div class="stage-heading"><h3>登录与用户会话</h3></div><p>验证用户身份，进入 Shell 或桌面会话。</p></div>
+          <div class="stage-art login-art" aria-hidden="true"><div class="login-monitor"><div class="terminal-bar"><i></i><i></i><i></i></div>linux login:<span class="login-cursor"></span></div><span class="login-or">/</span><div class="login-gui"><svg class="boot-icon"><use href="#i-user"/></svg></div></div>
+          <aside class="stage-tasks">
+            <h4>这一阶段做什么</h4>
+            <ol class="action-flow" role="list" aria-label="终端或图形登录经认证后建立用户会话">
+              <li><div class="action-node"><h5>接收登录</h5><div class="action-branch action-branch-merge" aria-label="终端通常由 getty 提供入口，再进入 login；图形界面由显示管理器处理登录请求"><span>终端登录<small>getty → login</small></span><span>图形登录<small>显示管理器</small></span></div></div></li>
+              <li><div class="action-node"><h5>验证身份</h5><p>通常经 PAM 验证密码等凭据，检查账户登录权限。</p></div></li>
+              <li><div class="action-node"><h5>建立会话</h5><p>切换用户身份，设置权限与环境，进入主目录。</p></div></li>
+              <li><div class="action-node action-node-handoff"><h5>启动用户程序</h5><div class="action-branch action-branch-fork" aria-label="终端登录启动 Shell，图形登录启动桌面"><span><small>终端登录</small>Shell</span><span><small>图形登录</small>桌面</span></div><p class="action-outcome">供用户运行应用</p></div></li>
+            </ol>
+            <p class="task-note"><strong>用户程序通过系统调用访问内核管理的资源。</strong></p>
+          </aside>
+        </article>
+      </div>
+
+    </section>
+
+<section id="initramfs" class="boot-chapter init-chapter" aria-labelledby="initramfs-title">
+  <header class="chapter-heading">
+    <span class="chapter-kicker">02 / 根文件系统的交接</span>
+    <h2 id="initramfs-title">为什么需要 <span>initramfs</span>？</h2>
+    <p>先用一个小环境，接通真正的系统。</p>
+  </header>
+
+  <div class="init-problem">
+    <div class="init-dependency">
+      <div class="init-problem-copy">
+        <h3>困难：根与工具相互依赖</h3>
+        <p>访问真正的根文件系统，可能需要驱动、解密或逻辑卷工具；而这些文件可能就在尚不能访问的根里。</p>
+        <p class="init-consequence"><strong>缺少它：</strong>若内核能力不足，又无早期工具，可能无法准备根设备或挂载根，启动会卡住。</p>
+      </div>
+      <figure class="init-cycle" aria-label="访问真正的根文件系统需要驱动和工具，而这些文件又可能存放在该文件系统中">
+        <svg class="init-cycle-arrows" viewBox="0 0 340 180" aria-hidden="true">
+          <path d="M74 47 C115 3 226 3 268 47" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          <path d="m258 43 14 9-4-16" fill="currentColor"/>
+          <path d="M268 130 C226 175 115 175 74 130" fill="none" stroke="currentColor" stroke-width="2.5"/>
+          <path d="m84 134-14-9 4 16" fill="currentColor"/>
+        </svg>
+        <span class="init-cycle-top">需要</span>
+        <div class="init-cycle-node">
+          <svg class="boot-icon init-node-icon" aria-hidden="true"><use href="#i-disk"/></svg>
+          <strong>真正的<br>根文件系统</strong>
+        </div>
+        <div class="init-cycle-node">
+          <svg class="boot-icon init-node-icon" aria-hidden="true"><use href="#i-tools"/></svg>
+          <strong>驱动、解密<br>逻辑卷工具</strong>
+        </div>
+        <figcaption>这些文件可能就在里面</figcaption>
+      </figure>
+    </div>
+    <aside class="init-solution">
+      <div class="init-toolbox" aria-hidden="true">
+        <div class="init-toolbox-handle"></div>
+        <svg class="boot-icon"><use href="#i-tools"/></svg>
+        <span>initramfs</span>
+      </div>
+      <div class="init-solution-copy">
+        <h3>解决：先备好早期工具箱</h3>
+        <p>提前将所需模块、工具和 <code>/init</code> 打包成 initramfs 归档，由引导器提供或内核内建。</p>
+        <p>内核解包到内存后运行 <code>/init</code>，由它准备设备、挂载并切换到真正的根，继续启动系统。</p>
+      </div>
+    </aside>
+    <aside class="init-exceptions" aria-label="两种启动例外">
+      <p><strong>省略 initramfs：</strong>所需驱动与文件系统支持已内建，且无需早期工具时，内核可直接挂载目标根并启动初始化程序。</p>
+      <p><strong>省略切根：</strong>仍使用 initramfs，以解包后的内存根作为最终根，直接在其中运行系统。</p>
+    </aside>
+  </div>
+
+  <div class="init-handoff">
+    <p class="init-identity-label">同一个<br>进程身份</p>
+    <ol class="init-stages" aria-label="根文件系统交接的三个阶段">
+      <li class="init-stage">
+        <div class="init-identity" aria-label="进程号 1 持续保留"><span>PID <b>1</b></span></div>
+        <article class="init-stage-card">
+          <header class="init-stage-heading">
+            <span class="init-stage-number">1</span>
+            <h3>先有临时的 <code>/</code></h3>
+            <p>运行 <code>/init</code>（如脚本或 systemd），准备存储设备。</p>
+          </header>
+          <div class="init-stage-body init-stage-body-first">
+            <figure class="init-tree-figure init-early-tree">
+              <figcaption>内存中的早期根文件系统</figcaption>
+              <div class="init-tree" role="img" aria-label="临时根目录下有 /init、/lib/modules 和 /sbin；lib/modules 合并展示两层目录">
+                <div class="init-tree-root"><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><code>/</code></div>
+                <ul class="init-tree-branches">
+                  <li><svg class="boot-icon init-folder init-file" aria-hidden="true"><use href="#i-file"/></svg><strong>init</strong><code>/init</code></li>
+                  <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>lib/<wbr>modules</strong><code>/lib/modules</code></li>
+                  <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>sbin</strong><code>/sbin</code></li>
+                </ul>
+              </div>
+            </figure>
+            <div class="init-storage init-ram">
+              <span class="init-storage-label">内存（RAM）</span>
+              <svg class="init-ram-svg" viewBox="0 0 280 160" aria-hidden="true">
+                <path d="m28 91 36-67 193 45-35 67Z" fill="#c6e2de" stroke="#087c88" stroke-width="2"/>
+                <path d="m28 91 194 45v10L28 101Z" fill="#087c88"/>
+                <g fill="#e9a23b"><path d="m43 107 10 2v11l-10-2Z"/><path d="m64 112 10 2v11l-10-2Z"/><path d="m85 117 10 2v11l-10-2Z"/><path d="m106 122 10 2v11l-10-2Z"/><path d="m127 127 10 2v11l-10-2Z"/><path d="m148 132 10 2v11l-10-2Z"/><path d="m169 137 10 2v11l-10-2Z"/><path d="m190 142 10 2v11l-10-2Z"/></g>
+                <g fill="#007f8b" stroke="#102c3e" stroke-width="1.4"><path d="m60 48 29 7-14 28-29-7Z"/><path d="m98 57 29 7-14 28-29-7Z"/><path d="m136 66 29 7-14 28-29-7Z"/><path d="m174 75 29 7-14 28-29-7Z"/><path d="m212 84 26 6-14 28-26-6Z"/></g>
+                <path d="m55 89 162 38" stroke="#fff" stroke-width="2" opacity=".7"/>
+              </svg>
+              <span class="init-memory-tag"><code>initramfs</code> 解包后的目录树</span>
+              <span class="init-pid-pill">PID 1 执行 <code>/init</code></span>
+            </div>
+          </div>
+        </article>
+        <div class="init-transition"><span aria-hidden="true">↓</span><p>加载模块 / 解密 / 激活逻辑卷</p></div>
+      </li>
+
+      <li class="init-stage">
+        <div class="init-identity" aria-label="进程号仍为 1"><span>PID <b>1</b></span></div>
+        <article class="init-stage-card">
+          <header class="init-stage-heading">
+            <span class="init-stage-number">2</span>
+            <h3>把目标根挂进来</h3>
+            <p>此时 <code>/</code> 仍是早期根，目标根挂在其下。</p>
+          </header>
+          <div class="init-stage-body">
+            <div class="init-mount-pair">
+              <figure class="init-tree-figure init-tree-compact">
+                <figcaption>当前的 <code>/</code> · 仍是早期根</figcaption>
+                <div class="init-tree" role="img" aria-label="当前根目录仍包含 /init、/lib/modules 与 /sbin；lib/modules 合并展示两层目录">
+                  <div class="init-tree-root"><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><code>/</code></div>
+                  <ul class="init-tree-branches">
+                    <li><svg class="boot-icon init-folder init-file" aria-hidden="true"><use href="#i-file"/></svg><strong>init</strong></li>
+                    <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>lib/<wbr>modules</strong></li>
+                    <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>sbin</strong></li>
+                  </ul>
+                </div>
+              </figure>
+              <span class="init-mount-plus" aria-hidden="true">+</span>
+              <figure class="init-tree-figure init-tree-compact init-target-tree">
+                <figcaption><code>/sysroot</code> · 挂载目标根</figcaption>
+                <div class="init-tree" role="img" aria-label="目标根挂载在 sysroot 下，其中有 etc、usr 和 var">
+                  <div class="init-tree-root"><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><code>/sysroot</code></div>
+                  <ul class="init-tree-branches">
+                    <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>etc</strong></li>
+                    <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>usr</strong></li>
+                    <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>var</strong></li>
+                  </ul>
+                </div>
+              </figure>
+            </div>
+            <p class="init-stage-status"><svg class="boot-icon" aria-hidden="true"><use href="#i-disk"/></svg><span>根设备可以是分区、LVM 逻辑卷或加密设备等。<small><code>/sysroot</code> 是示例挂载点。</small></span><span class="init-pid-pill">PID 1 仍在早期环境</span></p>
+          </div>
+        </article>
+        <div class="init-transition"><span aria-hidden="true">↓</span><p>切换根目录 + 衔接最终初始化程序 <code>switch_root + exec</code></p></div>
+      </li>
+
+      <li class="init-stage init-stage-last">
+        <div class="init-identity" aria-label="同一个进程号 1"><span>PID <b>1</b></span></div>
+        <article class="init-stage-card">
+          <header class="init-stage-heading">
+            <span class="init-stage-number">3</span>
+            <h3>进入最终的 <code>/</code></h3>
+            <p>从新的 <code>/</code> 运行最终初始化程序。</p>
+          </header>
+          <div class="init-stage-body init-stage-body-last">
+            <figure class="init-tree-figure init-final-tree">
+              <figcaption>目标文件系统成为新的 <code>/</code></figcaption>
+              <div class="init-tree" role="img" aria-label="目标文件系统成为根目录，etc、usr 和 var 现在位于根下">
+                <div class="init-tree-root"><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><code>/</code></div>
+                <ul class="init-tree-branches">
+                  <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>etc</strong><code>/etc</code></li>
+                  <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>usr</strong><code>/usr</code></li>
+                  <li><svg class="boot-icon init-folder" aria-hidden="true"><use href="#i-folder"/></svg><strong>var</strong><code>/var</code></li>
+                </ul>
+              </div>
+            </figure>
+            <div class="init-storage init-disk">
+              <svg class="boot-icon init-disk-icon" aria-hidden="true"><use href="#i-disk"/></svg>
+              <span class="init-storage-label">磁盘上的目标根<br><small>现在作为 <code>/</code></small></span>
+              <span class="init-pid-pill">PID 1 执行 <code>systemd</code></span>
+            </div>
+          </div>
+        </article>
+      </li>
+    </ol>
+  </div>
+
+  <div class="init-keynotes">
+    <aside class="init-keynote">
+      <span class="init-note-icon init-note-amber" aria-hidden="true"><svg class="boot-icon"><use href="#i-folder"/></svg></span>
+      <div><h3>根目录变了 ≠ 新建进程</h3><p>切根改变 <code>/</code> 的文件系统视图，并迁移相关挂载。</p><p class="init-keynote-detail"><code>/</code> 是根目录；<code>/root</code> 通常是 root 用户的主目录。</p></div>
+    </aside>
+    <aside class="init-keynote">
+      <span class="init-note-icon" aria-hidden="true"><svg class="boot-icon"><use href="#i-chip"/></svg></span>
+      <div><h3><code>exec</code>：程序换了，PID 不变</h3><p>用最终初始化程序替换 <code>/init</code> 的程序映像。</p></div>
+    </aside>
+  </div>
+  <p class="diagram-caption init-caption">目录树仅列关键条目，<code>lib/modules</code> 合并展示两层目录；<code>/init</code> 与切根实现依发行版而定。</p>
+</section>
+
+    <section id="systemd" class="boot-chapter system-chapter" aria-labelledby="systemd-title">
+      <header class="chapter-heading">
+        <span class="chapter-kicker">03 / 服务、并行与登录</span>
+        <h2 id="systemd-title"><span>systemd</span> 如何把系统组织起来？</h2>
+        <p>根目录交接后，先决定启动谁，再约束先后。</p>
+        <dl class="sys-foundations">
+          <div><dt>PID 1 的职责</dt><dd>收养符合条件的孤儿进程、回收退出状态；编号限定于 PID 命名空间，容器可有自己的 PID 1。</dd></div>
+          <div><dt>单元 unit：管理对象</dt><dd><code>.service</code> 服务 · <code>.mount</code> 挂载 · <code>.socket</code> 套接字 · <code>.target</code> 目标。</dd></div>
+          <div><dt>目标 target：组织启动</dt><dd><code>default.target</code> 通常指向 <code>multi-user.target</code>（多用户）或 <code>graphical.target</code>（图形登录），按依赖组织启动。</dd></div>
+        </dl>
+      </header>
+
+      <div class="sys-relations">
+        <figure class="sys-relation-card sys-requirements">
+          <h3><span class="sys-step">1</span>启动关系<span>把谁拉进来</span></h3>
+          <div class="sys-dependency-map" role="img" aria-label="Web 服务通过 Requires 拉起数据库，通过 Wants 拉起缓存">
+            <svg class="sys-dependency-edges" viewBox="0 0 500 270" preserveAspectRatio="none" aria-hidden="true">
+              <defs><marker id="sys-teal-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/></marker></defs>
+              <path d="M 212 87 L 124 169" marker-end="url(#sys-teal-arrow)"/>
+              <path class="sys-weak-edge" d="M 288 87 L 376 169" marker-end="url(#sys-teal-arrow)"/>
+            </svg>
+            <div class="sys-service-node sys-web-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-server"/></svg><strong>Web 服务</strong><code>web.service</code></div>
+            <span class="sys-edge-label sys-requires-label">Requires</span>
+            <span class="sys-edge-label sys-wants-label">Wants</span>
+            <div class="sys-service-node sys-db-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-database"/></svg><strong>数据库</strong><code>database.service</code></div>
+            <div class="sys-service-node sys-cache-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-cache"/></svg><strong>缓存</strong><code>cache.service</code></div>
+          </div>
+          <figcaption class="sys-card-caption"><strong>Wants / Requires</strong> 拉入依赖单元，失败关联不同。</figcaption>
+        </figure>
+
+        <figure class="sys-relation-card sys-ordering">
+          <h3><span class="sys-step">2</span>顺序关系<span>谁先谁后</span></h3>
+          <div class="sys-order-map" role="img" aria-label="当两者都要启动时，Web 等待数据库的启动任务完成">
+            <div class="sys-service-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-database"/></svg><strong>数据库</strong><small>启动任务完成</small></div>
+            <div class="sys-order-link"><code>After=</code><span aria-hidden="true">⟶</span><small>database.service</small></div>
+            <div class="sys-service-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-server"/></svg><strong>Web 服务</strong><small>随后启动</small></div>
+          </div>
+          <figcaption class="sys-card-caption"><strong>After / Before</strong> 约束已安排任务的启动先后。</figcaption>
+        </figure>
+      </div>
+
+      <aside class="sys-rule-note"><span aria-hidden="true">!</span><p><code>After=</code> 不会自动拉起对方；<code>Requires=</code> 不会自动规定先后。</p></aside>
+
+      <div class="sys-example">
+        <div class="sys-example-intro"><h3>示例：Web 依赖数据库，希望启用缓存。</h3></div>
+        <pre aria-label="web.service 的 Unit 段配置示例"><code><span class="sys-code-comment"># web.service · 节选</span>
+<span class="sys-code-section">[Unit]</span>
+<span class="sys-code-key">Requires</span>=database.service
+<span class="sys-code-key">Wants</span>=cache.service
+<span class="sys-code-key">After</span>=database.service</code></pre>
+      </div>
+
+      <figure class="sys-timeline-panel" aria-labelledby="sys-timeline-title">
+        <div class="sys-panel-heading"><h3 id="sys-timeline-title"><span class="sys-step">3</span>有约束的先后，没有约束的并行</h3><span class="sys-small-label">教学示意 / 非实际耗时</span></div>
+        <div class="sys-timeline" role="img" aria-label="数据库和缓存同时开始。数据库启动任务完成后，Web 才开始；Web 无需等待缓存。各任务完成后，对应服务仍可继续运行。">
+          <div class="sys-timeline-row"><div class="sys-track-name"><svg class="boot-icon" aria-hidden="true"><use href="#i-database"/></svg><strong>数据库</strong></div><div class="sys-track"><div class="sys-task sys-task-db"><span>启动任务</span><i aria-hidden="true"></i></div><span class="sys-complete-label sys-db-complete">完成</span></div></div>
+          <div class="sys-timeline-row"><div class="sys-track-name"><svg class="boot-icon" aria-hidden="true"><use href="#i-server"/></svg><strong>Web</strong></div><div class="sys-track"><div class="sys-task-wait"><span>等待数据库</span></div><div class="sys-task sys-task-web"><span>启动任务</span><i aria-hidden="true"></i></div></div></div>
+          <div class="sys-timeline-row"><div class="sys-track-name"><svg class="boot-icon" aria-hidden="true"><use href="#i-cache"/></svg><strong>缓存</strong></div><div class="sys-track"><div class="sys-task sys-task-cache"><span>启动任务</span><i aria-hidden="true"></i></div><span class="sys-complete-label sys-cache-complete">完成</span></div></div>
+          <div class="sys-time-axis"><span>同时开始</span><span>时间 <b aria-hidden="true">→</b></span></div>
+        </div>
+        <figcaption class="sys-readiness-note"><svg class="boot-icon" aria-hidden="true"><use href="#i-gear"/></svg><p><strong>启动任务完成，不一定业务就绪。</strong>取决于 <code>Type=</code> 与就绪通知；<code>Type=notify</code> 等待 <code>READY=1</code>。</p></figcaption>
+      </figure>
+
+      <details class="sys-failure-details">
+        <summary>如果数据库或缓存启动失败，会发生什么？<span aria-hidden="true">＋</span></summary>
+        <div><p>本例中，<code>Requires=</code> 配合 <code>After=</code>：数据库激活失败，Web 不启动；<code>Wants=</code> 使缓存失败不阻止 Web。</p><p>条件跳过、正常自行退出不等同于激活失败；<code>Requires=</code> 不保证被依赖服务一退出，本服务就退出。</p><a href="https://github.com/systemd/systemd/blob/main/man/systemd.unit.xml" target="_blank" rel="noopener noreferrer">systemd 单元文档 <span aria-hidden="true">↗</span></a></div>
+      </details>
+
+      <figure class="sys-architecture-panel" aria-labelledby="sys-architecture-title">
+        <div class="sys-panel-heading"><h3 id="sys-architecture-title"><span class="sys-step">4</span>用户态组织服务，内核提供运行能力</h3></div>
+        <p class="sys-privilege-note"><strong>CPU 执行权限：</strong>内核态可管理系统资源，用户态程序受限。</p>
+        <div class="sys-user-layer">
+          <div class="sys-layer-label"><span>用户态</span><small>USERSPACE</small></div>
+          <div class="sys-userspace">
+            <div class="sys-architecture-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-gear"/></svg><strong>systemd <small>PID 1</small></strong></div>
+            <div class="sys-flow-arrow"><span>启动与管理</span><b aria-hidden="true">→</b></div>
+            <div class="sys-architecture-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-terminal"/></svg><strong>服务与登录入口</strong></div>
+            <div class="sys-flow-arrow"><span>认证后建立</span><b aria-hidden="true">→</b></div>
+            <div class="sys-architecture-node"><svg class="boot-icon" aria-hidden="true"><use href="#i-user"/></svg><strong>用户会话</strong></div>
+          </div>
+        </div>
+        <div class="sys-system-calls"><span><b aria-hidden="true">↓</b> 系统调用</span><span><b aria-hidden="true">↑</b> 返回结果</span></div>
+        <div class="sys-kernel-layer">
+          <div class="sys-layer-label"><span>内核</span><small>KERNEL</small></div>
+          <div class="sys-kernel-content"><h4><svg class="boot-icon" aria-hidden="true"><use href="#i-chip"/></svg>Linux 内核持续运行</h4><ul><li>进程调度</li><li>内存管理</li><li>文件系统</li><li>设备访问</li></ul></div>
+        </div>
+      </figure>
+    </section>
+
+
+    <section class="boot-chapter observe-chapter" id="observe" aria-labelledby="observe-title">
+      <header class="chapter-heading">
+        <span class="chapter-kicker">04 / 实机观察</span>
+        <h2 id="observe-title">用命令，<span>观察真实启动。</span></h2>
+        <p>对照前述流程观察常见 systemd Linux；输出依发行版、权限与日志配置而定。</p>
+      </header>
+      <table class="boot-observe-table" role="table">
+        <caption class="sr-only">观察 Linux 启动的命令、输出含义与判断边界</caption>
+        <colgroup><col class="observe-subject-col"><col class="observe-command-col"><col></colgroup>
+        <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">观察什么</th><th scope="col" role="columnheader">命令</th><th scope="col" role="columnheader">输出含义与边界</th></tr></thead>
+        <tbody role="rowgroup">
+          <tr role="row"><th scope="row" role="rowheader">内核参数</th><td role="cell"><pre><code>cat /proc/cmdline</code></pre></td><td role="cell"><p>当前内核命令行。<code>root=UUID=…</code> 指定目标根；<code>ro</code> 通常表示初始只读，后续可重新挂载为可写。参数由内核或早期用户空间解析。</p><p class="observe-limit">无法还原固件与引导器的完整执行过程。</p></td></tr>
+          <tr role="row"><th scope="row" role="rowheader">当前 PID 1</th><td role="cell"><pre><code>ps -p 1 -o pid,comm,args</code></pre></td><td role="cell"><p>查看当前 PID 命名空间的初始化程序。</p><p class="observe-limit">无法据此判断早期 <code>/init</code> 的实现，或是否使用了 initramfs。</p></td></tr>
+          <tr role="row"><th scope="row" role="rowheader">当前根目录</th><td role="cell"><pre><code>findmnt /</code></pre></td><td role="cell"><p>查看当前挂载命名空间中 <code>/</code> 的文件系统、来源与挂载选项。</p><p class="observe-limit">不反映启动时的切根历史。</p></td></tr>
+          <tr role="row"><th scope="row" role="rowheader">本次启动日志</th><td role="cell"><pre><code>journalctl -b -k
+journalctl -b</code></pre></td><td role="cell"><p>分别查看本次启动的内核消息与全部已收集日志，追踪设备、挂载和服务启动。</p><p class="observe-limit">仅限有权限读取且保留的记录，通常不含固件细节。</p></td></tr>
+          <tr role="row"><th scope="row" role="rowheader">耗时与顺序链</th><td role="cell"><pre><code>systemd-analyze
+systemd-analyze critical-chain
+systemd-analyze blame</code></pre></td><td role="cell"><p>依次看启动时间、部分关键顺序链、单元初始化耗时排序。</p><p class="observe-limit">并行耗时不能直接相加；<code>blame</code> 首位不等于瓶颈，需结合依赖、设备等待与就绪方式判断。</p></td></tr>
+        </tbody>
+      </table>
+      <details class="boot-self-check">
+        <summary>自测：能否解释这五个问题？<span aria-hidden="true">＋</span></summary>
+        <ol>
+          <li>系统尚未运行，CPU 从哪里取第一段代码？</li>
+          <li>已加载内核，为什么还可能需要 initramfs？</li>
+          <li>根设备须先解密，工具应放在哪里？</li>
+          <li>切根、<code>exec</code>、创建进程各改变什么？PID 1 为何可保留？</li>
+          <li><code>After=B.service</code> 会拉起 B 吗？进程创建后是否已就绪？</li>
+        </ol>
+      </details>
+    </section>
+
+    <aside class="boot-sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">延伸阅读 · 官方文档与手册</h2>
+      <ul>
+        <li><a href="https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/best-practices/microcode-update-guidance.html" target="_blank" rel="noopener noreferrer">Intel：复位入口与固件执行 ↗</a></li>
+        <li><a href="https://uefi.org/specs/PI/1.9/V2_Overview.html" target="_blank" rel="noopener noreferrer">UEFI PI：硬件初始化 ↗</a></li>
+        <li><a href="https://uefi.org/specs/UEFI/2.10/03_Boot_Manager.html" target="_blank" rel="noopener noreferrer">UEFI：启动项与程序加载 ↗</a></li>
+        <li><a href="https://documentation.ubuntu.com/security/security-features/platform-protections/secure-boot/" target="_blank" rel="noopener noreferrer">Ubuntu：shim 与 GRUB 启动链 ↗</a></li>
+        <li><a href="https://www.gnu.org/software/grub/manual/grub/html_node/GNU_002fLinux.html" target="_blank" rel="noopener noreferrer">GNU GRUB：启动 GNU/Linux ↗</a></li>
+        <li><a href="https://docs.kernel.org/filesystems/ramfs-rootfs-initramfs.html" target="_blank" rel="noopener noreferrer">Linux 内核：rootfs 与 initramfs ↗</a></li>
+        <li><a href="https://docs.kernel.org/admin-guide/efi-stub.html" target="_blank" rel="noopener noreferrer">Linux 内核：EFI stub ↗</a></li>
+        <li><a href="https://docs.kernel.org/admin-guide/mm/concepts.html" target="_blank" rel="noopener noreferrer">Linux 内核：虚拟内存与地址空间 ↗</a></li>
+        <li><a href="https://www.kernel.org/doc/html/latest/admin-guide/kernel-parameters.html" target="_blank" rel="noopener noreferrer">Linux 内核：启动参数 ↗</a></li>
+        <li><a href="https://github.com/util-linux/util-linux/blob/master/sys-utils/switch_root.8.adoc" target="_blank" rel="noopener noreferrer">util-linux：switch_root ↗</a></li>
+        <li><a href="https://www.freedesktop.org/software/systemd/man/latest/bootup.html" target="_blank" rel="noopener noreferrer">systemd：启动目标与流程 ↗</a></li>
+        <li><a href="https://github.com/systemd/systemd/blob/main/man/systemd.unit.xml" target="_blank" rel="noopener noreferrer">systemd：单元依赖与顺序 ↗</a></li>
+        <li><a href="https://github.com/systemd/systemd/blob/main/man/systemd.service.xml" target="_blank" rel="noopener noreferrer">systemd：服务类型与就绪语义 ↗</a></li>
+        <li><a href="https://github.com/util-linux/util-linux/blob/master/login-utils/login.1.adoc" target="_blank" rel="noopener noreferrer">util-linux：登录与用户环境 ↗</a></li>
+        <li><a href="https://man7.org/linux/man-pages/man7/pid_namespaces.7.html" target="_blank" rel="noopener noreferrer">Linux 手册：PID 命名空间与初始化进程 ↗</a></li>
+        <li><a href="https://man7.org/linux/man-pages/man2/intro.2.html" target="_blank" rel="noopener noreferrer">Linux 手册：系统调用与内核态切换 ↗</a></li>
+        <li><a href="https://www.freedesktop.org/software/systemd/man/latest/journalctl.html" target="_blank" rel="noopener noreferrer">systemd：启动日志 ↗</a></li>
+        <li><a href="https://www.freedesktop.org/software/systemd/man/latest/systemd-analyze.html" target="_blank" rel="noopener noreferrer">systemd：启动耗时分析 ↗</a></li>
+      </ul>
+      <p>图中路径、服务名与时长为教学示例；具体行为依硬件、发行版及单元配置而定。</p>
+    </aside>
+    <footer class="boot-footer"><p>知行簿 · 学习 / 系统基础</p><a href="learning.html">返回学习索引 ↗</a></footer>
+  </main>
+  <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>
+</body>
+</html>

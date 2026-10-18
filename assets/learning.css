@@ -1,0 +1,63 @@
+/* Learning directory: an illustrated system primer, ready to grow by topic. */
+.learning-page{--ink:#102c3e;--blue:#007f8b;--bg:#f7f5ef;--line:#d9e1de;--pale:#e5f0ed;--amber:#e9a23b;background:var(--bg)}
+.learning-skip{position:fixed;left:16px;top:-60px;z-index:100;padding:10px 14px;border-radius:6px;background:var(--ink);color:#fff}
+.learning-skip:focus{top:12px}
+.learning-main{padding-block:34px 80px}
+.learning-hero{margin-bottom:40px}
+.learning-hero h1{margin:0;font:800 32px/1.2 var(--display);letter-spacing:-.04em}
+.learning-hero p{margin:9px 0 0;color:var(--muted);font-size:14px}
+.learning-category-heading{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+.learning-category-heading h2{margin:0;font:750 19px/1.4 var(--display)}
+.learning-category-heading>span{color:var(--muted);font:11px/1 var(--mono)}
+.learning-entry{display:grid;grid-template-columns:minmax(0,1fr) minmax(290px,.58fr);overflow:hidden;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.64);box-shadow:0 10px 30px #102c3e05}
+.learning-entry-content{padding:29px 34px 30px}
+.learning-entry-kicker{margin:0 0 9px;color:var(--blue);font:700 10px/1.5 var(--mono);letter-spacing:.07em}
+.learning-entry h3{margin:0;font:800 clamp(24px,2.8vw,34px)/1.35 var(--display);letter-spacing:-.035em}
+.learning-entry h3 a{display:inline-flex;align-items:center;gap:18px;color:var(--ink);text-decoration:none}
+.learning-entry h3 a>span{color:var(--blue);font-size:26px;transition:transform .16s ease}
+.learning-entry h3 a:hover{color:var(--blue)}
+.learning-entry h3 a:hover>span{transform:translate(2px,-2px)}
+.learning-entry-summary{max-width:590px;margin:10px 0 24px;color:var(--muted);font-size:14px;line-height:1.85}
+.learning-chapters{display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px}
+.learning-chapters a{display:inline-flex;align-items:center;gap:14px;padding:5px 0;border-bottom:1px solid #c8dcd9;color:var(--blue);font-size:12px;font-weight:650;text-decoration:none}
+.learning-chapters a:hover{border-color:var(--blue)}
+.learning-chapters a>span{font-size:15px}
+.learning-boot-preview{display:flex;flex-direction:column;justify-content:center;padding:28px 30px;background:var(--ink);color:#e7f4f2;text-decoration:none;transition:background .16s ease}
+.learning-boot-preview:hover{background:#153b4b;text-decoration:none}
+.learning-preview-label{display:flex;align-items:center;gap:8px;margin-bottom:22px;color:#b4d7d6;font-size:11px;letter-spacing:.08em}
+.learning-status-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px #e9a23b14}
+.learning-boot-chain{display:flex;align-items:center;justify-content:space-between;gap:8px;font:700 15px/1 var(--mono)}
+.learning-boot-chain>span{min-width:58px;padding:10px 6px;border:1px solid #51717c;border-radius:5px;text-align:center}
+.learning-boot-chain>i{color:#7dafb6;font-size:17px;font-style:normal}
+.learning-boot-chain .learning-chain-kernel{border-color:#e9a23b88;color:#ffcf83}
+.learning-boot-chain-lower{margin-top:12px}
+.learning-boot-chain-lower>span{border-color:#365c68;color:#b5dcda;font-size:12px}
+.learning-preview-caption{margin-top:22px;color:#a1c5c8;font-size:11px}
+@media(min-width:1600px){.learning-entry{grid-template-columns:minmax(0,1fr) minmax(340px,.5fr)}}
+@media(max-width:800px){
+  .learning-entry{grid-template-columns:minmax(0,1fr) minmax(260px,.7fr)}
+  .learning-entry-content{padding:25px 24px}
+  .learning-boot-preview{padding:25px 20px}
+  .learning-chapters{gap:8px 16px}
+}
+@media(max-width:620px){
+  .learning-main{padding-block:26px 64px}
+  .learning-hero{margin-bottom:32px}
+  .learning-hero h1{font-size:29px}
+  .learning-hero p{font-size:13px}
+  .learning-entry{grid-template-columns:1fr;border-radius:14px}
+  .learning-entry-content{padding:23px 21px 25px}
+  .learning-entry-summary{margin-bottom:18px;font-size:13px}
+  .learning-boot-preview{padding:23px 25px}
+  .learning-preview-label{margin-bottom:18px}
+  .learning-boot-chain{justify-content:flex-start;gap:13px}
+  .learning-boot-chain>span{flex:1}
+  .learning-preview-caption{margin-top:18px}
+}
+@media(prefers-reduced-motion:reduce){.learning-entry h3 a>span,.learning-boot-preview{transition:none}}
+@media print{
+  .learning-page{background:#fff}
+  .learning-main{padding-block:12px}
+  .learning-entry{box-shadow:none;break-inside:avoid}
+  .learning-boot-preview{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}

@@ -16,8 +16,10 @@
     'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html',
   ];
   const gkDetailPages = ['gk-countries.html', 'china-regions.html', 'henan.html', 'shaanxi.html', 'xian.html', 'security-vendors.html'];
+  const learningDetailPages = ['linux-boot.html'];
   const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html'
     : gkDetailPages.includes(currentFile) ? 'general-knowledge.html'
+    : learningDetailPages.includes(currentFile) ? 'learning.html'
     : currentFile;
 
   const wordmark = document.querySelector('.site-wordmark');

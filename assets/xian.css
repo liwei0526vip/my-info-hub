@@ -77,62 +77,58 @@
 .xa-scroll { min-width: 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 2px; background: var(--paper); scrollbar-width: thin; scrollbar-color: #b99b6a var(--paper); }
 /* Tables and their supporting panels share the wide-screen canvas. */
 .xa-district-heading h3 { padding-inline: 42px; }
-.xa-district-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.xa-district-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 .xa-district-layout > div { min-width: 0; }
-.xa-main .xa-table-wrap { --cr-header-fill: linear-gradient(to bottom, var(--xa-red) 0, var(--xa-red) var(--cr-header-height), var(--paper) var(--cr-header-height), var(--paper) 100%); height: auto; min-height: 0; max-height: none; border: 2px solid #c39a5b; border-radius: 8px 8px 3px 3px; }
-.xa-table { --xa-rank-width: 48px; min-width: 740px; font-size: 14px; line-height: 1.35; }
-.xa-table th, .xa-table td { padding: 3px 12px; border-right: 1px solid #dec49a; border-bottom-color: #dec49a; }
+.xa-main .xa-table-wrap { --cr-header-fill: linear-gradient(to bottom, var(--xa-red) 0, var(--xa-red) var(--cr-header-height), var(--paper) var(--cr-header-height), var(--paper) 100%); height: auto; min-height: 0; max-height: none; border: 1px solid #c39a5b; border-radius: 3px; }
+.xa-table { --xa-rank-width: 36px; min-width: 620px; font-size: 13px; line-height: 1.3; }
+.xa-table th, .xa-table td { padding: 3px 8px; border-right: 1px solid #dec49a; border-bottom-color: #dec49a; }
 .xa-table th:last-child, .xa-table td:last-child { border-right: 0; }
-.xa-table thead th { height: 43px; padding-block: 4px; background: var(--xa-red); color: #fff3dc; font: 700 17px/1.25 var(--xa-display); }
-.xa-table .is-sorted { color: #fff9e8; box-shadow: inset 0 -3px 0 #e9c686; }
-.xa-table .cr-sort-icon, .xa-table .is-sorted .cr-sort-icon { color: #e9c686; }
+.xa-table thead th { height: 38px; padding-block: 3px; background: var(--xa-red); color: #fff3dc; font: 700 15px/1.25 var(--xa-display); }
+.xa-table .is-sorted { color: #fff9e8; box-shadow: none; }
+.xa-table .cr-sort-icon { display: inline-flex; align-items: center; justify-content: center; width: 12px; height: 16px; color: #e9d8c2; font: 400 11px/1 var(--body); opacity: .4; }
+.xa-table .is-sortable:hover .cr-sort-icon, .xa-table .is-sortable button:focus-visible .cr-sort-icon { opacity: .7; }
+.xa-table .is-sorted .cr-sort-icon { color: #fff0d6; opacity: .8; }
 .xa-table .cr-unit { display: block; margin: 1px 0 0; color: #f0d8b4; font: 400 10px/1.2 var(--body); }
 .xa-col-rank { width: var(--xa-rank-width); }
-.xa-col-name { width: 15%; }
+.xa-col-name { width: 78px; }
 .xa-col-pop { width: 15%; }
 .xa-col-area { width: 17%; }
 .xa-col-gdp { width: 17%; }
 .xa-col-focus { width: auto; }
 .xa-table .xa-rank-heading, .xa-table .xa-rank-cell { position: sticky; left: 0; padding-inline: 4px; text-align: center; }
-.xa-table .xa-rank-heading { z-index: 4; font-size: 15px; }
+.xa-table .xa-rank-heading { z-index: 4; font-size: 13px; }
 .xa-table .xa-rank-cell { z-index: 1; }
 .xa-table thead th[data-sort="n"] { left: var(--xa-rank-width); z-index: 3; text-align: center; }
-.xa-district-row { --xa-row-fill: var(--paper); cursor: pointer; }
-.xa-district-row:nth-child(4n+3) { --xa-row-fill: #f4e8d2; }
-.xa-district-row > td { height: 30px; background: var(--xa-row-fill); }
-.xa-table .cr-name { left: var(--xa-rank-width); color: var(--ink); font: 700 17px/1.35 var(--xa-display); }
-.xa-district-button { justify-content: center; white-space: nowrap; }
-.xa-table td.num { font-family: Georgia, "Songti SC", serif; font-size: 15px; }
+.xa-district-row { --xa-row-fill: var(--paper); }
+.xa-district-row:nth-child(even) { --xa-row-fill: #f4e8d2; }
+.xa-district-row > :is(th, td) { height: 26px; background: var(--xa-row-fill); }
+.xa-district-row:last-child > :is(th, td) { border-bottom: 0; }
+.xa-table .cr-name { left: var(--xa-rank-width); color: var(--ink); font: 700 15px/1.3 var(--xa-display); text-align: center; white-space: nowrap; }
+.xa-table td.num { font-family: Georgia, "Songti SC", serif; font-size: 14px; }
 .xa-table .xa-gdp-value { color: var(--xa-red); font-weight: 700; }
-.xa-table .xa-district-row:hover > td, .xa-table .xa-district-row[aria-expanded="true"] > td { background: #edddbb; }
-.xa-rank-badge, .xa-rankings .cr-rank-number { display: inline-flex; align-items: center; justify-content: center; width: 27px; height: 24px; background: #ead2ad; color: #483a28; font: 600 14px/1 Georgia, serif; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); font-variant-numeric: tabular-nums; }
+.xa-table .xa-district-row:hover > :is(th, td) { background: #edddbb; }
+.xa-rank-badge, .xa-rankings .cr-rank-number { display: inline-flex; align-items: center; justify-content: center; width: 23px; height: 20px; background: #ead2ad; color: #483a28; font: 600 12px/1 Georgia, serif; clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%); font-variant-numeric: tabular-nums; }
 .xa-rank-badge--1 { background: #9c6c24; color: #fff7e5; }
 .xa-rank-badge--2 { background: #b9803d; color: #fff7e5; }
 .xa-rank-badge--3 { background: #a9442b; color: #fff7e5; }
-.xa-focus { color: var(--ink); font: 500 14px/1.35 var(--xa-display); text-align: center; }
+.xa-focus { color: var(--ink); font: 500 13px/1.3 var(--xa-display); text-align: center; }
 .xa-table th:last-child { text-align: center; }
-.xa-table .xa-detail-row > td { padding: 7px 12px 7px 20px; background: #f7ecd7; }
-.xa-detail { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 3px 8px; margin: 0; font-size: 11px; }
-.xa-detail dt { color: var(--muted); }
-.xa-detail dd { margin: 0; color: var(--ink); }
-.xa-detail a { color: var(--blue); }
-.xa-data-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 5px 0 0 66px; font-size: 10px; }
-.xa-rankings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; min-width: 0; }
-.xa-rankings .cr-chart { --cr-chart-label: 48px; --cr-chart-value: 62px; padding: 4px 4px 6px; border-color: #c39a5b; border-radius: 6px 6px 2px 2px; outline: 1px solid #ead7b2; outline-offset: -4px; background: #fff9eea6; }
+.xa-rankings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; min-width: 0; }
+.xa-rankings .cr-chart { --cr-chart-label: 48px; --cr-chart-value: 62px; padding: 4px 4px 6px; border-color: #c39a5b; border-radius: 3px; background: #fff9eea6; }
 .xa-rankings .cr-chart--pop { --cr-bar-color: var(--xa-red); }
 .xa-rankings .cr-chart--area { --cr-bar-color: #8d672d; }
 .xa-rankings .cr-chart--gdp { --cr-bar-color: var(--xa-teal); }
-.xa-rankings figcaption { align-items: center; justify-content: start; gap: 8px; min-height: 42px; padding: 4px 8px; background: var(--cr-bar-color); color: #fff7e5; clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px); }
-.xa-ranking-icon { flex: 0 0 32px; width: 32px; height: 32px; padding: 5px; border: 1px solid #fff1d5; border-radius: 50%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.xa-rankings .cr-chart h4 { margin: 0; color: inherit; font: 700 clamp(17px, 1.7vw, 23px)/1.25 var(--xa-display); white-space: nowrap; }
+.xa-rankings figcaption { align-items: center; justify-content: start; gap: 6px; min-height: 32px; padding: 3px 6px; background: var(--cr-bar-color); color: #fff7e5; clip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px); }
+.xa-ranking-icon { flex: 0 0 24px; width: 24px; height: 24px; padding: 3px; border: 1px solid #fff1d5; border-radius: 50%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.xa-rankings .cr-chart h4 { margin: 0; color: inherit; font: 700 17px/1.25 var(--xa-display); white-space: nowrap; }
 .xa-rankings .cr-chart-note { margin: 0 0 0 auto; color: #fff3dc; font-size: 10px; white-space: nowrap; }
 .xa-rankings .cr-chart-list { margin: 5px 6px 0; }
-.xa-rankings .cr-chart-list li { grid-template-columns: 25px var(--cr-chart-label) minmax(0, 1fr) var(--cr-chart-value); gap: 5px; min-height: 26px; }
-.xa-rankings .cr-rank-number { width: 25px; height: 22px; font-size: 13px; }
+.xa-rankings .cr-chart-list li { grid-template-columns: 22px var(--cr-chart-label) minmax(0, 1fr) var(--cr-chart-value); gap: 4px; min-height: 22px; }
+.xa-rankings .cr-rank-number { width: 22px; height: 20px; font-size: 12px; }
 .xa-rankings .cr-chart-list li:nth-child(-n+3) .cr-rank-number { background: var(--cr-bar-color); color: #fff7e5; }
-.xa-rankings .cr-chart-name { font: 700 15px/1.3 var(--xa-display); }
+.xa-rankings .cr-chart-name { font: 700 14px/1.3 var(--xa-display); }
 .xa-rankings .cr-chart-value { color: var(--cr-bar-color); font: 700 13px/1.3 Georgia, serif; font-variant-numeric: tabular-nums; }
-.xa-rankings .cr-chart-track { height: 15px; border-radius: 0; background: #ead9b82b; }
+.xa-rankings .cr-chart-track { height: 11px; border-radius: 0; background: #ead9b82b; }
 .xa-rankings .cr-chart-bar { border-radius: 0; background: linear-gradient(90deg, var(--cr-bar-color), color-mix(in srgb, var(--cr-bar-color), #fff9ee 28%)); }
 .xa-ranking-year { margin: 3px 7px 0; color: var(--muted); font-size: 9px; text-align: right; }
 .xa-context-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 8px 20px; margin-bottom: 20px; }
@@ -236,8 +232,6 @@
 @media screen and (max-width: 539px) {
   .xa-food-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-.xa-sight-links a { text-underline-offset: 3px; }
-.xa-sight-links a:hover { text-decoration: underline; }
 .xa-function-strip { margin: 0 0 20px; padding: 8px 12px; border: 1px solid var(--line); background: #fffbf075; scroll-margin-top: var(--xa-anchor-offset); }
 .xa-zones summary { display: flex; align-items: center; gap: 6px; min-height: 28px; color: var(--xa-teal); font: 700 16px/1.4 var(--xa-display); cursor: pointer; list-style: none; }
 .xa-zones summary::-webkit-details-marker { display: none; }
@@ -257,9 +251,8 @@
 .xa-colophon { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding: 16px 22px 18px; border: 1px solid #a66e3c; border-top: 0; background: #872c22; color: #e9c99b; font: 400 11px/1.6 var(--xa-display); letter-spacing: .16em; }
 .xa-colophon strong { color: #f7e3bc; font-size: 17px; font-weight: 500; letter-spacing: .3em; }
 @media screen and (min-width: 1280px) {
-  .xa-district-layout { grid-template-columns: minmax(0, 1fr) clamp(300px, 23vw, 380px); align-items: start; gap: 20px; }
-  .xa-district-layout .xa-rankings { grid-template-columns: minmax(0, 1fr); }
-  .xa-district-row > td { height: 40px; }
+  .xa-district-layout { grid-template-columns: minmax(620px, 1.2fr) minmax(480px, 1fr); align-items: start; gap: 12px; }
+  .xa-district-layout .xa-rankings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 1399px) {
   .xa-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -329,14 +322,17 @@
   .xa-stat dt span { font-size: 9px; white-space: normal; }
   .xa-stat dd { font-size: clamp(22px, 6vw, 30px); }
   .xa-stat .xa-division-total { font-size: clamp(16px, 4.7vw, 20px); }
-  .xa-rankings { grid-template-columns: minmax(0, 1fr); }
+  .xa-rankings { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .xa-rankings .cr-chart { --cr-chart-label: 52px; --cr-chart-value: 62px; }
-  .xa-rankings .cr-chart h4 { font-size: 21px; }
+  .xa-rankings .cr-chart h4 { font-size: 17px; }
   .xa-rankings .cr-chart-name { font-size: 15px; }
   .xa-rankings .cr-chart-value { font-size: 13px; }
   .xa-zones dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .xa-colophon { justify-content: center; padding: 12px; text-align: center; }
   .xa-colophon strong { flex-basis: 100%; order: -1; font-size: 16px; letter-spacing: .15em; }
+}
+@media screen and (max-width: 539px) {
+  .xa-rankings { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
   .xa-section-nav a { transition: none; }

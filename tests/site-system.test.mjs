@@ -25,6 +25,7 @@ const pageNames = [
   'shaanxi.html',
   'xian.html',
   'learning.html',
+  'linux-boot.html',
 ];
 
 const pages = await Promise.all(
@@ -48,6 +49,7 @@ const detailParents = new Map([
   ['ai-agent-timeline.html', 'ai.html'],
   ['ai-user-scale.html', 'ai.html'],
   ['ai-company-value.html', 'ai.html'],
+  ['linux-boot.html', 'learning.html'],
 ]);
 
 for (const [name, html] of pages) {
@@ -67,13 +69,15 @@ for (const [name, html] of pages) {
   }
 }
 
-assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions|henan|shaanxi|xian)\.html'/);
+assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions|henan|shaanxi|xian|linux-boot)\.html'/);
 assert.match(siteNav, /href: 'ai-learning-index\.html', label: '收藏'/);
 assert.match(siteNav, /href: 'market-memo\.html', label: '随笔'/);
 assert.match(siteNav, /href: 'general-knowledge\.html', label: '拾零'/);
 
 const knowledgePage = pages.find(([name]) => name === 'ai-knowledge-base.html')[1];
 const learningPage = pages.find(([name]) => name === 'ai-learning-index.html')[1];
+const learningDirectoryPage = pages.find(([name]) => name === 'learning.html')[1];
+const linuxBootPage = pages.find(([name]) => name === 'linux-boot.html')[1];
 const opsAgentPage = pages.find(([name]) => name === 'ops-agent.html')[1];
 const memoPage = pages.find(([name]) => name === 'market-memo.html')[1];
 const generalKnowledgePage = pages.find(([name]) => name === 'general-knowledge.html')[1];
@@ -99,6 +103,32 @@ assert.match(regionsPage, /<script src="assets\/china-regions\.js" defer><\/scri
 assert.equal((regionsPage.match(/\{"n":/g) ?? []).length, 367, 'china-regions must carry the 34-province 333-city dataset');
 assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html', 'xian\.html', 'security-vendors\.html'\]/, 'site-nav must group gk pages under 拾零');
 assert.match(learningPage, /<title>收藏｜知行簿<\/title>/);
+assert.match(learningDirectoryPage, /href="linux-boot\.html"/, 'learning must link to the Linux boot article');
+for (const chapter of ['overview', 'initramfs', 'systemd', 'observe']) {
+  assert.ok(learningDirectoryPage.includes(`href="linux-boot.html#${chapter}"`), `learning must link directly to ${chapter}`);
+  assert.ok(linuxBootPage.includes(`id="${chapter}"`), `Linux boot must expose the ${chapter} chapter anchor`);
+}
+assert.match(siteNav, /const learningDetailPages = \['linux-boot\.html'\]/, 'site-nav must group Linux boot under 学习');
+
+for (const [name, html] of [['learning.html', learningDirectoryPage], ['linux-boot.html', linuxBootPage]]) {
+  const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(new Set(ids).size, ids.length, `${name} must use unique IDs`);
+  const idSet = new Set(ids);
+  for (const [, references] of html.matchAll(/\baria-(?:labelledby|describedby)="([^"]+)"/g)) {
+    for (const id of references.split(/\s+/)) {
+      assert.ok(idSet.has(id), `${name} must provide the accessible label or description ${id}`);
+    }
+  }
+  for (const [, target] of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+    if (/^(?:https?:|mailto:|tel:|data:)/.test(target)) continue;
+    const [path, hash] = target.split('#');
+    if (path) await access(new URL(path, root));
+    if (!hash) continue;
+    const destination = path ? await readFile(new URL(path, root), 'utf8') : html;
+    const destinationIds = new Set([...destination.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]));
+    assert.ok(destinationIds.has(decodeURIComponent(hash)), `${name} must link to an existing anchor: ${target}`);
+  }
+}
 assert.match(opsAgentPage, /<title>运维智能体｜知行簿<\/title>/);
 assert.match(opsAgentPage, /<link rel="stylesheet" href="assets\/ops-agent\.css">/);
 assert.match(opsAgentPage, /id="preface"/);

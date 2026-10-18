@@ -4,16 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
+  <meta name="description" content="学习：用图解梳理系统原理。从 Linux 系统启动，理解固件、内核、initramfs 与 systemd 如何接力。">
   <title>学习｜知行簿</title>
   <link rel="icon" href="assets/site-mark.svg">
   <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/learning.css">
   <script src="assets/site-nav.js" defer></script>
-  <style>
-    .learning-main{padding-block:28px 64px}
-    .learning-main h1{margin:0;font:800 26px/1.2 var(--display)}
-  </style>
 </head>
-<body id="top">
+<body id="top" class="learning-page">
+  <a class="learning-skip" href="#main">跳到学习索引</a>
   <header class="site-header">
     <div class="site-inner">
       <div class="site-wordmark">知行簿</div>
@@ -30,7 +29,41 @@
   </header>
 
   <main class="learning-main page-shell" id="main">
-    <h1>学习</h1>
+    <header class="learning-hero">
+      <h1>学习</h1>
+      <p>从一张图开始，梳理知识背后的运行原理。</p>
+    </header>
+
+    <section class="learning-category" aria-labelledby="systems-heading">
+      <header class="learning-category-heading">
+        <h2 id="systems-heading">系统基础</h2>
+        <span>1 篇</span>
+      </header>
+
+      <article class="learning-entry" aria-labelledby="linux-boot-title">
+        <div class="learning-entry-content">
+          <p class="learning-entry-kicker">LINUX · 图解与说明</p>
+          <h3 id="linux-boot-title"><a href="linux-boot.html">Linux 系统启动 <span aria-hidden="true">↗</span></a></h3>
+          <p class="learning-entry-summary">从硬件的第一条指令，到用户可以登录。沿着启动链，理解内核、根文件系统与服务如何接力，并用命令观察真实启动。</p>
+          <nav class="learning-chapters" aria-label="Linux 系统启动章节导航">
+            <a href="linux-boot.html#overview">启动全貌 <span aria-hidden="true">→</span></a>
+            <a href="linux-boot.html#initramfs">initramfs <span aria-hidden="true">→</span></a>
+            <a href="linux-boot.html#systemd">systemd <span aria-hidden="true">→</span></a>
+            <a href="linux-boot.html#observe">实机观察 <span aria-hidden="true">→</span></a>
+          </nav>
+        </div>
+        <a class="learning-boot-preview" href="linux-boot.html" aria-label="阅读 Linux 系统启动图解与说明">
+          <span class="learning-preview-label"><span class="learning-status-dot" aria-hidden="true"></span> 从开机，到登录</span>
+          <span class="learning-boot-chain" aria-hidden="true">
+            <span>UEFI</span><i>→</i><span>GRUB</span><i>→</i><span class="learning-chain-kernel">内核</span>
+          </span>
+          <span class="learning-boot-chain learning-boot-chain-lower" aria-hidden="true">
+            <span>/init</span><i>→</i><span>systemd</span><i>→</i><span>登录</span>
+          </span>
+          <span class="learning-preview-caption">逐步建立下一阶段所需的运行条件</span>
+        </a>
+      </article>
+    </section>
   </main>
 
   <a class="site-back-top" href="#top" aria-label="返回页面顶部">↑</a>

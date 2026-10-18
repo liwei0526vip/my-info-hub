@@ -6,7 +6,7 @@
   const table = byId('xian-district-table');
   const wrap = document.querySelector('.xa-table-wrap');
   const heads = [...table.querySelectorAll('th[data-sort]')];
-  const state = { sort: { key: 'gdp', dir: -1 }, expanded: new Set() };
+  const state = { sort: { key: 'gdp', dir: -1 } };
   const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const number = (value, digits = 2) => new Intl.NumberFormat('zh-CN', { useGrouping: false, maximumFractionDigits: digits }).format(value);
   const formats = { pop: value => number(value), area: value => number(value), gdp: value => number(value) };
@@ -28,20 +28,15 @@
     byId('xian-rank-label').textContent = ranked ? '排名' : '序号';
     byId('xian-rank-heading').setAttribute('title', ranked ? `按${metricLabel}从高到低排名` : '按当前区县名称顺序编号');
     body.innerHTML = sort(state.sort.key, state.sort.dir).map((district, i) => {
-      const open = state.expanded.has(district.n);
       const rank = ranked ? ranks.get(district.id) : i + 1;
-      const row = `<tr class="xa-district-row" data-district="${escape(district.n)}" aria-expanded="${open}">
+      return `<tr class="xa-district-row">
         <td class="xa-rank-cell"><span class="xa-rank-badge${ranked && rank <= 3 ? ` xa-rank-badge--${rank}` : ''}"${ranked ? ` title="${metricLabel}第 ${rank} 名"` : ''}>${rank}</span></td>
-        <td class="cr-name"><button class="cr-province-button xa-district-button" type="button" aria-expanded="${open}" aria-controls="xian-detail-${district.id}" aria-label="${open ? '收起' : '展开'}${escape(district.n)}资料"><span class="cr-toggle" aria-hidden="true">▸</span>${escape(district.n)}</button></td>
+        <th scope="row" class="cr-name">${escape(district.n)}</th>
         <td class="num" title="${number(district.pop)}万人 · 2024 年末常住人口">${formats.pop(district.pop)}</td>
         <td class="num" title="${number(district.area)}平方公里 · 行政区划面积，2023 年数据">${formats.area(district.area)}</td>
         <td class="num xa-gdp-value" title="${number(district.gdp)}亿元 · 2024 年">${formats.gdp(district.gdp)}</td>
         <td class="xa-focus">${escape(district.focus)}</td>
       </tr>`;
-      const campuses = data.universities.flatMap(school => school.campuses.filter(campus => campus.district === district.n).map(campus => `${school.short}·${campus.name}`));
-      const sights = data.sights.filter(sight => sight.districts.includes(district.n));
-      const details = `<tr class="xa-detail-row" id="xian-detail-${district.id}"${open ? '' : ' hidden'}><td colspan="6"><dl class="xa-detail"><dt>区域特点</dt><dd>${escape(district.about)}</dd>${campuses.length ? `<dt>代表高校</dt><dd>${escape(campuses.join('、'))}</dd>` : ''}${sights.length ? `<dt>代表景点</dt><dd class="xa-sight-links">${sights.map(sight => `<a href="#xian-sight-${escape(sight.id)}">${escape(sight.name)}</a>`).join('、')}</dd>` : ''}</dl><p class="xa-data-links">${link(data.metricSource, '人口与 GDP 原表 ↗')}${link(data.areaSource, '面积原表 ↗')}${link(data.contextSource, '产业布局参考 ↗')}</p></td></tr>`;
-      return row + details;
     }).join('');
     heads.forEach(head => {
       const active = head.dataset.sort === state.sort.key;
@@ -119,15 +114,6 @@
     state.sort.key = key;
     renderDistricts();
   }));
-  body.addEventListener('click', event => {
-    const row = event.target.closest('.xa-district-row');
-    if (!row) return;
-    const name = row.dataset.district;
-    const restoreFocus = Boolean(event.target.closest('.xa-district-button'));
-    state.expanded.has(name) ? state.expanded.delete(name) : state.expanded.add(name);
-    renderDistricts();
-    if (restoreFocus) [...body.querySelectorAll('.xa-district-row')].find(row => row.dataset.district === name)?.querySelector('button')?.focus({ preventScroll: true });
-  });
   new ResizeObserver(syncOverflow).observe(wrap);
   window.addEventListener('resize', syncOverflow);
   renderDistricts();
