@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="全球汽车品牌名称与车标，支持按品牌、国家和标签搜索筛选。">
+  <title>全球汽车品牌名称与车标｜知行簿</title>
+  <link rel="icon" href="assets/site-mark.svg">
+  <link rel="stylesheet" href="assets/site-nav.css">
+  <link rel="stylesheet" href="assets/general-knowledge.css">
+  <link rel="stylesheet" href="assets/car-brands.css">
+  <script src="assets/site-nav.js" defer></script>
+  <script src="assets/car-brands.js" defer></script>
+</head>
+<body id="top" class="gk-page car-page">
+  <a class="skip-link" href="#main">跳到汽车品牌正文</a>
+  <header class="site-header"><div class="site-inner"><div class="site-wordmark">知行簿</div><nav class="site-links" data-site-nav aria-label="站点导航"><a href="ai.html">AI</a><a href="market-memo.html">随笔</a><a href="thoughts.html">思考</a><a href="general-knowledge.html" aria-current="page">拾零</a><a href="life.html">生活</a><a href="ai-learning-index.html">收藏</a><a href="learning.html">学习</a><a href="geer.html">格尔</a></nav></div></header>
+  <main class="car-main page-shell" id="main">
+    <header class="car-heading">
+      <div><a class="car-return" href="general-knowledge.html">← 拾零</a><h1>全球汽车品牌名称与车标</h1><p>浏览全球汽车品牌，支持按名称、国家和标签搜索筛选。</p></div>
+      <div class="car-controls">
+        <label class="car-search"><span class="visually-hidden">搜索品牌、国家或标签</span><input id="brand-search" type="search" placeholder="搜索品牌、国家或标签" autocomplete="off"></label>
+        <label class="car-country"><span class="visually-hidden">按国家或地区筛选</span><select id="country-filter" aria-label="按国家或地区筛选"><option value="">全部国家 / 地区</option></select></label>
+        <div class="car-tags" role="group" aria-label="按品牌标签筛选"><button type="button" data-tag="" aria-pressed="true">全部</button><button type="button" data-tag="电动" aria-pressed="false">电动</button><button type="button" data-tag="国产" aria-pressed="false">国产</button></div>
+        <output id="brand-count" aria-live="polite"></output>
+      </div>
+    </header>
+    <section class="brand-directory" id="brand-directory" aria-labelledby="directory-title"><header class="car-section-heading"><div><h2 id="directory-title">品牌列表</h2><p>可组合使用国家与标签筛选。“电动”表示品牌有新能源车型，涵盖纯电、插混或增程，不代表全系均为纯电。档次标签按品牌主流产品与整体市场定位大致归类。</p></div></header>
+    <p class="car-empty" id="brand-empty" hidden>没有找到匹配的汽车品牌，请调整搜索条件。</p>
+    <section class="brand-grid" id="brand-grid" aria-label="汽车品牌列表"></section>
+    </section>
+    <footer class="car-sources"><strong>资料说明</strong><span>车标图片主要使用 VehicleSpecs 整理的汽车品牌标志集；理想汽车、五菱使用独立图形标志，来源为 Wikimedia Commons。各品牌标志权利归其品牌方所有，仅作识别用途。</span><a href="https://github.com/vehiclespecs/brand-logos" target="_blank" rel="noopener noreferrer">VehicleSpecs 车标集</a><a href="https://commons.wikimedia.org/wiki/File:Li_Auto_logo.svg" target="_blank" rel="noopener noreferrer">理想汽车图形标志来源</a><a href="https://commons.wikimedia.org/wiki/File:Wuling_logo.svg" target="_blank" rel="noopener noreferrer">五菱图形标志来源</a></footer>
+  </main>
+</body>
+</html>

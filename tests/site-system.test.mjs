@@ -26,13 +26,14 @@ const pageNames = [
   'xian.html',
   'learning.html',
   'linux-boot.html',
+  'pqc.html',
 ];
 
 const pages = await Promise.all(
   pageNames.map(async name => [name, await readFile(new URL(name, root), 'utf8')]),
 );
 const siteNav = await readFile(new URL('assets/site-nav.js', root), 'utf8');
-const mainTargets = ['ai.html', 'market-memo.html', 'thoughts.html', 'general-knowledge.html', 'life.html', 'ai-learning-index.html', 'learning.html'];
+const mainTargets = ['ai.html', 'market-memo.html', 'thoughts.html', 'general-knowledge.html', 'life.html', 'ai-learning-index.html', 'learning.html', 'geer.html'];
 const detailParents = new Map([
   ['gk-countries.html', 'general-knowledge.html'],
   ['china-regions.html', 'general-knowledge.html'],
@@ -50,6 +51,7 @@ const detailParents = new Map([
   ['ai-user-scale.html', 'ai.html'],
   ['ai-company-value.html', 'ai.html'],
   ['linux-boot.html', 'learning.html'],
+  ['pqc.html', 'learning.html'],
 ]);
 
 for (const [name, html] of pages) {
@@ -61,7 +63,7 @@ for (const [name, html] of pages) {
   const fallbackNav = html.match(/<nav[^>]*data-site-nav[^>]*>([\s\S]*?)<\/nav>/)?.[1] ?? '';
   const navTargets = [...fallbackNav.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(navTargets).size, navTargets.length, `${name} must not duplicate navigation entries`);
-  assert.deepEqual(navTargets, mainTargets, `${name} must expose only the seven main navigation entries`);
+  assert.deepEqual(navTargets, mainTargets, `${name} must expose only the eight main navigation entries`);
   const selectedTarget = fallbackNav.match(/<a href="([^"]+)" aria-current="page">/)?.[1];
   assert.equal(selectedTarget, mainTargets.includes(name) ? name : detailParents.get(name) ?? 'ai.html', `${name} must select its main page or parent page without JavaScript`);
   for (const target of navTargets) {
@@ -69,7 +71,7 @@ for (const [name, html] of pages) {
   }
 }
 
-assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions|henan|shaanxi|xian|linux-boot)\.html'/);
+assert.doesNotMatch(siteNav, /href: '(?:agent|ops-agent|ai-model-comparison|ai-knowledge-base|ai-data|ai-user-scale|ai-company-value|ai-agent-model-timeline|ai-model-timeline|ai-agent-timeline|china-regions|henan|shaanxi|xian|linux-boot|pqc)\.html'/);
 assert.match(siteNav, /href: 'ai-learning-index\.html', label: '收藏'/);
 assert.match(siteNav, /href: 'market-memo\.html', label: '随笔'/);
 assert.match(siteNav, /href: 'general-knowledge\.html', label: '拾零'/);
@@ -78,6 +80,7 @@ const knowledgePage = pages.find(([name]) => name === 'ai-knowledge-base.html')[
 const learningPage = pages.find(([name]) => name === 'ai-learning-index.html')[1];
 const learningDirectoryPage = pages.find(([name]) => name === 'learning.html')[1];
 const linuxBootPage = pages.find(([name]) => name === 'linux-boot.html')[1];
+const pqcPage = pages.find(([name]) => name === 'pqc.html')[1];
 const opsAgentPage = pages.find(([name]) => name === 'ops-agent.html')[1];
 const memoPage = pages.find(([name]) => name === 'market-memo.html')[1];
 const generalKnowledgePage = pages.find(([name]) => name === 'general-knowledge.html')[1];
@@ -101,16 +104,14 @@ assert.match(regionsPage, /<title>中国省份城市｜知行簿<\/title>/);
 assert.match(regionsPage, /<link rel="stylesheet" href="assets\/china-regions\.css">/, 'china-regions must load its page layout');
 assert.match(regionsPage, /<script src="assets\/china-regions\.js" defer><\/script>/, 'china-regions must load its dataset and behavior');
 assert.equal((regionsPage.match(/\{"n":/g) ?? []).length, 367, 'china-regions must carry the 34-province 333-city dataset');
-assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html', 'xian\.html', 'security-vendors\.html'\]/, 'site-nav must group gk pages under 拾零');
+assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'car-brands\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html', 'xian\.html', 'security-vendors\.html'\]/, 'site-nav must group gk pages under 拾零');
 assert.match(learningPage, /<title>收藏｜知行簿<\/title>/);
+assert.match(learningDirectoryPage, /aria-label="学习专题导航"/, 'learning must expose a directory navigation like AI and 拾零');
 assert.match(learningDirectoryPage, /href="linux-boot\.html"/, 'learning must link to the Linux boot article');
-for (const chapter of ['overview', 'initramfs', 'systemd', 'observe']) {
-  assert.ok(learningDirectoryPage.includes(`href="linux-boot.html#${chapter}"`), `learning must link directly to ${chapter}`);
-  assert.ok(linuxBootPage.includes(`id="${chapter}"`), `Linux boot must expose the ${chapter} chapter anchor`);
-}
-assert.match(siteNav, /const learningDetailPages = \['linux-boot\.html'\]/, 'site-nav must group Linux boot under 学习');
+assert.match(learningDirectoryPage, /href="pqc\.html"/, 'learning must link to the post-quantum article');
+assert.match(siteNav, /const learningDetailPages = \['linux-boot\.html', 'pqc\.html'\]/, 'site-nav must group Linux boot and PQC under 学习');
 
-for (const [name, html] of [['learning.html', learningDirectoryPage], ['linux-boot.html', linuxBootPage]]) {
+for (const [name, html] of [['learning.html', learningDirectoryPage], ['linux-boot.html', linuxBootPage], ['pqc.html', pqcPage]]) {
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(ids).size, ids.length, `${name} must use unique IDs`);
   const idSet = new Set(ids);

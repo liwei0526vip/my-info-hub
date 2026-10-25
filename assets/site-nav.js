@@ -8,6 +8,7 @@
     { href: 'life.html', label: '生活' },
     { href: 'ai-learning-index.html', label: '收藏' },
     { href: 'learning.html', label: '学习' },
+    { href: 'geer.html', label: '格尔' },
   ];
   const currentFile = decodeURIComponent(location.pathname).split('/').pop() || 'index.html';
   const aiDetailPages = [
@@ -15,11 +16,13 @@
     'ops-agent-backup-2026-10-09.html',
     'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html',
   ];
-  const gkDetailPages = ['gk-countries.html', 'china-regions.html', 'henan.html', 'shaanxi.html', 'xian.html', 'security-vendors.html'];
-  const learningDetailPages = ['linux-boot.html'];
+  const gkDetailPages = ['gk-countries.html', 'car-brands.html', 'china-regions.html', 'henan.html', 'shaanxi.html', 'xian.html', 'security-vendors.html'];
+  const learningDetailPages = ['linux-boot.html', 'pqc.html'];
+  const geerDetailPages = ['geer-company.html'];
   const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html'
     : gkDetailPages.includes(currentFile) ? 'general-knowledge.html'
     : learningDetailPages.includes(currentFile) ? 'learning.html'
+    : geerDetailPages.includes(currentFile) ? 'geer.html'
     : currentFile;
 
   const wordmark = document.querySelector('.site-wordmark');
