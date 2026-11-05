@@ -20,7 +20,7 @@ assert.match(readingGroup, /href="https:\/\/github\.com\/tw93\/Weekly"/);
 assert.match(toolsGroup, /<h2 id="heading-tools">编程工具<\/h2>\s*<span>7<\/span>/);
 assert.match(agentGroup, /<h2 id="heading-agent">Agent \/ Harness<\/h2>\s*<span>6<\/span>/);
 assert.match(readingGroup, /<h2 id="heading-reading">基础文章<\/h2>\s*<span>8<\/span>/);
-assert.match(html, /id="result-count"[^>]*>31 项<\/p>/);
+assert.match(html, /id="result-count"[^>]*>38 项<\/p>/);
 
 assert.doesNotMatch(
   html,
@@ -34,8 +34,8 @@ assert.match(hero, /<h1>收藏<\/h1>/);
 assert.doesNotMatch(hero, /<br\s*\/?>/);
 assert.match(hero, /<p class="intro">[^<]+<\/p>/);
 
-assert.equal(html.match(/data-category=/g)?.length, 31, 'all 31 collected entries carry data-category');
-assert.ok(html.match(/<nav class="collection-directory"/g)?.length === 4, 'four groups render as directory navs');
+assert.equal(html.match(/data-category=/g)?.length, 38, 'all 38 collected entries carry data-category');
+assert.ok(html.match(/<nav class="collection-directory"/g)?.length === 5, 'five groups render as directory navs');
 
 assert.match(js, /querySelectorAll\('\.collection-directory a'\)/, 'filtering must target directory cells');
 assert.match(js, /\.collection-directory a:not\(\[hidden\]\)/, 'group counts must count visible cells');

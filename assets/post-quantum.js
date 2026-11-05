@@ -5,6 +5,19 @@
   if (!links.length || targets.some(target => !target)) return;
   const navigation = links[0].closest('.pq-toc');
 
+  const revealHashTarget = () => {
+    const id = window.location.hash.slice(1);
+    if (!id) return;
+    let target;
+    try { target = document.getElementById(decodeURIComponent(id)); }
+    catch { return; }
+    if (!target) return;
+    for (let parent = target.parentElement; parent; parent = parent.parentElement) {
+      if (parent.tagName === 'DETAILS') parent.open = true;
+    }
+    window.requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+  };
+
   let scheduled = false;
   const update = () => {
     scheduled = false;
@@ -13,6 +26,12 @@
     targets.forEach((target, index) => {
       if (target.getBoundingClientRect().top <= guideLine) active = index;
     });
+    // Two reference sections share a row on wide screens; honor the selected one.
+    const selected = links.findIndex(link => link.hash === window.location.hash);
+    if (selected >= 0 && selected !== active &&
+        Math.abs(targets[selected].getBoundingClientRect().top - targets[active].getBoundingClientRect().top) < 2) {
+      active = selected;
+    }
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
       // Near the end, a requested chapter may not be able to reach the top.
       const requested = links.findIndex(link => link.hash === window.location.hash);
@@ -42,5 +61,8 @@
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', schedule);
   window.addEventListener('hashchange', schedule);
+  window.addEventListener('hashchange', revealHashTarget);
+  document.querySelectorAll('.pq-fold').forEach(fold => fold.addEventListener('toggle', schedule));
+  revealHashTarget();
   update();
 })();
