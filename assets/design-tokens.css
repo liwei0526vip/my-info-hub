@@ -12,6 +12,7 @@
 
   /* 线与投影 */
   --line-soft:#e7eff2;         /* 次级分隔线：表内行线、列表分隔、卡片内部分隔（--line 用于区块级边框） */
+  --line-strong:#b8d3dc;       /* 交互描边：章节导航底线、按钮与浮动件边框 */
   --card-shadow:0 2px 7px #102c3b06;
 
   /* 语义色补全：ok 沿用 --green/--ok-bg，warn 沿用 --brown/--warm，err 为新引入的站点红 */
