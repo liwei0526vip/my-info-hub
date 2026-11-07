@@ -17,6 +17,8 @@ const pageNames = [
   'market-memo.html',
   'thoughts.html',
   'general-knowledge.html',
+  'gk-festivals.html',
+  'gk-fanren.html',
   'security-vendors.html',
   'gk-countries.html',
   'life.html',
@@ -27,6 +29,9 @@ const pageNames = [
   'learning.html',
   'linux-boot.html',
   'pqc.html',
+  'geer.html',
+  'geer-company.html',
+  'geer-addresses.html',
 ];
 
 const pages = await Promise.all(
@@ -41,6 +46,8 @@ const detailParents = new Map([
   ['shaanxi.html', 'general-knowledge.html'],
   ['xian.html', 'general-knowledge.html'],
   ['security-vendors.html', 'general-knowledge.html'],
+  ['gk-festivals.html', 'general-knowledge.html'],
+  ['gk-fanren.html', 'general-knowledge.html'],
   ['ai-model-comparison.html', 'ai.html'],
   ['agent.html', 'ai.html'],
   ['ai-knowledge-base.html', 'ai.html'],
@@ -52,6 +59,8 @@ const detailParents = new Map([
   ['ai-company-value.html', 'ai.html'],
   ['linux-boot.html', 'learning.html'],
   ['pqc.html', 'learning.html'],
+  ['geer-company.html', 'geer.html'],
+  ['geer-addresses.html', 'geer.html'],
 ]);
 
 for (const [name, html] of pages) {
@@ -104,14 +113,18 @@ assert.match(regionsPage, /<title>中国省份城市｜知行簿<\/title>/);
 assert.match(regionsPage, /<link rel="stylesheet" href="assets\/china-regions\.css">/, 'china-regions must load its page layout');
 assert.match(regionsPage, /<script src="assets\/china-regions\.js" defer><\/script>/, 'china-regions must load its dataset and behavior');
 assert.equal((regionsPage.match(/\{"n":/g) ?? []).length, 367, 'china-regions must carry the 34-province 333-city dataset');
-assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'car-brands\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html', 'xian\.html', 'security-vendors\.html'\]/, 'site-nav must group gk pages under 拾零');
+assert.match(siteNav, /const gkDetailPages = \['gk-countries\.html', 'car-brands\.html', 'china-regions\.html', 'henan\.html', 'shaanxi\.html', 'xian\.html', 'security-vendors\.html', 'gk-festivals\.html', 'gk-fanren\.html'\]/, 'site-nav must group gk pages under 拾零');
 assert.match(learningPage, /<title>收藏｜知行簿<\/title>/);
 assert.match(learningDirectoryPage, /aria-label="学习专题导航"/, 'learning must expose a directory navigation like AI and 拾零');
 assert.match(learningDirectoryPage, /href="linux-boot\.html"/, 'learning must link to the Linux boot article');
 assert.match(learningDirectoryPage, /href="pqc\.html"/, 'learning must link to the post-quantum article');
 assert.match(siteNav, /const learningDetailPages = \['linux-boot\.html', 'pqc\.html'\]/, 'site-nav must group Linux boot and PQC under 学习');
 
-for (const [name, html] of [['learning.html', learningDirectoryPage], ['linux-boot.html', linuxBootPage], ['pqc.html', pqcPage]]) {
+for (const [name, html] of pages.filter(([name]) => [
+  'learning.html', 'linux-boot.html', 'pqc.html',
+  'geer.html', 'geer-company.html', 'geer-addresses.html',
+  'gk-festivals.html', 'gk-fanren.html',
+].includes(name))) {
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(ids).size, ids.length, `${name} must use unique IDs`);
   const idSet = new Set(ids);

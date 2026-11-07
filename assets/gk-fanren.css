@@ -1,0 +1,228 @@
+/* 凡人修仙传：朱砂鎏金 × 拾零暖纸。元婴名帖墙（悬停高清）、势力卡、修为时间线与女性人物卡。 */
+.fr-main{
+  /* 页面识别色：在拾零暖纸基调上补修仙语义色 */
+  --fr-red:#933f2b;        /* 朱砂：元后、强调、魔道红 */
+  --fr-red-bg:#f5e7e1;
+  --fr-gold:#96712a;       /* 鎏金：元中、功法 */
+  --fr-gold-bg:#f4ead2;
+  --fr-jade:#47755f;       /* 玉青：元初、正道 */
+  --fr-jade-bg:#e6efe9;
+  --fr-blue:#3e5a7a;       /* 黛青：乱星海、筑基 */
+  --fr-blue-bg:#e7edf4;
+  --fr-orchid:#7c4557;     /* 藕紫：魔道 */
+  --fr-orchid-bg:#f3e7eb;
+  --fr-amber:#a05f26;      /* 琥珀：慕兰 */
+  --fr-amber-bg:#f6ecdd;
+  --fr-shadow:0 10px 30px rgba(59,50,38,.16);
+  padding-block:20px 28px;
+}
+
+/* ── 页头 ── */
+.fr-heading{margin-bottom:12px}
+.fr-heading .gk-return{display:inline-flex;align-items:center;min-height:32px;color:var(--gk-accent);font-size:12px}
+.fr-heading h1{margin:0;color:var(--gk-accent);font:750 26px/1.25 var(--display);letter-spacing:-.035em}
+.fr-seal{display:inline-block;min-width:21px;margin-left:9px;padding:1px 3px;border-radius:4px;background:var(--fr-red);color:#fff;font:700 12px/1.5 var(--display);text-align:center;vertical-align:6px;letter-spacing:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+.fr-sub{margin:6px 0 0;color:var(--gk-muted);font-size:12px}
+
+/* ── 基础面板 ── */
+.fr-panel{margin-bottom:14px;padding:14px 16px 13px;border:1px solid var(--gk-line);border-radius:10px;background:var(--gk-paper)}
+.fr-panel-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;margin-bottom:11px;padding-bottom:9px;border-bottom:1px solid var(--gk-line)}
+.fr-panel-head h2{display:flex;align-items:center;gap:8px;margin:0;font:700 16px/1.3 var(--display)}
+.fr-panel-head h2::before{content:"";width:4px;height:15px;border-radius:2px;background:linear-gradient(180deg,var(--fr-red),var(--fr-gold))}
+.fr-panel-sub{margin:0;color:var(--gk-muted);font-size:11px}
+.fr-note-inline{margin:10px 0 0;color:var(--gk-muted);font-size:10px}
+
+/* 期位与阵营小签 */
+.fr-stage{display:inline-block;padding:1px 6px;border-radius:4px;font-size:9.5px;font-weight:600;line-height:1.6;white-space:nowrap;vertical-align:1px}
+.fr-stage--c1{background:var(--fr-jade-bg);color:var(--fr-jade)}
+.fr-stage--c2{background:var(--fr-gold-bg);color:var(--fr-gold)}
+.fr-stage--c3{background:var(--fr-red-bg);color:var(--fr-red)}
+.fr-stage--hero{background:var(--gk-accent);color:var(--gk-paper)}
+.fr-stage--mortal{background:var(--gk-soft);color:var(--gk-muted)}
+.fr-stage--zhinv{background:var(--fr-orchid-bg);color:var(--fr-orchid)}
+.fr-stage--mo-t{background:var(--fr-red-bg);color:var(--fr-red)}
+.fr-stage--mulan{background:var(--fr-amber-bg);color:var(--fr-amber)}
+.fr-camp{display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600;line-height:1.6;white-space:nowrap;color:#fff}
+.fr-camp--zheng{background:var(--fr-jade)}
+.fr-camp--mo{background:var(--fr-orchid)}
+.fr-camp--mulan{background:var(--fr-amber)}
+.fr-camp--hai{background:var(--fr-blue)}
+.fr-camp--hanli{background:var(--gk-accent)}
+
+/* ── 页首档案 ── */
+
+/* ── 韩立特写卡 ── */
+.fr-feature{display:grid;grid-template-columns:300px minmax(0,1fr);gap:14px;margin-bottom:12px;padding:10px;border:1px solid var(--gk-line);border-radius:9px;background:linear-gradient(135deg,var(--gk-soft),var(--gk-paper) 55%)}
+.fr-feature-fig{margin:0;min-width:0}
+.fr-feature-fig img{display:block;width:100%;height:100%;min-height:170px;object-fit:cover;object-position:50% 22%;border-radius:7px;border:1px solid var(--gk-line)}
+.fr-feature-body{min-width:0;padding:2px 2px 0 0}
+.fr-feature-name{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.fr-feature-name h3{margin:0;font:750 19px/1.2 var(--display);letter-spacing:.02em}
+.fr-feature-org{margin:0 0 6px;color:var(--fr-red);font-size:11px;font-weight:650}
+.fr-feature-text{margin:0;color:var(--gk-ink);font-size:12px;line-height:1.8}
+.fr-chips{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0 0;padding:0;list-style:none}
+.fr-chips li{padding:2px 8px;border:1px solid var(--gk-line);border-radius:4px;background:var(--gk-paper);color:var(--gk-ink);font-size:10px;font-weight:600}
+.fr-chips li.is-key{border-color:transparent;background:var(--fr-gold-bg);color:var(--fr-gold)}
+
+/* ── 元婴名帖墙 ── */
+.fr-legend{display:flex;align-items:center;flex-wrap:wrap;gap:5px 6px}
+.fr-legend-note{margin-left:4px;color:var(--gk-muted);font-size:10px}
+.fr-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.fr-filter button{padding:3px 12px;border:1px solid var(--gk-line);border-radius:999px;background:var(--gk-paper);color:var(--gk-muted);font-size:11px;font-weight:600;line-height:1.7;cursor:pointer;transition:all .16s ease}
+.fr-filter button:hover{border-color:var(--gk-accent);color:var(--gk-accent)}
+.fr-filter button.is-on{border-color:transparent;background:var(--fr-red);color:#fff}
+.fr-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(164px,1fr));gap:10px;margin:0;padding:0;list-style:none}
+
+.fr-npc{position:relative;padding:8px;border:1px solid var(--gk-line);border-radius:8px;background:var(--gk-paper);cursor:pointer;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+.fr-npc:hover{transform:translateY(-2px);border-color:var(--gk-accent);box-shadow:var(--card-shadow,0 2px 7px rgba(59,50,38,.06))}
+.fr-npc:focus-visible{outline:2px solid var(--gk-accent);outline-offset:2px}
+.fr-npc.is-hidden{display:none}
+.fr-npc-fig{position:relative;height:118px;border-radius:6px;overflow:hidden;background:var(--gk-soft)}
+.fr-npc-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.fr-wall .fr-npc:first-child .fr-npc-fig img{object-position:64% 30%}
+.fr-npc-meta{display:flex;align-items:center;justify-content:space-between;gap:4px;margin-top:7px}
+.fr-npc-name{font-size:13px;font-weight:750;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr-npc-org{margin:3px 0 0;color:var(--gk-muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr-npc-org::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.fr-npc[data-group="zheng"] .fr-npc-org::before{background:var(--fr-jade)}
+.fr-npc[data-group="mo"] .fr-npc-org::before{background:var(--fr-orchid)}
+.fr-npc[data-group="mulan"] .fr-npc-org::before{background:var(--fr-amber)}
+.fr-npc[data-group="hai"] .fr-npc-org::before{background:var(--fr-blue)}
+
+/* 无剧照人物：阵营名帖 */
+.fr-mono{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fr-mono::before{content:"";position:absolute;inset:0;margin:auto;height:62%;aspect-ratio:1;border:1px solid rgba(255,255,255,.35);border-radius:50%;opacity:.65}
+.fr-mono::after{content:"元婴";position:absolute;right:6px;bottom:5px;color:rgba(255,255,255,.75);font-size:8.5px;letter-spacing:.2em;writing-mode:vertical-rl}
+.fr-mono span{position:relative;font:750 34px/1 var(--display);color:rgba(255,255,255,.94);text-shadow:0 2px 10px rgba(0,0,0,.25)}
+.fr-mono--zheng{background:radial-gradient(120% 100% at 30% 18%,#6b9a83,var(--fr-jade) 62%,#2f5243)}
+.fr-mono--mo{background:radial-gradient(120% 100% at 30% 18%,#a4677c,var(--fr-orchid) 62%,#56293a)}
+.fr-mono--mulan{background:radial-gradient(120% 100% at 30% 18%,#c78a4a,var(--fr-amber) 62%,#6e3d12)}
+.fr-mono--hai{background:radial-gradient(120% 100% at 30% 18%,#6c89ab,var(--fr-blue) 62%,#283f59)}
+
+/* 高清浮层：悬停 / 聚焦 / 点按 */
+.fr-woman--mono .fr-mono::after{content:none}
+
+/* ── 地域格局（天南 / 乱星海共用） ── */
+.fr-region{display:grid;grid-template-columns:minmax(0,1fr) 212px;gap:12px;align-items:start}
+.fr-region-fig{margin:0;min-width:0}
+.fr-region-fig img{display:block;width:100%;height:100%;max-height:560px;object-fit:cover;object-position:50% 30%;border:1px solid var(--gk-line);border-radius:8px}
+.fr-region-fig figcaption{margin-top:5px;color:var(--gk-muted);font-size:10px;text-align:center}
+.fr-sects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fr-sect{min-width:0;padding:10px 12px 9px;border:1px solid var(--gk-line);border-radius:8px;background:var(--gk-paper)}
+.fr-sect--wide{grid-column:1/-1}
+.fr-sect header{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px}
+.fr-sect h3{margin:0;font:750 13.5px/1.3 var(--display)}
+.fr-sect>p:not(.fr-people){margin:0 0 8px;color:var(--gk-muted);font-size:11px;line-height:1.7}
+.fr-people{margin:0;padding-top:7px;border-top:1px dashed var(--gk-line);color:var(--gk-ink);font-size:10.5px;line-height:1.7}
+.fr-people b{display:inline-block;margin-right:6px;padding:1px 6px;border-radius:3px;background:var(--gk-soft);color:var(--gk-accent);font-size:9.5px;font-weight:700;vertical-align:1px}
+
+/* ── 乱星海 ── */
+.fr-hai-banner{margin:0 0 12px;min-width:0}
+.fr-hai-banner img{display:block;width:100%;max-height:250px;object-fit:cover;border:1px solid var(--gk-line);border-radius:8px}
+.fr-hai-banner figcaption{margin-top:5px;color:var(--gk-muted);font-size:10px;text-align:center}
+.fr-footsteps{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 148px;gap:12px;margin-top:12px;padding:11px 13px;border:1px dashed var(--gk-line);border-radius:8px;background:var(--gk-soft)}
+.fr-footsteps h3{margin:0 0 8px;font:750 12.5px/1.3 var(--display);color:var(--gk-accent)}
+.fr-footsteps ol{display:flex;flex-wrap:wrap;align-items:center;gap:6px 2px;margin:0;padding:0;list-style:none}
+.fr-footsteps li{padding:2px 9px;border-radius:999px;background:var(--gk-paper);border:1px solid var(--gk-line);color:var(--gk-ink);font-size:10.5px;font-weight:600;white-space:nowrap}
+.fr-footsteps li:not(:first-child)::before{content:"▸";margin-right:6px;color:var(--gk-line);font-size:9px}
+.fr-footsteps li.is-hi{background:var(--fr-red);border-color:transparent;color:#fff}
+.fr-footsteps li.is-hi::before{color:rgba(255,255,255,.7)}
+.fr-footsteps-fig{margin:0;min-width:0}
+.fr-footsteps-fig img{display:block;width:100%;height:100%;max-height:168px;object-fit:cover;object-position:50% 20%;border-radius:7px;border:1px solid var(--gk-line)}
+.fr-footsteps-fig figcaption{margin-top:4px;color:var(--gk-muted);font-size:9.5px;text-align:center}
+
+/* ── 修为时间线 ── */
+.fr-tl-layout{display:grid;grid-template-columns:minmax(0,1fr) 272px;gap:18px;align-items:start}
+.fr-tl{position:relative;margin:0;padding:2px 0 0;list-style:none}
+.fr-tl::before{content:"";position:absolute;left:30px;top:10px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--gk-line),var(--fr-gold))}
+.fr-tl-item{position:relative;display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px;padding:0 0 16px}
+.fr-tl-item:last-child{padding-bottom:2px}
+.fr-tl-item::before{content:"";position:absolute;left:25px;top:14px;width:12px;height:12px;border:3px solid var(--gk-paper);border-radius:50%;background:var(--gk-muted);box-shadow:0 0 0 1px var(--gk-line);z-index:1}
+.fr-tl-item.fr-tl-hi::before{background:var(--fr-gold)}
+.fr-tl-item.fr-tl-hi .fr-tl-when{color:var(--fr-gold)}
+.fr-tl-item.fr-tl-now::before{background:var(--fr-red)}
+.fr-tl-item.fr-tl-now .fr-tl-when{color:var(--fr-red)}
+.fr-tl-realm{align-self:start;justify-self:end;padding:2px 0;width:52px;text-align:center;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.08em;color:#fff}
+.fr-realm--mortal{background:#8d8474}
+.fr-realm--qi{background:var(--fr-jade)}
+.fr-realm--zhuji{background:var(--fr-blue)}
+.fr-realm--dan{background:var(--fr-gold)}
+.fr-realm--ying{background:var(--fr-red)}
+.fr-tl-when{margin:0;color:var(--gk-accent);font:700 10.5px/1.5 var(--mono)}
+.fr-tl-body h3{margin:2px 0 4px;font:750 13.5px/1.4 var(--display)}
+.fr-tl-body p:last-child{margin:0;color:var(--gk-muted);font-size:11.5px;line-height:1.8}
+.fr-tl-hi .fr-tl-body h3{color:var(--fr-gold)}
+.fr-tl-now .fr-tl-body h3{color:var(--fr-red)}
+
+/* 功法法宝栏 */
+.fr-arts{position:sticky;top:14px;padding:12px 14px;border:1px solid var(--gk-line);border-radius:9px;background:linear-gradient(160deg,var(--gk-soft),var(--gk-paper) 60%)}
+.fr-arts h3{display:flex;align-items:center;gap:7px;margin:0 0 9px;font:750 13.5px/1.3 var(--display);color:var(--gk-accent)}
+.fr-arts h3::before{content:"";width:14px;height:14px;border-radius:3px;background:linear-gradient(135deg,var(--fr-gold),var(--fr-red));opacity:.85}
+.fr-arts dl{margin:0}
+.fr-arts dl>div{padding:7px 0;border-bottom:1px dashed var(--gk-line)}
+.fr-arts dl>div:last-child{border-bottom:0;padding-bottom:2px}
+.fr-arts dt{font-size:12px;font-weight:750;color:var(--gk-ink)}
+.fr-arts dd{margin:3px 0 0;color:var(--gk-muted);font-size:10.5px;line-height:1.65}
+
+/* ── 女性人物 ── */
+.fr-women{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.fr-woman{min-width:0;padding:9px;border:1px solid var(--gk-line);border-radius:9px;background:var(--gk-paper);transition:border-color .16s ease,box-shadow .16s ease}
+.fr-woman:hover{border-color:var(--fr-orchid);box-shadow:0 2px 7px rgba(59,50,38,.06)}
+.fr-woman figure{margin:0;height:150px;border-radius:6px;overflow:hidden;background:var(--gk-soft)}
+.fr-woman figure img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transition:transform .35s ease}
+.fr-woman:hover figure img{transform:scale(1.045)}
+.fr-woman-body{padding:2px 2px 0}
+.fr-woman-body h3{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:8px 0 0;font:750 14px/1.3 var(--display)}
+.fr-woman-role{margin:4px 0 0;color:var(--fr-orchid);font-size:10.5px;font-weight:650}
+.fr-woman-body p:last-child{margin:6px 0 0;color:var(--gk-muted);font-size:11px;line-height:1.75}
+.fr-woman--mono figure{display:flex;align-items:center;justify-content:center;height:150px}
+.fr-woman--mono .fr-mono span{font-size:44px}
+.fr-women-banner{margin:12px 0 0;min-width:0}
+.fr-women-banner img{display:block;width:100%;max-height:236px;object-fit:cover;object-position:50% 38%;border:1px solid var(--gk-line);border-radius:8px}
+.fr-women-banner figcaption{margin-top:5px;color:var(--gk-muted);font-size:10px;text-align:center}
+
+/* ── 页脚说明 ── */
+.fr-note{margin:16px 0 0;padding:10px 14px;border:1px solid var(--gk-line);border-left:3px solid var(--gk-accent);border-radius:6px;background:var(--gk-soft)}
+.fr-note p{margin:0;color:var(--gk-muted);font-size:10.5px;line-height:1.8}
+
+/* ── 响应式 ── */
+@media (max-width:1080px){
+  .fr-region{grid-template-columns:minmax(0,1fr) 184px}
+  .fr-women{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .fr-feature{grid-template-columns:1fr}
+  .fr-feature-fig img{min-height:0;aspect-ratio:16/8}
+  .fr-region{grid-template-columns:1fr}
+  .fr-region-fig{max-width:360px}
+  .fr-region-fig img{max-height:280px}
+  .fr-tl-layout{grid-template-columns:1fr}
+  .fr-arts{position:static}
+}
+@media (max-width:700px){
+  .fr-panel{padding:12px 12px 11px;border-radius:9px}
+  .fr-panel-head{flex-direction:column;gap:4px}
+  .fr-sects{grid-template-columns:1fr}
+  .fr-sect--wide{grid-column:auto}
+  .fr-wall{grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:8px}
+  .fr-npc-fig{height:104px}
+  .fr-footsteps{grid-template-columns:1fr}
+  .fr-footsteps-fig{max-width:220px}
+  .fr-tl-item{grid-template-columns:48px minmax(0,1fr);gap:9px}
+  .fr-tl::before{left:24px}
+  .fr-tl-item::before{left:19px}
+  .fr-tl-realm{width:44px;font-size:9px}
+  @media (max-width:520px){
+  .fr-wall{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fr-women{grid-template-columns:1fr}
+  .fr-women-banner img{max-height:190px}
+}
+@media (prefers-reduced-motion:reduce){
+}
+@media print{
+  .fr-filter,.fr-region-fig,.fr-hai-banner,.fr-footsteps-fig,.fr-women-banner{display:none}
+  .fr-panel{break-inside:avoid;box-shadow:none}
+  .fr-npc{box-shadow:none}
+  .fr-npc:hover{transform:none}
+  .fr-stage,.fr-camp,.fr-mono,.fr-tl-item::before,.fr-realm--mortal,.fr-realm--qi,.fr-realm--zhuji,.fr-realm--dan,.fr-realm--ying,.fr-footsteps li.is-hi{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}

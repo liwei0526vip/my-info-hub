@@ -16,7 +16,7 @@
     'ops-agent-backup-2026-10-09.html',
     'ai-model-timeline.html', 'ai-agent-timeline.html', 'ai-user-scale.html', 'ai-company-value.html',
   ];
-  const gkDetailPages = ['gk-countries.html', 'car-brands.html', 'china-regions.html', 'henan.html', 'shaanxi.html', 'xian.html', 'security-vendors.html'];
+  const gkDetailPages = ['gk-countries.html', 'car-brands.html', 'china-regions.html', 'henan.html', 'shaanxi.html', 'xian.html', 'security-vendors.html', 'gk-festivals.html', 'gk-fanren.html'];
   const learningDetailPages = ['linux-boot.html', 'pqc.html'];
   const geerDetailPages = ['geer-company.html', 'geer-addresses.html'];
   const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html'

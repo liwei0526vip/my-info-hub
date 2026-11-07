@@ -1,0 +1,78 @@
+/* 节日与节气：历页式高密度速查。标签色编码节日类型，季节色条编码节气归属。 */
+.gkf-main{
+  --gkf-legal:#8a5a1e;        /* 法定：与拾零强调色一致 */
+  --gkf-olive:#6d7a3a;        /* 节气标签 */
+  --gkf-olive-bg:#eef0e2;
+  --gkf-sacrifice:#8f3b2f;    /* 祭祀标签：香火赭红 */
+  --gkf-sacrifice-bg:#f6e8e5;
+  --gkf-spring:#7d8f4e;
+  --gkf-summer:#b0522f;
+  --gkf-autumn:#a8742a;
+  --gkf-winter:#4e6a78;
+  padding-block:20px 26px;
+}
+
+.gkf-heading{margin-bottom:12px}
+.gkf-heading .gk-return{display:inline-flex;align-items:center;min-height:32px;color:var(--gk-accent);font-size:12px}
+.gkf-heading h1{margin:0;color:var(--gk-accent);font:750 26px/1.25 var(--display);letter-spacing:-.035em}
+
+.gkf-panel{margin-bottom:14px;padding:13px 16px 12px;border:1px solid var(--gk-line);border-radius:10px;background:var(--gk-paper)}
+.gkf-panel-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--gk-line)}
+.gkf-panel-head h2{margin:0;font:700 15px/1.3 var(--display)}
+
+.gkf-legend{display:flex;align-items:center;flex-wrap:wrap;gap:5px 6px}
+.gkf-legend-note{margin-left:4px;color:var(--gk-muted);font-size:10px}
+.gkf-tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600;line-height:1.6;white-space:nowrap}
+.gkf-tag--legal{background:var(--gkf-legal);color:var(--gk-paper)}
+.gkf-tag--folk{border:1px solid var(--gk-line);color:var(--gk-muted);background:var(--gk-paper)}
+.gkf-tag--term{background:var(--gkf-olive-bg);color:var(--gkf-olive)}
+.gkf-tag--sacrifice{background:var(--gkf-sacrifice-bg);color:var(--gkf-sacrifice)}
+
+/* 节日墙：统一三行等高卡（名称 / 标签 / 习俗） */
+.gkf-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+.gkf-card{display:flex;flex-direction:column;gap:3px;min-width:0;padding:8px 10px 8px;border:1px solid var(--gk-line);border-radius:7px;background:var(--gk-paper);transition:background .16s ease,border-color .16s ease}
+.gkf-card:hover{background:var(--gk-soft);border-color:var(--gkf-legal)}
+.gkf-line{display:flex;align-items:baseline;justify-content:space-between;gap:6px;min-width:0}
+.gkf-name{font-size:12.5px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
+.gkf-date{white-space:nowrap;font-size:9.5px}
+.gkf-date--lunar{color:var(--gk-accent);font-weight:600}
+.gkf-date--solar{color:var(--gk-muted);font:600 9.5px var(--mono);font-variant-numeric:tabular-nums}
+.gkf-tags{display:inline-flex;gap:3px;flex-wrap:wrap}
+.gkf-card>p{margin:0;color:var(--gk-muted);font-size:10px;line-height:1.5}
+.gkf-card--term{border-color:var(--gkf-olive);background:linear-gradient(0deg,rgba(238,240,226,.45),rgba(238,240,226,.45)),var(--gk-paper)}
+
+/* 节气瓦片：季节色条编码归属 */
+.gkf-season-key{display:inline-flex;align-items:center;gap:4px;color:var(--gk-ink);font-size:10px}
+.gkf-dot{width:7px;height:7px;border-radius:50%}
+.gkf-dot--spring{background:var(--gkf-spring)}
+.gkf-dot--summer{background:var(--gkf-summer)}
+.gkf-dot--autumn{background:var(--gkf-autumn)}
+.gkf-dot--winter{background:var(--gkf-winter)}
+
+.gkf-terms{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;margin:0;padding:0;list-style:none}
+.gkf-term{display:flex;align-items:center;justify-content:center;min-width:0;padding:4px 2px;border-radius:5px;font-size:11px;font-weight:650;letter-spacing:.02em;white-space:nowrap;cursor:help}
+.gkf-term--spring{background:rgba(125,143,78,.14);color:var(--gkf-spring)}
+.gkf-term--summer{background:rgba(176,82,47,.12);color:var(--gkf-summer)}
+.gkf-term--autumn{background:rgba(168,116,42,.15);color:var(--gkf-autumn)}
+.gkf-term--winter{background:rgba(78,106,120,.13);color:var(--gkf-winter)}
+
+@media(max-width:980px){
+  .gkf-terms{grid-template-columns:repeat(6,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .gkf-heading{align-items:flex-start;flex-direction:column;gap:8px}
+  .gkf-heading h1{font-size:24px}
+  .gkf-panel{padding:12px 12px 10px;border-radius:9px}
+  .gkf-panel-head{flex-direction:column;gap:5px}
+}
+@media(max-width:520px){
+  .gkf-wall{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
+  .gkf-terms{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){
+  .gkf-card{transition:none}
+}
+@media print{
+  .gkf-panel{padding:10px 12px;border-radius:0;break-inside:avoid}
+  .gkf-tag--legal,.gkf-card--term,.gkf-term,.gkf-tag--sacrifice{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+}
