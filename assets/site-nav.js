@@ -18,7 +18,7 @@
   ];
   const gkDetailPages = ['gk-countries.html', 'car-brands.html', 'china-regions.html', 'henan.html', 'shaanxi.html', 'xian.html', 'security-vendors.html'];
   const learningDetailPages = ['linux-boot.html', 'pqc.html'];
-  const geerDetailPages = ['geer-company.html'];
+  const geerDetailPages = ['geer-company.html', 'geer-addresses.html'];
   const current = currentFile === 'index.html' || aiDetailPages.includes(currentFile) ? 'ai.html'
     : gkDetailPages.includes(currentFile) ? 'general-knowledge.html'
     : learningDetailPages.includes(currentFile) ? 'learning.html'

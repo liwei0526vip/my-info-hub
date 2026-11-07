@@ -1,0 +1,126 @@
+/* 站点设计令牌与通用组件（design tokens）。
+   基础识别色（--ink/--muted/--blue/--amber/--bg/--paper/--line/--pale/--green/--warm/--brown
+   与 --body/--display/--mono 字体）以 assets/site-nav.css 的 :root 为唯一来源，本文件不重复定义，
+   只补齐语义层与阶梯，并提供四个跨页通用组件。
+   令牌分层与组件样式思想参考 answer-me-with-html（MIT，https://github.com/QingYunA/answer-me-with-html），
+   类名与取值按本项目（知行簿）既有风格改写，不依赖其页面骨架。
+   页面引用顺序：site-nav.css → design-tokens.css → 页面自有 CSS。 */
+
+:root{
+  /* 文本层级：--ink 主文字、--muted 次级说明（site-nav 已有），此处补三级弱化文字 */
+  --faint:#9aafb9;             /* 三级文字：弱化说明、空态、禁用、表格中的“—” */
+
+  /* 线与投影 */
+  --line-soft:#e7eff2;         /* 次级分隔线：表内行线、列表分隔、卡片内部分隔（--line 用于区块级边框） */
+  --card-shadow:0 2px 7px #102c3b06;
+
+  /* 语义色补全：ok 沿用 --green/--ok-bg，warn 沿用 --brown/--warm，err 为新引入的站点红 */
+  --ok-bg:#eaf1ed;             /* 成功浅底，配 --green 文字 */
+  --err:#c43e3e;               /* 错误 / 不支持，与 life.css 既有红色一致 */
+  --err-soft:#f9edeb;          /* 错误浅底 */
+  --amber-deep:#a35e00;        /* 文字用深琥珀（--amber 用于焦点环与图形，浅琥珀不宜做小号文字色） */
+
+  /* 圆角阶梯：既有常用值归档（4 标签、6 按钮小件、9-12 面板、14 大件） */
+  --radius-xs:4px;
+  --radius-s:6px;
+  --radius-m:10px;
+  --radius-l:14px;
+
+  /* 间距阶梯：4px 节奏 */
+  --sp-1:4px;
+  --sp-2:8px;
+  --sp-3:12px;
+  --sp-4:16px;
+  --sp-5:24px;
+  --sp-6:32px;
+
+  /* 字号阶梯：正文 13-14，说明 11-12，最小 10 */
+  --fs-caption:10px;           /* 辅助角标、表头注 */
+  --fs-note:11px;              /* 说明、次级信息 */
+  --fs-small:12px;             /* 小号正文、导航 */
+  --fs-body:14px;              /* 正文基准（site-nav body 即 14px） */
+  --fs-lead:16px;              /* 引导段、卡片主值 */
+  --fs-h2:18px;                /* 区块标题 */
+  --fs-h1:28px;                /* 页面主标题 */
+}
+
+/* ── 提示条 site-callout：结论、注意事项、警告，需从正文中“跳出”的独立信息 ── */
+.site-callout{
+  margin:var(--sp-3) 0;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  border-left:3px solid var(--blue);
+  border-radius:var(--radius-s);
+  background:var(--pale);
+}
+.site-callout--ok{border-left-color:var(--green);background:var(--ok-bg)}
+.site-callout--warn{border-left-color:var(--brown);background:var(--warm)}
+.site-callout--err{border-left-color:var(--err);background:var(--err-soft)}
+.site-callout-title{margin:0 0 4px;font-size:var(--fs-small);font-weight:700}
+.site-callout p{margin:0 0 6px}
+.site-callout p:last-child{margin-bottom:0}
+
+/* ── 状态徽标 site-badge：对比表里的 支持 / 不支持 / 部分支持 等判断值 ──
+   用于“结论列”的纵向扫描，不用于数据数值（数据表沿用 life.css 仅文字重点色的约定）。 */
+.site-badge{white-space:nowrap;font-weight:600}
+.site-badge::before{font-weight:700}
+.site-badge--ok{color:var(--green)}
+.site-badge--ok::before{content:"✓ "}
+.site-badge--no{color:var(--err)}
+.site-badge--no::before{content:"✗ "}
+.site-badge--warn{color:var(--brown)}
+.site-badge--warn::before{content:"! "}
+
+/* ── 键值档案块 site-kv：页头、卡片里的成对元数据 ── */
+.site-kv{
+  display:grid;
+  grid-template-columns:repeat(var(--site-kv-cols,2),minmax(0,1fr));
+  column-gap:var(--sp-6);
+  margin:0;
+}
+.site-kv>div{min-width:0;padding:0 0 var(--sp-3);border-bottom:1px solid var(--line-soft)}
+.site-kv dt{margin-bottom:3px;color:var(--muted);font-size:var(--fs-note)}
+.site-kv dd{margin:0;font-size:var(--fs-lead);font-weight:650;overflow-wrap:anywhere}
+.site-kv--wide{grid-column:1/-1}              /* 通栏单元格：长值、一句话主业等 */
+.site-kv--wide dd{font-size:var(--fs-body);font-weight:650}
+
+/* ── 竖排时间线 site-timeline：发展历程、阶段、步骤 ── */
+.site-timeline{margin:0;padding:0;list-style:none}
+.site-tl-item{position:relative;padding:0 0 var(--sp-4) 20px}
+.site-tl-item:last-child{padding-bottom:0}
+.site-tl-item::before{content:"";position:absolute;left:4px;top:12px;bottom:-4px;width:1px;background:var(--line)}
+.site-tl-item:last-child::before{display:none}
+.site-tl-item::after{
+  content:"";position:absolute;left:0;top:6px;width:9px;height:9px;
+  border:2px solid var(--paper);border-radius:50%;
+  background:var(--blue);box-shadow:0 0 0 1px var(--line);
+}
+.site-tl-when{display:block;color:var(--blue);font:700 var(--fs-small)/1.4 var(--mono);font-variant-numeric:tabular-nums}
+.site-tl-title{display:block;margin:2px 0 3px;font-size:var(--fs-small);font-weight:700}
+.site-tl-text{display:block;margin:0;color:var(--muted);font-size:var(--fs-note);line-height:1.7}
+.site-tl-hi::after{background:var(--amber)}                 /* 关键节点：点用琥珀 */
+.site-tl-hi .site-tl-when{color:var(--amber-deep)}          /* 文字用深琥珀，保证对比度 */
+
+@media(max-width:520px){
+  .site-kv{--site-kv-cols:1}
+}
+
+@media print{
+  .site-callout,.site-badge,.site-tl-item::after{
+    print-color-adjust:exact;-webkit-print-color-adjust:exact;
+  }
+}
+
+/* ── 暗色模式预留（本期不启用） ──
+   全站当前声明 <meta name="color-scheme" content="light">。将来启用暗色时，
+   在此覆盖 site-nav.css 与本文件的识别 / 语义变量，组件与页面样式即可整体跟随：
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0c1a22; --paper:#12242e; --pale:#1a3240;
+    --ink:#dcebf1; --muted:#8fabb8; --faint:#5d7885;
+    --line:#28434f; --line-soft:#1d3440;
+    --ok-bg:#1a332b; --err:#e57373; --err-soft:#3a1f1e; --warm:#2e2416;
+  }
+}
+*/
