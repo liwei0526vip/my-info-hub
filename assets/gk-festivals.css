@@ -12,19 +12,10 @@
   color: var(--ink);
 }
 
-.gkf-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-4); margin-bottom: var(--sp-6); }
-.gkf-heading .gk-return { display: inline-flex; align-items: center; min-height: 32px; margin-bottom: var(--sp-1); color: var(--gk-accent); font-size: var(--fs-small); }
-.gkf-heading h1 { margin: 0; color: var(--ink); font: 750 var(--fs-h1)/1.3 var(--display); letter-spacing: -.035em; }
-.gkf-jump { display: flex; gap: var(--sp-1); padding: var(--sp-1); border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--gk-paper); }
-.gkf-jump a { display: inline-flex; align-items: center; gap: var(--sp-3); padding: 6px 10px; color: var(--muted); font-size: var(--fs-small); border-radius: var(--radius-xs); }
-.gkf-jump a:hover { background: var(--gk-soft); color: var(--gk-accent); text-decoration: none; }
-.gkf-jump span { color: var(--gk-accent); font: 600 var(--fs-small)/1 var(--mono); }
-
 .gkf-layout { display: grid; grid-template-columns: minmax(0, 1.48fr) minmax(360px, 1fr); align-items: stretch; gap: var(--sp-5); }
 .gkf-section { min-width: 0; display: flex; flex-direction: column; }
 .gkf-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-3); }
 .gkf-section-head h2 { margin: 0; font: 700 var(--fs-h2)/1.4 var(--display); scroll-margin-top: var(--sp-4); }
-.gkf-section-head p { margin: 0; color: var(--muted); font-size: var(--fs-note); white-space: nowrap; }
 
 /* 同一行对齐节日的四类信息，不再为每条记录重复包裹卡片。 */
 .gkf-table-wrap { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-m); background: var(--gk-paper); }
@@ -40,7 +31,6 @@
 .gkf-table tbody tr:hover { background: #faf5e9; }
 .gkf-table tbody th { font-size: var(--fs-body); font-weight: 650; white-space: nowrap; }
 .gkf-date-cell { white-space: nowrap; font-size: var(--fs-small); }
-.gkf-calendar-label { margin-right: var(--sp-1); color: var(--muted); font-size: var(--fs-note); }
 .gkf-date { font-variant-numeric: tabular-nums; }
 .gkf-date--lunar { color: var(--gk-accent); }
 .gkf-date--solar { color: var(--ink); }
@@ -77,9 +67,6 @@
   .gkf-season:nth-child(n + 3) { border-top: 1px solid var(--line); }
 }
 @media (max-width: 700px) {
-  .gkf-heading { align-items: flex-start; flex-direction: column; gap: var(--sp-4); margin-bottom: var(--sp-5); }
-  .gkf-jump { width: 100%; }
-  .gkf-jump a { justify-content: space-between; flex: 1; padding-inline: var(--sp-3); }
   .gkf-table, .gkf-table tbody { display: block; }
   .gkf-table colgroup { display: none; }
   .gkf-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -100,7 +87,6 @@
   .gkf-season { grid-template-columns: 32px minmax(0, 1fr); gap: var(--sp-3); padding-inline: var(--sp-3); }
 }
 @media print {
-  .gkf-heading .gk-return, .gkf-jump { display: none; }
   .gkf-layout { grid-template-columns: minmax(0, 1fr); }
   .gkf-season, .gkf-table tbody tr { break-inside: avoid; }
   .gkf-seasons { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; }
