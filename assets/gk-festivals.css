@@ -1,78 +1,108 @@
-/* 节日与节气：历页式高密度速查。标签色编码节日类型，季节色条编码节气归属。 */
-.gkf-main{
-  --gkf-legal:#8a5a1e;        /* 法定：与拾零强调色一致 */
-  --gkf-olive:#6d7a3a;        /* 节气标签 */
-  --gkf-olive-bg:#eef0e2;
-  --gkf-sacrifice:#8f3b2f;    /* 祭祀标签：香火赭红 */
-  --gkf-sacrifice-bg:#f6e8e5;
-  --gkf-spring:#7d8f4e;
-  --gkf-summer:#b0522f;
-  --gkf-autumn:#a8742a;
-  --gkf-winter:#4e6a78;
-  padding-block:20px 26px;
+/* 节日用于逐行查阅；节气按四季分组，以等距节点表达先后。 */
+.gkf-main {
+  --ink: var(--gk-ink);
+  --muted: var(--gk-muted);
+  --line: var(--gk-line);
+  --line-soft: #eee7db;
+  --gkf-spring: #526d3d;
+  --gkf-summer: #a84d35;
+  --gkf-autumn: #986718;
+  --gkf-winter: #426878;
+  padding-block: var(--sp-5) var(--sp-6);
+  color: var(--ink);
 }
 
-.gkf-heading{margin-bottom:12px}
-.gkf-heading .gk-return{display:inline-flex;align-items:center;min-height:32px;color:var(--gk-accent);font-size:12px}
-.gkf-heading h1{margin:0;color:var(--gk-accent);font:750 26px/1.25 var(--display);letter-spacing:-.035em}
+.gkf-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-4); margin-bottom: var(--sp-6); }
+.gkf-heading .gk-return { display: inline-flex; align-items: center; min-height: 32px; margin-bottom: var(--sp-1); color: var(--gk-accent); font-size: var(--fs-small); }
+.gkf-heading h1 { margin: 0; color: var(--ink); font: 750 var(--fs-h1)/1.3 var(--display); letter-spacing: -.035em; }
+.gkf-jump { display: flex; gap: var(--sp-1); padding: var(--sp-1); border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--gk-paper); }
+.gkf-jump a { display: inline-flex; align-items: center; gap: var(--sp-3); padding: 6px 10px; color: var(--muted); font-size: var(--fs-small); border-radius: var(--radius-xs); }
+.gkf-jump a:hover { background: var(--gk-soft); color: var(--gk-accent); text-decoration: none; }
+.gkf-jump span { color: var(--gk-accent); font: 600 var(--fs-small)/1 var(--mono); }
 
-.gkf-panel{margin-bottom:14px;padding:13px 16px 12px;border:1px solid var(--gk-line);border-radius:10px;background:var(--gk-paper)}
-.gkf-panel-head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--gk-line)}
-.gkf-panel-head h2{margin:0;font:700 15px/1.3 var(--display)}
+.gkf-layout { display: grid; grid-template-columns: minmax(0, 1.48fr) minmax(360px, 1fr); align-items: stretch; gap: var(--sp-5); }
+.gkf-section { min-width: 0; display: flex; flex-direction: column; }
+.gkf-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.gkf-section-head h2 { margin: 0; font: 700 var(--fs-h2)/1.4 var(--display); scroll-margin-top: var(--sp-4); }
+.gkf-section-head p { margin: 0; color: var(--muted); font-size: var(--fs-note); white-space: nowrap; }
 
-.gkf-legend{display:flex;align-items:center;flex-wrap:wrap;gap:5px 6px}
-.gkf-legend-note{margin-left:4px;color:var(--gk-muted);font-size:10px}
-.gkf-tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:9px;font-weight:600;line-height:1.6;white-space:nowrap}
-.gkf-tag--legal{background:var(--gkf-legal);color:var(--gk-paper)}
-.gkf-tag--folk{border:1px solid var(--gk-line);color:var(--gk-muted);background:var(--gk-paper)}
-.gkf-tag--term{background:var(--gkf-olive-bg);color:var(--gkf-olive)}
-.gkf-tag--sacrifice{background:var(--gkf-sacrifice-bg);color:var(--gkf-sacrifice)}
+/* 同一行对齐节日的四类信息，不再为每条记录重复包裹卡片。 */
+.gkf-table-wrap { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-m); background: var(--gk-paper); }
+.gkf-table { width: 100%; border-collapse: collapse; table-layout: fixed; text-align: left; }
+.gkf-col-name { width: 13%; }
+.gkf-col-date { width: 24%; }
+.gkf-col-type { width: 25%; }
+.gkf-col-custom { width: 38%; }
+.gkf-table th, .gkf-table td { padding: 10px 14px; vertical-align: middle; }
+.gkf-table thead { background: var(--gk-soft); color: var(--muted); font-size: var(--fs-note); }
+.gkf-table thead th { padding-block: var(--sp-2); font-weight: 500; }
+.gkf-table tbody tr + tr { border-top: 1px solid var(--line-soft); }
+.gkf-table tbody tr:hover { background: #faf5e9; }
+.gkf-table tbody th { font-size: var(--fs-body); font-weight: 650; white-space: nowrap; }
+.gkf-date-cell { white-space: nowrap; font-size: var(--fs-small); }
+.gkf-calendar-label { margin-right: var(--sp-1); color: var(--muted); font-size: var(--fs-note); }
+.gkf-date { font-variant-numeric: tabular-nums; }
+.gkf-date--lunar { color: var(--gk-accent); }
+.gkf-date--solar { color: var(--ink); }
+.gkf-date-empty { color: var(--muted); }
+.gkf-tags { display: flex; flex-wrap: wrap; gap: var(--sp-1); }
+.gkf-tag { display: inline-flex; align-items: center; min-height: 21px; padding: 0 var(--sp-1); border: 1px solid transparent; border-radius: var(--radius-xs); font-size: var(--fs-note); font-weight: 500; line-height: 1.5; white-space: nowrap; }
+.gkf-tag--legal { background: var(--gk-accent); color: var(--gk-paper); }
+.gkf-tag--folk { color: var(--muted); border-color: var(--line); }
+.gkf-tag--term { color: var(--gkf-spring); background: #edf1e5; }
+.gkf-tag--sacrifice { color: #8f3b2f; background: #f6e8e5; }
+.gkf-custom { color: var(--muted); font-size: var(--fs-small); line-height: 1.6; }
+.gkf-row--term { background: #f6f7ed; }
 
-/* 节日墙：统一三行等高卡（名称 / 标签 / 习俗） */
-.gkf-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:8px;margin:0;padding:0;list-style:none}
-.gkf-card{display:flex;flex-direction:column;gap:3px;min-width:0;padding:8px 10px 8px;border:1px solid var(--gk-line);border-radius:7px;background:var(--gk-paper);transition:background .16s ease,border-color .16s ease}
-.gkf-card:hover{background:var(--gk-soft);border-color:var(--gkf-legal)}
-.gkf-line{display:flex;align-items:baseline;justify-content:space-between;gap:6px;min-width:0}
-.gkf-name{font-size:12.5px;font-weight:700;letter-spacing:.01em;white-space:nowrap}
-.gkf-date{white-space:nowrap;font-size:9.5px}
-.gkf-date--lunar{color:var(--gk-accent);font-weight:600}
-.gkf-date--solar{color:var(--gk-muted);font:600 9.5px var(--mono);font-variant-numeric:tabular-nums}
-.gkf-tags{display:inline-flex;gap:3px;flex-wrap:wrap}
-.gkf-card>p{margin:0;color:var(--gk-muted);font-size:10px;line-height:1.5}
-.gkf-card--term{border-color:var(--gkf-olive);background:linear-gradient(0deg,rgba(238,240,226,.45),rgba(238,240,226,.45)),var(--gk-paper)}
+/* 四个季节共享一条阅读线；每组六个节气均保留可见日期范围。 */
+.gkf-seasons { flex: 1; display: grid; grid-template-rows: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: var(--radius-m); background: var(--gk-paper); overflow: hidden; }
+.gkf-season { --season-color: var(--gkf-spring); --season-tint: #f0f3e8; display: grid; grid-template-columns: 48px minmax(0, 1fr); align-items: center; gap: var(--sp-4); padding: 20px; }
+.gkf-season + .gkf-season { border-top: 1px solid var(--line); }
+.gkf-season--summer { --season-color: var(--gkf-summer); --season-tint: #faf0e9; }
+.gkf-season--autumn { --season-color: var(--gkf-autumn); --season-tint: #f8f0df; }
+.gkf-season--winter { --season-color: var(--gkf-winter); --season-tint: #edf2f4; }
+.gkf-season h3 { display: grid; place-items: center; align-self: stretch; margin: 0; border-radius: var(--radius-s); background: var(--season-tint); color: var(--season-color); font: 500 30px/1.2 "Songti SC", "STSong", serif; }
+.gkf-terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4) 0; margin: 0; padding: 0; list-style: none; }
+.gkf-term { position: relative; min-width: 0; padding-top: 10px; border-top: 1px solid var(--line); }
+.gkf-term::before { content: ""; position: absolute; top: -3px; left: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--season-color); }
+.gkf-term-name { display: block; color: var(--ink); font-size: var(--fs-body); font-weight: 650; line-height: 1.5; }
+.gkf-term-date { display: block; margin-top: 2px; color: var(--muted); font-size: var(--fs-note); font-variant-numeric: tabular-nums; line-height: 1.5; white-space: nowrap; }
 
-/* 节气瓦片：季节色条编码归属 */
-.gkf-season-key{display:inline-flex;align-items:center;gap:4px;color:var(--gk-ink);font-size:10px}
-.gkf-dot{width:7px;height:7px;border-radius:50%}
-.gkf-dot--spring{background:var(--gkf-spring)}
-.gkf-dot--summer{background:var(--gkf-summer)}
-.gkf-dot--autumn{background:var(--gkf-autumn)}
-.gkf-dot--winter{background:var(--gkf-winter)}
-
-.gkf-terms{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;margin:0;padding:0;list-style:none}
-.gkf-term{display:flex;align-items:center;justify-content:center;min-width:0;padding:4px 2px;border-radius:5px;font-size:11px;font-weight:650;letter-spacing:.02em;white-space:nowrap;cursor:help}
-.gkf-term--spring{background:rgba(125,143,78,.14);color:var(--gkf-spring)}
-.gkf-term--summer{background:rgba(176,82,47,.12);color:var(--gkf-summer)}
-.gkf-term--autumn{background:rgba(168,116,42,.15);color:var(--gkf-autumn)}
-.gkf-term--winter{background:rgba(78,106,120,.13);color:var(--gkf-winter)}
-
-@media(max-width:980px){
-  .gkf-terms{grid-template-columns:repeat(6,minmax(0,1fr))}
+@media (max-width: 1180px) {
+  .gkf-layout { grid-template-columns: minmax(0, 1fr); gap: var(--sp-5); }
+  .gkf-seasons { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; }
+  .gkf-season { min-height: 170px; }
+  .gkf-season + .gkf-season { border-top: 0; }
+  .gkf-season:nth-child(even) { border-left: 1px solid var(--line); }
+  .gkf-season:nth-child(n + 3) { border-top: 1px solid var(--line); }
 }
-@media(max-width:700px){
-  .gkf-heading{align-items:flex-start;flex-direction:column;gap:8px}
-  .gkf-heading h1{font-size:24px}
-  .gkf-panel{padding:12px 12px 10px;border-radius:9px}
-  .gkf-panel-head{flex-direction:column;gap:5px}
+@media (max-width: 700px) {
+  .gkf-heading { align-items: flex-start; flex-direction: column; gap: var(--sp-4); margin-bottom: var(--sp-5); }
+  .gkf-jump { width: 100%; }
+  .gkf-jump a { justify-content: space-between; flex: 1; padding-inline: var(--sp-3); }
+  .gkf-table, .gkf-table tbody { display: block; }
+  .gkf-table colgroup { display: none; }
+  .gkf-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .gkf-table tbody tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--sp-1) var(--sp-3); padding: 10px var(--sp-3); }
+  .gkf-table th, .gkf-table td { display: block; padding: 0; }
+  .gkf-table tbody th { grid-column: 1; grid-row: 1; }
+  .gkf-date-cell { grid-column: 2; grid-row: 1; text-align: right; }
+  .gkf-type-cell { grid-column: 2; grid-row: 2; }
+  .gkf-tags { justify-content: flex-end; flex-wrap: nowrap; }
+  .gkf-custom { grid-column: 1; grid-row: 2; }
+  .gkf-seasons { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(4, auto); }
+  .gkf-season { grid-template-columns: 40px minmax(0, 1fr); gap: var(--sp-4); min-height: 162px; padding: var(--sp-4); }
+  .gkf-season:nth-child(even) { border-left: 0; }
+  .gkf-season + .gkf-season { border-top: 1px solid var(--line); }
 }
-@media(max-width:520px){
-  .gkf-wall{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}
-  .gkf-terms{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width: 360px) {
+  .gkf-table tbody tr { column-gap: var(--sp-2); }
+  .gkf-season { grid-template-columns: 32px minmax(0, 1fr); gap: var(--sp-3); padding-inline: var(--sp-3); }
 }
-@media(prefers-reduced-motion:reduce){
-  .gkf-card{transition:none}
-}
-@media print{
-  .gkf-panel{padding:10px 12px;border-radius:0;break-inside:avoid}
-  .gkf-tag--legal,.gkf-card--term,.gkf-term,.gkf-tag--sacrifice{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+@media print {
+  .gkf-heading .gk-return, .gkf-jump { display: none; }
+  .gkf-layout { grid-template-columns: minmax(0, 1fr); }
+  .gkf-season, .gkf-table tbody tr { break-inside: avoid; }
+  .gkf-seasons { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto auto; }
+  .gkf-main { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
 }
